@@ -1,27 +1,4 @@
-.text-center
+.bold
 {
-    text-align: center;
-}
-
-.billet
-{
-    text-align: center;
-}
-
-.billet-title
-{
-    background-color: yellowgreen;
-    width: 50%;
-    margin: auto;
-    margin-top: 15px;
-}
-
-.billet-content
-{
-    text-align: center; 
-    margin: auto;
-    border: 1px solid black; 
-    width: 40%; 
-    background-color: whitesmoke;
-    padding: 5px;
+    font-weight: bold;
 }
