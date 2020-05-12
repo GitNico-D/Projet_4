@@ -1,11 +1,8 @@
 <?php
-// require '../src/DAO/DAO.php';
-// require '../src/DAO/PostDAO.php';
-// require '../src/DAO/CommentsDAO.php';
-require '../config/Autoloader.php';
+require '../vendor/autoload.php';
 
-use App\config\Autoloader;
-Autoloader::register();
+// use App\config\Autoloader;
+// Autoloader::register();
 use App\src\DAO\PostDAO;
 use App\src\DAO\CommentsDAO;
 
@@ -43,7 +40,7 @@ use App\src\DAO\CommentsDAO;
                     <p class=card-body>Posté le <span class=font-italic><?= htmlspecialchars($uniqueNews->creationDate);?></span> 
                         par <span class=font-italic><?= htmlspecialchars($uniqueNews->author);?></span></p>
                     <p class= text-center-justify><?= htmlspecialchars($uniqueNews->content);?></p>
-                    <a href=home.php>Retour à Home Page</a>
+                    <a href="../public/index.php">Retour à Home Page</a>
                 </div>
                 <?php
                 $comments = new CommentsDAO();
