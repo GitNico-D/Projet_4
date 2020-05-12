@@ -2,24 +2,13 @@
 
 namespace App\src\DAO;
 
+// require '..src/DAO/dev.php';
 use PDO;
 use Exception;
 
 abstract class DAO 
 {
-    private $db_name;
-    private $db_username;
-    private $db_password;
-    private $db_host;
     private $db;
-
-    // public function __construct($db_name, $db_host = 'localhost', $db_username = 'root', $db_password = '')
-    // {
-    //     $this->db_host = $db_host;
-    //     $this->db_username = $db_username;
-    //     $this->db_password = $db_password;
-    //     $this->db_name = $db_name;
-    // }
 
     public function checkDbConnection()
     {
@@ -37,7 +26,8 @@ abstract class DAO
     {
         try
         {
-            $this->db = new PDO('mysql:dbname=db_project_four;host=localhost;charset=utf8', 'root', '');
+            var_dump($this->db);
+            $this->db = new PDO(DB_HOST, DB_USERNAME, DB_PASSWORD);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo 'Connection OK !';
             return $this->db;
