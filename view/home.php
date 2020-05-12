@@ -1,10 +1,9 @@
 <?php
-require '../config/Autoloader.php';
+require '../vendor/autoload.php';
 
-use App\config\Autoloader;
-Autoloader::register();
+// use App\vendor\Autoloader;
+// Autoloader::register();
 use App\src\DAO\PostDAO;
-
 
 ?>
 <!DOCTYPE html>
@@ -41,7 +40,7 @@ use App\src\DAO\PostDAO;
                     <p class=card-body>Posté le <span class=font-italic><?= htmlspecialchars($news->creationDate)?></span> 
                         par <span class=font-italic><?= htmlspecialchars($news->author)?></span></p>
                     <p class= text-center-justify><?= htmlspecialchars($news->content)?></p>
-                    <a href=single.php?idPost=<?= htmlspecialchars($news->id)?>>En savoir plus... </a>
+                    <a href="../public/index.php?page=singlenews&idPost=<?= htmlspecialchars($news->id)?>">En savoir plus... </a>
                 </div>
                 <?php
                 }
