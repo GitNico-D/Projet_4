@@ -6,9 +6,9 @@ require '../vendor/autoload.php';
 var_dump($_GET);
     if (isset($_GET['page']))
     {
-        if ($_GET['page'] === 'singlenews')
+        if ($_GET['page'] === 'singlearticle')
         {
-            require '../view/single.php';
+            require '../view/singlearticle.php';
         }
         else
         {
@@ -17,7 +17,7 @@ var_dump($_GET);
     }
     else 
     {
-        require '../view/home.php';
+        require '../view/homearticle.php';
     }
    
 ?>      
