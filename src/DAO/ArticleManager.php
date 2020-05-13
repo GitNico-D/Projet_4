@@ -5,7 +5,7 @@ namespace App\src\DAO;
 class ArticleManager extends DAO
 {
 
-    public function getUniqueArticle($articleId)
+    public function getUniqueArticle($articleId) //getArticleById
     {
         $sqlRequest = 'SELECT * FROM news WHERE id = ?';
         var_dump($articleId);
