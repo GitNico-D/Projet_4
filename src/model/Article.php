@@ -1,5 +1,7 @@
 <?php
 
+namespace App\src\model;
+
 class Article
 {
     protected $id;
@@ -25,7 +27,7 @@ class Article
         }
     }
 
-    // Setters
+    // Setters //
 
     public function setId($id)
     {
@@ -34,17 +36,26 @@ class Article
 
     public function setAuthor($author)
     {
-        $this->$author = $author;
+        if (is_string($author))
+        {
+            $this->$author = $author;
+        }
     }
 
     public function setTitle($title)
     {
-        $this->title = $title;
+        if (is_string($title))
+        {
+            $this->title = $title;
+        }
     }
 
     public function setContent($content)
     {
-        $this->content = $content;
+        if (is_string($content))
+        {
+            $this->content = $content;
+        }
     }
 
     public function setCreationDate($creationDate)
@@ -52,7 +63,7 @@ class Article
         $this->creationDate = $creationDate;
     }
 
-    // Getters
+    // Getters //
 
     public function getId()
     {
