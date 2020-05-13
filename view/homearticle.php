@@ -47,15 +47,14 @@ use App\src\DAO\ArticleManager;
                 $articlesList->closeCursor();            
                 ?>
                 <h3> Ajouter un article !</h3>
-                <form>
+                <form action= method="post">
                     <div class="form-group">
-                    <label for="author" class=bold>Auteur</label>
-                    <input type="text" class="form-control" id="articleAuthor" name="articleAuthor">
                     <label for="title">Titre de l'article</label>
                     <input type="text" class="form-control" id="articleTitle" name="articleTitle">
                     <label for="content">Contenu de l'article</label>
                     <textarea type="text" class="form-control" id="articleContent" name="articleContent" rows="10"></textarea>
                     <button type="submit" class="btn btn-primary">Envoyer article</button>
+                </form>
         </section>
     </body>
 </html>
