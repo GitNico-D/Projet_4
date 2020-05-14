@@ -18,9 +18,9 @@ class ArticleManager extends DAO
         return $this->createQuery($sqlRequest);
     }
 
-    public function addNewArticle(Article $article)
+    public function addNewArticle($articleTitle, $articleContent)
     {
-        $sqlRequest = 'INSERT INTO news(title, author, content, creationDate) VALUES (:author, :title, :content, NOW())';
-        return $this->createQuery($sqlRequest, [$article->setTitle(), ])
+        $sqlRequest = 'INSERT INTO news(title, content, creationDate) VALUES (:title, :content, NOW())';
+        return $this->createQuery($sqlRequest, [$articleTitle, $articleContent]);
     }
 }
