@@ -2,7 +2,7 @@
 
 namespace App\src\DAO;
 
-// require '..src/DAO/dev.php';
+// require '..src/DAO/PDOConnection.php';
 use PDO;
 use Exception;
 
@@ -45,6 +45,7 @@ abstract class DAO
             $request = $this->checkDbConnection()->prepare($sql);
             $request->setFetchMode(PDO::FETCH_CLASS, static::class);
             $request->execute($parameters);
+            var_dump($parameters);
             return $request;
         }
         $request = $this->checkDbConnection()->query($sql);
