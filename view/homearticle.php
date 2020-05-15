@@ -1,9 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 
-// use App\vendor\Autoloader;
-// Autoloader::register();
-use App\src\DAO\ArticleManager;
+// use App\src\DAO\ArticleManager;
 
 ?>
 <!DOCTYPE html>
@@ -30,9 +28,9 @@ use App\src\DAO\ArticleManager;
             </div>
             <p class="lead text-muted">Voici tous les articles disponibles !</p>
                 <?php
-                $article = new ArticleManager; 
-                $articlesList = $article->getAllArticles();
-                while ($article = $articlesList->fetch())
+                // $article = new ArticleManager; 
+                // $articlesList = $article->getAllArticles();
+                while ($article = $allArticles->fetch())
                 {
                 ?>
                 <div class=card>
@@ -44,17 +42,15 @@ use App\src\DAO\ArticleManager;
                 </div>
                 <?php
                 }
-                $articlesList->closeCursor();            
+                $allArticles->closeCursor();            
                 ?>
-                <h3> Ajouter un article !</h3>
-                <form action= method="post">
-                    <div class="form-group">
-                    <label for="title">Titre de l'article</label>
-                    <input type="text" class="form-control" id="articleTitle" name="articleTitle">
-                    <label for="content">Contenu de l'article</label>
-                    <textarea type="text" class="form-control" id="articleContent" name="articleContent" rows="10"></textarea>
-                    <button type="submit" class="btn btn-primary">Envoyer article</button>
-                </form>
+        </section>
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Souhaitez vous ajouter un nouvel article ?</h1>
+            </div>
+            <p class="lead text-muted">Cliquez sur le lien ci dessous !</p>
+                <a href="../public/index.php?page=addArticle">Se rendre sur la page d'ajout</a>
         </section>
     </body>
 </html>

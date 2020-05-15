@@ -3,8 +3,8 @@ require '../vendor/autoload.php';
 
 // use App\config\Autoloader;
 // Autoloader::register();
-use App\src\DAO\ArticleManager;
-use App\src\DAO\CommentsDAO;
+// use App\src\DAO\ArticleManager;
+// use App\src\DAO\CommentsDAO;
 
 ?>
 <!DOCTYPE html>
@@ -20,26 +20,24 @@ use App\src\DAO\CommentsDAO;
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container ">
                 <a href="#" class="navbar-brand text-center">
-                    <strong>HOME PAGE</strong>
+                    <strong>SINGLE PAGE</strong>
                 </a>
                 </button>
             </div>
         </div>
         <section class="jumbotron text-center">
             <div class="container">
-                <h1 class="jumbotron-heading">Bienvenue sur mon blog!</h1>
+                <h1 class="jumbotron-heading">Affichage d'un  article et de ces commentaires !</h1>
             </div>
-            <p class="lead text-muted">Affichage d'un unique article !</p>
+            <p class="lead text-muted"></p>
                 <?php
-                $uniqueArticle = new ArticleManager; 
-                $article = $uniqueArticle->getUniqueArticle($_GET['articleId']);
-                $uniqueArticle = $article->fetch();
+                $article = $uniqueArticle->fetch();
                 ?>
                 <div class=card>
-                    <h2 class=card-header font-weight-bold><?= htmlspecialchars($uniqueArticle->title);?></h2>
-                    <p class=card-body>Posté le <span class=font-italic><?= htmlspecialchars($uniqueArticle->creationDate);?></span> 
-                        par <span class=font-italic><?= htmlspecialchars($uniqueArticle->author);?></span></p>
-                    <p class= text-center-justify><?= htmlspecialchars($uniqueArticle->content);?></p>
+                    <h2 class=card-header font-weight-bold><?= htmlspecialchars($article->title);?></h2>
+                    <p class=card-body>Posté le <span class=font-italic><?= htmlspecialchars($article->creationDate);?></span> 
+                        par <span class=font-italic><?= htmlspecialchars($article->author);?></span></p>
+                    <p class= text-center-justify><?= htmlspecialchars($article->content);?></p>
                     <a href="../public/index.php">Retour à Home Page</a>
                 </div>
         </section>

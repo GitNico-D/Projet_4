@@ -1,14 +1,23 @@
 <?php 
 
-require '../config/PDOConnection.php';
+// require '../config/PDOConnection.php';
 require '../vendor/autoload.php';
+use App\src\controller\ArticleController;
+
+$frontController = new ArticleController();
 
 var_dump($_GET);
     if (isset($_GET['page']))
     {
         if ($_GET['page'] === 'singlearticle')
         {
-            require '../view/singlearticle.php';
+            // $frontController = new ArticleController();
+            $frontController->single($_GET['articleId']);
+            // require '../view/singlearticle.php';
+        }
+        elseif($_GET['page'] === 'addArticle')
+        {
+            $frontController->addArticle();
         }
         else
         {
@@ -17,7 +26,8 @@ var_dump($_GET);
     }
     else 
     {
-        require '../view/homearticle.php';
+        $frontController = new ArticleController;
+        $frontController->home();
     }
    
 ?>      
