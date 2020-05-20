@@ -15,11 +15,11 @@ class Article
         $this->hydrate($articleAttribute);
     }
 
-    public function hydrate($articleAttribute)
+    public function hydrate(array $data)
     {
         foreach ($data as $key => $articleAttribute)
         {
-            $method = 'set' . ucfirst($articleAttribute);
+            $method = 'set' . ucfirst($key);
             if(method_exists($this, $method))
             {
                 $this->$method($articleAttribute);
