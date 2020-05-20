@@ -1,10 +1,4 @@
 <?php
-require '../vendor/autoload.php';
-
-// use App\vendor\Autoloader;
-// Autoloader::register();
-// use App\src\DAO\ArticleManager;
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,9 +27,9 @@ require '../vendor/autoload.php';
                 <form action="index.php?page=addArticle" method="post">
                     <div class="form-group">
                     <label for="title">Titre de l'article</label>
-                    <input type="text" class="form-control" id="articleTitle" name="articleTitle">
+                    <input type="text" class="form-control" id="Title" name="Title">
                     <label for="content">Contenu de l'article</label>
-                    <textarea type="text" class="form-control" id="articleContent" name="articleContent" rows="10"></textarea>
+                    <textarea type="text" class="form-control" id="Content" name="Content" rows="10"></textarea>
                     <button type="submit" class="btn btn-primary">Envoyer article</button>
                 </form>
                 <div><a href="../public/index.php">Retour à Home Page</a></div>
