@@ -38,7 +38,7 @@ class Article
     {
         if (is_string($author))
         {
-            $this->$author = $author;
+            $this->author = $author;
         }
     }
 
