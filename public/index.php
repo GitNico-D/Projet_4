@@ -2,33 +2,44 @@
 
 // require '../config/PDOConnection.php';
 require '../vendor/autoload.php';
-use App\src\controller\ArticleController;
+use App\src\controller\FrontController;
+use App\src\controller\ErrorController;
+// use Exception;
 
-$frontController = new ArticleController();
+$frontController = new FrontController();
+$errorController = new ErrorController();
 
-var_dump($_GET);
+try 
+{
     if (isset($_GET['page']))
     {
-        if ($_GET['page'] === 'singlearticle')
+    $page = $_GET['page'];
+        switch ($page)
         {
-            // $frontController = new ArticleController();
-            $frontController->single($_GET['articleId']);
-            // require '../view/singlearticle.php';
-        }
-        elseif($_GET['page'] === 'addArticle')
-        {
-            $frontController->addArticle();
-        }
-        else
-        {
-            echo 'Page introuvable !';
+            case 'single': 
+                $frontController->single($_GET['articleId']);
+            break;
+            case 'addArticle':
+                $frontController->addArticle($_POST);
+            break;
+            case 'getLogin':
+                $frontController->logIn();
+            break;
+            default:
+                $errorController->errorPageNotFound();
         }
     }
     else 
     {
-        $frontController = new ArticleController;
         $frontController->home();
     }
-   
+}
+catch (Exception $errorConnexion)
+{
+    // $errorMessage = $errorConnexion->getMessage();
+    $errorController->PageNotFound($errorMessage);
+}
+
+    
 ?>      
  
