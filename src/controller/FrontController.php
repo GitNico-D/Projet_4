@@ -2,33 +2,33 @@
 
 namespace App\src\controller;
 
-use App\src\DAO\ArticleManager;
+use App\src\DAO\ChapterManager;
 use App\src\model\View;
 
 class FrontController
 {
-    private $articleManager;
+    private $chapterManager;
     private $view;
 
     public function __construct()
     {
-        $this->articleManager = new ArticleManager();
+        $this->chapterManager = new ChapterManager();
         // var_dump($page);
         // $this->view = new View();
     } 
 
     public function home()
     {
-        $articlesList = $this->articleManager->getAllArticles();
+        $chaptersList = $this->chapterManager->getAllChapters();
         // $this->view = new View('home');
-        // var_dump(['articlesList' => $articlesList]);
-        // return $this->view->generateView(['articlesList' => $articlesList]);
+        // var_dump(['chaptersList' => $chaptersList]);
+        // return $this->view->generateView(['chaptersList' => $chaptersList]);
         require '../view/homeView.php';
     }
 
-    public function single($articleId)
+    public function single($chapterId)
     {
-        $uniqueArticle = $this->articleManager->getArticleById($articleId);
+        $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
         require '../view/singleView.php';
     }    
 
