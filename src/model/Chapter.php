@@ -2,27 +2,27 @@
 
 namespace App\src\model;
 
-class Article
+class Chapter
 {
     protected $id;
     protected $author;
     protected $title;
     protected $content;
-    protected $creationDate;
+    protected $createDate;
 
-    public function __construct($articleAttribute = [])
+    public function __construct($chapterAttribute = [])
     {
-        $this->hydrate($articleAttribute);
+        $this->hydrate($chapterAttribute);
     }
 
     public function hydrate(array $data)
     {
-        foreach ($data as $key => $articleAttribute)
+        foreach ($data as $key => $chapterAttribute)
         {
             $method = 'set' . ucfirst($key);
             if(method_exists($this, $method))
             {
-                $this->$method($articleAttribute);
+                $this->$method($chapterAttribute);
             }
         }
     }
@@ -58,9 +58,9 @@ class Article
         }
     }
 
-    public function setCreationDate($creationDate)
+    public function setCreateDate($createDate)
     {
-        $this->creationDate = $creationDate;
+        $this->createDate = $createDate;
     }
 
     // Getters //
@@ -85,8 +85,8 @@ class Article
         return $this->content;
     }
 
-    public function getCreationDate()
+    public function getCreateDate()
     {
-        return $this->creationDate;
+        return $this->createDate;
     }
 }
