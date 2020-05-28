@@ -28,7 +28,7 @@ class ChapterManager extends DAO
 
     public function getChapterById($chapterId) 
     {
-        $sqlRequest = 'SELECT * FROM chapter WHERE id = ?';
+        $sqlRequest = 'SELECT * FROM chapter WHERE chapterId = ?';
         $result = $this->createQuery($sqlRequest, [$chapterId]);
         $chapter = $result->fetch();
         $result->closeCursor();
@@ -37,27 +37,39 @@ class ChapterManager extends DAO
 
     public function getAllChapters()
     {
-        $sqlRequest = 'SELECT * FROM chapter ORDER BY id ASC';
+        $sqlRequest = 'SELECT * FROM chapter ORDER BY chapterId ASC';
         $result = $this->createQuery($sqlRequest);
         $chaptersList = [];
         foreach ($result as $chapter)
         {
             $chaptersList [] = $this->createObjectChapter($chapter);
         }
-        $result->closeCursor();  
+        $result->closeCursor(); 
         return $chaptersList;
     }
 
     // public function addNewChapter(Chapter $chapter)
     // {
-        // $chapterTitle = $chapter->getTitle();
-        // $chapterContent = $chapter->getContent();
+    //     var_dump($chapterTitle, $chapterAuthor, $chapterContent);
+    //     extract($chapter);
+    //     $sqlRequest = 'INSERT INTO chapter (chapterTitle, chapterAuthor, chapterContent, chapterCreateDate, chapterUpdateDate) VALUES (?, ?, ?, NOW(), NOW())';
+    //     $this->createQuery($sqlRequest, array(
+    //         'chapterTitle' => $chapterTitle, $chapterAuthor, $chapterContent));
+    //     // var_dump($sqlRequest);
+    //     return $this->getChapterById($chapterId);
+    // }
+
+    public function addNewChapter($newChapterTitle, $newChapterContent, $newChapterAuthor)
+    {
         // echo $chapterTitle . ' ' . $chapterContent;
         // $this->chapter($chapterTitle,$chapterContent);
-        // var_dump($title, $content);
-    //     extract($chapter);
-    //     var_dump($chapter->getTitle());
-    //     $sqlRequest = 'INSERT INTO chapter(chapter_title, chapter_content, create_Date) VALUES (:title, :content, NOW())';
-    //     return $this->createQuery($sqlRequest, [$title, $content]);
-    // }
+        // var_dump($chapterTitle, $chapterAuthor, $chapterContent);
+        $sqlRequest = 'INSERT INTO chapter (chapterTitle, chapterAuthor, chapterContent, chapterCreateDate, chapterUpdateDate) VALUES (:chapterTitle, :chapterAuthor, :chapterContent, NOW(), NOW())';
+        $this->createQuery($sqlRequest, array(
+            'chapterTitle' => $chapterTitle, 
+            'chapterAuthor' => $chapterAuthor, 
+            'chapterContent' => $chapterContent));
+        var_dump($sqlRequest);
+        return $this->getChapterById($chapterId);
+    }
 }
