@@ -4,11 +4,12 @@ namespace App\src\model;
 
 class Chapter
 {
-    protected $id;
-    protected $author;
-    protected $title;
-    protected $content;
-    protected $createDate;
+    protected $chapterId;
+    protected $chapterAuthor;
+    protected $chapterTitle;
+    protected $chapterContent;
+    protected $chapterCreateDate;
+    protected $chapterUpdateDate;
 
     public function __construct($chapterAttribute = [])
     {
@@ -29,64 +30,64 @@ class Chapter
 
     // Setters //
 
-    public function setId($id)
+    public function setChapterId($chapterId)
     {
-        $this->id = $id;
+        $this->chapterId = $chapterId;
     }
 
-    public function setAuthor($author)
+    public function setChapterAuthor($chapterAuthor)
     {
-        if (is_string($author))
+        if (is_string($chapterAuthor))
         {
-            $this->author = $author;
+            $this->chapterAuthor = $chapterAuthor;
         }
     }
 
-    public function setTitle($title)
+    public function setChapterTitle($chapterTitle)
     {
-        if (is_string($title))
+        if (is_string($chapterTitle))
         {
-            $this->title = $title;
+            $this->chapterTitle = $chapterTitle;
         }
     }
 
-    public function setContent($content)
+    public function setChapterContent($chapterContent)
     {
-        if (is_string($content))
+        if (is_string($chapterContent))
         {
-            $this->content = $content;
+            $this->chapterContent = $chapterContent;
         }
     }
 
-    public function setCreateDate($createDate)
+    public function setChapterCreateDate($chapterCreateDate)
     {
-        $this->createDate = $createDate;
+        $this->chapterCreateDate = $chapterCreateDate;
     }
 
     // Getters //
 
-    public function getId()
+    public function getChapterId()
     {
-        return $this->id;
+        return $this->chapterId;
     }
 
-    public function getAuthor()
+    public function getChapterAuthor()
     {
-        return $this->author;
+        return $this->chapterAuthor;
     }
 
-    public function getTitle()
+    public function getChapterTitle()
     {
-        return $this->title;
+        return $this->chapterTitle;
     }
 
-    public function getContent()
+    public function getChapterContent()
     {
-        return $this->content;
+        return $this->chapterContent;
     }
 
-    public function getCreateDate()
+    public function getChapterCreateDate()
     {
-        return $this->createDate;
+        return $this->chapterCreateDate;
     }
 }
