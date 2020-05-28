@@ -22,7 +22,6 @@ abstract class DAO
         {
             try
             {
-                var_dump($this->db);
                 // $this->db = new PDO(self::DB_HOST, self::DB_USERNAME, self::DB_PASSWORD);
                 $this->db = new PDO('mysql:host=localhost;dbname=db_project_four;charset=utf8', 'root', '');
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
