@@ -3,19 +3,19 @@
 namespace App\src\controller;
 
 use App\src\DAO\ChapterManager;
-use App\src\DAO\UserManager;
+use App\src\DAO\LoginsManager;
 use App\src\model\View;
 
 class FrontController
 {
     private $chapterManager;
-    private $userManager;
+    private $loginsManager;
     private $view;
 
     public function __construct()
     {
         $this->chapterManager = new ChapterManager();
-        $this->userManager = new UserManager();
+        $this->loginsManager = new LoginsManager();
         // var_dump($page);
         // $this->view = new View();
     } 
@@ -35,46 +35,60 @@ class FrontController
         require '../view/singleView.php';
     }    
 
-    public function addChapter($post)
-    {
-        require '../view/addChapterView.php';
+    public function addNewChapter()
+    {;
         echo ('Page addChapterView');
-        $newChapterAuthor = $_POST['chapterAuthor']; 
-        $newChapterTitle = $_POST['chapterTitle'];
-        $newChapterContent = $_POST['chapterContent'];
-        $newChapterId = $_POST['chapterId'];
-        // $newChapterTitle = 'Mon sixième chapitre ajouté';
-        // $newChapterAuthor = 'Admin';
-        // $newChapterContent = 'Je vous souhaite une bonne lecture de ce chapitre';
-        var_dump($newChapterTitle);
-        var_dump($newChapterContent);
-        var_dump($newChapterAuthor);
-        var_dump($newChapterId);
-        if(isset($_POST['submit']))
+        if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
         {
-
-            // $this->chapterManager->addNewChapter($newChapterTitle, $newChapterContent, $newChapterAuthor);
-            $this->chapterManager->addNewChapter($newChapterAuthor, $newChapterTitle, $newChapterContent, $newChapterId);
-
-            $this->chapterManager->getChapterById($newChapterId);
+            $newChapterAuthor = $_POST['chapterAuthor'];
+            $newChapterTitle = $_POST['chapterTitle'];
+            $newChapterContent = $_POST['chapterContent'];
+            $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent);
+            var_dump($affectedLines);
+            if ($affectedLines === false)
+            {
+                die('Impossible d\'ajouter le chapitre');
+            }
+            else 
+            {
+                header('location: index.php');
+                echo('Chapitre ajouté');
+            }
         }
         else
-        {
-            echo 'Erreur';
+        {   
+            echo 'Veuillez remplir les champs !';
         }
+        require '../view/addChapterView.php';
     }
 
     public function getLogin()
     {
-        require '../view/loginView.php';
-        $userEmailList = $this->userManager->userEmailVerification();
-        var_dump($userEmailList);
-        if (isset($_POST['submit']))
+        if(!empty($_POST['loginsEmail']) && !empty($_POST['loginsPassword']))
         {
-            $userEmail = $_POST['userEmail'];
-            $userPassword = $_POST['userPassword'];
-            var_dump($userEmail);
-            var_dump($userPassword);
+            $loginsEmailList = $this->loginsManager->loginsVerification();
+            foreach($loginsEmailList as $loginsData)
+            {
+                var_dump($loginsData);
+                var_dump($loginsData->getLoginsEmail());
+                var_dump($loginsData->getLoginsPassword());
+                if(($loginsData->getLoginsEmail() === $_POST['loginsEmail']) && ($loginsData->getLoginsPassword() === $_POST['loginsPassword']))
+                {
+                    echo('Email et Password Correct');
+                    $chaptersList = $this->chapterManager->getAllChapters();
+                    // header('location: index.php?page=homeView.php');
+                    require_once '../view/adminView.php';
+                }
+                else
+                {
+                    echo('Email ou Password invalide');
+                }    
+            }
+        }
+        else
+        {   
+            echo 'Veuillez remplir les champs !';
+            require '../view/loginView.php';
         }
         // $this->view = new View('login');
         // return $this->view->generateView();
