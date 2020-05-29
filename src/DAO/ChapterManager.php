@@ -59,17 +59,18 @@ class ChapterManager extends DAO
     //     return $this->getChapterById($chapterId);
     // }
 
-    public function addNewChapter($newChapterTitle, $newChapterContent, $newChapterAuthor)
+    public function addChapterInDb($newChapterTitle, $newChapterContent, $newChapterAuthor)
     {
         // echo $chapterTitle . ' ' . $chapterContent;
         // $this->chapter($chapterTitle,$chapterContent);
         // var_dump($chapterTitle, $chapterAuthor, $chapterContent);
         $sqlRequest = 'INSERT INTO chapter (chapterTitle, chapterAuthor, chapterContent, chapterCreateDate, chapterUpdateDate) VALUES (:chapterTitle, :chapterAuthor, :chapterContent, NOW(), NOW())';
-        $this->createQuery($sqlRequest, array(
-            'chapterTitle' => $chapterTitle, 
-            'chapterAuthor' => $chapterAuthor, 
-            'chapterContent' => $chapterContent));
         var_dump($sqlRequest);
-        return $this->getChapterById($chapterId);
+        $affectedLines = $this->createQuery($sqlRequest, array(
+            'chapterTitle' => $newChapterTitle, 
+            'chapterAuthor' => $newChapterAuthor, 
+            'chapterContent' => $newChapterContent));
+        var_dump($affectedLines);
+        return $affectedLines;
     }
 }
