@@ -1,4 +1,9 @@
 <?= $pageTitle = 'Affichage d\'un unique chapter !'?>
+
+<?php ob_start() ?>
+    <a href="../public/index.php?page=getLogin"><button class="btn btn-danger">Se connecter</button></a>
+<?php $navbarContent = ob_get_clean();?> 
+
 <?php ob_start(); ?>
     <p class="lead text-muted">Voici le chapitre <?php echo $uniqueChapter->getChapterId();?></p>
     <div class=card>

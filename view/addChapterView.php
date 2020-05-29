@@ -22,7 +22,7 @@
             </div>
             <p class="lead text-muted">Cette page permet d'écrire et d'ajouter un nouvel chapitre.</p>
                 <h3> Formulaire d'ajout d'un chapitre !</h3>
-                <form action="index.php?page=addChapter" method="post">
+                <form action="index.php?page=addNewChapter" method="post">
                     <div class="form-group">
                     <label for="chapterAuthor">Auteur du chapitre</label>
                     <input type="text" class="form-control" id="chapterAuthor" name="chapterAuthor">
@@ -30,7 +30,7 @@
                     <input type="text" class="form-control" id="chapterTitle" name="chapterTitle">
                     <label for="chapterContent">Contenu du chapitre</label>
                     <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="10"></textarea>
-                    <!-- <input type="text" name="id" value=""/> -->
+                    
                     <button type="submit" class="btn btn-primary">Envoyer chapitre</button>
                     </div>
                 </form>

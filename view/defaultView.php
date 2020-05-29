@@ -11,7 +11,7 @@
             <div class="navbar navbar-dark bg-dark shadow-sm">
                 <div class="container ">
                     <a href="#" class="navbar-brand text-center"><strong>HOME PAGE</strong></a>
-                    <a href="../public/index.php?page=getLogin"><button class="btn btn-info">Se Connecter</button></a>
+                    <?= $navbarContent ?>
                 </div>
             </div>
         </header>
@@ -21,6 +21,7 @@
             </div>
             <div id="content" class="container">
                 <?= $content ?>
+            </div>
         </section>
     </body>
 </html>
