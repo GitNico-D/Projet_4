@@ -1,20 +1,23 @@
 <?php
 
-use App\src\controller\FrontController;
-use App\src\controller\BackController;
+use App\src\controller\ChapterController;
+use App\src\controller\LoginsController;
 use App\src\controller\ErrorController;
+use App\src\controller\CommentController;
 
 class Router 
 {
 
-    private $frontController;
-    private $backController;
+    private $chapterController;
+    private $loginsController;
+    private $commentController;
     private $errorController;
 
     public function __construct()
     {
-        $this->frontController = new FrontController();
-        // $this->backController = new BackController();
+        $this->chapterController = new ChapterController();
+        $this->loginsController = new LoginsController();
+        // $this->commentController = new CommentController();
         $this->errorController = new ErrorController();
     }
 
@@ -28,22 +31,25 @@ class Router
                 switch ($page)
                 {
                     case 'single': 
-                        $this->frontController->single($_GET['chapterId']);
+                        $this->chapterController->single($_GET['chapterId']);
+                        // $this->commentController->getComment($_GET['chapterId']);
                     break;
-                    case 'addChapter':
-                        $this->frontController->addChapter($_POST);
+                    case 'addNewChapter':
+                        $this->chapterController->addNewChapter();
+                        echo('addNewChapter');
                     break;
                     case 'getLogin':
-                        $this->frontController->logIn();
+                        $this->loginsController->getLogIn();
                     break;
                     default:
-                        require '../view/errorView.php';
+                        // require '../view/errorView.php';
                         // $this->errorController->errorPageNotFound();
+                        throw new Exception('Page introuvable');
                 }
             }
             else
             {
-                $this->frontController->home();
+                $this->chapterController->home();
             }
         }
         catch (Exception $error)
