@@ -3,19 +3,20 @@
 namespace App\src\controller;
 
 use App\src\DAO\ChapterManager;
-use App\src\DAO\LoginsManager;
+use App\src\DAO\CommentManager;
 use App\src\model\View;
 
-class FrontController
+class ChapterController
 {
     private $chapterManager;
     private $loginsManager;
-    private $view;
+    private $commentController;
+    // private $view;
 
     public function __construct()
     {
         $this->chapterManager = new ChapterManager();
-        $this->loginsManager = new LoginsManager();
+        $this->commentManager = new CommentManager();
         // var_dump($page);
         // $this->view = new View();
     } 
@@ -32,7 +33,8 @@ class FrontController
     public function single($chapterId)
     {
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        require '../view/singleView.php';
+        $commentList = $this->commentManager->getCommentByChapterId($chapterId);
+        require_once '../view/singleView.php';
     }    
 
     public function addNewChapter()
@@ -60,37 +62,5 @@ class FrontController
             echo 'Veuillez remplir les champs !';
         }
         require '../view/addChapterView.php';
-    }
-
-    public function getLogin()
-    {
-        if(!empty($_POST['loginsEmail']) && !empty($_POST['loginsPassword']))
-        {
-            $loginsEmailList = $this->loginsManager->loginsVerification();
-            foreach($loginsEmailList as $loginsData)
-            {
-                var_dump($loginsData);
-                var_dump($loginsData->getLoginsEmail());
-                var_dump($loginsData->getLoginsPassword());
-                if(($loginsData->getLoginsEmail() === $_POST['loginsEmail']) && ($loginsData->getLoginsPassword() === $_POST['loginsPassword']))
-                {
-                    echo('Email et Password Correct');
-                    $chaptersList = $this->chapterManager->getAllChapters();
-                    // header('location: index.php?page=homeView.php');
-                    require_once '../view/adminView.php';
-                }
-                else
-                {
-                    echo('Email ou Password invalide');
-                }    
-            }
-        }
-        else
-        {   
-            echo 'Veuillez remplir les champs !';
-            require '../view/loginView.php';
-        }
-        // $this->view = new View('login');
-        // return $this->view->generateView();
     }
 } 
