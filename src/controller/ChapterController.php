@@ -61,6 +61,6 @@ class ChapterController
         {   
             echo 'Veuillez remplir les champs !';
         }
-        require '../view/addChapterView.php';
+        require_once '../view/addChapterView.php';
     }
 } 
