@@ -4,7 +4,7 @@ namespace App\src\controller;
 
 class ErrorController
 {
-    public function errorPageNotFound()
+    public function errorPageNotFound($errorMessage)
     {
         require '../view/errorView.php';
     }
