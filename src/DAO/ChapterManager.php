@@ -8,21 +8,9 @@ class ChapterManager extends DAO
 {
     private $chapter;
 
-    // public function __construct(array $data)
-    // {
-    //     $this->chapter = new chapter($data);
-    //     var_dump($this->chapter);
-    //     return $this->chapter;
-    // }
-
     public function createObjectChapter(array $data)
     {
         $chapter = new Chapter($data);
-        // $chapter->setId($data['id']);
-        // $chapter->setTitle($data['title']);
-        // $chapter->setAuthor($data['author']);
-        // $chapter->setContent($data['content']);
-        // $chapter->setCreationDate($data['creationDate']);
         return $chapter;
     }
 
@@ -50,9 +38,8 @@ class ChapterManager extends DAO
 
     public function addChapterInDb($newChapterTitle, $newChapterContent, $newChapterAuthor)
     {
-        // echo $chapterTitle . ' ' . $chapterContent;
-        // $this->chapter($chapterTitle,$chapterContent);
-        // var_dump($chapterTitle, $chapterAuthor, $chapterContent);
+        var_dump($_SESSION['loginsEmail']);
+        var_dump($_SESSION['loginsStatus']);
         $sqlRequest = 'INSERT INTO chapter (chapterTitle, chapterAuthor, chapterContent, chapterCreateDate, chapterUpdateDate) VALUES (:chapterTitle, :chapterAuthor, :chapterContent, NOW(), NOW())';
         var_dump($sqlRequest);
         $affectedLines = $this->createQuery($sqlRequest, array(
