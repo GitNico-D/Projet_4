@@ -10,7 +10,7 @@ class Comment
     private $commentContent;
     private $commentCreatedDate;
     private $commentUpdatedDate;
-    // private $chapterId;
+    private $chapterId;
 
     public function __construct(array $commentData)
     {
@@ -61,6 +61,11 @@ class Comment
         $this->commentUpdatedDate = $commentUpdatedDate;
     }
 
+    public function setChapterId($chapterId)
+    {
+        $this->chapterId = $chapterId;
+    }
+
     //GETTERS
 
     public function getCommentId()
@@ -91,5 +96,10 @@ class Comment
     public function getCommentUpdatedDate()
     {
         return $this->commentUpdatedDate;
+    }
+
+    public function getChapterId()
+    {
+        return $this->chapterId;
     }
 }
