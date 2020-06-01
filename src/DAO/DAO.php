@@ -46,7 +46,6 @@ abstract class DAO
             $request = $this->getDb()->prepare($sql);
             // $request->setFetchMode(PDO::FETCH_CLASS, static::class);
             $request->execute($parameters);
-            var_dump($parameters);
             return $request;
         }
         $request = $this->getDb()->query($sql);
