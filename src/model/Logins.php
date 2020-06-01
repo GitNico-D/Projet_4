@@ -7,6 +7,7 @@ class Logins
     private $loginsId;
     private $loginsEmail;
     private $loginsPassword;
+    private $loginsStatus;
 
     public function __construct(Array $loginsData)
     {
@@ -42,6 +43,11 @@ class Logins
         $this->loginsPassword = $loginsPassword;
     }
 
+    public function setLoginsStatus($loginsStatus)
+    {
+        $this->loginsStatus = $loginsStatus;
+    }
+
     //GETTERS
 
     public function getLoginsId()
@@ -57,5 +63,10 @@ class Logins
     public function getLoginsPassword()
     {
         return $this->loginsPassword;
+    }
+
+    public function getLoginsStatus()
+    {
+        return $this->loginsStatus;
     }
 }
