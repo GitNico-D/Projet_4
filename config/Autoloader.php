@@ -1,7 +1,5 @@
 <?php
 
-namespace App\config;
-
 class Autoloader
 {
     public static function register()

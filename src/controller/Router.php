@@ -23,8 +23,8 @@ class Router
 
     public function launchApp()
     {
-        var_dump(isset($_SESSION['loginsEmail']));
-        var_dump($_SESSION['loginsStatus']);
+        // var_dump(isset($_SESSION['loginsEmail']));
+        // var_dump($_SESSION['loginsStatus']);
         try
         {
             if (isset($_GET['page']))
@@ -36,16 +36,16 @@ class Router
                         $this->chapterController->single($_GET['chapterId']);
                     break;
                     case 'addNewChapter':
-                        if ($_SESSION['loginsStatus'] === 1)
-                        {
-                        var_dump($_SESSION['loginsEmail']);
-                        var_dump($_SESSION['loginsStatus']);
-                            $this->chapterController->addNewChapter();
-                        }
-                        else
-                        {
-                            throw new Exception('Page introuvable');
-                        }
+                        $this->chapterController->addNewChapter($_POST);
+                        // if ($_SESSION['loginsStatus'] === 1)
+                        // {
+                        // var_dump($_SESSION['loginsEmail']);
+                        // var_dump($_SESSION['loginsStatus']);
+                        // }
+                        // else
+                        // {
+                        //     throw new Exception('Page introuvable');
+                        // }
                     break;
                     case 'getLogin':
                         $this->loginsController->getLogIn();

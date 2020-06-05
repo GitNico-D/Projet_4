@@ -36,17 +36,32 @@ class ChapterManager extends DAO
         return $chaptersList;
     }
 
-    public function addChapterInDb($newChapterTitle, $newChapterContent, $newChapterAuthor)
+    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
     {
         var_dump($_SESSION['loginsEmail']);
         var_dump($_SESSION['loginsStatus']);
-        $sqlRequest = 'INSERT INTO chapter (chapterTitle, chapterAuthor, chapterContent, chapterCreateDate, chapterUpdateDate) VALUES (:chapterTitle, :chapterAuthor, :chapterContent, NOW(), NOW())';
+        $sqlRequest = 'INSERT INTO chapter (chapterAuthor, chapterTitle, chapterContent, chapterCreateDate, chapterUpdateDate) VALUES (:chapterAuthor, :chapterTitle,  :chapterContent, NOW(), NOW())';
         var_dump($sqlRequest);
         $affectedLines = $this->createQuery($sqlRequest, array(
-            'chapterTitle' => $newChapterTitle, 
             'chapterAuthor' => $newChapterAuthor, 
+            'chapterTitle' => $newChapterTitle, 
             'chapterContent' => $newChapterContent));
         var_dump($affectedLines);
         return $affectedLines;
     }
+
+    // public function addChapterInDb(Chapter $chapter)
+    // {
+        // var_dump($_SESSION['loginsEmail']);
+    //     extract($chapter);
+    //     var_dump($chapter);
+    //     $sqlRequest = 'INSERT INTO chapter (chapterTitle, chapterAuthor, chapterContent, chapterCreateDate, chapterUpdateDate) VALUES (:chapterTitle, :chapterAuthor, :chapterContent, NOW(), NOW())';
+    //     var_dump($sqlRequest);
+    //     $affectedLines = $this->createQuery($sqlRequest, array(
+    //         'chapterTitle' => $chapterTitle, 
+    //         'chapterAuthor' => $chapterAuthor, 
+    //         'chapterContent' => $chapterContent));
+    //     var_dump($affectedLines);
+    //     return $affectedLines;
+    // }
 }

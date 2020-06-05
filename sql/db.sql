@@ -33,3 +33,6 @@ INSERT INTO comments ('author', 'content', 'creationDate', newsId) VALUES
     ('Gui', 'Alderaan is peaceful. We have no weapons', '2020-05-05 11:11:22', 3),
     ('Aurora', 'I am a member of the Imperial Senate on a diplomatic mission to Alderaan', '2020-05-05 20:11:12', 3),
     ('John', ' Don\'t trust them. ', '2020-05-07 10:10:11', 3);
+
+INSERT INTO chapter (chapterTitle, chapterAuthor, chapterContent, chapterCreateDate, chapterUpdateDate) 
+    VALUES ('Mon sixième chapitre ajouté', 'Admin', 'Je vous souhaite une bonne lecture de ce chapitre', NOW(), NOW());

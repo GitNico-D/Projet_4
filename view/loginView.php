@@ -1,4 +1,4 @@
-<h3><?php $pageTitle = 'Page de connection' ?></h3>
+<?php $pageTitle = 'Page de connection' ?>
 
 <?php ob_start() ?>
     <a href="../public/index.php?page=getLogin"><button class="btn btn-warning">Connection en cours</button></a>
