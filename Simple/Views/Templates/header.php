@@ -11,8 +11,15 @@
             <div class="navbar navbar-dark bg-dark shadow-sm">
                 <div class="container ">
                     <a href="#" class="navbar-brand text-center"><strong>HOME PAGE</strong></a>
-                    <?php if(isset($isLoggedIn) && $isLoggedIn = true) { ?>
-                        <button>Se connecter</button>
+                    <?php if(isset($isConnected) && $isConnected = true) { ?>
+                        <a href="./index.php?page=addNewChapter">
+                            <button class="btn btn-info">Ajouter un chapitre</button>
+                        </a>
+                        <button class="btn btn-success">Connecté</button>
+                    <?php } else { ?>
+                        <a href="./index.php?page=getLogin">
+                            <button class="btn btn-danger">Se connecter</button>
+                        </a>
                     <?php } ?>
                 </div>
             </div>
