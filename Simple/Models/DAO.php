@@ -1,8 +1,5 @@
 <?php
 
-// use PDO;
-// use Exception;
-
 abstract class DAO 
 {
     private $db;
