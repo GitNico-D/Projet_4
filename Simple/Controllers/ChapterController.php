@@ -1,14 +1,14 @@
 <?php
 
 require_once "./Models/ChapterManager.php";
+require_once "./Models/CommentManager.php";
 
 class ChapterController
 {
     public function __construct()
     {
         $this->chapterManager = new ChapterManager();
-        var_dump($this->chapterManager);
-        // $this->commentManager = new CommentManager();
+        $this->commentManager = new CommentManager();
     } 
 
     public function home()
@@ -19,10 +19,8 @@ class ChapterController
 
     public function single($chapterId)
     {
-        var_dump($chapterId);
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        var_dump($uniqueChapter);
-        // $commentList = $this->commentManager->getCommentByChapterId($chapterId);
+        $commentList = $this->commentManager->getCommentByChapterId($chapterId);
         require_once './Views/SingleView.php';
     }    
 
@@ -50,6 +48,6 @@ class ChapterController
         {   
             echo 'Veuillez remplir les champs !';
         }
-        require_once '../view/addChapterView.php';
+        require_once './Views/AddChapterView.php';
     }
 } 
