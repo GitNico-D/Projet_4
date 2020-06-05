@@ -26,5 +26,20 @@
     </p>
     <a href="./index.php">Retour à Home Page</a>
 </div>
+<hr>
+<div class="container">
+    <h4 class="text-center">Commentaire</h4>
+    <?php foreach($commentList as $comment) { ?>
+        <div class="card">
+            <p class="card-header">
+                Posté le <span class="font-italic"><?= htmlspecialchars($comment->getCreatedDate());?></span> 
+                par <span class="font-italic bold"><?= htmlspecialchars($comment->getAuthor());?></span>
+            </p>
+            <p class="card-body text-center-justify">
+                <?= htmlspecialchars($comment->getContent());?>
+            </p>
+        </div>
+    <?php }; ?>
+</div>
 
 <?php include_once "./Views/Templates/footer.php" ?>
