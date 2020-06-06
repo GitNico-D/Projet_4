@@ -11,6 +11,11 @@ class LoginsController
         $this->loginsManager = new LoginsManager();
     } 
 
+    /**
+     * getLogin
+     *
+     * @return void
+     */
     public function getLogin()
     {
         if(!empty($_POST['loginsEmail']) && !empty($_POST['loginsPassword']))
