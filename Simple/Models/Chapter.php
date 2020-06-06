@@ -18,6 +18,12 @@ class Chapter extends Model
 
     // Setters //
 
+    /**
+     * setId
+     *
+     * @param mixed $id
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
