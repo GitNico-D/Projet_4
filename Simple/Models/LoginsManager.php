@@ -5,19 +5,6 @@ require_once "./Models/DAO.php";
 
 class LoginsManager extends DAO
 {
-    // public function loginsVerification()
-    // {
-    //     $sqlRequest = 'SELECT loginsEmail, loginsPassword FROM logins';
-    //     $result = $this->createQuery($sqlRequest);
-    //     $loginsEmailList = [];
-    //     foreach($result as $logins)
-    //     {
-    //         $loginsEmailList [] = $this->createLoginsObject($logins);
-    //         // var_dump($loginsEmailList);
-    //     }
-    //     $result->closeCursor();
-    //     return $loginsEmailList;
-    // }
 
     public function loginsVerification($loginsEmail)
     {
