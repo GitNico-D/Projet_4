@@ -5,7 +5,7 @@
 
 <div class="container">
     <form action="index.php?page=addNewChapter" method="post">
-            <div class="form-group">
+        <div class="form-group">
             <label for="chapterAuthor">Auteur du chapitre</label>
             <input type="text" class="form-control" id="chapterAuthor" name="chapterAuthor">
             <label for="chapterTitle">Titre du chapitre</label>
@@ -13,9 +13,11 @@
             <label for="chapterContent">Contenu du chapitre</label>
             <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="10"></textarea>
             <button type="submit" class="btn btn-primary">Envoyer chapitre</button>
-            </div>
-        </form>
-    </div>
-        <div><a href="./index.php">Retour à Home Page</a></div>
+        </div>
+    </form>
+</div>
+<div>
+    <a href="./index.php">Retour à Home Page</a>
+</div>
 
 <?php include_once './Views/Templates/Footer.php'; ?>
