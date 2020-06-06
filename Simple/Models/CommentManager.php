@@ -20,5 +20,16 @@ class CommentManager extends DAO
         return $commentList;
     }
 
+    public function addCommentOnChapter($commentAuthor, $commentTitle, $commentContent, $chapterId)
+    {
+        $sqlRequest = 'INSERT INTO comments(author, title, content, createdDate, updatedDate, chapterId) VALUES (:commentAuthor, :commentTitle, :commentContent, NOW(), NOW(), :chapterId)';
+        $commentAdded = $this->createQuery($sqlRequest, array(
+            'commentAuthor' => $commentAuthor,
+            'commentTitle' => $commentTitle,
+            'commentContent' => $commentContent,
+            'chapterId' => $chapterId
+        ));
+        return $commentAdded;
+    }
 
 }
