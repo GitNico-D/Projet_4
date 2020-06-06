@@ -38,8 +38,26 @@
             <p class="card-body text-center-justify">
                 <?= htmlspecialchars($comment->getContent());?>
             </p>
+            <button class="btn btn-warning">Signaler ce commentaire</button>
         </div>
     <?php }; ?>
+</div>
+<hr>
+<div class="container">
+    <div class="card">
+    <h3 class="card-header">Ajouter un commentaire</h3>
+        <form action="index.php?page=addComment&chapterId=<?= $uniqueChapter->getId();?>" method="post" class="card-body">
+            <div class="form-group">
+                <label for="commentAuthor" class="bold">Pseudonyme</label>    
+                <input type="text" class="form-control" id="commentAuthor" name="commentAuthor"></input>
+                <label for="commentTitle" class="bold">Titre</label>
+                <input type="text" class="form-control" id="commentTitle" name="commentTitle">
+                <label for="commentContent" class="bold">Votre commentaire</label>
+                <textarea type="text" class="form-control" id="commentContent" name="commentContent" rows="10"></textarea>
+                <button type="submit" class="btn btn-primary">Soumettre commentaire</button>
+            </div>
+        </form>    
+    </div>
 </div>
 
 <?php include_once "./Views/Templates/footer.php" ?>
