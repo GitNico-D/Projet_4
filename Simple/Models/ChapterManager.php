@@ -31,17 +31,26 @@ class ChapterManager extends DAO
         return $chaptersList;
     }
 
-    public function addChapterInDb($newChapterTitle, $newChapterContent, $newChapterAuthor)
+    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
     {
-        var_dump($_SESSION['loginsEmail']);
-        var_dump($_SESSION['loginsStatus']);
-        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate) VALUES (:chapterTitle, :chapterAuthor, :chapterContent, NOW(), NOW())';
+        var_dump($newChapterTitle);
+        var_dump($newChapterAuthor);
+        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW())';
         var_dump($sqlRequest);
         $affectedLines = $this->createQuery($sqlRequest, array(
-            'chapterTitle' => $newChapterTitle, 
             'chapterAuthor' => $newChapterAuthor, 
+            'chapterTitle' => $newChapterTitle, 
             'chapterContent' => $newChapterContent));
         var_dump($affectedLines);
         return $affectedLines;
     }
+
+
+    public function deleteChapterById($chapterId)
+    {
+        $sqlRequest = 'DELETE FROM chapter WHERE id = ?';
+        $result = $this->createQuery($sqlRequest, [$chapterId]);
+    }
 }
+
+//AdminPassword;
