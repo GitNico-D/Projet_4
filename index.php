@@ -29,9 +29,8 @@ $pos = strpos($filepath, '_');
 var_dump($pos);
 
 
+var_dump($_SESSION["loginEmail"]);
 if (array_key_exists("page", $_GET) && isset($_GET["page"])) {
-// if (isset($_GET['page']))
-// {
     switch ($_GET['page']) 
     {
         case 'single':
