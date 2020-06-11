@@ -3,14 +3,8 @@
 require_once "./Models/LoginsManager.php";
 require_once "./Models/ChapterManager.php";
 
-class LoginsController
+class LoginsController extends Controller
 {
-    public function __construct()
-    {
-        $this->chapterManager = new ChapterManager();
-        $this->loginsManager = new LoginsManager();
-    } 
-
     /**
      * getLogin
      *
@@ -26,24 +20,41 @@ class LoginsController
             if($logins)
             {
                 echo('Email et Password Correct');
+                $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
+                var_dump($_SESSION);
                 $chaptersList = $this->chapterManager->getAllChapters();
-                $isConnected = true;
+                $isAdmin = true;
                 require_once './Views/AdminView.php';
             }
             else
             {
-                echo('Email ou Password invalide');
+                echo('Email ou mot de passe invalide');
                 require_once './Views/LoginsView.php';
-            }    
-            
+            }                
         }
         else
         {   
             echo 'Veuillez remplir les champs !';
+            // var_dump($isAdmin);
             require_once './Views/LoginsView.php';
         }
+    }
+
+    public function getLogout()
+    {
+        $_SESSION = array();
+        session_destroy();
+        $chaptersList = $this->chapterManager->getAllChapters();
+        // require_once './Views/HomeView.php';
+        header ('Location: ./index.php');
+    }
+    
+    public function returnAdminView($isAdmin)
+    {
+        $chaptersList = $this->chapterManager->getAllChapters();
+        require_once "./Views/AdminView.php";
     }
 
 }

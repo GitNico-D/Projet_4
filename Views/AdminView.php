@@ -1,5 +1,5 @@
 <?php 
-    $pageTitle = 'Bienvenue Jean !'; 
+    $pageTitle = 'Bienvenue ' . $_SESSION["loginsUsername"] . ' !'; 
     include_once "./Views/Templates/header.php";
 ?>
 

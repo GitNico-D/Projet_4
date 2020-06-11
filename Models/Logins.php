@@ -5,6 +5,7 @@ require_once "./Models/Model.php";
 class Logins extends Model
 {
     private $id;
+    private $username;
     private $email;
     private $password;
     private $status;
@@ -19,6 +20,11 @@ class Logins extends Model
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
     }
 
     public function setEmail($email)
@@ -41,6 +47,11 @@ class Logins extends Model
     public function getid()
     {
         return $this->id;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     public function getEmail()

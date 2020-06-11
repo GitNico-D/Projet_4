@@ -15,7 +15,7 @@ class ChapterController extends Controller
         require_once './Views/HomeView.php';
     }
 
-    public function single($chapterId)
+    public function single($chapterId, $isAdmin)
     {
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
         $commentList = $this->commentManager->getCommentByChapterId($chapterId);
@@ -27,9 +27,10 @@ class ChapterController extends Controller
      *
      * @return void
      */
-    public function addNewChapter()
+    public function addNewChapter($isAdmin)
     {
         echo ('Page addChapterView');
+        var_dump($isAdmin);
         if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
         {
             $newChapterAuthor = htmlspecialchars($_POST['chapterAuthor']);
@@ -88,7 +89,7 @@ class ChapterController extends Controller
         else
         {   
             echo 'Veuillez remplir les champs !';
-        }
-        
+        }        
     }
+
 } 

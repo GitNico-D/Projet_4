@@ -17,7 +17,9 @@
     </form>
 </div>
 <div>
-    <a href="./index.php">Retour à Home Page</a>
+<?php if ($isAdmin) { ?>
+    <a href="./index.php?page=adminView">Retour à Home Page</a>
+<?php } ?>
 </div>
 
 <?php include_once './Views/Templates/Footer.php'; ?>

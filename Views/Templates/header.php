@@ -11,14 +11,15 @@
             <div class="navbar navbar-dark bg-dark shadow-sm">
                 <div class="container ">
                     <a href="#" class="navbar-brand text-center"><strong>HOME PAGE</strong></a>
-                    <?php if(isset($isConnected) && $isConnected = true) { ?>
+                    <?php if(isset($isAdmin) && $isAdmin === true) { ?>
                         <a href="./index.php?page=addNewChapter">
                             <button class="btn btn-info">Ajouter un chapitre</button>
                         </a>
-                        <button class="btn btn-success">Connecté</button>
+                        <span class="text-success">Bienvenue <?php echo($_SESSION["loginsUsername"])?></span>
+                        <a href="./index.php?page=getLogout"><button class="btn btn-danger">Déconnexion</button></a>
                     <?php } else { ?>
                         <a href="./index.php?page=getLogin">
-                            <button class="btn btn-danger">Se connecter</button>
+                            <button class="btn btn-success">Connexion</button>
                         </a>
                     <?php } ?>
                 </div>

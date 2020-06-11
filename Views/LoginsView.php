@@ -13,7 +13,7 @@
         <button type="submit" class="btn btn-primary btn-block margin-top">Se connecter</button>
     </form>
 </div>
-<a href="./index.php">
+<a href="./index.php?page=adminView">
     <button class="btn btn-block btn-info">
     Retour à l'accueil
     </button>

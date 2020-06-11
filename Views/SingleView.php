@@ -24,7 +24,11 @@
     <p class= text-center-justify>
         <?= htmlspecialchars($uniqueChapter->getContent());?>
     </p>
-    <a href="./index.php">Retour à Home Page</a>
+    <?php if ($isAdmin) { ?>
+        <a href="./index.php?page=adminView">Retour à Home Page</a>
+    <?php } else { ?>
+        <a href="./index.php">Retour à Home Page</a>
+    <?php } ?>
 </div>
 <hr>
 <div class="container">
