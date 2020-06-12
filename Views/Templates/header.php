@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <title>Blog en création</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="../public/css/style.css">
+        <link rel="stylesheet" href="../src/css/style.css">
     </head>
     <body>
         <header>
@@ -27,6 +27,6 @@
         </header>
         <section class="jumbotron text-center">
             <div class="container">
-                <h1 class="jumbotron-heading"><?= $pageTitle ?></h1>
+                <h1 class="display-4"><?= $pageTitle ?></h1>
             </div>
             <div id="content" class="container">
