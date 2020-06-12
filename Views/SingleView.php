@@ -10,20 +10,19 @@
 <div>
 <?php
 $chapterNumber = $uniqueChapter->getId();
-var_dump($chapterNumber);
 if($chapterNumber <= 1) {   
     $chapterNumber++;
     $nextChapter = $chapterNumber;
     ?>
-    <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>"><button class="btn btn-info">Chapitre Suivant</button></a>
+    <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>"><button class="btn btn-info my-2">Chapitre Suivant</button></a>
 <?php } else {
     $nextChapter = $chapterNumber;
     $nextChapter++;
     $previousChapter = $chapterNumber;
     $previousChapter--;
     ?>
-    <a href="./index.php?page=single&chapterId=<?= $previousChapter; ?>" class=""><button class="btn btn-info">Chapitre précédent</button></a>
-    <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>" class=""><button class="btn btn-info">Chapitre Suivant</button></a>
+    <a href="./index.php?page=single&chapterId=<?= $previousChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre précédent</button></a>
+    <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre Suivant</button></a>
 <?php }; ?>
 
 <div class="card">
@@ -41,12 +40,12 @@ if($chapterNumber <= 1) {
     <p class="card-body text-center-justify">
         <?= htmlspecialchars($uniqueChapter->getContent());?>
     </p>
-    <?php if ($isAdmin) { ?>
-        <a href="./index.php?page=adminView">Retour à Home Page</a>
-    <?php } else { ?>
-        <a href="./index.php">Retour à Home Page</a>
-    <?php } ?>
 </div>
+<?php if ($isAdmin) { ?>
+    <a href="./index.php?page=adminView"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
+<?php } else { ?>
+    <a href="./index.php"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
+<?php } ?>
 <hr>
 <div class="container">
     <h4 class="text-center">Commentaire</h4>
@@ -56,7 +55,7 @@ if($chapterNumber <= 1) {
                 Posté le <span class="font-italic"><?= htmlspecialchars($comment->getCreatedDate());?></span> 
                 par <span class="font-italic bold"><?= htmlspecialchars($comment->getAuthor());?></span>
             </p>
-            <p class="card-body text-center-justify">
+            <p class="card-body">
                 <?= htmlspecialchars($comment->getContent());?>
             </p>
             <button class="btn btn-warning">Signaler ce commentaire</button>
