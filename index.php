@@ -21,54 +21,52 @@ $chapterController = new ChapterController();
 $commentController = new CommentController();
 $loginsController = new LoginsController();
 
-// RouterHelper::parseUrl("")
-$fragments = parse_url("http://localhost/projet_4/simple/index.php?page=single");
-var_dump($fragments);
-$filepath = $fragments['path'];
-var_dump($filepath);
-$pos = strpos($filepath, '_');
-var_dump($pos);
-
-
-// var_dump($_SESSION["loginsEmail"]);
-
-if (array_key_exists("page", $_GET) && isset($_GET["page"])) {
-    switch ($_GET['page']) 
+try {
+    if (array_key_exists("page", $_GET) && isset($_GET["page"])) {
+    switch ($_GET["page"]) 
     {
         case 'single':
             // Get PageIx from $_GET
             $pageIx = RouterHelper::getPageIx($_GET);
             $isAdmin = LoginsHelper::checkAdminConnected();
-            $chapterController->single($_GET['chapterId'], $isAdmin);
+            $chapterId = RouterHelper::getChapterId($_GET);
+            // var_dump($get);
+            // $chapterController->single($_GET['chapterId'], $isAdmin);
+            $chapterController->single($chapterId, $isAdmin);
+
+            break;
+            case 'addNewChapter':
+                $isAdmin = LoginsHelper::checkAdminConnected();
+                $chapterController->addNewChapter($isAdmin);
+            break;
+            case 'deleteChapter':
+                $isAdmin = LoginsHelper::checkAdminConnected();
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->deleteChapter($chapterId);
+            break;
+            case 'getLogin':
+                $loginsController->getLogin();  
+            break;
+            case 'getLogout':
+                $loginsController->getLogout();
+            break;
+            case 'addComment':
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->addComment($chapterId);
+            break;
+            case "adminView":
+                $isAdmin = LoginsHelper::checkAdminConnected();
+                $loginsController->returnAdminView($isAdmin);
+            default:
+            // Gérer l'erreur => redirection vers route = home
+                require_once './Views/errorView.php';
         break;
-        case 'addNewChapter':
-            $isAdmin = LoginsHelper::checkAdminConnected();
-            $chapterController->addNewChapter($isAdmin);
-        break;
-        case 'deleteChapter':
-            $isAdmin = LoginsHelper::checkAdminConnected();
-            $chapterController->deleteChapter($_GET['chapterId']);
-        break;
-        case 'getLogin':
-            $loginsController->getLogin();  
-        break;
-        case 'getLogout':
-            $loginsController->getLogout();
-        break;
-        case 'addComment':
-            $chapterController->addComment($_GET['chapterId']);
-        break;
-        case "adminView":
-            $isAdmin = LoginsHelper::checkAdminConnected();
-            $loginsController->returnAdminView($isAdmin);
-        default:
-        // Gérer l'erreur => redirection vers route = home
-            require_once './Views/errorView.php';
-    break;
+        }
+    } 
 }
-} 
-else 
+catch (Exception $error)
 {
     // Gérer l'erreur => redirection vers route = home
+    die("Erreur : Lien introuvable " . $errorPage->getMessage());
     $chapterController->home();
 }
