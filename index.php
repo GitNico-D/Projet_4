@@ -21,7 +21,7 @@ $chapterController = new ChapterController();
 $commentController = new CommentController();
 $loginsController = new LoginsController();
 
-try {
+// try {
     if (array_key_exists("page", $_GET) && isset($_GET["page"])) {
     switch ($_GET["page"]) 
     {
@@ -42,7 +42,7 @@ try {
             case 'deleteChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected();
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $chapterController->deleteChapter($chapterId);
+                $chapterController->deleteChapter($chapterId, $isAdmin);
             break;
             case 'getLogin':
                 $loginsController->getLogin();  
@@ -62,11 +62,11 @@ try {
                 require_once './Views/errorView.php';
         break;
         }
-    } 
-}
-catch (Exception $error)
+    // } 
+} else
+// catch (Exception $error)
 {
     // Gérer l'erreur => redirection vers route = home
-    die("Erreur : Lien introuvable " . $errorPage->getMessage());
     $chapterController->home();
+    // die("Erreur : Lien introuvable " . $errorPage->getMessage());
 }
