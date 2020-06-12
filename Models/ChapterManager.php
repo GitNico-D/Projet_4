@@ -8,7 +8,6 @@ class ChapterManager extends DAO
 {
     public function getChapterById($chapterId) 
     {
-        var_dump($chapterId);
         $sqlRequest = 'SELECT * FROM chapter WHERE id = ?';
         $result = $this->createQuery($sqlRequest, [$chapterId]);
         $chapter = $result->fetch();
@@ -33,18 +32,13 @@ class ChapterManager extends DAO
 
     public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
     {
-        var_dump($newChapterTitle);
-        var_dump($newChapterAuthor);
         $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW())';
-        var_dump($sqlRequest);
         $affectedLines = $this->createQuery($sqlRequest, array(
             'chapterAuthor' => $newChapterAuthor, 
             'chapterTitle' => $newChapterTitle, 
             'chapterContent' => $newChapterContent));
-        var_dump($affectedLines);
         return $affectedLines;
     }
-
 
     public function deleteChapterById($chapterId)
     {
