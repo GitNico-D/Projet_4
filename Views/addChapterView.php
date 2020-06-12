@@ -12,13 +12,13 @@
             <input type="text" class="form-control" id="chapterTitle" name="chapterTitle">
             <label for="chapterContent">Contenu du chapitre</label>
             <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="10"></textarea>
-            <button type="submit" class="btn btn-primary">Envoyer chapitre</button>
+            <button type="submit" class="btn btn-primary my-2">Enregistrer chapitre</button>
         </div>
     </form>
 </div>
 <div>
 <?php if ($isAdmin) { ?>
-    <a href="./index.php?page=adminView">Retour à Home Page</a>
+    <a href="./index.php?page=adminView"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
 <?php } ?>
 </div>
 
