@@ -1,27 +1,44 @@
 <?php
-    $pageTitle = 'Affichage d\'un unique chapter !';
+    $pageTitle = 'Chapitre ' . $uniqueChapter->getId() . ' : ' . $uniqueChapter->getTitle();
     include_once "./Views/Templates/header.php"; 
 ?>
 
-<p class="lead text-muted">
-    Voici le chapitre <?php echo $uniqueChapter->getId();?>
+<p class="lead text-muted my-5">
+    <?php echo $uniqueChapter->getTitle();?>
 </p>
 
-<div class=card>
-    <h2 class=card-header>
+<div>
+<?php
+$chapterNumber = $uniqueChapter->getId();
+var_dump($chapterNumber);
+if($chapterNumber <= 1) {   
+    $chapterNumber++;
+    $nextChapter = $chapterNumber;
+    ?>
+    <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>"><button class="btn btn-info">Chapitre Suivant</button></a>
+<?php } else {
+    $nextChapter = $chapterNumber;
+    $nextChapter++;
+    $previousChapter = $chapterNumber;
+    $previousChapter--;
+    ?>
+    <a href="./index.php?page=single&chapterId=<?= $previousChapter; ?>" class=""><button class="btn btn-info">Chapitre précédent</button></a>
+    <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>" class=""><button class="btn btn-info">Chapitre Suivant</button></a>
+<?php }; ?>
+
+<div class="card">
+    <p class="card-header">
         <?= htmlspecialchars($uniqueChapter->getTitle());?>
-    </h2>
-    <p class=card-body>
         Posté le 
-        <span class=font-italic>
+        <span class="font-italic">
             <?= htmlspecialchars($uniqueChapter->getCreateDate());?>
         </span> 
         par 
-        <span class=font-italic>
+        <span class="font-italic">
             <?= htmlspecialchars($uniqueChapter->getAuthor());?>
         </span>
     </p>
-    <p class= text-center-justify>
+    <p class="card-body text-center-justify">
         <?= htmlspecialchars($uniqueChapter->getContent());?>
     </p>
     <?php if ($isAdmin) { ?>
