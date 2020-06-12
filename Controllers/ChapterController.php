@@ -61,10 +61,10 @@ class ChapterController extends Controller
      * @param mixed $chapterId
      * @return void
      */
-    public function deleteChapter($chapterId)
+    public function deleteChapter($chapterId, $isAdmin)
     {
         $this->chapterManager->deleteChapterById($chapterId);
-        $this->home();
+        header('location: index.php?page=adminView');
     }
 
     public function addComment($chapterId)
