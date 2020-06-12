@@ -3,7 +3,7 @@
     include_once "./Views/Templates/header.php"; 
 ?>
 
-<p class="lead text-muted">
+<p class="lead text-muted my-4">
     Voici tous les chapitres disponibles !
 </p>
 
