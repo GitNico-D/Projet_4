@@ -40,6 +40,11 @@ class ChapterManager extends DAO
         return $affectedLines;
     }
 
+    // public function modifyChapterById($chapterId)
+    // {
+    //     $sqlRequest = 'SELECT INTO chapter *'
+    // }
+
     public function deleteChapterById($chapterId)
     {
         $sqlRequest = 'DELETE FROM chapter WHERE id = ?';
