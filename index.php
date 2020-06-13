@@ -30,15 +30,22 @@ $loginsController = new LoginsController();
             $pageIx = RouterHelper::getPageIx($_GET);
             $isAdmin = LoginsHelper::checkAdminConnected();
             $chapterId = RouterHelper::getChapterId($_GET);
-            // var_dump($get);
             // $chapterController->single($_GET['chapterId'], $isAdmin);
             $chapterController->single($chapterId, $isAdmin);
-
             break;
             case 'addNewChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected();
                 $chapterController->addNewChapter($isAdmin);
             break;
+            case "modifyChapter":
+                $isAdmin = LoginsHelper::checkAdminConnected();                
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->modifyChapter($chapterId, $isAdmin);
+            break;
+            case "applyChapterModification":
+                $isAdmin = LoginsHelper::checkAdminConnected();   
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->modifyChapter($chapterId, $isAdmin);
             case 'deleteChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected();
                 $chapterId = RouterHelper::getChapterId($_GET);
@@ -56,7 +63,7 @@ $loginsController = new LoginsController();
             break;
             case "adminView":
                 $isAdmin = LoginsHelper::checkAdminConnected();
-                $loginsController->returnAdminView($isAdmin);
+                $loginsController->returnAdminView($isAdmin);            
             default:
             // Gérer l'erreur => redirection vers route = home
                 require_once './Views/errorView.php';
