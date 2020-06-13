@@ -67,9 +67,48 @@ class ChapterController extends Controller
         header('location: index.php?page=adminView');
     }
 
+    public function modifyChapter($chapterId, $isAdmin)
+    {
+        $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
+        require_once './Views/ModifyChapterView.php';        
+    }
+
+    public function applyChapterModification($chapterTitle, $chapterContent, $chapterId)
+    {
+        if(isset($_POST['saveAndPublish']))
+        {
+            $chapterTitle = htmlspecialchars($_POST['chapterTitle']);
+            $chapterContent = htmlspecialchars($_POST['chapterContent']);
+            $updateLines = $this->commentChapter->modifyChapterById($chapterTitle, $commentContent, $chapterId);
+            if ($updateLines === false)
+            {
+                die('Impossible de modifier le chapitre');
+            }
+            else 
+            {
+                $this->single($chapterId);
+                echo('Chapitre modifié et publier');
+            }
+        } elseif (isset($_POST['saveDraft']))
+        {   
+            $chapterTitle = htmlspecialchars($_POST['chapterTitle']);
+            $chapterContent = htmlspecialchars($_POST['chapterContent']);
+            $updateLines = $this->commentChapter->modifyChapterById($chapterTitle, $commentContent, $chapterId);
+            if ($updateLines === false)
+            {
+                die('Impossible de modifier le chapitre');
+            }
+            else 
+            {
+                $this->single($chapterId);
+                echo('Chapitre modifié et enregistré');
+            }
+        }     
+    }
+
     public function addComment($chapterId)
     {
-        var_dump($chapterId);
+        var_dump($_POST["submit"]);
         if(!empty($_POST['commentAuthor']) && !empty($_POST['commentTitle']))
         {
             $commentAuthor = htmlspecialchars($_POST['commentAuthor']);
