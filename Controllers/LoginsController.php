@@ -23,7 +23,6 @@ class LoginsController extends Controller
                 $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
-                var_dump($_SESSION);
                 $chaptersList = $this->chapterManager->getAllChapters();
                 $isAdmin = true;
                 require_once './Views/AdminView.php';
