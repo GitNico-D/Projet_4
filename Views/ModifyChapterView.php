@@ -22,15 +22,14 @@
         </p>
     </div>
 <div class="container text-center">
-    <form action="index.php?page=modifyChapter" method="post">
+    <form action="index.php?page=applyChapterModification&chapterId=<?= $uniqueChapter->getId(); ?>" method="post">
         <div class="form-group">
             <label for="chapterTitle" class="h4 bold my-4">Titre du chapitre</label>
             <input type="text" class="form-control" id="chapterTitle" name="chapterTitle" value="<?php echo $uniqueChapter->getTitle(); ?>">
             <label for="chapterContent" class="h4 bold my-4">Contenu du chapitre</label>
             <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="50" ><?php echo $uniqueChapter->getContent(); ?></textarea>
-            <button type="submit" class="btn btn-primary my-2">Enregistrer les modifications du chapitre</button>
-            <button type="submit" name="saveAndPublish" class="btn btn-primary my-2">Enregistrer et pulbier les modifications</button>
-            <button type="submit" name="saveDraft" class="btn btn-primary my-2">Enregistrer les modifications du chapitre</button>
+            <button type="submit" name="saveAndPublish" class="btn btn-outline-info my-2">Enregistrer et publier les modifications</button>
+            <button type="submit" name="saveDraft" class="btn btn-outline-info my-2">Enregistrer les modifications en brouillon</button>
         </div>
     </form>
 </div>
