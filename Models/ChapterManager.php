@@ -19,7 +19,9 @@ class ChapterManager extends DAO
 
     public function getAllChapters()
     {
+        // $sqlRequest = 'SELECT * FROM chapter WHERE publish = 1 ORDER BY id ASC';
         $sqlRequest = 'SELECT * FROM chapter ORDER BY id ASC';
+
         $result = $this->createQuery($sqlRequest);
         $chaptersList = [];
         foreach ($result as $chapter)
@@ -36,14 +38,25 @@ class ChapterManager extends DAO
         $affectedLines = $this->createQuery($sqlRequest, array(
             'chapterAuthor' => $newChapterAuthor, 
             'chapterTitle' => $newChapterTitle, 
-            'chapterContent' => $newChapterContent));
+            'chapterContent' => $newChapterContent
+        ));
         return $affectedLines;
     }
 
-    // public function modifyChapterById($chapterId)
-    // {
-    //     $sqlRequest = 'SELECT INTO chapter *'
-    // }
+    public function modifyChapterById($chapterTitle, $chapterContent, $chapterPublish, $chapterId)
+    {
+        // 'UPDATE chapter SET content =  ,updateDate= NOW(),publish= 0 WHERE id = 2';
+        var_dump($chapterContent);
+        $sqlRequest = 'UPDATE chapter SET (title = :chapterTitle, content = :chapterContent, updateDate = NOW()) WHERE id = :chapterId';
+        var_dump($sqlRequest);
+        $upadtedLines = $this->createQuery($sqlRequest, array(
+            'chapterAuthor' => $chapterTitle,
+            'chapterContent' => $chapterContent,
+            'publish' => $chapterPublish,
+            'chapterId' => $chapterId
+        ));
+        return $upadtedLines;
+    }
 
     public function deleteChapterById($chapterId)
     {
