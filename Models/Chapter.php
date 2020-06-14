@@ -10,6 +10,7 @@ class Chapter extends Model
     private $content;
     private $createDate;
     private $updateDate;
+    // private $publish;
 
     public function __construct($attributes = [])
     {
@@ -64,6 +65,11 @@ class Chapter extends Model
         $this->createDate = $createDate;
     }
 
+    // public function setPublish($publish)
+    // {
+    //     $this->publish = $publish;
+    // }
+
     // Getters //
 
     public function getId()
@@ -90,4 +96,9 @@ class Chapter extends Model
     {
         return $this->createDate;
     }
+
+    // public function getPublish()
+    // {
+    //     return $this->publish;
+    // }
 }
