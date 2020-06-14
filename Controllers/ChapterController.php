@@ -75,11 +75,14 @@ class ChapterController extends Controller
 
     public function applyChapterModification($chapterTitle, $chapterContent, $chapterId)
     {
+        $chapterTitle = htmlspecialchars($_POST['chapterTitle']);
+        $chapterContent = htmlspecialchars($_POST['chapterContent']);
+        // var_dump($_POST);
         if(isset($_POST['saveAndPublish']))
         {
-            $chapterTitle = htmlspecialchars($_POST['chapterTitle']);
-            $chapterContent = htmlspecialchars($_POST['chapterContent']);
-            $updateLines = $this->commentChapter->modifyChapterById($chapterTitle, $commentContent, $chapterId);
+            $chapterPublish = 1;
+            $updateLines = $this->chapterManager->modifyChapterById($chapterTitle, $chapterContent, $chapterId);
+            $updateLines = $this->chapterManager->modifyChapterById();
             if ($updateLines === false)
             {
                 die('Impossible de modifier le chapitre');
@@ -89,21 +92,21 @@ class ChapterController extends Controller
                 $this->single($chapterId);
                 echo('Chapitre modifié et publier');
             }
-        } elseif (isset($_POST['saveDraft']))
-        {   
-            $chapterTitle = htmlspecialchars($_POST['chapterTitle']);
-            $chapterContent = htmlspecialchars($_POST['chapterContent']);
-            $updateLines = $this->commentChapter->modifyChapterById($chapterTitle, $commentContent, $chapterId);
-            if ($updateLines === false)
-            {
-                die('Impossible de modifier le chapitre');
-            }
-            else 
-            {
-                $this->single($chapterId);
-                echo('Chapitre modifié et enregistré');
-            }
-        }     
+        } 
+        // elseif (isset($_POST['saveDraft']))
+        // {   
+        //     $chapterPublish = 0;
+        //     $updateLines = $this->chapterManager->modifyChapterById($chapterTitle, $chapterContent, $chapterPublish, $chapterId);
+        //     if ($updateLines === false)
+        //     {
+        //         die('Impossible de modifier le chapitre');
+        //     }
+        //     else 
+        //     {
+        //         $this->single($chapterId);
+        //         echo('Chapitre modifié et enregistré');
+        //     }
+        // }     
     }
 
     public function addComment($chapterId)
