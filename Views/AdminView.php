@@ -2,28 +2,33 @@
     include_once "./Views/Templates/header.php";
 ?>
 
-<section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="display-4"><?php echo 'Bienvenue ' . $_SESSION["loginsUsername"] . ' !'?></h1>
+<section class="header-page text-center">
+    <img src="./src/data/img/write.jpg" alt="" class="header-page-img">
+    <div class="container jumbotron-container">
+        <div class="jumbotron">
+            <h1 class="display-4 bold"><?php echo 'Bienvenue ' . $_SESSION["loginsUsername"] . ' !'?></h1>
+        </div>
     </div>
 </section>
 
-<p class="lead text-muted my-4 text-center">
-    Voici les derniers chapitres que vous avez publiés !
-</p>
-
-<div class="text-center">
+<div class="text-center my-2 margin-top">
     <a href="./index.php?page=addNewChapter">
-        <button class="btn btn-info my-3">Écrire un chapitre</button>
+        <button class="btn btn-lg btn-info">Écrire un chapitre</button>
     </a>
+</div>
+
+<div id="publishChapter" class="my-4 bg-success">
+    <h2 class="text-center">
+        Chapitre publiés
+    </h2>
 </div>
 
 <?php foreach($chaptersList as $chapter) {?>
 <div class="container">
     <div class="card my-3 text-center">
-        <h2 class="card-header">
+        <h3 class="card-header">
             <?= htmlspecialchars($chapter->getTitle())?>
-        </h2>
+        </h3>
         <p class="card-body">
             Posté le 
             <span class="font-italic">
@@ -35,10 +40,10 @@
         </p>
         <div>
             <a href="./index.php?page=single&chapterId=<?= htmlspecialchars($chapter->getId())?>">
-                <button class="btn btn-info my-3">Voir le chapitre</button>
+                <button class="btn btn-outline-info my-3">Voir le chapitre</button>
             </a>
             <a href="./index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
-                <button class="btn btn-info my-3">Modifier le chapitre</button>
+                <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
             </a>
             <a href="./index.php?page=deleteChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                 <button class="btn btn-danger my-3">Supprimer le chapitre</button>
@@ -47,6 +52,73 @@
     </div>
 </div>
 <?php } ?>
+
+<div id="pendingChapter" class="my-4 bg-warning">
+    <h2 class="text-center">
+        Chapitre en attente de publication
+    </h2>
+</div>
+
+<?php foreach($chaptersList as $chapter) {?>
+    <div class="container">
+        <div class="card my-3 text-center">
+            <h3 class="card-header">
+                <?= htmlspecialchars($chapter->getTitle())?>
+            </h3>
+            <p class="card-body">
+                Posté le 
+                <span class="font-italic">
+                    <?= htmlspecialchars($chapter->getCreateDate())?>
+                </span> 
+            </p>
+            <p class="text-center-justify">
+                <?= htmlspecialchars(substr($chapter->getContent(), 0, 500)); ?>
+            </p>
+            <div>
+                <a href="./index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                    <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
+                </a>
+                <a href="./index.php?page=publishChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                    <button class="btn btn-success my-3">Publier le chapitre</button>
+                </a>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<div id="commentModeration" class="my-4 bg-warning">
+    <h2 class="text-center">
+        Modération des commentaire
+    </h2>
+</div>
+
+<!-- <?php foreach($commentList as $comment) {?> -->
+    <div class="container">
+        <!-- <div class="card my-3 text-center">
+            <h3 class="card-header">
+                <?= htmlspecialchars($comment->getTitle())?>
+            </h3>
+            <p class="card-body">
+                Posté le 
+                <span class="font-italic">
+                    <?= htmlspecialchars($comment->getCreateDate())?>
+                </span> 
+            </p>
+            <p class="text-center-justify">
+                <?= htmlspecialchars(substr($chapter->getContent(), 0, 500)); ?>
+            </p>
+            <div>
+                <a href="./index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                    <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
+                </a>
+                <a href="./index.php?page=publishChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                    <button class="btn btn-success my-3">Publier le chapitre</button>
+                </a>
+            </div>
+        </div> -->
+        EN CONSTRUCTION
+    </div>
+<!-- <?php } ?> -->
 
 <?php 
     include_once './Views/Templates/footer.php'; 
