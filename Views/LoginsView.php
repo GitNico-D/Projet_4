@@ -3,9 +3,10 @@
 ?>
 
 <div class="form-signin-position text-center">
+    <!-- <img src="./src/data/img/write.jpg"/> -->
     <div class="form-signin">
         <form action=<?="index.php?page=getLogin"?> method="post" class="card">
-            <span class="fas fa-sign-in-alt fa-5x fa-signin"></span>
+            <span class="fas fa-sign-in-alt fa-5x form-signin-fa"></span>
             <h3 class="font-weight-normal">Connectez-vous</h3>
             <label for="email" class="sr-only"></label>
                 <input type="email" class="form-control" id="loginsEmail" name="loginsEmail" placeholder="Adresse email">
