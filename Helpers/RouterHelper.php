@@ -11,11 +11,9 @@ class RouterHelper {
     public static function getPageIx(Array $get) {
         $pageIx = 0;
         // var_dump($get);
-
-        if (array_key_exists("pageIx", $get) && isset($get["pageIx"]) && is_numeric($get["pageIx"]) 
-            && $get["pageIx"] >= 0) {
+        if (array_key_exists("pageIx", $get) && isset($get["pageIx"]) && is_numeric($get["pageIx"]) && $get["pageIx"] >= 0) 
+        {
             $pageIx = $get["pageIx"];
-            var_dump($pageIx);
         }
         return $pageIx;
     }
@@ -23,10 +21,15 @@ class RouterHelper {
 
     public static function getChapterId(Array $get)
     {
-        if (array_key_exists("chapterId", $get) && isset($get["chapterId"]) && is_string($get["chapterId"]))
+        var_dump($get["chapterId"]);
+        if (array_key_exists("chapterId", $get) && isset($get["chapterId"]) && is_numeric($get["chapterId"]) && $get["chapterId"] >= 0)
         {
-            $chapterId = $get["chapterId"];
+           return $get["chapterId"];
+        } 
+        else 
+        {
+            throw new Exception ("Chapitre introuvable !");
         }
-        return $chapterId;
+        // return $chapterId;
     }
 }
