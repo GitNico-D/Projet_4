@@ -30,4 +30,26 @@ class CommentController extends Controller
         }
         $this->single($chapterId);
     }
+
+    public function addReportedComment($commentId) 
+    {
+        var_dump($commentId);
+        $reportedComment = $this->commentManager->addReport($commentId);
+        var_dump($reportedComment);
+        if ($reportedComment = false)
+        {
+            die('Impossible de signaler le commentaire');
+        }
+        else
+        {
+            return $reportedComment;
+        }
+    }
+
+    public function allReportedComments()
+    {
+        var_dump($reportedCommentList);
+        $reportedCommentList = $this->commentManager->getAllReportedComments();
+        require_once "./Views/AdminView.php";
+    }
 }
