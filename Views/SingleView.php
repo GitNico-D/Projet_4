@@ -51,7 +51,7 @@
     </div>
     <?php if ($isAdmin) { ?>
         <div class="text-center">
-            <a href="./index.php?page=adminView"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
+            <a href="./index.php?page=adminView"><button class="btn btn-info my-2">Retour à l'accueil</button></a>
         </div>  
     <?php } else { ?>
         <div class="text-center">
@@ -71,7 +71,9 @@
                     <?= htmlspecialchars($comment->getContent());?>
                 </p>
                 <div class="reporting-button">
-                    <button class="btn btn-warning custom">Signaler ce commentaire</button>
+                    <a href="./index.php?page=reportComment&chapterId=<?= htmlspecialchars($uniqueChapter->getId()); ?>&commentId=<?= htmlspecialchars($comment->getId()); ?>">
+                        <button class="btn btn-warning custom">Signaler ce commentaire</button>
+                    </a>
                 </div>
             </div>
         <?php }; ?>
