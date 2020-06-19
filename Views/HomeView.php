@@ -15,7 +15,7 @@
     Voici tous les chapitres disponibles !
 </p>
 
-<?php foreach($chaptersList as $chapter) { ?>
+<?php foreach($publishedChaptersList as $chapter) { ?>
 <div id="chapter" class="container">
     <div class="card my-4 text-center">
         <h2 class="card-header">
