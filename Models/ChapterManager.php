@@ -17,19 +17,30 @@ class ChapterManager extends DAO
         return $chapterObj;
     }
 
-    public function getAllChapters()
+    public function getAllPublishedChapters()
     {
-        // $sqlRequest = 'SELECT * FROM chapter WHERE publish = 1 ORDER BY id ASC';
-        $sqlRequest = 'SELECT * FROM chapter ORDER BY id ASC';
-
+        $sqlRequest = 'SELECT * FROM chapter WHERE published = true ORDER BY id ASC';
         $result = $this->createQuery($sqlRequest);
-        $chaptersList = [];
+        $publishedChaptersList = [];
         foreach ($result as $chapter)
         {
-            $chaptersList [] = new Chapter($chapter);
+            $publishedChaptersList [] = new Chapter($chapter);
         }
         $result->closeCursor(); 
-        return $chaptersList;
+        return $publishedChaptersList;
+    }
+
+    public function getAllUnpublishedChapters()
+    {
+        $sqlRequest = 'SELECT * FROM chapter WHERE published = false ORDER BY id ASC';
+        $result = $this->createQuery($sqlRequest);
+        $unpublishedChaptersList = [];
+        foreach ($result as $chapter)
+        {
+            $unpublishedChaptersList [] = new Chapter($chapter);
+        }
+        $result->closeCursor(); 
+        return $unpublishedChaptersList;
     }
 
     public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
