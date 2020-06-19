@@ -23,7 +23,9 @@ class LoginsController extends Controller
                 $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
-                $chaptersList = $this->chapterManager->getAllChapters();
+                $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
+                $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
+                $reportedCommentList = $this->commentManager->getAllReportedComments();
                 $isAdmin = true;
                 require_once './Views/AdminView.php';
             }
@@ -45,15 +47,19 @@ class LoginsController extends Controller
     {
         $_SESSION = array();
         session_destroy();
-        $chaptersList = $this->chapterManager->getAllChapters();
+        // $chaptersList = $this->chapterManager->getAllChapters();
         // require_once './Views/HomeView.php';
         header ('Location: ./index.php');
     }
     
     public function returnAdminView($isAdmin)
     {
-        $chaptersList = $this->chapterManager->getAllChapters();
+        // $chaptersList = $this->chapterManager->getAllChapters();
+        $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
+        $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
+        $reportedCommentList = $this->commentManager->getAllReportedComments();
         require_once "./Views/AdminView.php";
+        // header ('Location: ./index.php?page=adminView');
     }
 
 }
