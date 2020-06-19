@@ -11,7 +11,9 @@ class ChapterController extends Controller
      */
     public function home()
     {
-        $chaptersList = $this->chapterManager->getAllChapters();
+        $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
+        $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
+        // $commentList = $this->commentManager->getCommentByChapterId($chapterId);
         require_once './Views/HomeView.php';
     }
 
