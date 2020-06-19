@@ -63,13 +63,18 @@ try {
                     $chapterId = RouterHelper::getChapterId($_GET);
                     $chapterController->addComment($chapterId);
                 break;
+                case "reportComment":
+                    $commentId = RouterHelper::getCommentId($_GET);
+                    $commentController->addReportedComment($commentId);
+                break;
                 case "adminView":
                     $isAdmin = LoginsHelper::checkAdminConnected();
-                    $loginsController->returnAdminView($isAdmin);            
+                    $loginsController->returnAdminView($isAdmin);  
+                break;          
                 default:
                 // Gérer l'erreur => redirection vers route = home
                     require_once './Views/errorView.php';
-                // break;
+                break;
             }
         } else
         {
