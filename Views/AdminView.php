@@ -23,7 +23,7 @@
     </h2>
 </div>
 
-<?php foreach($chaptersList as $chapter) {?>
+<?php foreach($publishedChaptersList as $chapter) {?>
 <div class="container">
     <div class="card my-3 text-center">
         <h3 class="card-header">
@@ -59,7 +59,7 @@
     </h2>
 </div>
 
-<?php foreach($chaptersList as $chapter) {?>
+<?php foreach($unpublishedChaptersList as $chapter) {?>
     <div class="container">
         <div class="card my-3 text-center">
             <h3 class="card-header">
@@ -86,39 +86,35 @@
     </div>
 <?php } ?>
 
-<div id="commentModeration" class="my-4 bg-warning">
+<div id="commentModeration" class="my-4 bg-danger">
     <h2 class="text-center">
         Modération des commentaire
     </h2>
 </div>
 
-<!-- <?php foreach($commentList as $comment) {?> -->
+<?php foreach($reportedCommentList as $comment) {?>
     <div class="container">
-        <!-- <div class="card my-3 text-center">
-            <h3 class="card-header">
-                <?= htmlspecialchars($comment->getTitle())?>
+        <div class="card my-3 text-center">
+            <h3 class="card-header font-italic">
+                Posté le
+                <?= htmlspecialchars($comment->getCreatedDate())?>
+                par
+                <?= htmlspecialchars($comment->getAuthor())?>
             </h3>
-            <p class="card-body">
-                Posté le 
-                <span class="font-italic">
-                    <?= htmlspecialchars($comment->getCreateDate())?>
-                </span> 
-            </p>
-            <p class="text-center-justify">
-                <?= htmlspecialchars(substr($chapter->getContent(), 0, 500)); ?>
+            <p class="card-body text-center-justify">
+            <?= htmlspecialchars($comment->getContent()); ?>
             </p>
             <div>
                 <a href="./index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
-                    <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
+                    <button class="btn btn-success my-3">Valider le commentaire</button>
                 </a>
                 <a href="./index.php?page=publishChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
-                    <button class="btn btn-success my-3">Publier le chapitre</button>
+                    <button class="btn btn-danger my-3">Supprimer le commentaire</button>
                 </a>
             </div>
-        </div> -->
-        EN CONSTRUCTION
+        </div>
     </div>
-<!-- <?php } ?> -->
+<?php } ?>
 
 <?php 
     include_once './Views/Templates/footer.php'; 
