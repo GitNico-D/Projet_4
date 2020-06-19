@@ -31,4 +31,27 @@ class CommentManager extends DAO
         return $commentAdded;
     }
 
+    public function addReport($commentId)
+    {
+        var_dump($commentId);
+        $sqlRequest = 'UPDATE comments SET report = true WHERE id = ?';
+        $result = $this->createQuery($sqlRequest, [$commentId]);
+        $reportComment = $result->fetch();
+        $result->closeCursor();
+        return new Comment($reportedComment);
+    }
+
+    public function getAllReportedComments()
+    {
+        $sqlRequest = 'SELECT * FROM comments WHERE report = true';
+        $result = $this->createQuery($sqlRequest);
+        $reportedCommentList = [];
+        foreach ($result as $comment)
+        {
+            $reportedCommentList [] = new Comment($comment); 
+        }
+        $result->closeCursor();
+        return $reportedCommentList;
+    }
+
 }
