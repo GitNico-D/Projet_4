@@ -1,26 +1,23 @@
 <?php
 
+require '../vendor/autoload.php';
+require '../src/Core/Controller.php';
+
+use App\src\Services\RouterHelper;
+use App\src\Services\LoginsHelper;
+
+use App\src\Controllers\ChapterController;
+use App\src\Controllers\CommentController;
+use App\src\Controllers\LoginsController;
+
 session_start();
 ob_start();
-
-// require_once "./Autoloader.php";
-
-// Autoloader::register();
-
-// Helpers
-require_once "./Helpers/RouterHelper.php";
-require_once "./Helpers/LoginsHelper.php";
-
-// Controllers
-require_once "./Controllers/ChapterController.php";
-require_once "./Controllers/CommentController.php";
-require_once "./Controllers/LoginsController.php";
-
 
 $chapterController = new ChapterController();
 $commentController = new CommentController();
 $loginsController = new LoginsController();
 
+        
 try {
     // var_dump($_GET["page"]);
     if (array_key_exists("page", $_GET) && isset($_GET["page"]) && is_string($_GET["page"])) {
