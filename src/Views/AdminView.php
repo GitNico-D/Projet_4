@@ -1,9 +1,9 @@
 <?php 
-    include_once "./Views/Templates/header.php";
+    include_once "../src/Views/Templates/header.php";
 ?>
 
 <section class="header-page text-center">
-    <img src="./src/data/img/write.jpg" alt="" class="header-page-img">
+    <img src="../public/data/img/write.jpg" alt="" class="header-page-img">
     <div class="container jumbotron-container">
         <div class="jumbotron">
             <h1 class="display-4 bold"><?php echo 'Bienvenue ' . $_SESSION["loginsUsername"] . ' !'?></h1>
@@ -12,7 +12,7 @@
 </section>
 
 <div class="text-center my-2 margin-top">
-    <a href="./index.php?page=addNewChapter">
+    <a href="../public/index.php?page=addNewChapter">
         <button class="btn btn-lg btn-info">Écrire un chapitre</button>
     </a>
 </div>
@@ -39,13 +39,13 @@
             <?= htmlspecialchars(substr($chapter->getContent(), 0, 500)); ?>
         </p>
         <div>
-            <a href="./index.php?page=single&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+            <a href="../public/index.php?page=single&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                 <button class="btn btn-outline-info my-3">Voir le chapitre</button>
             </a>
-            <a href="./index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+            <a href="../public/index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                 <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
             </a>
-            <a href="./index.php?page=deleteChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+            <a href="../public/index.php?page=deleteChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                 <button class="btn btn-danger my-3">Supprimer le chapitre</button>
             </a>
         </div>
@@ -75,10 +75,10 @@
                 <?= htmlspecialchars(substr($chapter->getContent(), 0, 500)); ?>
             </p>
             <div>
-                <a href="./index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                <a href="../public/index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                     <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
                 </a>
-                <a href="./index.php?page=publishChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                <a href="../public/index.php?page=publishChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                     <button class="btn btn-success my-3">Publier le chapitre</button>
                 </a>
             </div>
@@ -105,10 +105,10 @@
             <?= htmlspecialchars($comment->getContent()); ?>
             </p>
             <div>
-                <a href="./index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                <a href="../public/index.php?page=modifyChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                     <button class="btn btn-success my-3">Valider le commentaire</button>
                 </a>
-                <a href="./index.php?page=publishChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+                <a href="../public/index.php?page=publishChapter&chapterId=<?= htmlspecialchars($chapter->getId())?>">
                     <button class="btn btn-danger my-3">Supprimer le commentaire</button>
                 </a>
             </div>
@@ -117,5 +117,5 @@
 <?php } ?>
 
 <?php 
-    include_once './Views/Templates/footer.php'; 
+    include_once '../src/Views/Templates/footer.php'; 
 ?>

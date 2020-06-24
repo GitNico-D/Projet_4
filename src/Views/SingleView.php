@@ -1,6 +1,6 @@
 <?php
     // $pageTitle = 'Chapitre ' . $uniqueChapter->getId() . ' : ' . $uniqueChapter->getTitle();
-    include_once "./Views/Templates/header.php"; 
+    include_once "../src/Views/Templates/header.php"; 
 ?>
 
 <section class="jumbotron text-center">
@@ -20,15 +20,15 @@
         $chapterNumber++;
         $nextChapter = $chapterNumber;
         ?>
-        <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>"><button class="btn btn-info my-2">Chapitre Suivant</button></a>
+        <a href="../public/index.php?page=single&chapterId=<?= $nextChapter; ?>"><button class="btn btn-info my-2">Chapitre Suivant</button></a>
     <?php } else {
         $nextChapter = $chapterNumber;
         $nextChapter++;
         $previousChapter = $chapterNumber;
         $previousChapter--;
         ?>
-        <a href="./index.php?page=single&chapterId=<?= $previousChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre précédent</button></a>
-        <a href="./index.php?page=single&chapterId=<?= $nextChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre Suivant</button></a>
+        <a href="../public/index.php?page=single&chapterId=<?= $previousChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre précédent</button></a>
+        <a href="../public/index.php?page=single&chapterId=<?= $nextChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre Suivant</button></a>
     <?php }; ?>
 </div>
 
@@ -55,7 +55,7 @@
         </div>  
     <?php } else { ?>
         <div class="text-center">
-            <a href="./index.php"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
+            <a href="../public/index.php"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
         </div>
     <?php } ?>
     <hr>
@@ -71,7 +71,7 @@
                     <?= htmlspecialchars($comment->getContent());?>
                 </p>
                 <div class="reporting-button">
-                    <a href="./index.php?page=reportComment&chapterId=<?= htmlspecialchars($uniqueChapter->getId()); ?>&commentId=<?= htmlspecialchars($comment->getId()); ?>">
+                    <a href="../public/index.php?page=reportComment&chapterId=<?= htmlspecialchars($uniqueChapter->getId()); ?>&commentId=<?= htmlspecialchars($comment->getId()); ?>">
                         <button class="btn btn-warning custom">Signaler ce commentaire</button>
                     </a>
                 </div>
@@ -97,4 +97,4 @@
     </div>
 </div>
 
-<?php include_once "./Views/Templates/footer.php" ?>
+<?php include_once "../src/Views/Templates/footer.php" ?>

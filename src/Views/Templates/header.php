@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <title>Blog en création</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="./src/css/style-2.css">
+        <link rel="stylesheet" href="../public/css/style.css">
         <script src="https://kit.fontawesome.com/8b1d8d6405.js" crossorigin="anonymous"></script>
     </head>
     <body>

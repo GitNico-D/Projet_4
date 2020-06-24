@@ -1,9 +1,9 @@
 <?php
-    include_once "./Views/Templates/header.php"; 
+    include_once "../src/Views/Templates/header.php"; 
 ?>
 
 <section class="header-page text-center">
-    <img src="./src/data/img/alaska-3.jpg" alt="" class="header-page-img">
+    <img src="../public/data/img/alaska-3.jpg" alt="" class="header-page-img">
     <div class="container jumbotron-container">
         <div class="jumbotron">
             <h1 class="display-4 bold">Bienvenue cher visiteur</h1>
@@ -34,7 +34,7 @@
         <p class="text-center-justify">
             <?= htmlspecialchars($chapter->getContent())?>
         </p>
-        <a href="./index.php?page=single&chapterId=<?= htmlspecialchars($chapter->getId())?>">
+        <a href="../public/index.php?page=single&chapterId=<?= htmlspecialchars($chapter->getId())?>">
             <button class="btn btn-info my-3">
                 Lire le chapitre
             </button>
@@ -43,4 +43,4 @@
 </div>
 <?php } ?>
 
-<?php include_once "./Views/Templates/footer.php" ?>
+<?php include_once "../src/Views/Templates/footer.php" ?>

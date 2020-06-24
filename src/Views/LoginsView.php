@@ -1,5 +1,5 @@
 <?php 
-    require_once "./Views/Templates/header.php"; 
+    require_once "../src/Views/Templates/header.php"; 
 ?>
 
 <div class="form-signin-position text-center">
@@ -15,7 +15,7 @@
             <button type="submit" class="btn btn-block btn-primary margin-top">Se connecter</button>
             <p class="text-muted">© 2020</p>
         </form>
-        <a href="./index.php">
+        <a href="../public/index.php">
             <!-- <button class="btn btn-block btn-info margin-top mb-3"> -->
             Retour à l'accueil
             <!-- </button> -->
@@ -23,4 +23,4 @@
     </div>
 </div>
 
-<?php require_once './Views/Templates/footer.php' ?>
+<?php require_once '../src/Views/Templates/footer.php' ?>

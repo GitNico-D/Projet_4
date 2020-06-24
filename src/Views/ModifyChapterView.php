@@ -1,5 +1,5 @@
 <?php
-    include_once "./Views/Templates/header.php"; 
+    include_once "../src/Views/Templates/header.php"; 
 ?>
 
 <section class="jumbotron text-center">
@@ -35,8 +35,8 @@
 </div>
 <div class="text-center">
     <?php if ($isAdmin) { ?>
-        <a href="./index.php?page=adminView"><button class="btn btn-info my-2">Retour à l'accueil</button></a>
+        <a href="../public/index.php?page=adminView"><button class="btn btn-info my-2">Retour à l'accueil</button></a>
     <?php } ?>
 </div>
 
-<?php include_once './Views/Templates/Footer.php'; ?>
+<?php include_once '../src/Views/Templates/Footer.php'; ?>
