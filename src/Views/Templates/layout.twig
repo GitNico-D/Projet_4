@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog en création</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../public/css/style.css">
+        <script src="https://kit.fontawesome.com/8b1d8d6405.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="navbar navbar-custom">
+                    <a href="../public/index.php" class="navbar-brand text-center text-dark">
+                        <strong>JEAN FORTEROCHE</strong>
+                        <!-- <img src="./src/data/img/logo-jf-1-resize.png" alt=""> -->
+                    </a>
+                    {% block navbarContent %}
+                    {% endblock navbarContent %}                        
+                </div>
+            </div> 
+        </header>
+        <section id="main-header" class="main-header text-center">
+            {% block mainHeader %}               
+            {% endblock mainHeader %}
+        </section>
+        <section class="chapter">
+            {% block chapterContent %}                
+            {% endblock chapterContent %}
+        </section>
+        <section class="comment">
+            {% block commentContent %}                
+            {% endblock commentContent %}
+        </section>
+    </body>
+</html>
