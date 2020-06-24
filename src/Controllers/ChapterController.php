@@ -1,6 +1,9 @@
 <?php
 
-require_once "./Controllers/Controller.php";
+namespace App\src\Controllers;
+
+use App\src\Core\Controller;
+use App\src\Core\Twig;
 
 class ChapterController extends Controller
 {
@@ -14,14 +17,14 @@ class ChapterController extends Controller
         $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
         $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
         // $commentList = $this->commentManager->getCommentByChapterId($chapterId);
-        require_once './Views/HomeView.php';
+        require_once '../src/Views/HomeView.php';
     }
 
     public function single($chapterId, $isAdmin)
     {
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
         $commentList = $this->commentManager->getCommentByChapterId($chapterId);
-        require_once './Views/SingleView.php';
+        require_once '../src/Views/SingleView.php';
     }    
 
     /**
@@ -54,7 +57,7 @@ class ChapterController extends Controller
         {   
             echo 'Veuillez remplir les champs !';
         }
-        require_once './Views/AddChapterView.php';
+        require_once '../src/Views/AddChapterView.php';
     }
 
     /**
@@ -66,13 +69,13 @@ class ChapterController extends Controller
     public function deleteChapter($chapterId, $isAdmin)
     {
         $this->chapterManager->deleteChapterById($chapterId);
-        header('location: index.php?page=adminView');
+        header('location: ../public/index.php?page=adminView');
     }
 
     public function modifyChapter($chapterId, $isAdmin)
     {
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        require_once './Views/ModifyChapterView.php';        
+        require_once '../src/Views/ModifyChapterView.php';        
     }
 
     public function applyChapterModification($chapterTitle, $chapterContent, $chapterId)
@@ -82,10 +85,10 @@ class ChapterController extends Controller
         // var_dump($_POST);
         if(isset($_POST['saveAndPublish']))
         {
-            $chapterPublish = 1;
-            $updateLines = $this->chapterManager->modifyChapterById($chapterTitle, $chapterContent, $chapterId);
-            $updateLines = $this->chapterManager->modifyChapterById();
-            if ($updateLines === false)
+            // $chapterPublish = 1;
+            $updatedLines = $this->chapterManager->modifyChapterById($chapterTitle, $chapterContent, $chapterId);
+            // $updatedLines = $this->chapterManager->modifyChapterById();
+            if ($updatedLines === false)
             {
                 die('Impossible de modifier le chapitre');
             }

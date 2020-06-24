@@ -1,7 +1,9 @@
 <?php
 
-require_once "./Controllers/Controller.php";
- 
+namespace App\src\Controllers;
+
+use App\src\Core\Controller;
+
 class CommentController extends Controller
 {
     public function addComment($chapterId)

@@ -1,7 +1,8 @@
 <?php
 
-require_once "./Models/LoginsManager.php";
-require_once "./Models/ChapterManager.php";
+namespace App\src\Controllers;
+
+use App\src\Core\Controller;
 
 class LoginsController extends Controller
 {
@@ -27,19 +28,19 @@ class LoginsController extends Controller
                 $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
                 $reportedCommentList = $this->commentManager->getAllReportedComments();
                 $isAdmin = true;
-                require_once './Views/AdminView.php';
+                require_once '../src/Views/AdminView.php';
             }
             else
             {
                 echo('Email ou mot de passe invalide');
-                require_once './Views/LoginsView.php';
+                require_once '../src/Views/LoginsView.php';
             }                
         }
         else
         {   
             echo 'Veuillez remplir les champs !';
             // var_dump($isAdmin);
-            require_once './Views/LoginsView.php';
+            require_once '../src/Views/LoginsView.php';
         }
     }
 
@@ -49,7 +50,7 @@ class LoginsController extends Controller
         session_destroy();
         // $chaptersList = $this->chapterManager->getAllChapters();
         // require_once './Views/HomeView.php';
-        header ('Location: ./index.php');
+        header ('Location: ../public/index.php');
     }
     
     public function returnAdminView($isAdmin)
@@ -58,7 +59,7 @@ class LoginsController extends Controller
         $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
         $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
         $reportedCommentList = $this->commentManager->getAllReportedComments();
-        require_once "./Views/AdminView.php";
+        require_once "../src/Views/AdminView.php";
         // header ('Location: ./index.php?page=adminView');
     }
 
