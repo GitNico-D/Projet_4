@@ -99,11 +99,11 @@
   font-size: 0.75rem;
 }
 
-.header-page {
+.main-header {
   position: relative;
 }
 
-.header-page-img {
+.main-header-img {
   width: 100%;
   max-width: 1920px;
   margin: auto;
@@ -121,4 +121,4 @@
     max-width: 1920px;
     margin: auto;
 } */
-/*# sourceMappingURL=style-2.css.map */
+/*# sourceMappingURL=style.css.map */
