@@ -1,0 +1,70 @@
+{% extends "/templates/layout.twig" %}
+
+{% block navbarContent %}
+    {% if isAdmin %}
+    <!-- <span class="text-success">Bienvenue <?php echo($_SESSION["loginsUsername"])?></span> -->
+    <div class="inline">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
+                <a href="#pendingChapter" class="text-dark navbar-nav-link">Chapitre en attente</a>
+                <a href="#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
+            </li>
+        </ul>
+    </div>
+    <a href="../public/index.php?page=getLogout"><button class="btn btn-danger">Déconnexion</button></a>
+    {% endif %}
+    {# {% if not isAdmin %} #}
+    <div class="inline">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="#chapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
+                <a href="" class="text-dark navbar-nav-link">A propos</a>
+                <a href="" class="text-dark navbar-nav-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <a href="../public/index.php?page=getLogin">
+        <button class="btn btn-outline-danger">Connexion</button>
+    </a>
+    {# {% endif %}  #}
+{% endblock navbarContent %}
+
+{% block mainHeader %}
+    <img src="../public/data/img/alaska-3.jpg" alt="" class="main-header-img">
+    <div class="container jumbotron-container">
+        <div class="jumbotron">
+            <h1 class="display-4 bold">Bienvenue cher visiteur</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block chapterContent %}
+    <div id="chapter" class="container">
+        {% for chapter in publishChapters %}
+        <div class="card my-4 text-center">
+            <h2 class="card-header">{{ chapter.title }}</h2>
+            <p class="card-body">
+                Posté le 
+                <span class="font-italic">
+                    {{ chapter.createDate }}
+                </span> 
+                par 
+                <span class="font-italic">
+                    {{ chapter.author }}
+                </span>
+            </p>
+            <p class="text-center-justify">
+                {{ chapter.content }}
+            </p>
+            <a href="../public/index.php?page=single&chapterId={{ chapter.id }}" class="btn btn-info my-3">
+                {# <button class="btn btn-info my-3"> #}
+                    Lire le chapitre
+                {# </button> #}
+            </a>
+        </div>
+        {% else %}
+            <h2 class="card-header">Pas de chapitre trouvé</h2>
+        {% endfor %}
+    </div>
+{% endblock %}
