@@ -1,6 +1,8 @@
 <?php
 
-require_once "./Models/Model.php";
+namespace App\src\Models;
+
+use App\src\Core\Model;
 
 class Logins extends Model
 {

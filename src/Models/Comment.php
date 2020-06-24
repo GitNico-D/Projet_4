@@ -1,5 +1,9 @@
 <?php
 
+namespace App\src\Models;
+
+use App\src\Core\Model;
+
 class Comment extends Model
 {   
     private $id;

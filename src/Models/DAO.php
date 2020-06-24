@@ -1,5 +1,9 @@
 <?php
 
+namespace App\src\Models;
+
+use PDO;
+
 abstract class DAO 
 {
     private $db;
