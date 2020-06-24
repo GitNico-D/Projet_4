@@ -1,7 +1,9 @@
 <?php
 
-require_once "./Models/Logins.php";
-require_once "./Models/DAO.php";
+namespace App\src\Managers;
+
+use App\src\Models\DAO;
+use App\src\Models\Logins;
 
 class LoginsManager extends DAO
 {

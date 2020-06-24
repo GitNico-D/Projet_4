@@ -1,8 +1,9 @@
 <?php
 
-require_once "./Models/Chapter.php";
+namespace App\src\Managers;
 
-require_once "./Models/DAO.php";
+use App\src\Models\DAO;
+use App\src\Models\Chapter;
 
 class ChapterManager extends DAO
 {
@@ -60,13 +61,13 @@ class ChapterManager extends DAO
         var_dump($chapterContent);
         $sqlRequest = 'UPDATE chapter SET (title = :chapterTitle, content = :chapterContent, updateDate = NOW()) WHERE id = :chapterId';
         var_dump($sqlRequest);
-        $upadtedLines = $this->createQuery($sqlRequest, array(
-            'chapterAuthor' => $chapterTitle,
+        $updatedLines = $this->createQuery($sqlRequest, array(
+            'chapterTitle' => $chapterTitle,
             'chapterContent' => $chapterContent,
-            'publish' => $chapterPublish,
+            // 'publish' => $chapterPublish,
             'chapterId' => $chapterId
         ));
-        return $upadtedLines;
+        return $updatedLines;
     }
 
     public function deleteChapterById($chapterId)

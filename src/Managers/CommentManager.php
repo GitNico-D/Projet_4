@@ -1,8 +1,9 @@
 <?php
 
-require_once "./Models/Comment.php";
+namespace App\src\Managers;
 
-require_once "./Models/DAO.php";
+use App\src\Models\DAO;
+use App\src\Models\Comment;
 
 class CommentManager extends DAO
 {
