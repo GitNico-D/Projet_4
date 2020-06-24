@@ -1,5 +1,7 @@
 <?php
 
+namespace App\src\Core;
+
 class Model 
 {
     protected function hydrate(array $data)
