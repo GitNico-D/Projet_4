@@ -1,5 +1,7 @@
 <?php
 
+namespace App\src\Services;
+
 class RouterHelper {
 
     /**
