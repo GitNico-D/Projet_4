@@ -17,7 +17,11 @@ class ChapterController extends Controller
         $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
         $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
         // $commentList = $this->commentManager->getCommentByChapterId($chapterId);
-        require_once '../src/Views/HomeView.php';
+        echo $this->twig->render('HomeView.twig', 
+            ['publishChapters' => $this->chapterManager->getAllPublishedChapters()],
+            ['unpublishedChapters' => $this->chapterManager->getAllUnpublishedChapters()]
+        );
+        // require_once '../src/Views/HomeView.php';
     }
 
     public function single($chapterId, $isAdmin)
