@@ -58,3 +58,16 @@ INSERT INTO comments ('author', 'content', 'creationDate', chapterId) VALUES
 
 INSERT INTO chapter (title, author, content, createDate, updateDate) 
     VALUES ('Mon sixième chapitre ajouté', 'Admin', 'Je vous souhaite une bonne lecture de ce chapitre', NOW(), NOW());
+
+INSERT INTO comments (author, title, content, createdDate, updatedDate, chapterId) VALUES
+('Jean', 'First', 'I suggest you try it again, Luke. !', '2020-05-10 09:52:24', '2020-05-10 09:52:24', 1),
+('Claude', 'Second', ' Hey, Luke! May the Force be with you.', '2020-05-11 00:45:30', '2020-05-10 09:52:24', 1),
+('Bob', 'Third', 'Great ! ', '2020-05-11 18:00:04', '2020-05-10 09:52:24', 1),
+('Toto', 'Fourth', 'He is here. You don\'t believe in the Force, do you', '2020-05-09 20:05:57', '2020-05-10 09:52:24', 2),
+('Moam', 'Fifth', 'Still, she\'s got a lot of spirit. I don\'t know, what do you think', '2020-05-09 18:12:59', '2020-05-10 09:52:24', 2),
+('Baba', 'Sixth', 'Send a detachment down to retrieve them, and see to it personally, Commander', '2020-05-18 10:05:10', '2020-05-10 09:52:24', 2),
+('Gui', 'Seventh', 'Alderaan is peaceful. We have no weapons', '2020-05-05 11:11:22', '2020-05-10 09:52:24', 3),
+('Aurora', 'Eight', 'I am a member of the Imperial Senate on a diplomatic mission to Alderaan', '2020-05-05 20:11:12', '2020-05-10 09:52:24', 3),
+('John', 'Nineth','Don\'t trust them. ', '2020-05-07 10:10:11', '2020-05-07 10:10:11', 3);
+
+    ALTER TABLE comments AUTO_INCREMENT = 1
