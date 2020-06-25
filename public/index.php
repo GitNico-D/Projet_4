@@ -73,9 +73,11 @@ try {
                     require_once './Views/errorView.php';
                 break;
             }
-        } else
+        }
+        else
         {
-            $chapterController->home();
+            $isAdmin = LoginsHelper::checkAdminConnected();   
+            $chapterController->home($isAdmin);
         }
 } 
 catch (Exception $error)
