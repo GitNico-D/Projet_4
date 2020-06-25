@@ -30,7 +30,8 @@ abstract class Controller
             "cache" => false,
             "debug" => true
         ));
-
-    $this->twig->addExtension(new DebugExtension());
+        
+        $this->twig->addGlobal('session', $_SESSION);
+        $this->twig->addExtension(new DebugExtension());
     }
 }
