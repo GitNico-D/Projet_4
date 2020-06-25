@@ -24,23 +24,24 @@ class LoginsController extends Controller
                 $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
-                $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
-                $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
-                $reportedCommentList = $this->commentManager->getAllReportedComments();
                 $isAdmin = true;
-                require_once '../src/Views/AdminView.php';
+                echo $this->twig->render('AdminView.twig', 
+                    ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
+                    'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+                    'reportedCommentList' => $this->commentManager->getAllReportedComments(),
+                    'isAdmin' => $isAdmin]
+                );
             }
             else
             {
                 echo('Email ou mot de passe invalide');
-                require_once '../src/Views/LoginsView.php';
+                echo $this->twig->render('LoginsView.twig');
             }                
         }
         else
         {   
-            echo 'Veuillez remplir les champs !';
-            // var_dump($isAdmin);
-            require_once '../src/Views/LoginsView.php';
+            // echo 'Veuillez remplir les champs !';
+            echo $this->twig->render('LoginsView.twig');
         }
     }
 
@@ -48,19 +49,17 @@ class LoginsController extends Controller
     {
         $_SESSION = array();
         session_destroy();
-        // $chaptersList = $this->chapterManager->getAllChapters();
-        // require_once './Views/HomeView.php';
         header ('Location: ../public/index.php');
     }
     
     public function returnAdminView($isAdmin)
     {
-        // $chaptersList = $this->chapterManager->getAllChapters();
-        $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
-        $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
-        $reportedCommentList = $this->commentManager->getAllReportedComments();
-        require_once "../src/Views/AdminView.php";
-        // header ('Location: ./index.php?page=adminView');
+        echo $this->twig->render('AdminView.twig', 
+            ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
+            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+            'reportedCommentList' => $this->commentManager->getAllReportedComments(),
+            'isAdmin' => $isAdmin]
+        );
     }
 
 }
