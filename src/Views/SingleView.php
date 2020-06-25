@@ -20,15 +20,15 @@
         $chapterNumber++;
         $nextChapter = $chapterNumber;
         ?>
-        <a href="../public/index.php?page=single&chapterId=<?= $nextChapter; ?>"><button class="btn btn-info my-2">Chapitre Suivant</button></a>
+        <a href="../public/index.php?page=single&chapterId=<?= $nextChapter; ?>" class="btn btn-info my-2">Chapitre Suivant</a>
     <?php } else {
         $nextChapter = $chapterNumber;
         $nextChapter++;
         $previousChapter = $chapterNumber;
         $previousChapter--;
         ?>
-        <a href="../public/index.php?page=single&chapterId=<?= $previousChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre précédent</button></a>
-        <a href="../public/index.php?page=single&chapterId=<?= $nextChapter; ?>" class=""><button class="btn btn-info my-2">Chapitre Suivant</button></a>
+        <a href="../public/index.php?page=single&chapterId=<?= $previousChapter; ?>" class="btn btn-info my-2">Chapitre précédent</a>
+        <a href="../public/index.php?page=single&chapterId=<?= $nextChapter; ?>"class="btn btn-info my-2">Chapitre Suivant</a>
     <?php }; ?>
 </div>
 
