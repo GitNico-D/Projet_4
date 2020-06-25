@@ -7,28 +7,37 @@ use App\src\Core\Twig;
 
 class ChapterController extends Controller
 {
+    
     /**
      * home
      *
      * @return void
      */
-    public function home()
+    public function home($isAdmin)
     {
-        $publishedChaptersList = $this->chapterManager->getAllPublishedChapters();
-        $unpublishedChaptersList = $this->chapterManager->getAllUnpublishedChapters();
-        // $commentList = $this->commentManager->getCommentByChapterId($chapterId);
         echo $this->twig->render('HomeView.twig', 
-            ['publishChapters' => $this->chapterManager->getAllPublishedChapters()],
-            ['unpublishedChapters' => $this->chapterManager->getAllUnpublishedChapters()]
+            ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
+            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+            'isAdmin' => $isAdmin]
         );
-        // require_once '../src/Views/HomeView.php';
     }
 
+    /**
+     * single
+     *
+     * @param mixed $chapterId
+     * @param mixed $isAdmin
+     * @return void
+     */
     public function single($chapterId, $isAdmin)
     {
-        $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        $commentList = $this->commentManager->getCommentByChapterId($chapterId);
-        require_once '../src/Views/SingleView.php';
+        var_dump($_SESSION);
+        echo $this->twig->render('SingleView.twig', 
+            ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
+            'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
+            'chapterNumber' => $chapterId,
+            'isAdmin' => $isAdmin]
+        );
     }    
 
     /**
@@ -38,15 +47,15 @@ class ChapterController extends Controller
      */
     public function addNewChapter($isAdmin)
     {
-        echo ('Page addChapterView');
-        var_dump($isAdmin);
+        // echo ('Page addChapterView');
+        // var_dump($isAdmin);
         if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
         {
             $newChapterAuthor = htmlspecialchars($_POST['chapterAuthor']);
             $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
             $newChapterContent = htmlspecialchars($_POST['chapterContent']);
             $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent);
-            var_dump($affectedLines);
+            // var_dump($affectedLines);
             if ($affectedLines === false)
             {
                 die('Impossible d\'ajouter le chapitre');
@@ -120,7 +129,7 @@ class ChapterController extends Controller
 
     public function addComment($chapterId)
     {
-        var_dump($_POST["submit"]);
+        // var_dump($_POST["submit"]);
         if(!empty($_POST['commentAuthor']) && !empty($_POST['commentTitle']))
         {
             $commentAuthor = htmlspecialchars($_POST['commentAuthor']);
