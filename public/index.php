@@ -19,34 +19,31 @@ $loginsController = new LoginsController();
 
         
 try {
-    // var_dump($_GET["page"]);
     if (array_key_exists("page", $_GET) && isset($_GET["page"]) && is_string($_GET["page"])) {
         switch ($_GET["page"]) 
         {
             case 'single':
                 // Get PageIx from $_GET
                 $pageIx = RouterHelper::getPageIx($_GET);
-                $isAdmin = LoginsHelper::checkAdminConnected();
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                var_dump($_GET["chapterId"]);
-                // $chapterController->single($_GET['chapterId'], $isAdmin);
                 $chapterController->single($chapterId, $isAdmin);
                 break;
                 case 'addNewChapter':
-                    $isAdmin = LoginsHelper::checkAdminConnected();
+                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                     $chapterController->addNewChapter($isAdmin);
                 break;
                 case "modifyChapter":
-                    $isAdmin = LoginsHelper::checkAdminConnected();                
+                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);                
                     $chapterId = RouterHelper::getChapterId($_GET);
                     $chapterController->modifyChapter($chapterId, $isAdmin);
                 break;
                 case "applyChapterModification":
-                    $isAdmin = LoginsHelper::checkAdminConnected();   
+                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);   
                     $chapterId = RouterHelper::getChapterId($_GET);
                     $chapterController->modifyChapter($chapterId, $isAdmin);
                 case 'deleteChapter':
-                    $isAdmin = LoginsHelper::checkAdminConnected();
+                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                     $chapterId = RouterHelper::getChapterId($_GET);
                     $chapterController->deleteChapter($chapterId, $isAdmin);
                 break;
@@ -65,23 +62,23 @@ try {
                     $commentController->addReportedComment($commentId);
                 break;
                 case "adminView":
-                    $isAdmin = LoginsHelper::checkAdminConnected();
+                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                     $loginsController->returnAdminView($isAdmin);  
                 break;          
                 default:
                 // Gérer l'erreur => redirection vers route = home
-                    require_once './Views/errorView.php';
+                    require_once '../src/Views/phpViews/errorView.php';
                 break;
             }
         }
         else
-        {
-            $isAdmin = LoginsHelper::checkAdminConnected();   
-            $chapterController->home($isAdmin);
+        {  
+            $chapterController->home();
         }
 } 
 catch (Exception $error)
 {
     // Gérer l'erreur => redirection vers route = home
+    echo $this->twig->render('ErrorView.twig', ['error' => $error]);
     var_dump ("Erreur : " . $error->getMessage());
 }
