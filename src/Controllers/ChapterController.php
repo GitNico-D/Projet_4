@@ -13,12 +13,11 @@ class ChapterController extends Controller
      *
      * @return void
      */
-    public function home($isAdmin)
+    public function home()
     {
         echo $this->twig->render('HomeView.twig', 
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
-            'isAdmin' => $isAdmin]
+            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]
         );
     }
 
@@ -31,7 +30,6 @@ class ChapterController extends Controller
      */
     public function single($chapterId, $isAdmin)
     {
-        var_dump($_SESSION);
         echo $this->twig->render('SingleView.twig', 
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
@@ -47,8 +45,6 @@ class ChapterController extends Controller
      */
     public function addNewChapter($isAdmin)
     {
-        // echo ('Page addChapterView');
-        // var_dump($isAdmin);
         if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
         {
             $newChapterAuthor = htmlspecialchars($_POST['chapterAuthor']);
@@ -58,11 +54,11 @@ class ChapterController extends Controller
             // var_dump($affectedLines);
             if ($affectedLines === false)
             {
-                die('Impossible d\'ajouter le chapitre');
+                throw new Exception ('Impossible d\'ajouter le chapitre');
             }
             else 
             {
-                header('location: index.php');
+                header('location: ../public/index.php?page=adminView');
                 echo('Chapitre ajouté');
             }
         }
@@ -70,7 +66,7 @@ class ChapterController extends Controller
         {   
             echo 'Veuillez remplir les champs !';
         }
-        require_once '../src/Views/AddChapterView.php';
+        echo $this->twig->render('addChapterView.twig', ['isAdmin' => $isAdmin]);
     }
 
     /**
@@ -88,7 +84,11 @@ class ChapterController extends Controller
     public function modifyChapter($chapterId, $isAdmin)
     {
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        require_once '../src/Views/ModifyChapterView.php';        
+        echo $this->twig->render('ModifyChapterView.twig', 
+            ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
+            'isAdmin' => $isAdmin]
+        );
+        // require_once '../src/Views/ModifyChapterView.php';        
     }
 
     public function applyChapterModification($chapterTitle, $chapterContent, $chapterId)
@@ -142,7 +142,7 @@ class ChapterController extends Controller
             }
             else 
             {
-                $this->single($chapterId);
+                $this->single($chapterId, $isAdmin);
                 echo('Commentaire ajouté');
             }
         }
