@@ -14,7 +14,7 @@
                 <div class="navbar navbar-custom">
                     <a href="../public/index.php" class="navbar-brand text-center text-dark">
                         <!-- <strong>JEAN FORTEROCHE</strong> -->
-                        <!-- <img src="./src/data/img/logo-jf-1-resize.png" alt=""> -->
+                        {# <img src="../public/data/img/logo-jf-1-resize.png" alt=""> #}
                     </a>                              
                     {# include 'navbar.twig' #}
                     {% block navbarContent %}                        
@@ -23,34 +23,19 @@
             </div> 
         </header>
         <section id="main-header" class="main-header text-center">
-            {% block mainHeader %}               
-            {% endblock mainHeader %}
+
+            {% block mainHeader %}{% endblock mainHeader %}
+
         </section>
-        <section id="publishChapter" class="container">
-            {% block chapterButton %}                
-            {% endblock chapterButton %}
-            {% block publishedChapterContent %}                
-            {% endblock publishedChapterContent %}
+        <section>
+
+            {% block main %}{% endblock main %}
+
         </section>
-        <section id="pendingChapter" class="container">
-            {% block unpublishedChapterContent %}                
-            {% endblock unpublishedChapterContent %}
-        </section>
-        <section class="commentModeration">
-            {% block commentContent %}                
-            {% endblock commentContent %}
-        </section>
-        <section class="commentForm">
-            {% block commentForm %}                
-            {% endblock commentForm %}
-        </section>
-        <!-- <section id="login" class="login"> -->
-            {% block loginForm %}                
-            {% endblock loginForm %}
-        <!-- </section> -->
         <footer class="footer">
-            {% block footer %}                
-            {% endblock footer %}
+
+            {# include '/templates/footer.twig' #}
+
         </footer>
     </body>
 </html>
