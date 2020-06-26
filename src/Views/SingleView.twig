@@ -1,31 +1,31 @@
 {% extends "/templates/layout.twig" %}
 
 {% block navbarContent %}
+<img src="../public/data/img/logo-jf-1-resize.png" alt="">
     {% if isAdmin %}
-    <span class="text-success">Bienvenue {{ session.loginsUsername }}</span>
-    <div class="inline">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
-                <a href="#pendingChapter" class="text-dark navbar-nav-link">Chapitre en attente</a>
-                <a href="#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
-            </li>
-        </ul>
-    </div>
-    <a href="../public/index.php?page=getLogout"><button class="btn btn-danger">Déconnexion</button></a>
+        <div class="inline">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href="#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
+                    <a href="#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
+                    <a href="#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
+                </li>
+            </ul>
+        </div>
+        <a href="../public/index.php?page=getLogout"><button class="btn btn-danger">Déconnexion</button></a>
     {% else %}
-    <div class="inline">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="#chapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
-                <a href="" class="text-dark navbar-nav-link">A propos</a>
-                <a href="" class="text-dark navbar-nav-link">Contact</a>
-            </li>
-        </ul>
-    </div>
-    <a href="../public/index.php?page=getLogin">
-        <button class="btn btn-outline-danger">Connexion</button>
-    </a>
+        <div class="inline">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href="#chapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
+                    <a href="" class="text-dark navbar-nav-link">A propos</a>
+                    <a href="" class="text-dark navbar-nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <a href="../public/index.php?page=getLogin">
+            <button class="btn btn-outline-danger">Connexion</button>
+        </a>
     {% endif %}
 {% endblock  navbarContent %}
 
@@ -35,20 +35,16 @@
     </div>
 {% endblock %}
 
-{% block chapterButton %}
-    <div class="text-center">
-        {{ dump(chapterNumber) }}
-        {% if chapterNumber <= 1 and chapterNumber is defined %}            
-            <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}" class="btn btn-info my-2">Chapitre Suivant</a>
-        {% else %}
-            <a href="../public/index.php?page=single&chapterId={{ chapterNumber - 1 }}" class="btn btn-info my-2">Chapitre précédent</a>
-            <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}"class="btn btn-info my-2">Chapitre Suivant</a> 
-        {% endif %}  
-    </div>
-{% endblock chapterButton %}
-
-{% block publishedChapterContent %}
-    <!-- <div id="chapter" class="container"> -->
+{% block main %}
+<div class="text-center">
+    {% if chapterNumber <= 1 and chapterNumber is defined %}            
+        <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}" class="btn btn-info my-2">Chapitre Suivant</a>
+    {% else %}
+        <a href="../public/index.php?page=single&chapterId={{ chapterNumber - 1 }}" class="btn btn-info my-2">Chapitre précédent</a>
+        <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}"class="btn btn-info my-2">Chapitre Suivant</a> 
+    {% endif %}  
+</div>
+<section id="publishChapter" class="container">
         <div class="card my-4 text-center">
             <h2 class="card-header">{{ uniqueChapter.title }}</h2>
             <p class="card-body">
@@ -69,10 +65,9 @@
             </div>
         {% endif %}
     </div>
+</section>
 <hr>
-{% endblock publishedChapterContent %}
-
-{% block commentContent %}     
+<section class="comment" class="container"> 
     <h4 class="text-center">Commentaire</h4>
         {% for comment in commentList %}
             <div class="container text-center">
@@ -96,24 +91,22 @@
         {% endfor %}
         </div>
     </div>
+</section>
 <hr>
-{% endblock  %}
-    
-{% block commentForm %}
-    <div class="container">
-        <div class="card text-center my-4">
-        <h3 class="card-header">Ajouter un commentaire</h3>
-            <form action="index.php?page=addComment&chapterId={{ uniqueChapter.id }}" method="post" class="card-body">
-                <div class="form-group">
-                    <label for="commentAuthor" class="bold">Pseudonyme</label>    
-                    <input type="text" class="form-control" id="commentAuthor" name="commentAuthor"></input>
-                    <label for="commentTitle" class="bold">Titre</label>
-                    <input type="text" class="form-control" id="commentTitle" name="commentTitle">
-                    <label for="commentContent" class="bold">Votre commentaire</label>
-                    <textarea type="text" class="form-control" id="commentContent" name="commentContent" rows="10"></textarea>
-                    <button type="submit" name="submit" class="btn btn-primary">Soumettre commentaire</button>
-                </div>
-            </form>    
-        </div>
-    </div>    
-{% endblock commentForm %}
+<section class="container">
+    <div class="card text-center my-4">
+    <h3 class="card-header">Ajouter un commentaire</h3>
+        <form action="index.php?page=addComment&chapterId={{ uniqueChapter.id }}" method="post" class="card-body">
+            <div class="form-group">
+                <label for="commentAuthor" class="bold">Pseudonyme</label>    
+                <input type="text" class="form-control" id="commentAuthor" name="commentAuthor"></input>
+                <label for="commentTitle" class="bold">Titre</label>
+                <input type="text" class="form-control" id="commentTitle" name="commentTitle">
+                <label for="commentContent" class="bold">Votre commentaire</label>
+                <textarea type="text" class="form-control" id="commentContent" name="commentContent" rows="10"></textarea>
+                <button type="submit" name="submit" class="btn btn-primary my-2">Soumettre commentaire</button>
+            </div>
+        </form>    
+    </div>  
+</section>
+{% endblock main %}
