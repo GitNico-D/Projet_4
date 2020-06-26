@@ -18,7 +18,8 @@
 </div>
 <div>
 <?php if ($isAdmin) { ?>
-    <a href="./public/index.php?page=adminView"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
+    
+    <a href="../public/index.php?page=adminView"><button class="btn btn-info  my-2">Retour à l'accueil</button></a>
 <?php } ?>
 </div>
 
