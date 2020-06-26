@@ -20,16 +20,17 @@ class LoginsController extends Controller
             $logins = password_verify($_POST['loginsPassword'], $passwordVerification->getPassword());
             if($logins)
             {
-                echo('Email et Password Correct');
                 $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
+                var_dump($_SESSION);
                 $isAdmin = true;
                 echo $this->twig->render('AdminView.twig', 
                     ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
                     'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                    'isAdmin' => $isAdmin]
+                    'isAdmin' => $isAdmin,
+                    'session' => $_SESSION]
                 );
             }
             else
