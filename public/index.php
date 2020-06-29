@@ -29,6 +29,7 @@ try {
                 $pageIx = RouterHelper::getPageIx($_GET);
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
+                var_dump($_GET["page"]);
                 $chapterController->single($chapterId, $isAdmin);
                 break;
                 case 'addNewChapter':
@@ -66,7 +67,10 @@ try {
                 case "adminView":
                     $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                     $loginsController->returnAdminView($isAdmin);  
-                break;          
+                break; 
+                case "contact":
+                    $loginsController->getContacted();  
+                break;         
                 default:
                     throw new Exception('Page introuvable');
                 break;
