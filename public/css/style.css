@@ -14,8 +14,15 @@
   background-color: white;
 }
 
+.navbar-nav {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 .navbar-nav-link {
-  padding: 0 1rem 0 1rem;
+  padding: 0 2rem 0 2rem;
 }
 
 .form-signin {
@@ -105,17 +112,4 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
-
-/*
-.reporting-button .custom
-{    
-    font-size: 0.75rem;
-}
-
-.jumbotron-img
-{
-    width: 100%;
-    max-width: 1920px;
-    margin: auto;
-} */
 /*# sourceMappingURL=style.css.map */
