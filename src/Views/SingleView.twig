@@ -1,25 +1,26 @@
 {% extends "/templates/layout.twig" %}
 
 {% block navbarContent %}
-<a href="../public/index.php"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
     {% if isAdmin %}
+        <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
         <div class="inline">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
-                    <a href="#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
-                    <a href="#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
+                    <a href="../public/index.php?page=adminView#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
+                    <a href="../public/index.php?page=adminView#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
+                    <a href="../public/index.php?page=adminView#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
                 </li>
             </ul>
         </div>
-        <a href="../public/index.php?page=getLogout"><button class="btn btn-danger">Déconnexion</button></a>
+        <a href="../public/index.php?page=getLogout" class="btn btn-danger">Déconnexion</a>
     {% else %}
+        <a href="../public/index.php"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
         <div class="inline">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="#chapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
-                    <a href="" class="text-dark navbar-nav-link">A propos</a>
-                    <a href="" class="text-dark navbar-nav-link">Contact</a>
+                    <a href="../public/index.php#publishChapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
+                    <a href="../public/index.php#about" class="text-dark navbar-nav-link">A propos</a>
+                    <a href="../public/index.php?page=contact" class="text-dark navbar-nav-link">Contact</a>
                 </li>
             </ul>
         </div>

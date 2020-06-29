@@ -1,25 +1,26 @@
 {% extends "/templates/layout.twig" %}
 
 {% block navbarContent %}
-<a href="../public/index.php"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
     {% if isAdmin %}
+        <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
         <div class="inline">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
-                    <a href="#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
-                    <a href="#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
+                    <a href="../public/index.php?page=adminView#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
+                    <a href="../public/index.php?page=adminView#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
+                    <a href="../public/index.php?page=adminView#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
                 </li>
             </ul>
         </div>
         <a href="../public/index.php?page=getLogout" class="btn btn-danger">Déconnexion</a>
     {% else %}
+        <a href="../public/index.php"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
         <div class="inline">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="#publishChapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
-                    <a href="" class="text-dark navbar-nav-link">A propos</a>
-                    <a href="" class="text-dark navbar-nav-link">Contact</a>
+                    <a href="../public/index.php#publishChapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
+                    <a href="../public/index.php#about" class="text-dark navbar-nav-link">A propos</a>
+                    <a href="../public/index.php?page=contact" class="text-dark navbar-nav-link">Contact</a>
                 </li>
             </ul>
         </div>
@@ -39,23 +40,45 @@
 {% endblock %}
 
 {% block main %}
-<section id="publishChapter" class="container">
-    {% for chapter in publishedChaptersList %}
-        <div class="card my-4 text-center">
-            <h2 class="card-header">{{ chapter.title }}</h2>
-            <p class="card-body">
-                Posté le 
-                <span class="font-italic">{{ chapter.createDate }}</span> 
-                par 
-                <span class="font-italic">{{ chapter.author }}</span>
-            </p>
-            <p class="text-center-justify"> {{ chapter.content | slice(0, 100)}}...<p>
-            <a href="../public/index.php?page=single&chapterId={{ chapter.id }}" class="btn btn-info my-3">
-                Lire le chapitre
-            </a>
+    <section id="about">
+        <h2 class="text-center my-4">
+            A propos de moi
+        </h2>
+        <div class="container about-content text-justify">
+            He didn't give you gay, did he? Did he?! Whoa, slow down there, maestro. There's a *New* Mexico? Well, he's kind of had it in for me ever since I accidentally 
+            ran over his dog. Actually, replace "accidentally" with "repeatedly" and replace "dog" with "son."
+            That's why I love elementary school, Edna. The children believe anything you tell them. I like my beer cold, my TV loud and my homosexuals flaming. I hope this 
+            has taught you kids a lesson: kids never learn.
+            The Internet King? I wonder if he could provide faster nudity… Save me, Jeebus. When I held that gun in my hand, I felt a surge of power…like God must feel when 
+            he's holding a gun. Thank you, steal again.
+            Marge, just about everything's a sin. Y'ever sat down and read this thing? Technically we're not supposed to go to the bathroom. He didn't give you gay, did he? 
+            Did he?! I'll keep it short and sweet — Family. Religion. Friendship. These are the three demons you must slay if you wish to succeed in business.
+            Ahoy hoy? Kids, you tried your best and you failed miserably. The lesson is, never try. Jesus must be spinning in his grave! Weaseling out of things is important 
+            to learn. It's what separates us from the animals…except the weasel.
+            Your questions have become more redundant and annoying than the last three "Highlander" movies. Get ready, skanks! It's time for the truth train! That's why I love 
+            elementary school, Edna. The children believe anything you tell them.
         </div>
-    {% else %}
-        <h2 class="card-header">Pas de chapitre trouvé</h2>
-    {% endfor %}
-</section>
+    </section>
+    <section id="publishChapter" class="container">
+        <h2 class="text-center my-3">
+            Chapitres disponibles
+        </h2>
+        {% for chapter in publishedChaptersList %}
+            <div class="card my-4 text-center">
+                <h2 class="card-header">{{ chapter.title }}</h2>
+                <p class="card-body">
+                    Posté le 
+                    <span class="font-italic">{{ chapter.createDate }}</span> 
+                    par 
+                    <span class="font-italic">{{ chapter.author }}</span>
+                </p>
+                <p class="text-center-justify"> {{ chapter.content | slice(0, 100)}}...<p>
+                <a href="../public/index.php?page=single&chapterId={{ chapter.id }}" class="btn btn-info my-3">
+                    Lire le chapitre
+                </a>
+            </div>
+        {% else %}
+            <h2 class="card-header">Pas de chapitre trouvé</h2>
+        {% endfor %}
+    </section>
 {% endblock %}
