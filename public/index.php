@@ -9,6 +9,7 @@ use App\src\Services\LoginsHelper;
 use App\src\Controllers\ChapterController;
 use App\src\Controllers\CommentController;
 use App\src\Controllers\LoginsController;
+use App\src\Controllers\ErrorController;
 
 session_start();
 ob_start();
@@ -16,6 +17,7 @@ ob_start();
 $chapterController = new ChapterController();
 $commentController = new CommentController();
 $loginsController = new LoginsController();
+$errorController = new ErrorController();
 
         
 try {
@@ -66,8 +68,7 @@ try {
                     $loginsController->returnAdminView($isAdmin);  
                 break;          
                 default:
-                // Gérer l'erreur => redirection vers route = home
-                    require_once '../src/Views/phpViews/errorView.php';
+                    throw new Exception('Page introuvable');
                 break;
             }
         }
@@ -78,7 +79,12 @@ try {
 } 
 catch (Exception $error)
 {
-    // Gérer l'erreur => redirection vers route = home
-    echo $this->twig->render('ErrorView.twig', ['error' => $error]);
-    var_dump ("Erreur : " . $error->getMessage());
+    if ((int)$error->getCode() != 0)
+    {
+        $errorController->error500();
+    }
+    else
+    {
+        $errorController->error404($error);
+    }
 }
