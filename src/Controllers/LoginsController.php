@@ -63,4 +63,9 @@ class LoginsController extends Controller
         );
     }
 
+    public function getContacted()
+    {
+        echo $this->twig->render('ContactView.twig');
+    } 
+
 }
