@@ -19,13 +19,16 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .navbar-nav-link {
   color: white;
   font-weight: bold;
   font-size: 1.05rem;
-  padding: 0 2rem 0 2rem;
+  padding: 0 1rem 0 1rem;
 }
 
 .navbar-nav:hover {
@@ -33,13 +36,14 @@
   color: #FED036;
 }
 
-.navbar button {
+.navbar-button {
   text-decoration: none;
+  color: white;
   border: #FED036;
   background-color: #FED036;
 }
 
-.navbar button:hover {
+.navbar-button:hover {
   color: #FED036;
   background-color: white;
 }
@@ -171,6 +175,42 @@
 }
 
 .main-header a {
+  color: #FED036;
+}
+
+.page-title {
+  margin-top: 90px;
+  margin-bottom: 2rem;
+}
+
+.page-title-img {
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
+}
+
+.page-title-jumbotron {
+  background-color: transparent;
+  margin-bottom: unset;
+}
+
+.page-title-text {
+  color: black;
+  font-size: 6rem;
+  font-style: italic;
+}
+
+.page-title-h1 {
+  font-size: 4.5rem;
+  color: white;
+}
+
+.page-title span {
+  color: #FED036;
+  font-style: italic;
+}
+
+.page-title a {
   color: #FED036;
 }
 /*# sourceMappingURL=style.css.map */

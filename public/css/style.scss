@@ -23,12 +23,13 @@
     &-nav 
     {
         flex-direction: row;
+        align-items: center;
         &-link
         {
             color: white;
             font-weight: bold;
             font-size: 1.05rem;
-            padding: 0 2rem 0 2rem;   
+            padding: 0 1rem 0 1rem;   
         }    
         &:hover
         {
@@ -36,9 +37,10 @@
             color:#FED036;
         }
     }
-    button
+    &-button
     {
         text-decoration: none;  
+        color: white;
         border: #FED036;;
         background-color: #FED036;
         &:hover
@@ -164,6 +166,43 @@
     &-text
     {
         color: white;
+        font-size: 6rem;
+        font-style: italic;
+    }
+    &-h1 
+    {
+        font-size: 4.5rem;
+        color: white;
+    }
+    span
+    {
+        color:#FED036;
+        font-style: italic;
+    }
+    a
+    {
+        color: #FED036;
+    }
+}
+
+.page-title
+{
+    margin-top: 90px;    
+    margin-bottom: 2rem;
+    &-img 
+    {
+        width: 100%;
+        max-width: 1920px;
+        margin: auto;
+    }
+    &-jumbotron
+    {
+        background-color: transparent;
+        margin-bottom: unset;
+    }
+    &-text
+    {
+        color: black;
         font-size: 6rem;
         font-style: italic;
     }
