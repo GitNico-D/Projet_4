@@ -23,7 +23,7 @@ class LoginsController extends Controller
                 $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
-                var_dump($_SESSION);
+                // var_dump($_SESSION);
                 $isAdmin = true;
                 echo $this->twig->render('AdminView.twig', 
                     ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),

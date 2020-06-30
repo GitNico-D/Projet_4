@@ -29,7 +29,7 @@ try {
                 $pageIx = RouterHelper::getPageIx($_GET);
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                var_dump($_GET["page"]);
+                // var_dump($_GET["page"]);
                 $chapterController->single($chapterId, $isAdmin);
                 break;
                 case 'addNewChapter':
