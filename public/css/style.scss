@@ -16,19 +16,39 @@
 
 .navbar
 {
-    &-custom 
+    &-background 
     {
-        background-color: white;
+        background-color: rgba($color: #0F0F0F, $alpha: 0.2);
     }
     &-nav 
     {
+        flex-direction: row;
         &-link
         {
-            padding: 0 1rem 0 1rem;
+            color: white;
+            font-weight: bold;
+            font-size: 1.05rem;
+            padding: 0 2rem 0 2rem;   
         }    
-
+        &:hover
+        {
+            text-decoration: none;         
+            color:#FED036;
+        }
+    }
+    button
+    {
+        text-decoration: none;  
+        border: #FED036;;
+        background-color: #FED036;
+        &:hover
+        {
+            color: #FED036;
+            background-color: white;
+        }
     }
 }
+
 
 .form-signin
 {
@@ -38,17 +58,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    &-background 
-    {    
-        // background: url("../data/img/write.jpg") blur(4px);
-        background-color: #F5F5F5F5;
-        height: 100%;
-        // display: flex;
-        // align-items: center;
-        // width: 100%;
-        // position: relative;
-    }  
+    transform: translate(-50%, -50%); 
     .card 
     {
         padding: 1rem;
@@ -68,31 +78,45 @@
     }
     button 
     {
+        background-color: #FED036;
+        border: 1px solid #FED036;
+        text-decoration: none;
         padding: .5rem 1rem;
-    }
-    input 
-    {
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
+        color: white;
+        &:hover
+        {
+            color: #FED036;
+            background-color: white;
+            border: 1px solid #FED036;
+        }
+        &:active
+        {
+            color: #FED036;
+            background-color: white;
+            border: 1px solid #FED036;
+            text-decoration: none;
+        }
     }
     input[type="password"]
     {   
         margin-bottom: 1.5rem;
     }   
+    &-img
+    {
+        width: initial!important;
+        padding-bottom: 2rem;
+        margin: auto;
+    }
+    &-link
+    {
+        color: #FED036;
+        &:hover
+        {
+            text-decoration: none;
+            color: black;
+        }
+    }
 }
-
-// .jumbotron
-// {
-//     background-color: white;
-//     margin-bottom: unset;
-//     &-container 
-//     {
-//         position: absolute;
-//         top: 50%;
-//         left: 50%;
-//         transform: translate(-50%, -50%);
-//     }
-// }
 
 .form-signin .form-control 
 {
@@ -127,7 +151,7 @@
     }
     &-jumbotron
     {
-        background-color: white;
+        background-color: transparent;
         margin-bottom: unset;
     }
     &-container 
@@ -135,46 +159,26 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);        
+    }
+    &-text
+    {
+        color: white;
+        font-size: 6rem;
+        font-style: italic;
+    }
+    &-h1 
+    {
+        font-size: 4.5rem;
+        color: white;
+    }
+    span
+    {
+        color:#FED036;
+        font-style: italic;
+    }
+    a
+    {
+        color: #FED036;
     }
 }
-
-// .form-signin input 
-// {
-//     border-bottom-right-radius: 0;
-//     border-bottom-left-radius: 0;
-// }
-
-// .form-signin input[type="password"]
-// {
-//     margin-bottom: 1.5rem;
-// }
-
-// .form-signin button
-// {
-//     padding: .5rem 1rem;
-// }
-
-// .form-signin p
-// {
-//     margin-top: 3rem;
-// }
-
-// .form-signin-fa
-// {
-//     color: #BF4040;
-//     margin-bottom: 2rem;
-// }
-
-/*
-.reporting-button .custom
-{    
-    font-size: 0.75rem;
-}
-
-.jumbotron-img
-{
-    width: 100%;
-    max-width: 1920px;
-    margin: auto;
-} */
