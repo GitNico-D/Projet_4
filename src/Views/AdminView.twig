@@ -2,39 +2,41 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
-        <div class="inline">
-            <ul class="navbar-nav mr-auto">
+        <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
+            <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item active">
-                    <a href="../public/index.php?page=adminView#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
-                    <a href="../public/index.php?page=adminView#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
-                    <a href="../public/index.php?page=adminView#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
+                    <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
                 </li>
+                <li>
+                    <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
+                </li>    
+                <li>
+                    <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
+                </li>
+                <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
             </ul>
-        </div>
-        <a href="../public/index.php?page=getLogout" class="btn btn-danger">Déconnexion</a>
     {% else %}
-        <a href="../public/index.php"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
-        <div class="inline">
-            <ul class="navbar-nav mr-auto">
+        <a href="../public/index.php"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
+            <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item active">
-                    <a href="../public/index.php#publishChapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
-                    <a href="../public/index.php#about" class="text-dark navbar-nav-link">A propos</a>
-                    <a href="../public/index.php?page=contact" class="text-dark navbar-nav-link">Contact</a>
+                    <a href="../public/index.php#publishChapter" class="navbar-nav-link">Accéder aux chapitres</a>
                 </li>
+                <li class="nav-item">
+                    <a href="../public/index.php#about" class="navbar-nav-link">A propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../public/index.php?page=contact" class="navbar-nav-link">Contact</a>
+                </li>
+                <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
             </ul>
-        </div>
-        <a href="../public/index.php?page=getLogin">
-            <button class="btn btn-outline-danger">Connexion</button>
-        </a>
     {% endif %}
 {% endblock  navbarContent %}
 
 {% block mainHeader %}
     <img src="../public/data/img/write.jpg" alt="" class="main-header-img">
-    <div class="main-header-container container ">
-        <div class="main-header-jumbotron jumbotron ">
-            <h1 class="display-4 bold">Bienvenue {{ session.loginsUsername }}</h1>
+    <div class="main-header-container container">
+            <p class="main-header-text">Bienvenue</p>
+            <h1 class="text-lead main-header-h1 bold"><span>{{ session.loginsUsername }}</span></h1>
         </div>
     </div>
 {% endblock %}

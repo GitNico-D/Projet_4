@@ -3,44 +3,40 @@
 {% block navbarContent %}
     {% if isAdmin %}
         <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
-        <!-- <nav class="navbar navbar-dark fixed-top"> -->
-            <!-- <div class="container"> -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a href="../public/index.php?page=adminView#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
-                        <a href="../public/index.php?page=adminView#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
-                        <a href="../public/index.php?page=adminView#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
-                    </li>
-                </ul>
-            <!-- </div> -->
-        <!-- </nav> -->
-        <a href="../public/index.php?page=getLogout" class="btn btn-danger">Déconnexion</a>
+            <ul class="navbar-nav text-uppercase ml-auto">
+                <li class="nav-item active">
+                    <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
+                </li>
+                <li>
+                    <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
+                </li>    
+                <li>
+                    <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
+                </li>
+                <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
+            </ul>
     {% else %}
         <a href="../public/index.php"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
-        <!-- <nav class="navbar navbar-dark fixed-top"> -->
-        <!-- <div class="collapse navbar-collapse text-center"> -->
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item active">
                     <a href="../public/index.php#publishChapter" class="navbar-nav-link">Accéder aux chapitres</a>
+                </li>
+                <li class="nav-item">
                     <a href="../public/index.php#about" class="navbar-nav-link">A propos</a>
+                </li>
+                <li class="nav-item">
                     <a href="../public/index.php?page=contact" class="navbar-nav-link">Contact</a>
                 </li>
+                <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
             </ul>
-        <!-- </div> -->
-        <!-- </nav> -->
-        <a href="../public/index.php?page=getLogin">
-            <button class="btn btn-primary"><span class="button-text">Connexion</span></button>
-        </a>
     {% endif %}
 {% endblock  navbarContent %}
 
 {% block mainHeader %}
     <img src="../public/data/img/write.jpg" alt="" class="main-header-img">
     <div class="main-header-container container">
-        <!-- <div class="main-header-jumbotron jumbotron "> -->
-            <p class="main-header-text">Bienvenue</p>
-            <h1 class="text-lead main-header-h1">L'aventure <span>"Billet simple pour l'alaska"</span> commence <a href="../public/index.php#publishChapter">ici</a></h1>
-        <!-- </div> -->
+        <p class="main-header-text">Bienvenue</p>
+        <h1 class="text-lead main-header-h1">L'aventure <span>"Billet simple pour l'alaska"</span> commence <a href="../public/index.php#publishChapter">ici</a></h1>
     </div>
 {% endblock %}
     

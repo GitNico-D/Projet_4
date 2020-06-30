@@ -2,23 +2,28 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-    <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-jf-1-resize.png" alt=""></a>
-    <div class="inline">
-        <ul class="navbar-nav mr-auto">
+    <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
+        <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item active">
-                <a href="../public/index.php?page=adminView#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
-                <a href="../public/index.php?page=adminView#pendingChapter" class="text-dark navbar-nav-link">Chapitres en attente</a>
-                <a href="../public/index.php?page=adminView#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
+                <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
             </li>
+            <li>
+                <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
+            </li>    
+            <li>
+                <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
+            </li>
+            <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
         </ul>
-    </div>
-    <a href="../public/index.php?page=getLogout" class="btn btn-danger">Déconnexion</a>   
-    {% endif %}    
+    {% else %}    
 {% endblock navbarContent %}
 
 {% block mainHeader %}
-    <div class="main-header-jumbotron jumbotron ">
-        <h1 class="display-4 bold">Ajouter un nouveau chapitre</h1>
+    <div class="page-title text-center">
+        <div class="page-title-container container">
+            <p class="page-title-text">Ajouter</p>
+            <h1 class="text-lead page-title-h1"><span>un nouveau chapitre</span></h1>
+        </div>
     </div>
 {% endblock %}
 
