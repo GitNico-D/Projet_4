@@ -10,8 +10,8 @@
   height: 100px;
 }
 
-.navbar-custom {
-  background-color: white;
+.navbar-background {
+  background-color: rgba(15, 15, 15, 0.2);
 }
 
 .navbar-nav {
@@ -22,7 +22,26 @@
 }
 
 .navbar-nav-link {
+  color: white;
+  font-weight: bold;
+  font-size: 1.05rem;
   padding: 0 2rem 0 2rem;
+}
+
+.navbar-nav:hover {
+  text-decoration: none;
+  color: #FED036;
+}
+
+.navbar button {
+  text-decoration: none;
+  border: #FED036;
+  background-color: #FED036;
+}
+
+.navbar button:hover {
+  color: #FED036;
+  background-color: white;
 }
 
 .form-signin {
@@ -34,11 +53,6 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-}
-
-.form-signin-background {
-  background-color: #F5F5F5F5;
-  height: 100%;
 }
 
 .form-signin .card {
@@ -59,16 +73,43 @@
 }
 
 .form-signin button {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  text-decoration: none;
   padding: .5rem 1rem;
+  color: white;
 }
 
-.form-signin input {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.form-signin button:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
+.form-signin button:active {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+  text-decoration: none;
 }
 
 .form-signin input[type="password"] {
   margin-bottom: 1.5rem;
+}
+
+.form-signin-img {
+  width: initial !important;
+  padding-bottom: 2rem;
+  margin: auto;
+}
+
+.form-signin-link {
+  color: #FED036;
+}
+
+.form-signin-link:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .form-signin .form-control {
@@ -101,7 +142,7 @@
 }
 
 .main-header-jumbotron {
-  background-color: white;
+  background-color: transparent;
   margin-bottom: unset;
 }
 
@@ -111,5 +152,25 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+.main-header-text {
+  color: white;
+  font-size: 6rem;
+  font-style: italic;
+}
+
+.main-header-h1 {
+  font-size: 4.5rem;
+  color: white;
+}
+
+.main-header span {
+  color: #FED036;
+  font-style: italic;
+}
+
+.main-header a {
+  color: #FED036;
 }
 /*# sourceMappingURL=style.css.map */
