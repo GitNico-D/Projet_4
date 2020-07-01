@@ -69,6 +69,12 @@ class ChapterController extends Controller
         echo $this->twig->render('addChapterView.twig', ['isAdmin' => $isAdmin]);
     }
 
+    public function publishChapter($chapterId)
+    {
+        $this->chapterManager->publishedChapter($chapterId);
+        header('location: ../public/index.php?page=adminView');
+    }
+
     /**
      * deleteChapter
      *
@@ -91,23 +97,28 @@ class ChapterController extends Controller
         // require_once '../src/Views/ModifyChapterView.php';        
     }
 
-    public function applyChapterModification($chapterTitle, $chapterContent, $chapterId)
+    public function applyChapterModification($chapterId)
     {
-        $chapterTitle = htmlspecialchars($_POST['chapterTitle']);
-        $chapterContent = htmlspecialchars($_POST['chapterContent']);
+        $modifiedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
+        $modifiedChapterContent = htmlspecialchars($_POST['chapterContent']);
         // var_dump($_POST);
-        if(isset($_POST['saveAndPublish']))
+        // if(isset($_POST['saveAndPublish']))
+        if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
         {
-            // $chapterPublish = 1;
-            $updatedLines = $this->chapterManager->modifyChapterById($chapterTitle, $chapterContent, $chapterId);
-            // $updatedLines = $this->chapterManager->modifyChapterById();
+            $chapterPublished = true;
+            $updatedLines = $this->chapterManager->modifyChapterById($modifiedChapterTitle, $modifiedChapterContent, $chapterPublished);
+            var_dump($updatedLines);
             if ($updatedLines === false)
             {
-                die('Impossible de modifier le chapitre');
+                throw new Exception('Impossible de modifier le chapitre');
             }
             else 
             {
-                $this->single($chapterId);
+                header('location: ../public/index.php?page=single&chapterId=' . $chapterId);
+                // echo $this->twig->render('SingleView.twig', 
+                //     ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
+                //     'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
+                //     'chapterNumber' => $chapterId]);
                 echo('Chapitre modifié et publier');
             }
         } 
@@ -138,11 +149,12 @@ class ChapterController extends Controller
             $commentAdded = $this->commentManager->addCommentOnChapter($commentAuthor, $commentTitle, $commentContent, $chapterId);
             if ($commentAdded === false)
             {
-                die('Impossible d\'ajouter le commentaire');
+                throw new Exception('Impossible d\'ajouter le commentaire');
             }
             else 
             {
-                $this->single($chapterId, $isAdmin);
+                header('location: ../public/index.php?page=single&chapterId=' . $chapterId);
+                // $this->single($chapterId, $isAdmin);
                 echo('Commentaire ajouté');
             }
         }
