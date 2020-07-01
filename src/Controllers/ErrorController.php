@@ -18,8 +18,8 @@ class ErrorController extends Controller
         echo $this->twig->render('Error404View.twig', ['error' => $error->getMessage()]);
     }
 
-    public function error500()
+    public function error500($error)
     {
-        echo $this->twig->render('Error500View.twig');
+        echo $this->twig->render('Error500View.twig', ['error' => $error->getMessage()]);
     }
 }
