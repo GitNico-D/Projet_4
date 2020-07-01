@@ -58,15 +58,9 @@
                 </p>
                 <p class="text-center-justify">{{ chapter.content | slice(0, 100) }}...</p>
                 <div>
-                    <a href="../public/index.php?page=single&chapterId={{ chapter.id }}">
-                        <button class="btn btn-outline-info my-3">Voir le chapitre</button>
-                    </a>
-                    <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}">
-                        <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
-                    </a>
-                    <a href="../public/index.php?page=deleteChapter&chapterId={{ chapter.id }}">
-                        <button class="btn btn-danger my-3">Supprimer le chapitre</button>
-                    </a>
+                    <a href="../public/index.php?page=single&chapterId={{ chapter.id }}" class="btn btn-outline-info my-3">Voir le chapitre</a>
+                    <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}" class="btn btn-outline-info my-3">Modifier le chapitre </a>
+                    <a href="../public/index.php?page=deleteChapter&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le chapitre</a>                   
                 </div>
             </div>
         </div>    
@@ -85,12 +79,9 @@
                 </p>
                 <p class="text-center-justify">{{ chapter.content }}</p>
                 <div>
-                    <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}">
-                        <button class="btn btn-outline-info my-3">Modifier le chapitre</button>
-                    </a>
-                    <a href="../public/index.php?page=publishChapter&chapterId={{ chapter.id }}">
-                        <button class="btn btn-success my-3">Publier le chapitre</button>
-                    </a>
+                    <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}" class="btn btn-outline-info my-3">Modifier le chapitre</a>
+                    <a href="../public/index.php?page=publishChapter&chapterId={{ chapter.id }}" class="btn btn-success my-3">Publier le chapitre</a>
+                    <a href="../public/index.php?page=deleteChapter&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le chapitre</a>
                 </div>
             </div>
         </div>    
@@ -108,12 +99,8 @@
                 </h3>
                 <p class="card-body text-center-justify">{{ comment.content }}</p>
                 <div>
-                    <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}">
-                        <button class="btn btn-success my-3">Valider le commentaire</button>
-                    </a>
-                    <a href="../public/index.php?page=publishChapter&chapterId={{ chapter.id }}">
-                        <button class="btn btn-danger my-3">Supprimer le commentaire</button>
-                    </a>
+                    <a href="../public/index.php?page=validateComment&chapterId={{ chapter.id }}" class="btn btn-success my-3">Valider le commentaire</a>
+                    <a href="../public/index.php?page=deleteComment&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le commentaire</a>
                 </div>
             </div>
         </div>    
