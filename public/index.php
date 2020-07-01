@@ -42,13 +42,17 @@ try {
                     $chapterController->modifyChapter($chapterId, $isAdmin);
                 break;
                 case "applyChapterModification":
-                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);   
+                    // $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);   
                     $chapterId = RouterHelper::getChapterId($_GET);
-                    $chapterController->modifyChapter($chapterId, $isAdmin);
+                    $chapterController->applyChapterModification($chapterId );
                 case 'deleteChapter':
                     $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                     $chapterId = RouterHelper::getChapterId($_GET);
                     $chapterController->deleteChapter($chapterId, $isAdmin);
+                break;
+                case 'publishChapter':
+                    $chapterId = RouterHelper::getChapterId($_GET);
+                    $chapterController->publishChapter($chapterId);
                 break;
                 case 'getLogin':
                     $loginsController->getLogin();  
@@ -85,7 +89,7 @@ catch (Exception $error)
 {
     if ((int)$error->getCode() != 0)
     {
-        $errorController->error500();
+        $errorController->error500($error);
     }
     else
     {
