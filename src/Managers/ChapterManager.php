@@ -47,7 +47,7 @@ class ChapterManager extends DAO
     public function publishedChapter($chapterId)
     {
         $sqlRequest = 'UPDATE chapter SET published= true where id = ?';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
+        $this->createQuery($sqlRequest, [$chapterId]);
     } 
 
     public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
@@ -78,7 +78,7 @@ class ChapterManager extends DAO
     public function deleteChapterById($chapterId)
     {
         $sqlRequest = 'DELETE FROM chapter WHERE id = ?';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
+        $this->createQuery($sqlRequest, [$chapterId]);
     }
 }
 

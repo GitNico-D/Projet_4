@@ -27,6 +27,7 @@ try {
             case 'single':
                 // Get PageIx from $_GET
                 $pageIx = RouterHelper::getPageIx($_GET);
+                // $commentId = RouterHelper::getCommentId($_GET);
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
                 // var_dump($_GET["page"]);
@@ -66,7 +67,8 @@ try {
                 break;
                 case "reportComment":
                     $commentId = RouterHelper::getCommentId($_GET);
-                    $commentController->addReportedComment($commentId);
+                    $chapterId = RouterHelper::getChapterId($_GET);
+                    $commentController->addReportedComment($chapterId, $commentId);
                 break;
                 case "adminView":
                     $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
