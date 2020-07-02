@@ -4,6 +4,7 @@ namespace App\src\Managers;
 
 use App\src\Models\DAO;
 use App\src\Models\Comment;
+use App\src\Models\Reporting;
 
 class CommentManager extends DAO
 {
@@ -15,7 +16,9 @@ class CommentManager extends DAO
         foreach ($result as $comment)
         {
             $commentList [] = new Comment($comment); 
+            $commentListId [] = $comment['id'];
         }
+        $this->getTotalReportsComments($commentListId);
         $result->closeCursor();
         return $commentList;
     }
@@ -35,16 +38,13 @@ class CommentManager extends DAO
     public function addReport($commentId)
     {
         var_dump($commentId);
-        $sqlRequest = 'UPDATE comments SET report = true WHERE id = ?';
-        $result = $this->createQuery($sqlRequest, [$commentId]);
-        $reportComment = $result->fetch();
-        $result->closeCursor();
-        return new Comment($reportedComment);
+        $sqlRequest = 'INSERT INTO reporting(reportingDate, commentId) VALUES (NOW(), :commentId)';
+        $this->createQuery($sqlRequest, array('commentId' => $commentId));
     }
 
     public function getAllReportedComments()
     {
-        $sqlRequest = 'SELECT * FROM comments WHERE report = true';
+        $sqlRequest = 'SELECT * FROM comments INNER JOIN reporting ON comments.id = reporting.commentId GROUP BY reporting.commentId';
         $result = $this->createQuery($sqlRequest);
         $reportedCommentList = [];
         foreach ($result as $comment)
@@ -55,4 +55,16 @@ class CommentManager extends DAO
         return $reportedCommentList;
     }
 
+    public function getTotalReportsComments($commentListId)
+    {
+        foreach ($commentListId as $commentId)
+        {
+            $sqlRequest = 'SELECT COUNT(*) FROM reporting WHERE commentId = ?';
+            $result = $this->createQuery($sqlRequest, [$commentId]);
+            $totalReports = $result->fetch();
+            var_dump($totalReports);
+        }
+        $result->closeCursor();
+        return $totalReports;
+    }
 }
