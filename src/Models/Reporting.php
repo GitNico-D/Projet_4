@@ -7,7 +7,7 @@ use App\src\Core\Model;
 class Reporting extends Model
 {
     private $id;
-    private $date;
+    private $reportingDate;
     private $commentId;
 
     public function __construct(Array $data)
@@ -22,9 +22,9 @@ class Reporting extends Model
         $this->id = $id;
     }
 
-    public function setDate($date)
+    public function setReportingDate($reportingDate)
     {        
-        $this->date = $date;
+        $this->reportingDate = $reportingDate;
     }
 
     public function setCommentId($commentId)
@@ -39,9 +39,9 @@ class Reporting extends Model
         return $this->id;
     }
 
-    public function getDate()
+    public function getReportingDate()
     {
-        return $this->date;
+        return $this->reportingDate;
     }
 
     public function getCommentId()
