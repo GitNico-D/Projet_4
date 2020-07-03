@@ -16,11 +16,23 @@ class CommentManager extends DAO
         foreach ($result as $comment)
         {
             $commentList [] = new Comment($comment); 
-            $commentListId [] = $comment['id'];
         }
-        $this->getTotalReportsComments($commentListId);
         $result->closeCursor();
         return $commentList;
+    }
+
+    public function getCommentIdList($chapterId)
+    {
+        $sqlRequest = 'SELECT id FROM comments WHERE chapterId = ?';
+        $result = $this->createQuery($sqlRequest, [$chapterId]);
+        $commentIdList = [];
+        foreach ($result as $comment)
+        {
+            $commentIdList [] = $comment['id'];
+        }
+        $result->closeCursor();
+        var_dump($commentIdList);
+        return $commentIdList;
     }
 
     public function addCommentOnChapter($commentAuthor, $commentTitle, $commentContent, $chapterId)
@@ -55,16 +67,44 @@ class CommentManager extends DAO
         return $reportedCommentList;
     }
 
-    public function getTotalReportsComments($commentListId)
+    public function getReportComments($commentIdList)
     {
-        foreach ($commentListId as $commentId)
+        $reportList = [];
+        foreach ($commentIdList as $commentId)
         {
-            $sqlRequest = 'SELECT COUNT(*) FROM reporting WHERE commentId = ?';
+            $sqlRequest = 'SELECT * FROM reporting WHERE commentId = ?';
             $result = $this->createQuery($sqlRequest, [$commentId]);
-            $totalReports = $result->fetch();
-            var_dump($totalReports);
+            foreach ($result as $reporting)
+            {
+                $reportList [] = new Reporting($reporting); 
+            }
+            $result->closeCursor();
+        }
+        var_dump($reportList);
+        return $reportList;   
+    }
+
+    public function getCommentsReportsCount($commentIdList)
+    {
+        $reportList = [];
+        foreach ($commentIdList as $commentId)
+        {
+            $sqlRequest = 'SELECT * FROM reporting WHERE commentId = ?';
+            $result = $this->createQuery($sqlRequest, [$commentId]);
+            $totalReports = $this->getTotalReports($commentId);
+            var_dump("Si commentId = " . $commentId . " alors le nombre de reports = " . $this->getTotalReports($commentId));
         }
         $result->closeCursor();
-        return $totalReports;
+        return $totalReports;    
+    }
+
+    public function getTotalReports($commentId)
+    {
+        $sqlRequest = 'SELECT COUNT(*) AS totalReports FROM reporting WHERE commentId = ?';
+        $result = $this->createQuery($sqlRequest, [$commentId]);
+        $totalReports = $result->fetch();
+        $result->closeCursor();
+        // var_dump($totalReports);
+        return $totalReports['totalReports'];
     }
 }
