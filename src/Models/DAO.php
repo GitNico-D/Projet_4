@@ -3,18 +3,12 @@
 namespace App\src\Models;
 
 use PDO;
+// use App\src\Core\PDOFactory;
 
 abstract class DAO 
 {
     private $db;
     
-    // CONST HOST = 'localhost';
-    // CONST DB_CHARSET = 'utf8';
-    // CONST DB_NAME = 'db_project_four';
-    // CONST DB_HOST = 'mysql:dbname=' . DB_NAME . ';host=' . HOST . ';charset=' . DB_CHARSET;
-    // CONST DB_USERNAME = 'root';
-    // CONST DB_PASSWORD = '';
-
     private function getDb()
     {
         if ($this->db === null)
@@ -26,6 +20,7 @@ abstract class DAO
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 // echo 'Connection OK !';
                 return $this->db;
+                // PDOFactory::getMysqlConnection()
             }
             catch (Exception $errorConnexion)
             {
