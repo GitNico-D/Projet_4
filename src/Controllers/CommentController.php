@@ -32,14 +32,14 @@ class CommentController extends Controller
             echo 'Veuillez remplir les champs !';
         }
         header('location: ../public/index?page=single&chapterId=' . $chapterId);
-        // $this->single($chapterId);
     }
 
     public function addReportedComment($chapterId, $commentId) 
     {
-        var_dump($commentId);
+        // var_dump($commentId);
         $reportedComment = $this->commentManager->addReport($commentId);
-        var_dump($reportedComment);
+        $totalReports = $this->commentManager->getTotalReports($commentId);
+        var_dump($totalReports);
         if ($reportedComment = false)
         {
             throw new Exception('Impossible de signaler le commentaire');
@@ -47,9 +47,7 @@ class CommentController extends Controller
         else
         {
             header('location: ../public/index?page=single&chapterId=' . $chapterId);
-            // return $reportedComment;
         }
-        // header('location: ../public/index?page=single&chapterId=' . $chapterId);
     }
 
     public function allReportedComments()

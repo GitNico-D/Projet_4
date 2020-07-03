@@ -23,12 +23,15 @@ class LoginsController extends Controller
                 $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
-                // var_dump($_SESSION);
+                // $commentIdList = $this->commentManager->getCommentIdList($chapterId);
+                // $reportList = $this->commentManager->getReportComments($commentIdList);
+                // var_dump($reportList);
                 $isAdmin = true;
                 echo $this->twig->render('AdminView.twig', 
                     ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
                     'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
+                    // 'reportList' => $this->commentManager->getReportComments($commentIdList),
                     'isAdmin' => $isAdmin,
                     'session' => $_SESSION]
                 );
@@ -59,7 +62,9 @@ class LoginsController extends Controller
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
             'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-            'isAdmin' => $isAdmin]
+            // 'reportList' => $this->commentManager->getReportComments($commentIdList),
+            'isAdmin' => $isAdmin,
+            'session' => $_SESSION]
         );
     }
 

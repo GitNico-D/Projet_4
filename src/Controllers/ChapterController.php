@@ -30,12 +30,16 @@ class ChapterController extends Controller
      */
     public function single($chapterId, $isAdmin)
     {
-        $commentList = $this->commentManager->getCommentByChapterId($chapterId);
-        var_dump($commentList);
+        $commentIdList = $this->commentManager->getCommentIdList($chapterId);
+        // $totalReportsList = $this->commentManager->getTotalReportsComments($commentIdList);
+        // $reportingList = $this->commentManager->getReportComments($commentIdList);
+        // $totalReports = $this->commentManager->getTotalReports($reportingList);
+        // var_dump($reportingList);
+        // var_dump ($totalReports);
         echo $this->twig->render('SingleView.twig', 
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
-            'totalReports' => $this->commentManager->getTotalReportsComments(),
+            'totalReports' => $this->commentManager->getCommentsReportsCount($commentIdList),
             'chapterNumber' => $chapterId,
             'isAdmin' => $isAdmin]
         );
