@@ -7,34 +7,56 @@
 }
 
 .header {
-  position: relative;
   height: 100px;
 }
 
-.navbar-custom {
-  background-color: white;
+.navbar-background {
+  background-color: rgba(15, 15, 15, 0.2);
+}
+
+.navbar-nav {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .navbar-nav-link {
+  color: white;
+  font-weight: bold;
+  font-size: 1.05rem;
   padding: 0 1rem 0 1rem;
+}
+
+.navbar-nav:hover {
+  text-decoration: none;
+  color: #FED036;
+}
+
+.navbar-button {
+  text-decoration: none;
+  color: white;
+  border: #FED036;
+  background-color: #FED036;
+}
+
+.navbar-button:hover {
+  color: #FED036;
+  background-color: white;
 }
 
 .form-signin {
   width: 100%;
   max-width: 330px;
   margin: 0 auto;
-}
-
-.form-signin-position {
-  background: url("../data/img/write.jpg") blur(4px);
-  background-color: #f5f5f5;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .form-signin .card {
@@ -55,29 +77,43 @@
 }
 
 .form-signin button {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  text-decoration: none;
   padding: .5rem 1rem;
+  color: white;
 }
 
-.form-signin input {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.form-signin button:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
+.form-signin button:active {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+  text-decoration: none;
 }
 
 .form-signin input[type="password"] {
   margin-bottom: 1.5rem;
 }
 
-.jumbotron {
-  background-color: white;
-  margin-bottom: unset;
+.form-signin-img {
+  width: initial !important;
+  padding-bottom: 2rem;
+  margin: auto;
 }
 
-.jumbotron-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+.form-signin-link {
+  color: #FED036;
+}
+
+.form-signin-link:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .form-signin .form-control {
@@ -99,26 +135,82 @@
   font-size: 0.75rem;
 }
 
-.header-page {
+.main-header {
   position: relative;
 }
 
-.header-page-img {
+.main-header-img {
   width: 100%;
   max-width: 1920px;
   margin: auto;
 }
 
-/*
-.reporting-button .custom
-{    
-    font-size: 0.75rem;
+.main-header-jumbotron {
+  background-color: transparent;
+  margin-bottom: unset;
 }
 
-.jumbotron-img
-{
-    width: 100%;
-    max-width: 1920px;
-    margin: auto;
-} */
-/*# sourceMappingURL=style-2.css.map */
+.main-header-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.main-header-text {
+  color: white;
+  font-size: 6rem;
+  font-style: italic;
+}
+
+.main-header-h1 {
+  font-size: 4.5rem;
+  color: white;
+}
+
+.main-header span {
+  color: #FED036;
+  font-style: italic;
+}
+
+.main-header a {
+  color: #FED036;
+}
+
+.page-title {
+  margin-top: 90px;
+  margin-bottom: 2rem;
+}
+
+.page-title-img {
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
+}
+
+.page-title-jumbotron {
+  background-color: transparent;
+  margin-bottom: unset;
+}
+
+.page-title-text {
+  color: black;
+  font-size: 6rem;
+  font-style: italic;
+}
+
+.page-title-h1 {
+  font-size: 4.5rem;
+  color: white;
+}
+
+.page-title span {
+  color: #FED036;
+  font-style: italic;
+}
+
+.page-title a {
+  color: #FED036;
+}
+/*# sourceMappingURL=style.css.map */

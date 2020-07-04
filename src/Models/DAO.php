@@ -24,7 +24,7 @@ abstract class DAO
                 // $this->db = new PDO(self::DB_HOST, self::DB_USERNAME, self::DB_PASSWORD);
                 $this->db = new PDO('mysql:host=localhost;dbname=db_project_four;charset=utf8', 'root', '');
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo 'Connection OK !';
+                // echo 'Connection OK !';
                 return $this->db;
             }
             catch (Exception $errorConnexion)
@@ -44,7 +44,7 @@ abstract class DAO
         {
             $request = $this->getDb()->prepare($sql);
             // $request->setFetchMode(PDO::FETCH_CLASS, static::class);
-            var_dump($request);
+            // var_dump($parameters);
             $request->execute($parameters);
             return $request;
         }

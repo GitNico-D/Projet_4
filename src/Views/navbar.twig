@@ -1,0 +1,28 @@
+{% block navbarContent %}
+    {% if isAdmin %}
+    <span class="text-success">Bienvenue {{ app.session.loginsUsername }}</span>
+    <div class="inline">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="#publishChapter" class="text-dark navbar-nav-link">Chapitres publiés</a>
+                <a href="#pendingChapter" class="text-dark navbar-nav-link">Chapitre en attente</a>
+                <a href="#commentModeration" class="text-dark navbar-nav-link">Modération commentaires</a>
+            </li>
+        </ul>
+    </div>
+    <a href="../public/index.php?page=getLogout"><button class="btn btn-danger">Déconnexion</button></a>
+    {% else %}
+    <div class="inline">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="#chapter" class="text-dark navbar-nav-link">Accéder aux chapitres</a>
+                <a href="" class="text-dark navbar-nav-link">A propos</a>
+                <a href="" class="text-dark navbar-nav-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <a href="../public/index.php?page=getLogin">
+        <button class="btn btn-outline-danger">Connexion</button>
+    </a>
+    {% endif %}
+{% endblock navbarContent %}

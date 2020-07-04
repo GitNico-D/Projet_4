@@ -1,0 +1,72 @@
+{% extends "/templates/layout.twig" %}
+
+{% block navbarContent %}
+    {% if isAdmin %}
+        <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
+            <ul class="navbar-nav text-uppercase ml-auto">
+                <li class="nav-item active">
+                    <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
+                </li>
+                <li>
+                    <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
+                </li>    
+                <li>
+                    <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
+                </li>
+                <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
+            </ul>
+    {% else %}
+        <a href="../public/index.php"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
+            <ul class="navbar-nav text-uppercase ml-auto">
+                <li class="nav-item active">
+                    <a href="../public/index.php#publishChapter" class="navbar-nav-link">Accéder aux chapitres</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../public/index.php#about" class="navbar-nav-link">A propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../public/index.php?page=contact" class="navbar-nav-link">Contact</a>
+                </li>
+                <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+            </ul>
+    {% endif %}
+{% endblock  navbarContent %}
+
+{% block mainHeader %}
+<div class="page-title text-center">
+    <div class="page-title-container container">
+        <p class="page-title-text">Modification du chapitre {{ uniqueChapter.id }}</p>
+        <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title }}</span></h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="card text-center">
+            <p class="card-header">
+                Posté le 
+                <span class="font-italic bold">{{ uniqueChapter.createDate }}</span> 
+                par 
+                <span class="font-italic bold">{{ uniqueChapter.author }}</span>
+            </p>
+        </div>
+    <div class="container text-center">
+        <form action="index.php?page=applyChapterModification&chapterId={{ uniqueChapter.id }}" method="post">
+            <div class="form-group">
+                <label for="chapterTitle" class="h4 bold my-4">Titre du chapitre</label>
+                <input type="text" class="form-control" id="chapterTitle" name="chapterTitle" value="{{ uniqueChapter.title }}">
+                <label for="chapterContent" class="h4 bold my-4">Contenu du chapitre</label>
+                <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="50" >{{ uniqueChapter.content }}</textarea>
+                <button type="submit" name="saveAndPublish" class="btn btn-outline-info my-2">Enregistrer et publier les modifications</button>
+                <button type="submit" name="saveDraft" class="btn btn-outline-info my-2">Enregistrer les modifications en brouillon</button>
+            </div>
+        </form>
+    </div>
+    <div class="text-center">
+        {% if isAdmin %}
+            <a href="../public/index.php?page=adminView" class="btn btn-info my-2">Retour à l'accueil</a>
+        {% endif %} 
+    </div>    
+{% endblock main %}
+
