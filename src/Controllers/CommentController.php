@@ -18,11 +18,12 @@ class CommentController extends Controller
             var_dump($affectedLines);
             if ($commentAdded === false)
             {
-                die('Impossible d\'ajouter le commentaire');
+                throw new Exception('Impossible d\'ajouter le commentaire');
             }
             else 
             {
                 header('location: index.php');
+                
                 echo('Chapitre ajouté');
             }
         }
@@ -30,28 +31,27 @@ class CommentController extends Controller
         {   
             echo 'Veuillez remplir les champs !';
         }
-        $this->single($chapterId);
+        header('location: ../public/index?page=single&chapterId=' . $chapterId);
     }
 
-    public function addReportedComment($commentId) 
+    public function addReportedComment($chapterId, $commentId) 
     {
-        var_dump($commentId);
+        // var_dump($commentId);
         $reportedComment = $this->commentManager->addReport($commentId);
-        var_dump($reportedComment);
+        $totalReports = $this->commentManager->getTotalReports($commentId);
+        var_dump($totalReports);
         if ($reportedComment = false)
         {
-            die('Impossible de signaler le commentaire');
+            throw new Exception('Impossible de signaler le commentaire');
         }
         else
         {
-            return $reportedComment;
+            header('location: ../public/index?page=single&chapterId=' . $chapterId);
         }
     }
 
     public function allReportedComments()
     {
-        var_dump($reportedCommentList);
         $reportedCommentList = $this->commentManager->getAllReportedComments();
-        require_once "./Views/AdminView.php";
     }
 }

@@ -44,36 +44,41 @@ class ChapterManager extends DAO
         return $unpublishedChaptersList;
     }
 
+    public function publishedChapter($chapterId)
+    {
+        $sqlRequest = 'UPDATE chapter SET published= true where id = ?';
+        $this->createQuery($sqlRequest, [$chapterId]);
+    } 
+
     public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
     {
         $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW())';
         $affectedLines = $this->createQuery($sqlRequest, array(
-            'chapterAuthor' => $newChapterAuthor, 
-            'chapterTitle' => $newChapterTitle, 
-            'chapterContent' => $newChapterContent
+            'chapterAuthor'=>$newChapterAuthor, 
+            'chapterTitle'=>$newChapterTitle, 
+            'chapterContent'=>$newChapterContent
         ));
         return $affectedLines;
     }
 
-    public function modifyChapterById($chapterTitle, $chapterContent, $chapterPublish, $chapterId)
+    public function modifyChapterById($modifiedChapterTitle, $modifiedChapterContent, $chapterPublished, $chapterId)
     {
-        // 'UPDATE chapter SET content =  ,updateDate= NOW(),publish= 0 WHERE id = 2';
-        var_dump($chapterContent);
-        $sqlRequest = 'UPDATE chapter SET (title = :chapterTitle, content = :chapterContent, updateDate = NOW()) WHERE id = :chapterId';
-        var_dump($sqlRequest);
-        $updatedLines = $this->createQuery($sqlRequest, array(
-            'chapterTitle' => $chapterTitle,
-            'chapterContent' => $chapterContent,
-            // 'publish' => $chapterPublish,
-            'chapterId' => $chapterId
-        ));
+        var_dump($chapterId);
+        $sqlRequest = 'UPDATE chapter SET title= :chapterTitle, content= :chapterContent, updateDate= NOW(), published= :chapterPublished WHERE id= :chapterId';
+        // $updatedLines = $this->createQuery($sqlRequest);
+        $updatedLines = $this->createQuery($sqlRequest, array(   
+                'chapterTitle'=>$modifiedChapterTitle,
+                'chapterContent'=>$modifiedChapterContent,
+                'chapterPublished'=>$chapterPublished,
+                'id' => $chapterId
+                ));
         return $updatedLines;
     }
 
     public function deleteChapterById($chapterId)
     {
         $sqlRequest = 'DELETE FROM chapter WHERE id = ?';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
+        $this->createQuery($sqlRequest, [$chapterId]);
     }
 }
 

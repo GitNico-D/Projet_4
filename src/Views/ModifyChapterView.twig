@@ -58,14 +58,15 @@
                 <input type="text" class="form-control" id="chapterTitle" name="chapterTitle" value="{{ uniqueChapter.title }}">
                 <label for="chapterContent" class="h4 bold my-4">Contenu du chapitre</label>
                 <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="50" >{{ uniqueChapter.content }}</textarea>
-                <button type="submit" name="saveAndPublish" class="btn btn-outline-info my-2">Enregistrer et publier les modifications</button>
-                <button type="submit" name="saveDraft" class="btn btn-outline-info my-2">Enregistrer les modifications en brouillon</button>
+                <button type="submit" class="btn btn-outline-info my-2">Enregistrer et publier les modifications</button>
+                {# <button type="submit" name="saveDraft" class="btn btn-outline-info my-2">Enregistrer les modifications en brouillon</button> #}
             </div>
         </form>
     </div>
-    <div class="text-center">
+    <div class="text-center"> 
         {% if isAdmin %}
-            <a href="../public/index.php?page=adminView" class="btn btn-info my-2">Retour à l'accueil</a>
+            <a href="../public/index.php?page=adminView">Retour à la page d'administration</a>
+            {# class="btn btn-info my-2" #}
         {% endif %} 
     </div>    
 {% endblock main %}
