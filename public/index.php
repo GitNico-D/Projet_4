@@ -2,6 +2,7 @@
 
 require '../vendor/autoload.php';
 require '../src/Core/Controller.php';
+require "../config/dbConfig.php";
 
 use App\src\Services\RouterHelper;
 use App\src\Services\LoginsHelper;
