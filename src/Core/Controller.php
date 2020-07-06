@@ -25,13 +25,14 @@ abstract class Controller
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
         $this->loginsManager = new LoginsManager();
-        $this->loader = new FileSystemLoader ('../src/Views');
+        $this->loader = new FileSystemLoader ('../templates');
+
         $this->twig = new Environment($this->loader, array(
             "cache" => false,
             "debug" => true
         ));        
         $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addExtension(new DebugExtension());
-        // var_dump($this->twig);
+        // var_dump($this->loader);
     }
 }
