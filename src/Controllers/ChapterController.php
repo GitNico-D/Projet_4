@@ -7,20 +7,6 @@ use App\src\Core\Twig;
 
 class ChapterController extends Controller
 {
-    
-    /**
-     * home
-     *
-     * @return void
-     */
-    public function home()
-    {
-        echo $this->twig->render('HomeView.twig', 
-            ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]
-        );
-    }
-
     /**
      * single
      *
