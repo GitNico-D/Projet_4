@@ -221,3 +221,116 @@
         color: #FED036;
     }
 }
+
+.about
+{
+    margin-top: 6rem;
+    &-text
+    {
+        text-align: center;
+        &-title
+        {
+            margin: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid black;
+        }
+        &-content
+        {
+            padding-top: 1.5rem;
+            text-align: justify;
+        }
+    }
+    &-quote
+    {
+        margin: 2rem 0 4rem 0;
+        p
+        {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px;
+            background: #eee;
+            border-radius: 5px;
+            &before
+            {
+                content: '\201C';
+            }
+            &after
+            {
+                content: '\201D';
+            }
+        }
+        footer
+        {
+            text-align: right;
+        }
+    }
+   
+    &-img
+    {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+}
+
+.publishchapter
+{
+    margin-top: 6rem;
+    &-title
+    {
+        padding: 2rem;
+        font-size: 3rem;
+    }
+    &-container
+    {
+        max-width: 45%;
+    }
+}
+
+.chapter
+{
+    display: flex;
+    justify-content: space-around;
+    align-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    &-card
+    {
+        margin: 0;
+        padding: 2rem;
+        border-radius: 1px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        &-header
+        {
+            text-align: left;
+            padding: 0 0 1rem 0;
+        }
+        &-body
+        {
+            text-align: right;
+            padding: 1rem 0 0 0;
+        }
+        &-content
+        {
+            padding: 1rem 0 1rem 0;
+        }
+        &-btn
+        {
+            background-color: #FED036;
+            border: 1px solid #FED036;
+            text-decoration: none;
+            padding: .5rem 1rem;
+            color: white;
+            &:hover
+            {
+                color: #FED036;
+                background-color: white;
+                border: 1px solid #FED036;
+            }
+        }
+        img
+        {
+            width: 100%;
+        }
+    }
+
+}

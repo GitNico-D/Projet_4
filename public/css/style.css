@@ -213,4 +213,121 @@
 .page-title a {
   color: #FED036;
 }
+
+.about {
+  margin-top: 6rem;
+}
+
+.about-text {
+  text-align: center;
+}
+
+.about-text-title {
+  margin: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.about-text-content {
+  padding-top: 1.5rem;
+  text-align: justify;
+}
+
+.about-quote {
+  margin: 2rem 0 4rem 0;
+}
+
+.about-quote p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px;
+  background: #eee;
+  border-radius: 5px;
+}
+
+.about-quote pbefore {
+  content: '\201C';
+}
+
+.about-quote pafter {
+  content: '\201D';
+}
+
+.about-quote footer {
+  text-align: right;
+}
+
+.about-img {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.publishchapter {
+  margin-top: 6rem;
+}
+
+.publishchapter-title {
+  padding: 2rem;
+  font-size: 3rem;
+}
+
+.publishchapter-container {
+  max-width: 45%;
+}
+
+.chapter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.chapter-card {
+  margin: 0;
+  padding: 2rem;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.chapter-card-header {
+  text-align: left;
+  padding: 0 0 1rem 0;
+}
+
+.chapter-card-body {
+  text-align: right;
+  padding: 1rem 0 0 0;
+}
+
+.chapter-card-content {
+  padding: 1rem 0 1rem 0;
+}
+
+.chapter-card-btn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  color: white;
+}
+
+.chapter-card-btn:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
+.chapter-card img {
+  width: 100%;
+}
 /*# sourceMappingURL=style.css.map */
