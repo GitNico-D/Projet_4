@@ -7,6 +7,7 @@ require "../config/dbConfig.php";
 use App\src\Services\RouterHelper;
 use App\src\Services\LoginsHelper;
 
+use App\src\Controllers\IndexController;
 use App\src\Controllers\ChapterController;
 use App\src\Controllers\CommentController;
 use App\src\Controllers\LoginsController;
@@ -15,6 +16,7 @@ use App\src\Controllers\ErrorController;
 session_start();
 ob_start();
 
+$indexController = new IndexController();
 $chapterController = new ChapterController();
 $commentController = new CommentController();
 $loginsController = new LoginsController();
@@ -85,7 +87,7 @@ try {
         }
         else
         {  
-            $chapterController->home();
+            $indexController->home();
         }
 } 
 catch (Exception $error)
