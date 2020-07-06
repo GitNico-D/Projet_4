@@ -1,8 +1,8 @@
-{% extends "/templates/layout.twig" %}
+{% extends "/layout/layout.twig" %}
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a href="../public/index.php?page=adminView"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
+        <a href="../public/index.php?page=adminView"><img src="../public/img/logo-JF-v3.png" alt=""></a>
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item active">
                     <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
@@ -16,7 +16,7 @@
                 <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
             </ul>
     {% else %}
-        <a href="../public/index.php"><img src="../public/data/img/logo-JF-v3.png" alt=""></a>
+        <a href="../public/index.php"><img src="../public/img/logo-JF-v3.png" alt=""></a>
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item active">
                     <a href="../public/index.php#publishChapter" class="navbar-nav-link">Accéder aux chapitres</a>
