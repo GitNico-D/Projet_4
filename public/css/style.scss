@@ -14,29 +14,36 @@
     height: 100px;
 }
 
+.navbar-expand-lg .navbar-nav .nav-link
+{
+    padding-right: 2rem;   
+    text-align: center;
+    color: white;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:hover
+{
+    text-decoration: none;         
+    color:#FED036;
+    vertical-align: center;
+}
+
 .navbar
 {
+    &-nav-item
+    {
+        
+    vertical-align: center;
+    }
+    &-nav-link
+    {        
+        font-weight: bold;
+        padding-right: 2rem;   
+    } 
     &-background 
     {
         background-color: rgba($color: #0F0F0F, $alpha: 0.2);
-    }
-    &-nav 
-    {
-        flex-direction: row;
-        align-items: center;
-        &-link
-        {
-            color: white;
-            font-weight: bold;
-            font-size: 1.05rem;
-            padding: 0 1rem 0 1rem;   
-        }    
-        &:hover
-        {
-            text-decoration: none;         
-            color:#FED036;
-        }
-    }
+    }                
     &-button
     {
         text-decoration: none;  
@@ -48,6 +55,19 @@
             color: #FED036;
             background-color: white;
         }
+    }
+    &-toggler
+    {
+        background-color: #FED036;
+        border: 1xp solid black;
+        .fa-bars
+        {
+            color: white;
+        }
+    }
+    &-collapse
+    {
+        padding: 0 0 0 2rem;
     }
 }
 
@@ -224,9 +244,16 @@
 
 .about
 {
-    margin-top: 6rem;
+    padding-top: 8rem;
+    &-row
+    {
+        display: flex;
+        align-items: flex-start;
+        flex-flow: row wrap;
+    }
     &-text
     {
+        padding: 0 2rem 2rem 2rem;
         text-align: center;
         &-title
         {
@@ -267,6 +294,9 @@
    
     &-img
     {
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
@@ -274,15 +304,11 @@
 
 .publishchapter
 {
-    margin-top: 6rem;
+    padding-top: 6rem;
     &-title
     {
         padding: 2rem;
         font-size: 3rem;
-    }
-    &-container
-    {
-        max-width: 45%;
     }
 }
 
@@ -332,5 +358,227 @@
             width: 100%;
         }
     }
+}
+
+.main
+{
+    &-row
+    {
+        display: flex; 
+        flex-wrap: wrap;    
+    }
 
 }
+
+.sidebar
+{
+    background-color: #f7f7f7d7;
+    // position: fixed;
+    &-list
+    {
+        list-style: none;
+        padding: 1rem 0 0 0;
+    }
+    &-nav
+    {
+        &-item
+        {
+            // color: whitesmoke;
+            padding:  0 0 1rem 0;
+        }
+        &-link 
+        {
+            display: inline;
+            // padding:  0 2rem 2rem 0;
+            color: black;
+            text-decoration: none;
+        }
+    }            
+}
+
+.writingChapter
+{
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // width: 100%;
+    // z-index: 10;
+    margin: auto;
+    margin-top: 2rem;    
+    margin-bottom: 2rem;
+    padding: 2rem;
+    &-title
+    {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+    &-btn
+    {
+        background-color: #FED036;
+        border: 1px solid #FED036;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        width: 40%;
+        margin: auto;
+        &:hover
+        {
+            color: #FED036;
+            background-color: white;
+            border: 1px solid #FED036;
+        }
+    }
+}
+
+.publishChapterCard
+{
+    margin-top: 2rem;
+    padding: 2rem;
+    &-header h3::after
+    {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 2rem;
+        content: "\f358";
+        color: #FED036;
+        text-align: center;
+          
+    }
+    &-link:hover
+    {
+        color: #FED036;
+        cursor: pointer; 
+    }
+    &-title
+    {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        &::before
+        {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 2rem;
+        content: "\f358";
+        color: #FED036;
+        padding-right: 1rem;
+        } 
+        &::after
+        {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 2rem;
+        content: "\f358";
+        color: #FED036;          
+        }
+        &:hover
+        {
+            color: #FED036;
+        }
+    }
+    &-text
+    {
+        font-size: 1.1rem;
+    }
+    &-card
+    {
+        padding: 1.5rem;
+    }
+    &-btn
+    {
+        margin-right: 2rem;
+        background-color: #FED036;
+        border: 1px solid #FED036;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        // width: 40%;
+        // margin: auto;
+        &:hover
+        {
+            color: #FED036;
+            background-color: white;
+            border: 1px solid #FED036;
+        }
+        &-icons
+        {
+            color: white;
+        }
+    }
+}
+
+.publishChapterAdmin
+{
+    margin-top: 2rem;
+    padding: 0.5rem;
+    &-header h3::after
+    {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 2rem;
+        content: "\f358";
+        color: #FED036;
+        text-align: center;          
+    }
+    &-link:hover
+    {
+        color: #FED036;
+        cursor: pointer; 
+    }
+    &-title
+    {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        
+    }
+    &-text
+    {
+        font-size: 1.1rem;
+    }
+    &-card
+    {
+        padding: 1.5rem;
+    }
+    &-btn
+    {
+        margin-right: 2rem;
+        background-color: #FED036;
+        border: 1px solid #FED036;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        // width: 40%;
+        // margin: auto;
+        &:hover
+        {
+            color: #FED036;
+            background-color: white;
+            border: 1px solid #FED036;
+        }
+        &-icons
+        {
+            color: white;
+        }
+    }
+}
+
+.fa-house-user, .fa-book, .fa-comment, .fa-book-reader
+{
+    color: #FED036;
+}
+
+//// MEDIA QUERRIES ////
+
+@media (max-width: 768px)
+{
+    .about
+    {
+        &-text
+        {
+            padding: 2rem 0 0 0;
+            
+        }
+    }
+
+}
+
