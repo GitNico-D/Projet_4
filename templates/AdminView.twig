@@ -2,109 +2,141 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a href="../public/index.php?page=adminView"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item active">
-                    <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
-                </li>
-                <li>
-                    <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
-                </li>    
-                <li>
-                    <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
-                </li>
-                <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
+        <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-jf-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav text-uppercase mr-auto">
+                <span>Page adminsitrateur</span>
             </ul>
+        <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
     {% else %}
-        <a href="../public/index.php"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item active">
-                    <a href="../public/index.php#publishChapter" class="navbar-nav-link">Accéder aux chapitres</a>
+        <a class="navbar-brand" href="../public/index.php"><img src="../public/img/logo-JF-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse text-center" id="navbarmain">
+            <span>Page adminsitrateur</span>
+            <!-- <ul class="navbar-nav text-uppercase mr-auto">
+                <li class="nav-item">
+                    <a href="../public/index.php#about" class="nav-link ">A propos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../public/index.php#about" class="navbar-nav-link">A propos</a>
+                    <a href="../public/index.php#publishChapter" class="nav-link ">Accéder aux chapitres</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../public/index.php?page=contact" class="navbar-nav-link">Contact</a>
+                    <a href="../public/index.php?page=contact" class="nav-link ">Contact</a>
                 </li>
-                <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
-            </ul>
+            </ul> -->
+        <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
     {% endif %}
 {% endblock  navbarContent %}
 
 {% block mainHeader %}
-    <img src="../public/img/write.jpg" alt="" class="main-header-img">
-    <div class="main-header-container container">
-            <p class="main-header-text">Bienvenue</p>
-            <h1 class="text-lead main-header-h1 bold"><span>{{ session.loginsUsername }}</span></h1>
-        </div>
-    </div>
 {% endblock %}
 
 {% block main %}
-<div class="text-center my-2 margin-top">
-    <a href="../public/index.php?page=addNewChapter" class="btn btn-lg btn-info">Écrire un chapitre</a>
+<div class="container-fluid">
+    <div class="row main-row">
+        <nav class="sidebar col-md-2">
+            <ul class="sidebar-list">
+                <li class="nav-item sidebar-nav-item">
+                    <span class="fas fa-house-user"></span><a class="nav-link sidebar-nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item sidebar-nav-item">
+                    <span class="fas fa-book"></span><a href="../public/index.php?page=adminView#publishChapterAdmin" class="nav-link sidebar-nav-link">Chapitres publiés</a>
+                </li>
+                <li class="nav-item sidebar-nav-item">
+                    <span class="fas fa-book-reader"></span><a href="../public/index.php?page=adminView#pendingChapterAdmin" class="nav-link sidebar-nav-link">Chapitres en attente</a>
+                </li>
+                <li class="nav-item sidebar-nav-item">
+                    <span class="fas fa-comment"></span><a href="../public/index.php?page=adminView#commentModerationAdmin" class="nav-link sidebar-nav-link">Modération</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="main col-md-10">
+            <section id="writingChapter" class="card writingChapter">
+                <p class="writingChapter-title text-center"> Nouveau chapitre </p>
+                <a href="../public/index.php?page=addNewChapter" class="btn writingChapter-btn"><span class="button-text">Écrire</span></a>
+            </section>
+            <hr>
+            <section id="publishChapterAdmin" class="card publishChapterAdmin">
+                    <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
+                    <p class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</p>
+                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span> <span class="bold"> Visionnage</span>, <span class="bold">Modification</span> ou <span class="bold">Supression</span> du chapitre</p>
+                {% set plusOne = 0 %}
+                {% for chapter in publishedChaptersList %}
+                    {% if plusOne < publishedChaptersList|length %} 
+                        {% set plusOne = plusOne + 1 %}
+                    {% endif %}
+                <div id="accordion">
+                    <div class="card publishChapterCard">
+                        <div class="card-header publishChapterCard-header" id="heading{{ plusOne }}">                            
+                            <p class="font-italic float-right"> Posté le {{ chapter.createDate }}</p>
+                            <a class="publishChapterCard-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
+                                <span class="publishChapterCard-title">{{ chapter.title }} </span>   
+                            </a>                              
+                        </div>                      
+                        <div id="collapse{{ plusOne }}" class="collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#accordion">
+                            <div class="card-body">
+                                {{ chapter.content | slice(0, 350) }}...
+                            </div>
+                            <div class="text-center">
+                                <a href="../public/index.php?page=single&chapterId={{ chapter.id }}" class="btn publishChapterCard-btn my-3">
+                                    Visionner<span class="fas fa-book-reader publishChapterCard-icons"></span>
+                                </a>
+                                <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}" class="btn publishChapterCard-btn my-3">Modifier</a>
+                                <a href="../public/index.php?page=deleteChapter&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer</a>                   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </section> 
+            <hr>
+            <section id="pendingChapter">
+                <div class="my-4 bg-warning">
+                    <h2 class="text-center">Chapitre en attente de publication</h2>
+                </div>
+                {% for chapter in unpublishedChaptersList %}
+                        <div class="card my-3 text-center">
+                            <h3 class="card-header">{{ chapter.title }}</h3>
+                            <p class="card-body">
+                                Posté le <span class="font-italic">{{ chapter.createDate }}</span> 
+                            </p>
+                            <p class="text-center-justify">{{ chapter.content }}</p>
+                            <div>
+                                <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}" class="btn btn-outline-info my-3">Modifier le chapitre</a>
+                                <a href="../public/index.php?page=publishChapter&chapterId={{ chapter.id }}" class="btn btn-success my-3">Publier le chapitre</a>
+                                <a href="../public/index.php?page=deleteChapter&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le chapitre</a>
+                            </div>
+                        </div>  
+                {% endfor %}
+            </section>
+            <section id="commentModeration" class="commentModeration">
+                <div class="my-4 bg-danger">
+                    <h2 class="text-center">Modération des commentaire</h2>
+                </div>   
+                {{ dump(reportList) }}
+                {% for comment in reportedCommentList %}
+                    <div class="container">
+                        <div class="card my-3 text-center">
+                            <h3 class="card-header font-italic">
+                                Posté le {{ comment.createdDate }} par {{ comment.author }}
+                            </h3>
+                            <p class="card-body text-center-justify">{{ comment.content }}</p>
+                            <div>
+                                <a href="../public/index.php?page=validateComment&chapterId={{ chapter.id }}" class="btn btn-success my-3">Valider le commentaire</a>
+                                <a href="../public/index.php?page=deleteComment&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le commentaire</a>
+                            </div>
+                        </div>
+                    </div>    
+                {% endfor %} 
+            </section> -->
+        </div>
+        
+    </div>
 </div>
-<section id="publishChapter" class="container">
-    <div id="publishChapter" class="my-4 bg-success">
-        <h2 class="text-center"> Chapitre publiés </h2>
-    </div>
-    {% for chapter in publishedChaptersList %}
-        <div class="container">
-            <div class="card my-3 text-center">
-                <h3 class="card-header">{{ chapter.title }}</h3>
-                <p class="card-body">
-                    Posté le <span class="font-italic">{{ chapter.createDate }}</span> 
-                </p>
-                <p class="text-center-justify">{{ chapter.content | slice(0, 100) }}...</p>
-                <div>
-                    <a href="../public/index.php?page=single&chapterId={{ chapter.id }}" class="btn btn-outline-info my-3">Voir le chapitre</a>
-                    <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}" class="btn btn-outline-info my-3">Modifier le chapitre </a>
-                    <a href="../public/index.php?page=deleteChapter&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le chapitre</a>                   
-                </div>
-            </div>
-        </div>    
-    {% endfor %}
-</section>    
-<section id="pendingChapter" class="container">
-    <div class="my-4 bg-warning">
-        <h2 class="text-center">Chapitre en attente de publication</h2>
-    </div>
-    {% for chapter in unpublishedChaptersList %}
-        <div class="container">
-            <div class="card my-3 text-center">
-                <h3 class="card-header">{{ chapter.title }}</h3>
-                <p class="card-body">
-                    Posté le <span class="font-italic">{{ chapter.createDate }}</span> 
-                </p>
-                <p class="text-center-justify">{{ chapter.content }}</p>
-                <div>
-                    <a href="../public/index.php?page=modifyChapter&chapterId={{ chapter.id }}" class="btn btn-outline-info my-3">Modifier le chapitre</a>
-                    <a href="../public/index.php?page=publishChapter&chapterId={{ chapter.id }}" class="btn btn-success my-3">Publier le chapitre</a>
-                    <a href="../public/index.php?page=deleteChapter&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le chapitre</a>
-                </div>
-            </div>
-        </div>    
-    {% endfor %}
-</section>
-<section id="commentModeration" class="commentModeration">
-    <div class="my-4 bg-danger">
-        <h2 class="text-center">Modération des commentaire</h2>
-    </div>   
-    {{ dump(reportList) }}
-    {% for comment in reportedCommentList %}
-        <div class="container">
-            <div class="card my-3 text-center">
-                <h3 class="card-header font-italic">
-                    Posté le {{ comment.createdDate }} par {{ comment.author }}
-                </h3>
-                <p class="card-body text-center-justify">{{ comment.content }}</p>
-                <div>
-                    <a href="../public/index.php?page=validateComment&chapterId={{ chapter.id }}" class="btn btn-success my-3">Valider le commentaire</a>
-                    <a href="../public/index.php?page=deleteComment&chapterId={{ chapter.id }}" class="btn btn-danger my-3">Supprimer le commentaire</a>
-                </div>
-            </div>
-        </div>    
-    {% endfor %} 
-</section>
+
 {% endblock main %}
