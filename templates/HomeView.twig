@@ -2,7 +2,7 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-JF-v3.png" alt=""></a>
+        <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
@@ -20,11 +20,11 @@
         </ul>
         <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
     {% else %}
-        <a class="navbar-brand" href="../public/index.php"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="../public/index.php"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="true" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
-        <div class="collapse navbar-collapse" id="navbarmain">
+        <div class="collapse navbar-collapse show" id="navbarmain">
         <ul class="navbar-nav text-uppercase mr-auto">
             <li class="nav-item">
                 <a href="../public/index.php#about" class="nav-link ">A propos</a>
