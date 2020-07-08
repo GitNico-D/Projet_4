@@ -10,40 +10,43 @@
   height: 100px;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link {
-  padding-right: 2rem;
-  text-align: center;
-  color: white;
+.adminpageSeparator {
+  border: 4px double #dc3454;
+  width: 70%;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link:hover {
-  text-decoration: none;
-  color: #FED036;
-  vertical-align: center;
+.navbar {
+  color: black;
 }
 
-.navbar-nav-item {
-  vertical-align: center;
+.navbar .nav-item {
+  vertical-align: middle;
 }
 
-.navbar-nav-link {
+.navbar .nav-link {
   font-weight: bold;
-  padding-right: 2rem;
+  color: black;
+  margin-left: 2rem;
+}
+
+.navbar .nav-link:hover {
+  color: #FED036;
 }
 
 .navbar-background {
-  background-color: rgba(15, 15, 15, 0.2);
+  background-color: white;
 }
 
 .navbar-button {
   text-decoration: none;
   color: white;
-  border: #FED036;
+  border: 1px solid #FED036;
   background-color: #FED036;
 }
 
 .navbar-button:hover {
   color: #FED036;
+  border: 1px solid #FED036;
   background-color: white;
 }
 
@@ -58,6 +61,16 @@
 
 .navbar-collapse {
   padding: 0 0 0 2rem;
+}
+
+.navbar-collapse .show .nav-link {
+  margin: 0;
+  padding: 0;
+}
+
+.collapse .show {
+  margin-top: 15rem;
+  padding: 0;
 }
 
 .form-signin {
@@ -80,7 +93,7 @@
 }
 
 .form-signin-fa {
-  color: #BF4040;
+  color: #dc3454;
   margin-bottom: 2rem;
 }
 
@@ -364,6 +377,45 @@
       flex-wrap: wrap;
 }
 
+.adminHeader-container {
+  margin: 1rem 0 1rem 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  vertical-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.adminHeader-title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.adminHeader-btn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  color: white;
+}
+
+.adminHeader-btn:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
 .sidebar {
   background-color: #f7f7f7d7;
 }
@@ -383,7 +435,17 @@
   text-decoration: none;
 }
 
+.sidebar-nav-link:hover {
+  color: #FED036;
+}
+
+.sidebar-img img {
+  margin: auto;
+  width: 100%;
+}
+
 .writingChapter {
+  background-color: #fffdf5;
   margin: auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -411,136 +473,281 @@
   border: 1px solid #FED036;
 }
 
-.publishChapterCard {
-  margin-top: 2rem;
-  padding: 2rem;
+.writingChapter-btn::before {
+  padding-right: 1.5rem;
 }
 
-.publishChapterCard-header h3::after {
+.writingChapter-btn::after {
+  padding-left: 1.5rem;
+}
+
+.writingChapter-btn::after, .writingChapter-btn::before {
+  content: "\f56b";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 2rem;
-  content: "\f358";
+  font-size: 1.25rem;
   color: #FED036;
-  text-align: center;
 }
 
-.publishChapterCard-link:hover {
+.publishChapterCard, .unpublishChapterCard {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: none;
+}
+
+.publishChapterCard-header, .unpublishChapterCard-header {
+  background-color: white;
+}
+
+.publishChapterCard-header p, .unpublishChapterCard-header p {
+  margin-top: 0.5rem;
+  vertical-align: middle;
+}
+
+.publishChapterCard-link:hover, .unpublishChapterCard-link:hover {
   color: #FED036;
   cursor: pointer;
 }
 
-.publishChapterCard-title {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+.publishChapterCard-title, .unpublishChapterCard-title {
+  font-size: 1.5rem;
 }
 
-.publishChapterCard-title::before {
+.publishChapterCard-title::before, .unpublishChapterCard-title::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 1.25rem;
   content: "\f358";
   color: #FED036;
   padding-right: 1rem;
 }
 
-.publishChapterCard-title::after {
+.publishChapterCard-title::after, .unpublishChapterCard-title::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 1.25rem;
   content: "\f358";
   color: #FED036;
 }
 
-.publishChapterCard-title:hover {
+.publishChapterCard-title:hover, .unpublishChapterCard-title:hover {
   color: #FED036;
 }
 
-.publishChapterCard-text {
+.publishChapterCard-text, .unpublishChapterCard-text {
   font-size: 1.1rem;
 }
 
-.publishChapterCard-card {
+.publishChapterCard-card, .unpublishChapterCard-card {
   padding: 1.5rem;
 }
 
-.publishChapterCard-btn {
-  margin-right: 2rem;
-  background-color: #FED036;
-  border: 1px solid #FED036;
-  text-decoration: none;
-  padding: .5rem 1rem;
+.publishChapterCard-collapse, .unpublishChapterCard-collapse {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-top-style: none;
+}
+
+.publishChapterCard-icons, .unpublishChapterCard-icons {
   color: white;
 }
 
-.publishChapterCard-btn:hover {
+.commentModerationCard {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin-top: 1rem;
+  padding: 1.5rem;
+}
+
+.commentModerationCard-title {
+  text-align: left;
+  font-size: 1.25rem;
+}
+
+.commentModerationCard-text {
+  font-size: 1.10rem;
+  margin-top: 1.5rem;
+}
+
+.publishChapterCard-btn, .unpublishChapterCard-btn, .commentModerationCard-btn {
+  text-decoration: none;
+  padding: .5rem 1rem;
+  color: white;
+  margin-right: 2rem;
+}
+
+.publishChapterCard .modifybtn, .unpublishChapterCard .modifybtn, .commentModerationCard .modifybtn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+}
+
+.publishChapterCard .modifybtn:hover, .unpublishChapterCard .modifybtn:hover, .commentModerationCard .modifybtn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
 
-.publishChapterCard-btn-icons {
-  color: white;
+.publishChapterCard .modifybtn::before, .unpublishChapterCard .modifybtn::before, .commentModerationCard .modifybtn::before {
+  content: " ";
+  padding-left: 1.5rem;
 }
 
-.publishChapterAdmin {
-  margin-top: 2rem;
+.publishChapterCard .modifybtn::after, .unpublishChapterCard .modifybtn::after, .commentModerationCard .modifybtn::after {
+  content: "\f044";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #FED036;
+  padding-left: 1rem;
+}
+
+.publishChapterCard .readbtn, .unpublishChapterCard .readbtn, .commentModerationCard .readbtn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+}
+
+.publishChapterCard .readbtn:hover, .unpublishChapterCard .readbtn:hover, .commentModerationCard .readbtn:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
+.publishChapterCard .readbtn::before, .unpublishChapterCard .readbtn::before, .commentModerationCard .readbtn::before {
+  content: " ";
+  padding-left: 1.5rem;
+}
+
+.publishChapterCard .readbtn::after, .unpublishChapterCard .readbtn::after, .commentModerationCard .readbtn::after {
+  content: "\f5da";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #FED036;
+  padding-left: 1rem;
+}
+
+.publishChapterCard .publishbtn, .publishChapterCard .validatebtn, .unpublishChapterCard .publishbtn, .unpublishChapterCard .validatebtn, .commentModerationCard .publishbtn, .commentModerationCard .validatebtn {
+  background-color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.publishChapterCard .publishbtn:hover, .publishChapterCard .validatebtn:hover, .unpublishChapterCard .publishbtn:hover, .unpublishChapterCard .validatebtn:hover, .commentModerationCard .publishbtn:hover, .commentModerationCard .validatebtn:hover {
+  color: #28a745;
+  background-color: white;
+  border: 1px solid #28a745;
+}
+
+.publishChapterCard .publishbtn::before, .publishChapterCard .validatebtn::before, .unpublishChapterCard .publishbtn::before, .unpublishChapterCard .validatebtn::before, .commentModerationCard .publishbtn::before, .commentModerationCard .validatebtn::before {
+  content: " ";
+  padding-left: 1.5rem;
+}
+
+.publishChapterCard .publishbtn::after, .publishChapterCard .validatebtn::after, .unpublishChapterCard .publishbtn::after, .unpublishChapterCard .validatebtn::after, .commentModerationCard .publishbtn::after, .commentModerationCard .validatebtn::after {
+  content: "\f058";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #28a745;
+  padding-left: 1rem;
+}
+
+.publishChapterCard .deletebtn, .unpublishChapterCard .deletebtn, .commentModerationCard .deletebtn {
+  background-color: #dc3454;
+  border: 1px solid #dc3454;
+}
+
+.publishChapterCard .deletebtn:hover, .unpublishChapterCard .deletebtn:hover, .commentModerationCard .deletebtn:hover {
+  color: #dc3454;
+  background-color: white;
+  border: 1px solid #dc3454;
+}
+
+.publishChapterCard .deletebtn::before, .unpublishChapterCard .deletebtn::before, .commentModerationCard .deletebtn::before {
+  content: " ";
+  padding-left: 1.5rem;
+}
+
+.publishChapterCard .deletebtn::after, .unpublishChapterCard .deletebtn::after, .commentModerationCard .deletebtn::after {
+  content: "\f057";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #dc3454;
+  padding-left: 1rem;
+}
+
+.publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin {
+  margin: 2rem 0 2rem 0;
   padding: 0.5rem;
 }
 
-.publishChapterAdmin-header h3::after {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 2rem;
-  content: "\f358";
-  color: #FED036;
-  text-align: center;
-}
-
-.publishChapterAdmin-link:hover {
-  color: #FED036;
-  cursor: pointer;
-}
-
-.publishChapterAdmin-title {
+.publishChapterAdmin-title, .pendingChapterAdmin-title, .commentModerationAdmin-title {
+  background-color: #f7f7f7d7;
   font-size: 2.5rem;
   margin-bottom: 2rem;
 }
 
-.publishChapterAdmin-text {
+.publishChapterAdmin-text, .pendingChapterAdmin-text, .commentModerationAdmin-text {
   font-size: 1.1rem;
-}
-
-.publishChapterAdmin-card {
-  padding: 1.5rem;
-}
-
-.publishChapterAdmin-btn {
-  margin-right: 2rem;
-  background-color: #FED036;
-  border: 1px solid #FED036;
-  text-decoration: none;
-  padding: .5rem 1rem;
-  color: white;
-}
-
-.publishChapterAdmin-btn:hover {
-  color: #FED036;
-  background-color: white;
-  border: 1px solid #FED036;
-}
-
-.publishChapterAdmin-btn-icons {
-  color: white;
 }
 
 .fa-house-user, .fa-book, .fa-comment, .fa-book-reader {
   color: #FED036;
 }
 
+@media (max-width: 1024px) {
+  .main-header-text {
+    font-size: 4rem;
+  }
+  .main-header-h1 {
+    font-size: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .about-text {
     padding: 2rem 0 0 0;
+  }
+  .main-header-text {
+    font-size: 2rem;
+  }
+  .main-header-h1 {
+    font-size: 1.25rem;
+  }
+  .sidebar {
+    text-align: center;
+  }
+  .adminHeader-container {
+    width: 100%;
+    display: block;
+  }
+  .adminHeader-title {
+    display: block;
+    font-size: 1.5rem;
+    margin: 1rem 0 1rem 0;
+  }
+  .adminHeader-btn {
+    display: block;
+    text-align: center;
+  }
+  .adminHeader-img {
+    width: 100%;
+    margin: auto;
+  }
+  .adminHeader-img img {
+    margin: auto;
+  }
+  .publishChapterCard-btn, .unpublishChapterCard-btn, .commentModerationCard-btn {
+    text-decoration: none;
+    padding: unset;
+    margin: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-header-text {
+    font-size: 2rem;
+  }
+  .main-header-h1 {
+    font-size: 1.25rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

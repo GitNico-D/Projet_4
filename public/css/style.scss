@@ -1,3 +1,5 @@
+@import '../css/variables.scss';
+
 .bold
 {
     font-weight: bold;
@@ -14,52 +16,51 @@
     height: 100px;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link
+.adminpageSeparator
 {
-    padding-right: 2rem;   
-    text-align: center;
-    color: white;
-}
-
-.navbar-expand-lg .navbar-nav .nav-link:hover
-{
-    text-decoration: none;         
-    color:#FED036;
-    vertical-align: center;
+    border: 4px double $red;
+    width: 70%;
 }
 
 .navbar
 {
-    &-nav-item
-    {
-        
-    vertical-align: center;
+    color: black;
+    .nav-item
+    {        
+        vertical-align: middle;
     }
-    &-nav-link
+    .nav-link
     {        
         font-weight: bold;
-        padding-right: 2rem;   
+        color: black;
+        margin-left: 2rem;
+        &:hover
+        {
+            color: $yellow;
+        }
     } 
     &-background 
     {
-        background-color: rgba($color: #0F0F0F, $alpha: 0.2);
+        background-color: white;
     }                
     &-button
     {
         text-decoration: none;  
         color: white;
-        border: #FED036;;
-        background-color: #FED036;
+        border: 1px solid $yellow;
+        background-color: $yellow;
         &:hover
         {
-            color: #FED036;
+            color: $yellow;
+            border: 1px solid $yellow;
             background-color: white;
         }
     }
     &-toggler
     {
-        background-color: #FED036;
+        background-color: $yellow;
         border: 1xp solid black;
+        
         .fa-bars
         {
             color: white;
@@ -67,10 +68,24 @@
     }
     &-collapse
     {
+        // text-align: center;
         padding: 0 0 0 2rem;
+        .show
+        {
+            .nav-link
+            {
+                margin: 0;
+                padding: 0;
+            }
+        }
     }
 }
 
+.collapse .show 
+{
+    margin-top: 15rem;
+                padding: 0;
+}
 
 .form-signin
 {
@@ -91,7 +106,7 @@
     }
     &-fa 
     {
-        color: #BF4040;
+        color: $red;
         margin-bottom: 2rem;
     }
     p 
@@ -100,22 +115,22 @@
     }
     button 
     {
-        background-color: #FED036;
-        border: 1px solid #FED036;
+        background-color: $yellow;
+        border: 1px solid $yellow;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
         &:hover
         {
-            color: #FED036;
+            color: $yellow;
             background-color: white;
-            border: 1px solid #FED036;
+            border: 1px solid $yellow;
         }
         &:active
         {
-            color: #FED036;
+            color: $yellow;
             background-color: white;
-            border: 1px solid #FED036;
+            border: 1px solid $yellow;
             text-decoration: none;
         }
     }
@@ -131,7 +146,7 @@
     }
     &-link
     {
-        color: #FED036;
+        color: $yellow;
         &:hover
         {
             text-decoration: none;
@@ -196,12 +211,12 @@
     }
     span
     {
-        color:#FED036;
+        color:$yellow;
         font-style: italic;
     }
     a
     {
-        color: #FED036;
+        color: $yellow;
     }
 }
 
@@ -233,12 +248,12 @@
     }
     span
     {
-        color:#FED036;
+        color:$yellow;
         font-style: italic;
     }
     a
     {
-        color: #FED036;
+        color: $yellow;
     }
 }
 
@@ -341,16 +356,16 @@
         }
         &-btn
         {
-            background-color: #FED036;
-            border: 1px solid #FED036;
+            background-color: $yellow;
+            border: 1px solid $yellow;
             text-decoration: none;
             padding: .5rem 1rem;
             color: white;
             &:hover
             {
-                color: #FED036;
+                color: $yellow;
                 background-color: white;
-                border: 1px solid #FED036;
+                border: 1px solid $yellow;
             }
         }
         img
@@ -368,6 +383,41 @@
         flex-wrap: wrap;    
     }
 
+}
+
+.adminHeader
+{
+    &-container
+    {
+        margin: 1rem 0 1rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        vertical-align: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    &-title
+    {
+        text-align: center;
+        font-size: 2rem;
+    }
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    
 }
 
 .sidebar
@@ -392,9 +442,23 @@
             // padding:  0 2rem 2rem 0;
             color: black;
             text-decoration: none;
+            &:hover
+            {
+                color: $yellow;
+            }
         }
-    }            
+    }    
+    &-img
+    {
+        img
+        {
+            margin: auto;
+            width: 100%;
+
+        }
+    }        
 }
+
 
 .writingChapter
 {
@@ -404,6 +468,7 @@
     // right: 0;
     // width: 100%;
     // z-index: 10;
+    background-color: #fffdf5;
     margin: auto;
     margin-top: 2rem;    
     margin-bottom: 2rem;
@@ -415,8 +480,8 @@
     }
     &-btn
     {
-        background-color: #FED036;
-        border: 1px solid #FED036;
+        background-color: $yellow;
+        border: 1px solid $yellow;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
@@ -424,56 +489,71 @@
         margin: auto;
         &:hover
         {
-            color: #FED036;
+            color: $yellow;
             background-color: white;
-            border: 1px solid #FED036;
+            border: 1px solid $yellow;
+        }
+        &::before
+        {
+            padding-right: 1.5rem;
+        }
+        &::after
+        {
+            padding-left: 1.5rem;
+        }
+        &::after, &::before
+        {
+            content: "\f56b";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $yellow;
         }
     }
 }
 
-.publishChapterCard
+.publishChapterCard, .unpublishChapterCard
 {
-    margin-top: 2rem;
-    padding: 2rem;
-    &-header h3::after
+    margin-top: 1rem;
+    padding: 1rem;
+    border: none;
+    &-header 
     {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        font-size: 2rem;
-        content: "\f358";
-        color: #FED036;
-        text-align: center;
-          
+        background-color: white;
+        p
+        {
+            margin-top: 0.5rem;
+            vertical-align: middle;
+        }
     }
     &-link:hover
     {
-        color: #FED036;
+        color: $yellow;
         cursor: pointer; 
     }
     &-title
     {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
+        font-size: 1.5rem;
         &::before
         {
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
-        font-size: 2rem;
+        font-size: 1.25rem;
         content: "\f358";
-        color: #FED036;
+        color: $yellow;
         padding-right: 1rem;
         } 
         &::after
         {
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
-        font-size: 2rem;
+        font-size: 1.25rem;
         content: "\f358";
-        color: #FED036;          
+        color: $yellow;          
         }
         &:hover
         {
-            color: #FED036;
+            color: $yellow;
         }
     }
     &-text
@@ -484,90 +564,211 @@
     {
         padding: 1.5rem;
     }
+    &-collapse
+    {
+        border: 1px solid rgba(0,0,0,.125);
+        border-top-style: none;
+    }
+    &-icons
+    {
+        color: white;
+    }
+}
+
+.commentModerationCard
+{
+    border: 1px solid rgba(0,0,0,.125);
+    margin-top: 1rem;
+    padding: 1.5rem;
+    &-title
+    {
+        text-align: left;
+        font-size: 1.25rem;
+    }
+    &-text
+    {
+        font-size: 1.10rem;
+        margin-top: 1.5rem;
+    }
+} 
+
+.publishChapterCard, .unpublishChapterCard, .commentModerationCard
+{
     &-btn
     {
-        margin-right: 2rem;
-        background-color: #FED036;
-        border: 1px solid #FED036;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
-        // width: 40%;
-        // margin: auto;
+        margin-right: 2rem;
+    }
+    .modifybtn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
         &:hover
         {
-            color: #FED036;
+            color: $yellow;
             background-color: white;
-            border: 1px solid #FED036;
+            border: 1px solid $yellow;
         }
-        &-icons
+        &::before
         {
-            color: white;
+            content: " ";
+            padding-left: 1.5rem;
+        }
+        &::after
+        {
+            content: "\f044";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $yellow;
+            padding-left: 1rem;
+        }
+    }
+    .readbtn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.5rem;
+        }
+        &::after
+        {
+            content: "\f5da";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $yellow;
+            padding-left: 1rem;
+        }
+    }
+    .publishbtn, .validatebtn
+    {
+        background-color: $green;
+        border: 1px solid $green;
+        &:hover
+        {
+            color: $green;
+            background-color: white;
+            border: 1px solid $green;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.5rem;
+        }
+        &::after
+        {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $green;
+            padding-left: 1rem;
+        }
+    }
+    .deletebtn
+    {
+        background-color: $red;
+        border: 1px solid $red;
+        &:hover
+        {
+            color: $red;
+            background-color: white;
+            border: 1px solid $red;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.5rem;
+        }
+        &::after
+        {
+            content: "\f057";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $red;
+            padding-left: 1rem;
         }
     }
 }
 
-.publishChapterAdmin
+
+.publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
 {
-    margin-top: 2rem;
+    margin: 2rem 0 2rem 0;
     padding: 0.5rem;
-    &-header h3::after
-    {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        font-size: 2rem;
-        content: "\f358";
-        color: #FED036;
-        text-align: center;          
-    }
-    &-link:hover
-    {
-        color: #FED036;
-        cursor: pointer; 
-    }
     &-title
     {
+        background-color: #f7f7f7d7;
         font-size: 2.5rem;
         margin-bottom: 2rem;
-        
     }
     &-text
     {
         font-size: 1.1rem;
     }
-    &-card
-    {
-        padding: 1.5rem;
-    }
-    &-btn
-    {
-        margin-right: 2rem;
-        background-color: #FED036;
-        border: 1px solid #FED036;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        // width: 40%;
-        // margin: auto;
-        &:hover
-        {
-            color: #FED036;
-            background-color: white;
-            border: 1px solid #FED036;
-        }
-        &-icons
-        {
-            color: white;
-        }
-    }
 }
+
+// .publishChapterAdmin
+// {
+//     &-title
+//     {
+//         background-color: $green;
+//         color: white;
+//     }
+// }
+
+// .pendingChapterAdmin
+// {
+//     &-title
+//     {
+//         background-color: $yellow;
+//         color: white;
+//     }
+// }
+
+// .commentModerationAdmin
+// {
+//     &-title
+//     {
+//         background-color: $red;
+//         color: white;
+//     }
+// }
 
 .fa-house-user, .fa-book, .fa-comment, .fa-book-reader
 {
-    color: #FED036;
+    color: $yellow;
 }
 
+
 //// MEDIA QUERRIES ////
+
+@media (max-width: 1024px)
+{
+    .main-header
+    {
+        &-text
+        {
+            font-size: 4rem;
+        }
+        &-h1
+        {
+            font-size: 2.5rem;
+        }
+    }
+}
 
 @media (max-width: 768px)
 {
@@ -580,5 +781,76 @@
         }
     }
 
+    .main-header
+    {
+        &-text
+        {
+            font-size: 2rem;
+        }
+        &-h1
+        {
+            font-size: 1.25rem;
+        }
+    }
+
+    .sidebar
+    {
+        text-align: center;
+    }
+
+    .adminHeader
+    {
+        &-container
+        {
+            width: 100%;
+            display: block;
+            
+        } 
+        &-title
+        {
+            display: block;
+            font-size: 1.5rem;
+            margin: 1rem 0 1rem 0;
+        }
+        &-btn
+        {
+            display: block;
+            text-align: center;
+        }
+        &-img
+        {
+            width: 100%;
+            margin: auto;
+            img
+            {
+                margin: auto;
+            }
+        }         
+    } 
+    
+    .publishChapterCard, .unpublishChapterCard, .commentModerationCard
+    {
+        &-btn
+        {
+            text-decoration: none;
+            padding: unset;
+            margin: auto;
+        }
+
+    }
 }
 
+@media (max-width: 500px)
+{
+    .main-header
+    {
+        &-text
+        {
+            font-size: 2rem;
+        }
+        &-h1
+        {
+            font-size: 1.25rem;
+        }
+    }
+}
