@@ -36,12 +36,16 @@
                 <a href="../public/index.php?page=contact" class="nav-link ">Contact</a>
             </li>
         </ul>
-        <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+        <div class="text-center">
+            <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+        </div>
     {% endif %}
 {% endblock  navbarContent %}
 
 {% block mainHeader %}
-    <img src="../public/img/write.jpg" alt="" class="main-header-img">
+    <div class="main-header-margintop">
+        <img src="../public/img/write.jpg" alt="" class="main-header-img">
+    </div>
     <div class="main-header-container container">
         <p class="main-header-text">Bienvenue</p>
         <h1 class="text-lead main-header-h1">L'aventure <span>"Billet simple pour l'alaska"</span> commence <a href="../public/index.php#publishChapter">ici</a></h1>

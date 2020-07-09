@@ -2,33 +2,43 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a href="../public/index.php?page=adminView"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item active">
-                    <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
-                </li>
-                <li>
-                    <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
-                </li>    
-                <li>
-                    <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
-                </li>
-                <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
-            </ul>
+        <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarmain">
+        <ul class="navbar-nav text-uppercase mr-auto">
+            <li class="nav-item">
+                <a href="../public/index.php?page=adminView#publishChapter" class="nav-link">Chapitres publiés</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php?page=adminView#pendingChapter" class="nav-link">Chapitres en attente</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php?page=adminView#commentModeration" class="nav-link">Modération</a>
+            </li>
+        </ul>
+        <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
     {% else %}
-        <a href="../public/index.php"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item active">
-                    <a href="../public/index.php#publishChapter" class="navbar-nav-link">Accéder aux chapitres</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../public/index.php#about" class="navbar-nav-link">A propos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../public/index.php?page=contact" class="navbar-nav-link">Contact</a>
-                </li>
-                <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
-            </ul>
+        <a class="navbar-brand" href="../public/index.php"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse show" id="navbarmain">
+        <ul class="navbar-nav text-uppercase mr-auto">
+            <li class="nav-item">
+                <a href="../public/index.php#about" class="nav-link ">A propos</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php#publishChapter" class="nav-link ">Accéder aux chapitres</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php?page=contact" class="nav-link ">Contact</a>
+            </li>
+        </ul>
+        <div class="text-center">
+            <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+        </div>
     {% endif %}
 {% endblock  navbarContent %}
 
@@ -39,35 +49,36 @@
         <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title}}</span></h1>
     </div>
 </div>
+<hr class="singlePageSeparator">
 {% endblock %}
 
 {% block main %}
-<div class="text-center">
-    {% if chapterNumber <= 1 and chapterNumber is defined %}            
-        <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}" class="btn btn-info my-2">Chapitre Suivant</a>
-    {% else %}
-        <a href="../public/index.php?page=single&chapterId={{ chapterNumber - 1 }}" class="btn btn-info my-2">Chapitre précédent</a>
-        <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}"class="btn btn-info my-2">Chapitre Suivant</a> 
-    {% endif %}  
-</div>
 <section id="publishChapter" class="container">
-        <div class="card my-4 text-center">
-            <h2 class="card-header">{{ uniqueChapter.title }}</h2>
-            <p class="card-body">
-                Posté le 
-                <span class="font-italic">{{ uniqueChapter.createDate }}</span> 
+        <div class="card my-4 publishChapterSingleCard">
+            {# <h2 class="card-header">{{ uniqueChapter.title }}</h2> #}
+            <p class="card-header float-right publishChapterSingleCard-header">
+            Publié le 
+                <span class="font-italic bold">{{ uniqueChapter.createDate }}</span> 
                 par 
-                <span class="font-italic">{{ uniqueChapter.author }}</span>
+                <span class="font-italic bold">{{ uniqueChapter.author }}</span>
             </p>
-            <p class="text-center-justify"> {{ uniqueChapter.content }}</p>
+            <p class="card-body publishChapterSingleCard-body text-center-justify"> {{ uniqueChapter.content }}</p>
+        </div>
+        <div class="text-center">
+            {% if chapterNumber <= 1 and chapterNumber is defined %}            
+                <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}" class="btn nextChapter-btn my-2">Chapitre Suivant</a>
+            {% else %}
+                <a href="../public/index.php?page=single&chapterId={{ chapterNumber - 1 }}" class="btn previousChapter-btn my-2">Chapitre précédent</a>
+                <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}"class="btn nextChapter-btn my-2">Chapitre Suivant</a> 
+            {% endif %}  
         </div>
         {% if isAdmin %}
-            <div class="text-center">
-                <a href="../public/index.php?page=adminView" class="btn btn-info my-2">Retour à l'accueil</a>
+            <div class="singlePage-return text-center">
+                <a href="../public/index.php?page=adminView" class=" my-2">Retour à l'accueil</a>
             </div>  
         {% else %}
-            <div class="text-center">
-                <a href="../public/index.php" class="btn btn-info my-2">Retour à l'accueil</a>
+            <div class="singlePage-return text-center">
+                <a href="../public/index.php" class="my-2">Retour à l'accueil</a>
             </div>
         {% endif %}
     </div>

@@ -2,33 +2,43 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a href="../public/index.php?page=adminView"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item active">
-                    <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
-                </li>
-                <li>
-                    <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
-                </li>    
-                <li>
-                    <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
-                </li>
-                <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
-            </ul>
+        <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarmain">
+        <ul class="navbar-nav text-uppercase mr-auto">
+            <li class="nav-item">
+                <a href="../public/index.php?page=adminView#publishChapter" class="nav-link">Chapitres publiés</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php?page=adminView#pendingChapter" class="nav-link">Chapitres en attente</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php?page=adminView#commentModeration" class="nav-link">Modération</a>
+            </li>
+        </ul>
+        <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
     {% else %}
-        <a href="../public/index.php"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item active">
-                    <a href="../public/index.php#publishChapter" class="navbar-nav-link">Accéder aux chapitres</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../public/index.php#about" class="navbar-nav-link">A propos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../public/index.php?page=contact" class="navbar-nav-link">Contact</a>
-                </li>
-                <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
-            </ul>
+        <a class="navbar-brand" href="../public/index.php"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse show" id="navbarmain">
+        <ul class="navbar-nav text-uppercase mr-auto">
+            <li class="nav-item">
+                <a href="../public/index.php#about" class="nav-link ">A propos</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php#publishChapter" class="nav-link ">Accéder aux chapitres</a>
+            </li>
+            <li class="nav-item">
+                <a href="../public/index.php?page=contact" class="nav-link ">Contact</a>
+            </li>
+        </ul>
+        <div class="text-center">
+            <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+        </div>
     {% endif %}
 {% endblock  navbarContent %}
 
@@ -52,12 +62,12 @@
                 <input type="email" class="form-control" id="email" name="email">
                 <label for="messageContent">Votre message</label>
                 <textarea type="text" class="form-control" id="messageContent" name="messageContent" rows="10"></textarea>
-                <button type="submit" class="btn btn-primary my-2">Envoyer</button>
+                <button type="submit" class="btn contactForm-btn my-2">Envoyer</button>
             </div>
         </form>
     </div>
     <div class="text-center">
-        <a href="../public/index.php" >Retour à l'accueil</a>
+        <a href="../public/index.php" class="contactForm-return">Retour à l'accueil</a>
     </div>
 
 {% endblock main %}
