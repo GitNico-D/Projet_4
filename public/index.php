@@ -27,62 +27,65 @@ try {
     if (array_key_exists("page", $_GET) && isset($_GET["page"]) && is_string($_GET["page"])) {
         switch ($_GET["page"]) 
         {
-            case 'single':
-                // Get PageIx from $_GET
-                $pageIx = RouterHelper::getPageIx($_GET);
-                // $commentId = RouterHelper::getCommentId($_GET);
+            case 'createChapter':
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
+                $chapterController->createChapter($isAdmin);
+            break;
+            case 'readChapter':
+            $pageIx = RouterHelper::getPageIx($_GET);
+            // $commentId = RouterHelper::getCommentId($_GET);
+            $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
+            $chapterId = RouterHelper::getChapterId($_GET);
+            $chapterController->readChapter($chapterId, $isAdmin);
+            break;            
+            case "updateChapter":
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);                
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->updateChapter($chapterId, $isAdmin);
+            break;
+            case 'deleteChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                // var_dump($_GET["page"]);
-                $chapterController->single($chapterId, $isAdmin);
-                break;
-                case 'addNewChapter':
-                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-                    $chapterController->addNewChapter($isAdmin);
-                break;
-                case "modifyChapter":
-                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);                
-                    $chapterId = RouterHelper::getChapterId($_GET);
-                    $chapterController->modifyChapter($chapterId, $isAdmin);
-                break;
-                case "applyChapterModification":
-                    // $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);   
-                    $chapterId = RouterHelper::getChapterId($_GET);
-                    $chapterController->applyChapterModification($chapterId );
-                case 'deleteChapter':
-                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-                    $chapterId = RouterHelper::getChapterId($_GET);
-                    $chapterController->deleteChapter($chapterId, $isAdmin);
-                break;
-                case 'publishChapter':
-                    $chapterId = RouterHelper::getChapterId($_GET);
-                    $chapterController->publishChapter($chapterId);
-                break;
-                case 'getLogin':
-                    $loginsController->getLogin();  
-                break;
-                case 'getLogout':
-                    $loginsController->getLogout();
-                break;
-                case 'addComment':
-                    $chapterId = RouterHelper::getChapterId($_GET);
-                    $chapterController->addComment($chapterId);
-                break;
-                case "reportComment":
-                    $commentId = RouterHelper::getCommentId($_GET);
-                    $chapterId = RouterHelper::getChapterId($_GET);
-                    $commentController->addReportedComment($chapterId, $commentId);
-                break;
-                case "adminView":
-                    $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-                    $loginsController->returnAdminView($isAdmin);  
-                break; 
-                case "contact":
-                    $loginsController->getContacted();  
-                break;         
-                default:
-                    throw new Exception('Page introuvable');
-                break;
+                $chapterController->deleteChapter($chapterId, $isAdmin);
+            break;
+            case "applyUpdateChapter":
+                // $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);   
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->applyUpdateChapter($chapterId);
+            break;            
+            case 'publishChapter':
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->publishChapter($chapterId);
+            break;
+            case 'getLogin':
+                $loginsController->getLogin();  
+            break;
+            case 'getLogout':
+                $loginsController->getLogout();
+            break;
+            case 'createComment':
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $commentController->createComment($chapterId);
+            break;
+            case 'deleteComment':
+                $commentId = RouterHelper::getCommentId($_GET);
+                $commentController->deleteComment($commentId);
+            break;
+            case "reportComment":
+                $commentId = RouterHelper::getCommentId($_GET);
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $commentController->addReportedComment($chapterId, $commentId);
+            break;
+            case "adminView":
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
+                $loginsController->returnAdminView($isAdmin);  
+            break; 
+            case "contact":
+                $loginsController->getContacted();  
+            break;         
+            default:
+                throw new Exception('Page introuvable');
+            break;
             }
         }
         else
