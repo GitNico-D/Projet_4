@@ -2,19 +2,24 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-    <a href="../public/index.php?page=adminView"><img src="../public/img/logo-JF-v3.png" alt=""></a>
-        <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item active">
-                <a href="../public/index.php?page=adminView#publishChapter" class="navbar-nav-link">Chapitres publiés</a>
-            </li>
-            <li>
-                <a href="../public/index.php?page=adminView#pendingChapter" class="navbar-nav-link">Chapitres en attente</a>
-            </li>    
-            <li>
-                <a href="../public/index.php?page=adminView#commentModeration" class="navbar-nav-link">Modération</a>
-            </li>
-            <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
-        </ul>
+    <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav text-uppercase mr-auto">
+                <li class="nav-item">
+                    <a href="../public/index.php?page=adminView#publishChapter" class="nav-link">Chapitres publiés</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../public/index.php?page=adminView#pendingChapter" class="nav-link">Chapitres en attente</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../public/index.php?page=adminView#commentModeration" class="nav-link">Modération</a>
+                </li>
+            </ul>
+        </div>
+        <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
     {% endif %}    
 {% endblock navbarContent %}
 
@@ -27,7 +32,7 @@
     </div>
 {% endblock %}
 
-{% block main %}      
+{% block main %} 
     <div class="container text-center">
         <form action="index.php?page=addNewChapter" method="post">
             <div class="form-group">
@@ -36,14 +41,14 @@
                 <label for="chapterTitle">Titre du chapitre</label>
                 <input type="text" class="form-control" id="chapterTitle" name="chapterTitle">
                 <label for="chapterContent">Contenu du chapitre</label>
-                <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="10"></textarea>
-                <button type="submit" class="btn btn-primary my-2">Enregistrer chapitre</button>
+                <textarea type="text" class="form-control" id="chapterContent" name="chapterContent" rows="10">Ecrire votre texte</textarea>
+                <button type="submit" class="btn addChapter-btn my-2">Enregistrer chapitre</button>
             </div>
         </form>
     </div>
     {% if isAdmin %}
     <div class="text-center">
-        <a href="../public/index.php?page=adminView" >Retour à la page d'administration</a>
+        <a href="../public/index.php?page=adminView" class="addChapter-link">Retour à la page d'administration</a>
     </div>
     {% endif %}
 
