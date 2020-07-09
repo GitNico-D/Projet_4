@@ -1,5 +1,7 @@
 @import '../css/variables.scss';
 
+///// COMMUN CSS ////
+
 .bold
 {
     font-weight: bold;
@@ -84,8 +86,127 @@
 .collapse .show 
 {
     margin-top: 15rem;
-                padding: 0;
+    padding: 0;
 }
+
+.page-title
+{
+    margin-top: 90px;    
+    margin-bottom: 2rem;
+    padding: 2rem;
+    &-img 
+    {
+        width: 100%;
+        max-width: 1920px;
+        margin: auto;
+    }
+    &-jumbotron
+    {
+        background-color: transparent;
+        margin-bottom: unset;
+    }
+    &-text
+    {
+        color: black;
+        font-size: 3rem;
+        font-style: italic;
+    }
+    &-h1 
+    {
+        font-size: 3.5rem;
+        color: white;
+    }
+    span
+    {
+        color:$yellow;
+        font-style: italic;
+    }
+    a
+    {
+        color: $yellow;
+    }
+}
+
+//// SINGLE PAGE ////
+
+.nextChapter, .previousChapter-btn
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    &-return
+    {
+        color: black;
+        &:hover
+        {
+            color: $yellow;
+            text-decoration: none;
+        }
+    }
+}
+
+.reporting
+{
+    &-button
+    {
+        margin: auto;
+        margin-bottom: 1rem;
+        width: 50%;
+        &-custom
+        {
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.singlePage
+{
+    &-return
+    {
+        padding: 2rem;
+        a
+        {
+            color: black;
+            &:hover
+            {
+                color: $yellow;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.publishChapterSingleCard
+{
+    border: unset;
+    &-header
+    {
+        background-color: unset;
+    }
+    &-body
+    {
+        padding: 3rem 0 3rem 0;
+    }
+}
+
+.singlePageSeparator
+{
+    width: 50%;
+    margin: auto;
+}
+
+//// LOGIN PAGE ////
 
 .form-signin
 {
@@ -164,18 +285,7 @@
     font-size: 16px;
 }
 
-.reporting
-{
-    &-button
-    {
-        margin: auto;
-        margin-bottom: 1rem;
-        width: 50%;
-        &-custom{
-            font-size: 0.75rem;
-        }
-    }
-}
+//// HOME PAGE ////
 
 .main-header
 {
@@ -201,43 +311,6 @@
     &-text
     {
         color: white;
-        font-size: 6rem;
-        font-style: italic;
-    }
-    &-h1 
-    {
-        font-size: 4.5rem;
-        color: white;
-    }
-    span
-    {
-        color:$yellow;
-        font-style: italic;
-    }
-    a
-    {
-        color: $yellow;
-    }
-}
-
-.page-title
-{
-    margin-top: 90px;    
-    margin-bottom: 2rem;
-    &-img 
-    {
-        width: 100%;
-        max-width: 1920px;
-        margin: auto;
-    }
-    &-jumbotron
-    {
-        background-color: transparent;
-        margin-bottom: unset;
-    }
-    &-text
-    {
-        color: black;
         font-size: 6rem;
         font-style: italic;
     }
@@ -375,6 +448,8 @@
     }
 }
 
+//// ADMIN PAGE ////
+
 .main
 {
     &-row
@@ -458,7 +533,6 @@
         }
     }        
 }
-
 
 .writingChapter
 {
@@ -752,6 +826,35 @@
     color: $yellow;
 }
 
+//// CONTACT PAGE ////
+
+.contactForm
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    &-return
+    {
+        color: black;
+        &:hover
+        {
+            color: $yellow;
+            text-decoration: none;
+        }
+    }
+}
+
 
 //// MEDIA QUERRIES ////
 
@@ -766,6 +869,41 @@
         &-h1
         {
             font-size: 2.5rem;
+        }
+    }
+}
+
+
+@media (max-width: 1024px)
+{
+    .navbar
+    {
+        &-brand
+        {
+            display: block;
+            margin: auto;
+        }
+        &-toggler
+        {
+            margin: auto;
+            margin-top: 1rem;
+            display: block;
+        }
+        &-collapse
+        {
+            padding: 0;
+        }
+        &-button
+        {
+            margin: auto;
+        }
+        .nav-link
+        {
+            margin: 0;
+        }
+        .text-uppercase
+        {
+            text-align: center;
         }
     }
 }
@@ -844,6 +982,10 @@
 {
     .main-header
     {
+        &-margintop
+        {
+            margin-top: 5rem;
+        }
         &-text
         {
             font-size: 2rem;
@@ -851,6 +993,44 @@
         &-h1
         {
             font-size: 1.25rem;
+        }
+    }
+
+    .page-title
+    {
+        &-text
+        {
+            font-size: 2rem;
+        }
+        &-h1
+        {
+            font-size: 2.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+    }
+}
+
+
+@media (max-width: 340px)
+{
+    .main-header
+    {
+        &-margintop
+        {
+            margin-top: 8rem;
+        }
+    }
+
+    .page-title
+    {
+        &-text
+        {
+            font-size: 1rem;
+        }
+        h1
+        {
+            font-size: 1.5rem;
         }
     }
 }
