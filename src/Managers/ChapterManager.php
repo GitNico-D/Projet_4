@@ -61,17 +61,20 @@ class ChapterManager extends DAO
         return $affectedLines;
     }
 
-    public function modifyChapterById($modifiedChapterTitle, $modifiedChapterContent, $chapterPublished, $chapterId)
+    public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId)
     {
+        var_dump($updatedChapterTitle);
+        var_dump($updatedChapterContent);
+        var_dump($chapterPublished);
         var_dump($chapterId);
-        $sqlRequest = 'UPDATE chapter SET title= :chapterTitle, content= :chapterContent, updateDate= NOW(), published= :chapterPublished WHERE id= :chapterId';
-        // $updatedLines = $this->createQuery($sqlRequest);
+        $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished WHERE id = :chapterId';
         $updatedLines = $this->createQuery($sqlRequest, array(   
-                'chapterTitle'=>$modifiedChapterTitle,
-                'chapterContent'=>$modifiedChapterContent,
-                'chapterPublished'=>$chapterPublished,
+                'updatedChapterTitle' => $updatedChapterTitle,
+                'updatedChapterContent' => $updatedChapterContent,
+                'chapterPublished' => $chapterPublished,
                 'id' => $chapterId
                 ));
+        var_dump($updatedLines);
         return $updatedLines;
     }
 

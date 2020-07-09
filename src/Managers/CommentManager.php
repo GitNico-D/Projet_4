@@ -35,7 +35,7 @@ class CommentManager extends DAO
         return $commentIdList;
     }
 
-    public function addCommentOnChapter($commentAuthor, $commentTitle, $commentContent, $chapterId)
+    public function addComment($commentAuthor, $commentTitle, $commentContent, $chapterId)
     {
         $sqlRequest = 'INSERT INTO comments(author, title, content, createdDate, updatedDate, chapterId) VALUES (:commentAuthor, :commentTitle, :commentContent, NOW(), NOW(), :chapterId)';
         $commentAdded = $this->createQuery($sqlRequest, array(
@@ -47,9 +47,23 @@ class CommentManager extends DAO
         return $commentAdded;
     }
 
+    public function deleteCommentById($commentId)
+    {
+        $sqlRequest = 'DELETE FROM comments WHERE id = ?';
+        $this->createQuery($sqlRequest, [$commentId]);
+    }
+
+    public function totalChapterCommets($chapterId)
+    {
+        $sqlRequest = 'SELECT COUNT(*) as totalComments FROM comments WHERE chapterId = ?';
+        $result = $this->createQuery($sqlRequest, [$chapterId]);
+        $totalComments = $result->fetch();
+        $result->closeCursor();
+        return $totalComments['totalComments'];
+    }
+
     public function addReport($commentId)
     {
-        var_dump($commentId);
         $sqlRequest = 'INSERT INTO reporting(reportingDate, commentId) VALUES (NOW(), :commentId)';
         $this->createQuery($sqlRequest, array('commentId' => $commentId));
     }

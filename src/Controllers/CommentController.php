@@ -6,7 +6,7 @@ use App\src\Core\Controller;
 
 class CommentController extends Controller
 {
-    public function addComment($chapterId)
+    public function createComment($chapterId)
     {
         var_dump($chapterId);
         if(!empty($_POST['commentAuthor']) && !empty($_POST['commentTitle']))
@@ -31,7 +31,13 @@ class CommentController extends Controller
         {   
             echo 'Veuillez remplir les champs !';
         }
-        header('location: ../public/index?page=single&chapterId=' . $chapterId);
+        header('location: ../public/index?page=readChapter&chapterId=' . $chapterId);
+    }
+
+    public function deleteComment($commentId)
+    {
+        $this->commentManager->deleteCommentById($commentId);
+        header('location: ../public/index.php?page=adminView');
     }
 
     public function addReportedComment($chapterId, $commentId) 
