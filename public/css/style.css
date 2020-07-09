@@ -110,7 +110,30 @@
   color: #FED036;
 }
 
-.nextChapter-btn, .previousChapter-btn-btn {
+.savePublish {
+  display: inline;
+  margin: auto;
+}
+
+.savePublish-btn {
+  background-color: #28a745;
+  border: 1px solid #28a745;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  color: white;
+}
+
+.savePublish-btn:hover {
+  color: #28a745;
+  background-color: white;
+  border: 1px solid #28a745;
+}
+
+.saveDraft {
+  display: inline;
+}
+
+.saveDraft-btn {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
@@ -118,59 +141,147 @@
   color: white;
 }
 
-.nextChapter-btn:hover, .previousChapter-btn-btn:hover {
+.saveDraft-btn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
 
-.nextChapter-return, .previousChapter-btn-return {
+.nextChapter-btn, .previousChapter-btn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  color: white;
+}
+
+.nextChapter-btn:hover, .previousChapter-btn:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
+.nextChapter-return, .previousChapter-return {
   color: black;
 }
 
-.nextChapter-return:hover, .previousChapter-btn-return:hover {
+.nextChapter-return:hover, .previousChapter-return:hover {
   color: #FED036;
   text-decoration: none;
 }
 
-.reporting-button {
-  margin: auto;
-  margin-bottom: 1rem;
-  width: 50%;
-}
-
-.reporting-button-custom {
-  font-size: 0.75rem;
-}
-
-.singlePage-return {
+.singlePage-return, .modifyPage-return {
   padding: 2rem;
 }
 
-.singlePage-return a {
+.singlePage-return a, .modifyPage-return a {
   color: black;
 }
 
-.singlePage-return a:hover {
+.singlePage-return a:hover, .modifyPage-return a:hover {
   color: #FED036;
   text-decoration: none;
 }
 
-.publishChapterSingleCard {
+.publishChapterSingleCard, .modifyChapterCard {
   border: unset;
 }
 
-.publishChapterSingleCard-header {
+.publishChapterSingleCard-header, .modifyChapterCard-header {
   background-color: unset;
 }
 
-.publishChapterSingleCard-body {
+.publishChapterSingleCard-body, .modifyChapterCard-body {
   padding: 3rem 0 3rem 0;
 }
 
 .singlePageSeparator {
   width: 50%;
   margin: auto;
+}
+
+.commentCard-header {
+  background-color: unset;
+  padding-left: unset;
+}
+
+.commentCard-content {
+  margin: 0;
+  padding: 0.5rem 0 0 1.25rem;
+}
+
+.commentSeparator {
+  width: 50%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.leaveComment-form {
+  width: 80%;
+  margin: auto;
+}
+
+.leaveComment-title {
+  padding: 1rem;
+}
+
+.leaveComment-btn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  color: white;
+}
+
+.leaveComment-btn:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
+.reporting-comment {
+  padding: 0.75rem 0 0 1.25rem;
+}
+
+.reporting-link {
+  color: #dc3454;
+}
+
+.reporting-link:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.reporting-icon {
+  margin-left: 1rem;
+  color: #dc3454;
+}
+
+.reporting-icon:hover {
+  color: black;
+}
+
+.addChapter-btn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  color: white;
+}
+
+.addChapter-btn:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
+.addChapter-link {
+  color: black;
+}
+
+.addChapter-link:hover {
+  color: #FED036;
+  text-decoration: none;
 }
 
 .form-signin {
@@ -429,6 +540,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-top: 7rem;
 }
 
 .adminHeader-container {
@@ -770,6 +882,18 @@
   text-decoration: none;
 }
 
+.error404-btn, .error500-btn {
+  background-color: #FED036;
+  border: 1px solid #FED036;
+  color: white;
+}
+
+.error404-btn:hover, .error500-btn:hover {
+  color: #FED036;
+  background-color: white;
+  border: 1px solid #FED036;
+}
+
 @media (max-width: 1024px) {
   .main-header-text {
     font-size: 4rem;
@@ -860,6 +984,14 @@
     font-size: 2.5rem;
     margin-top: 1.5rem;
     text-align: center;
+  }
+  .leaveComment-title {
+    text-align: center;
+  }
+  .leaveComment-form {
+    padding: 0;
+    width: 100%;
+    margin: auto;
   }
 }
 

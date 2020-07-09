@@ -127,9 +127,50 @@
     }
 }
 
+//// MODIFFY CHAPTER PAGE ////
+
+.savePublish
+{
+    display: inline;
+    margin: auto;
+    &-btn
+    {
+        background-color: $green;
+        border: 1px solid $green;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $green;
+            background-color: white;
+            border: 1px solid $green;
+        }
+    }
+}
+
+.saveDraft
+{
+    display: inline;
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
+
 //// SINGLE PAGE ////
 
-.nextChapter, .previousChapter-btn
+.nextChapter, .previousChapter
 {
     &-btn
     {
@@ -156,21 +197,7 @@
     }
 }
 
-.reporting
-{
-    &-button
-    {
-        margin: auto;
-        margin-bottom: 1rem;
-        width: 50%;
-        &-custom
-        {
-            font-size: 0.75rem;
-        }
-    }
-}
-
-.singlePage
+.singlePage, .modifyPage
 {
     &-return
     {
@@ -187,7 +214,7 @@
     }
 }
 
-.publishChapterSingleCard
+.publishChapterSingleCard, .modifyChapterCard
 {
     border: unset;
     &-header
@@ -204,6 +231,110 @@
 {
     width: 50%;
     margin: auto;
+}
+
+.commentCard
+{
+    &-header
+    {
+        background-color: unset;
+        padding-left: unset;
+    }
+    &-content
+    {
+        margin: 0;
+        padding: 0.5rem 0 0 1.25rem;
+    }
+}
+
+.commentSeparator
+{
+    width: 50%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.leaveComment
+{
+    &-form
+    {
+        width: 80%;
+        margin: auto;
+    }
+    &-title
+    {
+        padding: 1rem;
+    }
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
+
+.reporting
+{
+    &-comment
+    {
+        padding: 0.75rem 0 0 1.25rem;
+    }
+    &-link
+    {
+        // text-decoration: none;
+        color: $red;
+        &:hover
+        {
+            color: black;
+            text-decoration: none;
+        }
+    }
+    &-icon
+    {
+        margin-left: 1rem;
+        color: $red;
+        &:hover
+        {
+            color: black;
+        }
+    }
+}
+
+//// ADDCHAPTER PAGE ////
+
+.addChapter
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    &-link
+    {   
+        color: black;
+        &:hover
+        {
+            color: $yellow;
+            text-decoration: none;
+        }
+    }
 }
 
 //// LOGIN PAGE ////
@@ -455,7 +586,8 @@
     &-row
     {
         display: flex; 
-        flex-wrap: wrap;    
+        flex-wrap: wrap; 
+        margin-top: 7rem;   
     }
 
 }
@@ -794,33 +926,6 @@
     }
 }
 
-// .publishChapterAdmin
-// {
-//     &-title
-//     {
-//         background-color: $green;
-//         color: white;
-//     }
-// }
-
-// .pendingChapterAdmin
-// {
-//     &-title
-//     {
-//         background-color: $yellow;
-//         color: white;
-//     }
-// }
-
-// .commentModerationAdmin
-// {
-//     &-title
-//     {
-//         background-color: $red;
-//         color: white;
-//     }
-// }
-
 .fa-house-user, .fa-book, .fa-comment, .fa-book-reader
 {
     color: $yellow;
@@ -855,6 +960,23 @@
     }
 }
 
+//// ERROR PAGE ////
+
+.error404, .error500
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
 
 //// MEDIA QUERRIES ////
 
@@ -1007,6 +1129,20 @@
             font-size: 2.5rem;
             margin-top: 1.5rem;
             text-align: center;
+        }
+    }
+
+    .leaveComment
+    {
+        &-title
+        {
+            text-align: center;
+        }
+        &-form
+        {
+            padding: 0;
+            width: 100%;
+            margin: auto;
         }
     }
 }
