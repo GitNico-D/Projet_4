@@ -32,11 +32,11 @@ try {
                 $chapterController->createChapter($isAdmin);
             break;
             case 'readChapter':
-            $pageIx = RouterHelper::getPageIx($_GET);
-            // $commentId = RouterHelper::getCommentId($_GET);
-            $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-            $chapterId = RouterHelper::getChapterId($_GET);
-            $chapterController->readChapter($chapterId, $isAdmin);
+                // $pageIx = RouterHelper::getPageIx($_GET);
+                // $commentId = RouterHelper::getCommentId($_GET);
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
+                $chapterId = RouterHelper::getChapterId($_GET);
+                $chapterController->readChapter($chapterId, $isAdmin);
             break;            
             case "updateChapter":
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);                
@@ -74,14 +74,14 @@ try {
             case "reportComment":
                 $commentId = RouterHelper::getCommentId($_GET);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $commentController->addReportedComment($chapterId, $commentId);
+                $commentController->reportComment($chapterId, $commentId);
             break;
             case "adminView":
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $loginsController->returnAdminView($isAdmin);  
             break; 
             case "contact":
-                $loginsController->getContacted();  
+                $loginsController->toBeContacted();  
             break;         
             default:
                 throw new Exception('Page introuvable');
