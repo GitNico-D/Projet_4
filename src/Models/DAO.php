@@ -29,7 +29,7 @@ abstract class DAO
         }
     }
 
-    public function createQuery($sql, $parameters = null)
+    public function createQuery($sql, $parameters = NULL)
     {
         if ($parameters)
         {
