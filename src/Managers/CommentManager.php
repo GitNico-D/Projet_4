@@ -31,7 +31,6 @@ class CommentManager extends DAO
             $commentIdList [] = $comment['id'];
         }
         $result->closeCursor();
-        var_dump($commentIdList);
         return $commentIdList;
     }
 
@@ -53,7 +52,7 @@ class CommentManager extends DAO
         $this->createQuery($sqlRequest, [$commentId]);
     }
 
-    public function totalChapterCommets($chapterId)
+    public function totalChapterComments($chapterId)
     {
         $sqlRequest = 'SELECT COUNT(*) as totalComments FROM comments WHERE chapterId = ?';
         $result = $this->createQuery($sqlRequest, [$chapterId]);
@@ -64,6 +63,7 @@ class CommentManager extends DAO
 
     public function addReport($commentId)
     {
+        var_dump($commentId);
         $sqlRequest = 'INSERT INTO reporting(reportingDate, commentId) VALUES (NOW(), :commentId)';
         $this->createQuery($sqlRequest, array('commentId' => $commentId));
     }
@@ -94,7 +94,6 @@ class CommentManager extends DAO
             }
             $result->closeCursor();
         }
-        var_dump($reportList);
         return $reportList;   
     }
 
@@ -114,11 +113,11 @@ class CommentManager extends DAO
 
     public function getTotalReports($commentId)
     {
+        var_dump($commentId);
         $sqlRequest = 'SELECT COUNT(*) AS totalReports FROM reporting WHERE commentId = ?';
         $result = $this->createQuery($sqlRequest, [$commentId]);
         $totalReports = $result->fetch();
-        $result->closeCursor();
-        // var_dump($totalReports);
+        var_dump($totalReports);
         return $totalReports['totalReports'];
     }
 }

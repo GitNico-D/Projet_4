@@ -22,7 +22,7 @@ class CommentController extends Controller
             }
             else 
             {
-                header('location: index.php');
+                header('location: index');
                 
                 echo('Chapitre ajouté');
             }
@@ -31,28 +31,27 @@ class CommentController extends Controller
         {   
             echo 'Veuillez remplir les champs !';
         }
-        header('location: ../public/index?page=readChapter&chapterId=' . $chapterId);
+        header('location: readChapter/' . $chapterId);
     }
 
     public function deleteComment($commentId)
     {
         $this->commentManager->deleteCommentById($commentId);
-        header('location: ../public/index.php?page=adminView');
+        header('location: adminView');
     }
 
-    public function addReportedComment($chapterId, $commentId) 
+    public function reportComment($chapterId, $commentId) 
     {
         // var_dump($commentId);
         $reportedComment = $this->commentManager->addReport($commentId);
-        $totalReports = $this->commentManager->getTotalReports($commentId);
-        var_dump($totalReports);
+        $this->commentManager->getTotalReports($commentId);
         if ($reportedComment = false)
         {
             throw new Exception('Impossible de signaler le commentaire');
         }
         else
         {
-            header('location: ../public/index?page=single&chapterId=' . $chapterId);
+            header('location: readChapter/' . $chapterId);
         }
     }
 

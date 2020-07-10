@@ -20,14 +20,13 @@ class ChapterController extends Controller
             $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
             $newChapterContent = htmlspecialchars($_POST['chapterContent']);
             $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent);
-            // var_dump($affectedLines);
             if ($affectedLines === false)
             {
                 throw new Exception ('Impossible d\'ajouter le chapitre');
             }
             else 
             {
-                header('location: ../public/index.php?page=adminView');
+                header('location: adminView');
                 echo('Chapitre ajouté');
             }
         }
@@ -50,14 +49,14 @@ class ChapterController extends Controller
         $commentIdList = $this->commentManager->getCommentIdList($chapterId);
         // $totalReportsList = $this->commentManager->getTotalReportsComments($commentIdList);
         // $reportingList = $this->commentManager->getReportComments($commentIdList);
-        // $totalReports = $this->commentManager->getTotalReports($reportingList);
+        // $totalReports = $this->commentManager->getTotalReports();
         // var_dump($reportingList);
         // var_dump ($totalReports);
         echo $this->twig->render('SingleView.twig', 
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
-            'totalReports' => $this->commentManager->getCommentsReportsCount($commentIdList),
-            'totalComments' => $this->commentManager->totalChapterCommets($chapterId),
+            // 'totalReports' => $this->commentManager->getTotalReports(),
+            'totalComments' => $this->commentManager->totalChapterComments($chapterId),
             'chapterNumber' => $chapterId,
             'isAdmin' => $isAdmin]
         );
@@ -81,13 +80,13 @@ class ChapterController extends Controller
     public function deleteChapter($chapterId, $isAdmin)
     {
         $this->chapterManager->deleteChapterById($chapterId);
-        header('location: ../public/index.php?page=adminView');
+        header('location: adminView');
     }
 
     public function publishChapter($chapterId)
     {
         $this->chapterManager->publishedChapter($chapterId);
-        header('location: ../public/index.php?page=adminView');
+        header('location: adminView');
     }
     
     public function applyUpdateChapter($chapterId)
@@ -102,6 +101,8 @@ class ChapterController extends Controller
         // {
             if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
             {
+                var_dump($updatedLines);
+                echo('Chapitre modifié et publier');
                 // $updatedLines = 
                 // if ($updatedLines === false)
                 // {
@@ -109,13 +110,7 @@ class ChapterController extends Controller
                 // }
                 // else 
                 // {
-                    // header('location: ../public/index.php?page=readChapter&chapterId=' . $chapterId);
-                    // echo $this->twig->render('SingleView.twig', 
-                    //     ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
-                    //     'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
-                    //     'chapterNumber' => $chapterId]);
-                    var_dump($updatedLines);
-                    echo('Chapitre modifié et publier');
+                    // header('location: readChapter/' . $chapterId);
                 // }
             } 
         // }

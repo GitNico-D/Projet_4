@@ -25,7 +25,6 @@ class LoginsController extends Controller
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
                 // $commentIdList = $this->commentManager->getCommentIdList($chapterId);
                 // $reportList = $this->commentManager->getReportComments($commentIdList);
-                // var_dump($reportList);
                 $isAdmin = true;
                 echo $this->twig->render('AdminView.twig', 
                     ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
@@ -39,6 +38,7 @@ class LoginsController extends Controller
             else
             {
                 echo('Email ou mot de passe invalide');
+                // header('Location : /index');
                 echo $this->twig->render('LoginsView.twig');
             }                
         }
@@ -53,7 +53,7 @@ class LoginsController extends Controller
     {
         $_SESSION = array();
         session_destroy();
-        header ('Location: ../public/index.php');
+        header ('Location: index');
     }
     
     public function returnAdminView($isAdmin)
@@ -68,7 +68,7 @@ class LoginsController extends Controller
         );
     }
 
-    public function getContacted()
+    public function toBeContacted()
     {
         echo $this->twig->render('ContactView.twig');
     } 
