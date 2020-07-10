@@ -2,43 +2,43 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <a class="navbar-brand" href="adminView"><img src="img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav text-uppercase mr-auto">
                 <li class="nav-item">
-                    <a href="../public/index.php?page=adminView#publishChapter" class="nav-link">Chapitres publiés</a>
+                    <a href="#publishChapter" class="nav-link">Chapitres publiés</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../public/index.php?page=adminView#pendingChapter" class="nav-link">Chapitres en attente</a>
+                    <a href="#pendingChapter" class="nav-link">Chapitres en attente</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../public/index.php?page=adminView#commentModeration" class="nav-link">Modération</a>
+                    <a href="#commentModeration" class="nav-link">Modération</a>
                 </li>
             </ul>
         </div>
-        <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
+        <a href="getLogout" class="btn navbar-button">Déconnexion</a>
     {% else %}
-        <a class="navbar-brand" href="../public/index.php"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <a class="navbar-brand" href="index.php"><img src="img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
         <div class="collapse navbar-collapse show" id="navbarmain">
         <ul class="navbar-nav text-uppercase mr-auto">
             <li class="nav-item">
-                <a href="../public/index.php#about" class="nav-link ">A propos</a>
+                <a href="#about" class="nav-link ">A propos</a>
             </li>
             <li class="nav-item">
-                <a href="../public/index.php#publishChapter" class="nav-link ">Accéder aux chapitres</a>
+                <a href="#publishChapter" class="nav-link ">Accéder aux chapitres</a>
             </li>
             <li class="nav-item">
-                <a href="../public/index.php?page=contact" class="nav-link ">Contact</a>
+                <a href="contact" class="nav-link ">Contact</a>
             </li>
         </ul>
         <div class="text-center">
-            <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+            <a href="getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
         </div>
     {% endif %}
 {% endblock  navbarContent %}
@@ -58,7 +58,7 @@
         <div class="card my-4 publishChapterSingleCard">
             <p class="card-header float-right publishChapterSingleCard-header">
             Publié le 
-                <span class="font-italic bold">{{ uniqueChapter.createDate }}</span> 
+                <span class="font-italic bold">{{ uniqueChapter.createDate | date("m/d/Y \à H:i:s") }}</span> 
                 par 
                 <span class="font-italic bold">{{ uniqueChapter.author }}</span>
             </p>
@@ -66,19 +66,19 @@
         </div>
         <div class="text-center">
             {% if chapterNumber <= 1 and chapterNumber is defined %}            
-                <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}" class="btn nextChapter-btn my-2">Chapitre Suivant</a>
+                <a href="readChapter/{{ chapterNumber + 1 }}" class="btn nextChapter-btn my-2">Chapitre Suivant</a>
             {% else %}
-                <a href="../public/index.php?page=single&chapterId={{ chapterNumber - 1 }}" class="btn previousChapter-btn my-2">Chapitre précédent</a>
-                <a href="../public/index.php?page=single&chapterId={{ chapterNumber + 1 }}"class="btn nextChapter-btn my-2">Chapitre Suivant</a> 
+                <a href="readChapter/{{ chapterNumber - 1 }}" class="btn previousChapter-btn my-2">Chapitre précédent</a>
+                <a href="readChapter/{{ chapterNumber + 1 }}"class="btn nextChapter-btn my-2">Chapitre Suivant</a> 
             {% endif %}  
         </div>
         {% if isAdmin %}
             <div class="singlePage-return text-center">
-                <a href="../public/index.php?page=adminView" class=" my-2">Retour à l'accueil</a>
+                <a href="adminView" class=" my-2">Retour à l'accueil</a>
             </div>  
         {% else %}
             <div class="singlePage-return text-center">
-                <a href="../public/index.php" class="my-2">Retour à l'accueil</a>
+                <a href="index" class="my-2">Retour à l'accueil</a>
             </div>
         {% endif %}
     </div>
@@ -91,14 +91,14 @@
                 <div class="my-4 commentCard">
                     <p class="text-left card-header commentCard-header">
                         <span class="font-italic bold">{{ comment.author }}</span>
-                        posté le <span class="font-italic">{{ comment.createdDate }}</span> 
+                        posté le <span class="font-italic">{{ comment.createdDate | date("m/d/Y \à H:i:s") }}</span> 
                         <span class="float-right">totalReports = {{ totalReports }}</span>
                     </p>
                     <p class="card-body text-left commentCard-content">
                         {{ comment.content }}
                     </p>
                     <div class="reporting-comment text-left">
-                        <a href="../public/index.php?page=reportComment&chapterId={{ uniqueChapter.id }}&commentId={{ comment.id }}"
+                        <a href="reportComment/{{ uniqueChapter.id }}&commentId={{ comment.id }}"
                             class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon"></i></a>
                     </div>
                 </div>

@@ -2,54 +2,54 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a class="navbar-brand" href="../public/index.php?page=adminView"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <a class="navbar-brand" href="adminView"><img src="img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav text-uppercase mr-auto">
                 <li class="nav-item">
-                    <a href="../public/index.php?page=adminView#publishChapter" class="nav-link">Chapitres publiés</a>
+                    <a href="#publishChapter" class="nav-link">Chapitres publiés</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../public/index.php?page=adminView#pendingChapter" class="nav-link">Chapitres en attente</a>
+                    <a href="#pendingChapter" class="nav-link">Chapitres en attente</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../public/index.php?page=adminView#commentModeration" class="nav-link">Modération</a>
+                    <a href="#commentModeration" class="nav-link">Modération</a>
                 </li>
             </ul>
         </div>
-        <a href="../public/index.php?page=getLogout" class="btn navbar-button">Déconnexion</a>
+        <a href="getLogout" class="btn navbar-button">Déconnexion</a>
     {% else %}
-        <a class="navbar-brand" href="../public/index.php"><img src="../public/img/logo-homepage-resize.png" alt=""></a>
+        <a class="navbar-brand" href="index"><img src="img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
         <div class="collapse navbar-collapse show" id="navbarmain">
         <ul class="navbar-nav text-uppercase mr-auto">
             <li class="nav-item">
-                <a href="../public/index.php#about" class="nav-link ">A propos</a>
+                <a href="#about" class="nav-link ">A propos</a>
             </li>
             <li class="nav-item">
-                <a href="../public/index.php#publishChapter" class="nav-link ">Accéder aux chapitres</a>
+                <a href="#publishChapter" class="nav-link ">Accéder aux chapitres</a>
             </li>
             <li class="nav-item">
-                <a href="../public/index.php?page=contact" class="nav-link ">Contact</a>
+                <a href="contact" class="nav-link ">Contact</a>
             </li>
         </ul>
         <div class="text-center">
-            <a href="../public/index.php?page=getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+            <a href="getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
         </div>
     {% endif %}
 {% endblock  navbarContent %}
 
 {% block mainHeader %}
     <div class="main-header-margintop">
-        <img src="../public/img/write.jpg" alt="" class="main-header-img">
+        <img src="img/write.jpg" alt="" class="main-header-img">
     </div>
     <div class="main-header-container container">
         <p class="main-header-text">Bienvenue</p>
-        <h1 class="text-lead main-header-h1">L'aventure <span>"Billet simple pour l'alaska"</span> commence <a href="../public/index.php#publishChapter">ici</a></h1>
+        <h1 class="text-lead main-header-h1">L'aventure <span>"Billet simple pour l'alaska"</span> commence <a href="#publishChapter">ici</a></h1>
     </div>
 {% endblock %}
     
@@ -57,7 +57,7 @@
     <section id="about" class="container about">
         <div class="about-row">
             <div class="col-md-4 ">
-                <img src="../public/img/portrait1.png" class="about-img">
+                <img src="img/portrait1.png" class="about-img">
             </div>
             <div class="col-md-8 about-text">            
                 <h2 class="display-4 about-text-title ">
@@ -95,7 +95,7 @@
                 <div class="col-md-4">
                     <div class="chapter-card my-4">
                         <h4 class="chapter-card-header">{{ chapter.title }}</h4>
-                        <img src="../public/img/img-chapter-1.jpg">
+                        <img src="img/img-chapter-1.jpg">
                         <p class="chapter-card-body text-muted">
                             Publié le 
                             <span class="font-italic">{{ chapter.createDate }}</span> 
@@ -103,7 +103,7 @@
                             <span class="font-italic">{{ chapter.author }}</span>
                         </p>
                         <p class="chapter-card-content text-justify"> {{ chapter.content | slice(0, 150)}}...<p>
-                        <a href="../public/index.php?page=readChapter&chapterId={{ chapter.id }}" class="btn chapter-card-btn my-3">
+                        <a href="readChapter/{{ chapter.id }}" class="btn chapter-card-btn my-3">
                             Lire le chapitre
                         </a>
                     </div>
