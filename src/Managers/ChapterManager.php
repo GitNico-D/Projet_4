@@ -72,7 +72,7 @@ class ChapterManager extends DAO
                 'updatedChapterTitle' => $updatedChapterTitle,
                 'updatedChapterContent' => $updatedChapterContent,
                 'chapterPublished' => $chapterPublished,
-                'id' => $chapterId
+                'chapterId' => $chapterId
                 ));
         var_dump($updatedLines);
         return $updatedLines;

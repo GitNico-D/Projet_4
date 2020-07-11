@@ -22,7 +22,7 @@ class CommentController extends Controller
             }
             else 
             {
-                header('location: index');
+                header('location: /');
                 
                 echo('Chapitre ajouté');
             }
@@ -31,13 +31,13 @@ class CommentController extends Controller
         {   
             echo 'Veuillez remplir les champs !';
         }
-        header('location: readChapter/' . $chapterId);
+        header('location: /readChapter/' . $chapterId);
     }
 
     public function deleteComment($commentId)
     {
         $this->commentManager->deleteCommentById($commentId);
-        header('location: adminView');
+        header('location: /adminView');
     }
 
     public function reportComment($chapterId, $commentId) 
@@ -51,12 +51,12 @@ class CommentController extends Controller
         }
         else
         {
-            header('location: readChapter/' . $chapterId);
+            header('location: /readChapter/' . $chapterId);
         }
     }
 
-    public function allReportedComments()
-    {
-        $reportedCommentList = $this->commentManager->getAllReportedComments();
-    }
+    // public function allReportedComments()
+    // {
+    //     $reportedCommentList = $this->commentManager->getAllReportedComments();
+    // }
 }

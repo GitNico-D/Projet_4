@@ -26,7 +26,7 @@ class ChapterController extends Controller
             }
             else 
             {
-                header('location: adminView');
+                header('location: /adminView');
                 echo('Chapitre ajouté');
             }
         }
@@ -80,13 +80,13 @@ class ChapterController extends Controller
     public function deleteChapter($chapterId, $isAdmin)
     {
         $this->chapterManager->deleteChapterById($chapterId);
-        header('location: adminView');
+        header('location: /adminView');
     }
 
     public function publishChapter($chapterId)
     {
         $this->chapterManager->publishedChapter($chapterId);
-        header('location: adminView');
+        header('location: /adminView');
     }
     
     public function applyUpdateChapter($chapterId)
@@ -94,40 +94,37 @@ class ChapterController extends Controller
         $updatedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
         $updatedChapterContent = htmlspecialchars($_POST['chapterContent']);
         var_dump($_POST);
-        $chapterPublished = true;
-        $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId);
-        $this->readChapter($chapterId);
-        // if(isset($_POST['saveAndPublish']))
-        // {
-            if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
+        if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
+        {
+            if(isset($_POST['saveAndPublish']))
             {
-                var_dump($updatedLines);
-                echo('Chapitre modifié et publier');
-                // $updatedLines = 
-                // if ($updatedLines === false)
-                // {
-                //     throw new Exception('Impossible de modifier le chapitre');
-                // }
-                // else 
-                // {
-                    // header('location: readChapter/' . $chapterId);
-                // }
+                $chapterPublished = true;
+                $updatedLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId);
+                if ($updatedLines === false)
+                {
+                    echo('Chapitre modifié et publier');
+                        throw new Exception('Impossible de modifier le chapitre');
+                }
+                else 
+                {
+                    echo('Chapitre modifié et publier');
+                    header('location: /readChapter/' . $chapterId);
+                }
             } 
-        // }
-        // elseif (isset($_POST['saveDraft']))
-        // {   
-        //     $chapterPublish = 0;
-        //     $updateLines = $this->chapterManager->modifyChapterById($chapterTitle, $chapterContent, $chapterPublish, $chapterId);
-        //     if ($updateLines === false)
-        //     {
-        //         die('Impossible de modifier le chapitre');
-        //     }
-        //     else 
-        //     {
-        //         $this->single($chapterId);
-        //         echo('Chapitre modifié et enregistré');
-        //     }
-        // }     
+            elseif (isset($_POST['saveDraft']))
+            {   
+                $chapterPublished = false;
+                $updateLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId);
+                if ($updateLines === false)
+                {
+                    throw new Exception('Impossible de modifier le chapitre');
+                }
+                else 
+                {
+                    echo('Chapitre modifié et publier');
+                    header('location: /readChapter/' . $chapterId);
+                }
+            }
+        } 
     }
-
 } 

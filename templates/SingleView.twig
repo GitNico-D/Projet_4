@@ -2,7 +2,7 @@
 
 {% block navbarContent %}
     {% if isAdmin %}
-        <a class="navbar-brand" href="adminView"><img src="img/logo-homepage-resize.png" alt=""></a>
+        <a class="navbar-brand" href="/adminView"><img src="/img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
@@ -19,9 +19,9 @@
                 </li>
             </ul>
         </div>
-        <a href="getLogout" class="btn navbar-button">Déconnexion</a>
+        <a href="/getLogout" class="btn navbar-button">Déconnexion</a>
     {% else %}
-        <a class="navbar-brand" href="index.php"><img src="img/logo-homepage-resize.png" alt=""></a>
+        <a class="navbar-brand" href="/index.php"><img src="/img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
@@ -34,11 +34,11 @@
                 <a href="#publishChapter" class="nav-link ">Accéder aux chapitres</a>
             </li>
             <li class="nav-item">
-                <a href="contact" class="nav-link ">Contact</a>
+                <a href="/contact" class="nav-link ">Contact</a>
             </li>
         </ul>
         <div class="text-center">
-            <a href="getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
+            <a href="/getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
         </div>
     {% endif %}
 {% endblock  navbarContent %}
@@ -66,19 +66,19 @@
         </div>
         <div class="text-center">
             {% if chapterNumber <= 1 and chapterNumber is defined %}            
-                <a href="readChapter/{{ chapterNumber + 1 }}" class="btn nextChapter-btn my-2">Chapitre Suivant</a>
+                <a href="/readChapter/{{ chapterNumber + 1 }}" class="btn nextChapter-btn my-2">Chapitre Suivant</a>
             {% else %}
-                <a href="readChapter/{{ chapterNumber - 1 }}" class="btn previousChapter-btn my-2">Chapitre précédent</a>
-                <a href="readChapter/{{ chapterNumber + 1 }}"class="btn nextChapter-btn my-2">Chapitre Suivant</a> 
+                <a href="/readChapter/{{ chapterNumber - 1 }}" class="btn previousChapter-btn my-2">Chapitre précédent</a>
+                <a href="/readChapter/{{ chapterNumber + 1 }}"class="btn nextChapter-btn my-2">Chapitre Suivant</a> 
             {% endif %}  
         </div>
         {% if isAdmin %}
             <div class="singlePage-return text-center">
-                <a href="adminView" class=" my-2">Retour à l'accueil</a>
+                <a href="/adminView" class=" my-2">Retour à l'accueil</a>
             </div>  
         {% else %}
             <div class="singlePage-return text-center">
-                <a href="index" class="my-2">Retour à l'accueil</a>
+                <a href="/index" class="my-2">Retour à l'accueil</a>
             </div>
         {% endif %}
     </div>
@@ -98,7 +98,7 @@
                         {{ comment.content }}
                     </p>
                     <div class="reporting-comment text-left">
-                        <a href="reportComment/{{ uniqueChapter.id }}&commentId={{ comment.id }}"
+                        <a href="/reportComment/{{ uniqueChapter.id }}&commentId={{ comment.id }}"
                             class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon"></i></a>
                     </div>
                 </div>

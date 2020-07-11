@@ -1,25 +1,27 @@
 {% extends "/layout/layout.twig" %}
 
+{% block pageTitle %} Page administrateur | {{ parent() }} {% endblock pageTitle %}
+
 {% block navbarContent %}
     {% if isAdmin %}
-    <a class="navbar-brand" href="adminView"><img src="img/logo-homepage-resize.png" alt=""></a>
+    <a class="navbar-brand" href="/adminView"><img src="/img/logo-homepage-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav text-uppercase mr-auto">
                 <li class="nav-item">
-                    <a href="adminView#publishChapter" class="nav-link">Chapitres publiés</a>
+                    <a href="/adminView#publishChapter" class="nav-link">Chapitres publiés</a>
                 </li>
                 <li class="nav-item">
-                    <a href="adminView#pendingChapter" class="nav-link">Chapitres en attente</a>
+                    <a href="/adminView#pendingChapter" class="nav-link">Chapitres en attente</a>
                 </li>
                 <li class="nav-item">
-                    <a href="adminView#commentModeration" class="nav-link">Modération</a>
+                    <a href="/adminView#commentModeration" class="nav-link">Modération</a>
                 </li>
             </ul>
         </div>
-        <a href="getLogout" class="btn navbar-button">Déconnexion</a>
+        <a href="/getLogout" class="btn navbar-button">Déconnexion</a>
     {% endif %}    
 {% endblock navbarContent %}
 
@@ -34,7 +36,7 @@
 
 {% block main %} 
     <div class="container text-center">
-        <form action="index.php?page=addNewChapter" method="post">
+        <form action="/createChapter" method="post">
             <div class="form-group">
                 <label for="chapterAuthor">Auteur du chapitre</label>
                 <input type="text" class="form-control" id="chapterAuthor" name="chapterAuthor">
@@ -48,10 +50,32 @@
     </div>
     {% if isAdmin %}
     <div class="text-center">
-        <a href="adminView" class="addChapter-link">Retour à la page d'administration</a>
+        <a href="/adminView" class="addChapter-link">Retour à la page d'administration</a>
     </div>
     {% endif %}
 
+{% block javascript %}    
+<!-- <script type="text/javascript" src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#chapterContent',
+            width: 600,
+            height: 300,
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'
+                ],
+                toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link image | print preview media fullpage | ' +
+                'forecolor backcolor emoticons | help',
+                menu: {
+                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | spellchecker | emoticons'}
+                },
+                menubar: 'favs file edit view insert format tools table help',
+            });
+        </script> -->
+{% endblock javascript %}    
 {% endblock main %}
-
+        
 

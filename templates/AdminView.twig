@@ -1,16 +1,18 @@
 {% extends "/layout/layout.twig" %}
 
+{% block pageTitle %} Page administrateur | {{ parent() }} {% endblock pageTitle %}
+
 {% block navbarContent %}
     {% if isAdmin %}
     <div class="adminHeader-container">
-        <a class="adminHeader-img" href="adminView"><img src="img/logo-jf-resize.png" alt=""></a>
+        <a class="adminHeader-img" href="/adminView"><img src="img/logo-jf-resize.png" alt=""></a>
         <div class="adminHeader-title">
             <span class="text-uppercase bold">Page administrateur</span>
         </div>
-        <a class="btn adminHeader-btn" href="getLogout" class="btn navbar-button">Déconnexion</a>
+        <a class="btn adminHeader-btn" href="/getLogout" class="btn navbar-button">Déconnexion</a>
     </div>
     {% else %}
-        <a class="navbar-brand" href="index.php"><img src="img/logo-JF-resize.png" alt=""></a>
+        <a class="navbar-brand" href="/index.php"><img src="/img/logo-JF-resize.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>  
@@ -31,20 +33,20 @@
                     <span class="fas fa-house-user"></span><a class="nav-link sidebar-nav-link" href="#">Accueil</a>
                 </li>
                 <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-book"></span><a href="adminView#publishChapterAdmin" class="nav-link sidebar-nav-link">Chapitres publiés</a>
+                    <span class="fas fa-book"></span><a href="/adminView#publishChapterAdmin" class="nav-link sidebar-nav-link">Chapitres publiés</a>
                 </li>
                 <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-book-reader"></span><a href="adminView#pendingChapterAdmin" class="nav-link sidebar-nav-link">Chapitres en attente</a>
+                    <span class="fas fa-book-reader"></span><a href="/adminView#pendingChapterAdmin" class="nav-link sidebar-nav-link">Chapitres en attente</a>
                 </li>
                 <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-comment"></span><a href="adminView#commentModerationAdmin" class="nav-link sidebar-nav-link">Modération</a>
+                    <span class="fas fa-comment"></span><a href="/adminView#commentModerationAdmin" class="nav-link sidebar-nav-link">Modération</a>
                 </li>
             </ul>
         </nav>
         <div class="main col-md-10">
             <section id="writingChapter" class="card writingChapter">
                 <p class="writingChapter-title text-center"> Créer un nouveau chapitre </p>
-                <a href="createChapter" class="btn writingChapter-btn"><span class="button-text">Écrire</span></a>
+                <a href="/createChapter" class="btn writingChapter-btn"><span class="button-text">Écrire</span></a>
             </section>
             <hr class="adminpageSeparator">
             <section id="publishChapterAdmin" class="card publishChapterAdmin">
@@ -70,9 +72,9 @@
                                 {{ chapter.content | slice(0, 500) }}...
                             </div>
                             <div class="text-center">
-                                <a href="readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn readbtn my-3">Visionner</a>
-                                <a href="updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn modifybtn my-3">Modifier</a>
-                                <a href="deleteChapter/{{ chapter.id }}" class="btn publishChapterCard-btn deletebtn my-3">Supprimer</a>                   
+                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn readbtn my-3">Visionner</a>
+                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn modifybtn my-3">Modifier</a>
+                                <a href="/deleteChapter/{{ chapter.id }}" class="btn publishChapterCard-btn deletebtn my-3">Supprimer</a>                   
                             </div>
                         </div>
                     </div>
@@ -107,11 +109,11 @@
                                     {{ chapter.content | slice(0, 350) }}...
                                 </div>
                                 <div class="text-center">
-                                    <a href="readChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn my-3">
+                                    <a href="/readChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn my-3">
                                         Visionner
                                     </a>
-                                    <a href="modifyChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn publishbtn my-3">Publier</a>
-                                    <a href="deleteChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn deletebtn my-3">Supprimer</a>                   
+                                    <a href="/modifyChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn publishbtn my-3">Publier</a>
+                                    <a href="/deleteChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn deletebtn my-3">Supprimer</a>                   
                                 </div>
                             </div>
                         </div>
@@ -136,8 +138,8 @@
                         </p>
                         <p class="card-body commentModerationCard-text text-center-justify">{{ comment.content }}</p>
                         <div class="text-center">
-                            <a href="validateComment/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn my-3">Valider</a>
-                            <a href="deleteComment/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn my-3">Supprimer</a>
+                            <a href="/validateComment/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn my-3">Valider</a>
+                            <a href="/deleteComment/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn my-3">Supprimer</a>
                         </div>
                     </div>
                 {% endfor %} 

@@ -53,7 +53,7 @@ class LoginsController extends Controller
     {
         $_SESSION = array();
         session_destroy();
-        header ('Location: index');
+        header ('Location: /');
     }
     
     public function returnAdminView($isAdmin)
