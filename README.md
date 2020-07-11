@@ -6,6 +6,6 @@ Changement d'accés à la BDD :
 
 Le fichier db.sql situé à la racine vous permettra d'importer la base de données.
 
-Login Administrateur 
+Login Administrateur : 
     Username : admin@admin.com
     Password : AdminPassword
