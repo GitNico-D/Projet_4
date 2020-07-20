@@ -27,14 +27,14 @@ class ChapterController extends Controller
             else 
             {
                 header('location: /adminView');
-                echo('Chapitre ajouté');
+                // echo('Chapitre ajouté');
             }
         }
         else
         {   
-            echo 'Veuillez remplir les champs !';
+            // echo 'Veuillez remplir les champs !';
         }
-        echo $this->twig->render('addChapterView.twig', ['isAdmin' => $isAdmin]);
+        echo $this->twig->render('addChapterView.html.twig', ['isAdmin' => $isAdmin]);
     }
 
     /**
@@ -52,7 +52,7 @@ class ChapterController extends Controller
         // $totalReports = $this->commentManager->getTotalReports();
         // var_dump($reportingList);
         // var_dump ($totalReports);
-        echo $this->twig->render('SingleView.twig', 
+        echo $this->twig->render('SingleView.html.twig', 
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
             // 'totalReports' => $this->commentManager->getTotalReports(),
@@ -65,7 +65,7 @@ class ChapterController extends Controller
     public function updateChapter($chapterId, $isAdmin)
     {
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        echo $this->twig->render('ModifyChapterView.twig', 
+        echo $this->twig->render('ModifyChapterView.html.twig', 
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'isAdmin' => $isAdmin]
         );       
@@ -93,7 +93,6 @@ class ChapterController extends Controller
     {
         $updatedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
         $updatedChapterContent = htmlspecialchars($_POST['chapterContent']);
-        var_dump($_POST);
         if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
         {
             if(isset($_POST['saveAndPublish']))
@@ -102,12 +101,10 @@ class ChapterController extends Controller
                 $updatedLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId);
                 if ($updatedLines === false)
                 {
-                    echo('Chapitre modifié et publier');
                         throw new Exception('Impossible de modifier le chapitre');
                 }
                 else 
                 {
-                    echo('Chapitre modifié et publier');
                     header('location: /readChapter/' . $chapterId);
                 }
             } 
@@ -121,7 +118,6 @@ class ChapterController extends Controller
                 }
                 else 
                 {
-                    echo('Chapitre modifié et publier');
                     header('location: /readChapter/' . $chapterId);
                 }
             }

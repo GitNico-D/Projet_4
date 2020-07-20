@@ -26,7 +26,7 @@ class LoginsController extends Controller
                 // $commentIdList = $this->commentManager->getCommentIdList($chapterId);
                 // $reportList = $this->commentManager->getReportComments($commentIdList);
                 $isAdmin = true;
-                echo $this->twig->render('AdminView.twig', 
+                echo $this->twig->render('AdminView.html.twig', 
                     ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
                     'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
@@ -37,15 +37,15 @@ class LoginsController extends Controller
             }
             else
             {
-                echo('Email ou mot de passe invalide');
+                // echo('Email ou mot de passe invalide');
                 // header('Location : /index');
-                echo $this->twig->render('LoginsView.twig');
+                echo $this->twig->render('LoginsView.html.twig');
             }                
         }
         else
         {   
             // echo 'Veuillez remplir les champs !';
-            echo $this->twig->render('LoginsView.twig');
+            echo $this->twig->render('LoginsView.html.twig');
         }
     }
 
@@ -58,7 +58,7 @@ class LoginsController extends Controller
     
     public function returnAdminView($isAdmin)
     {
-        echo $this->twig->render('AdminView.twig', 
+        echo $this->twig->render('AdminView.html.twig', 
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
             'reportedCommentList' => $this->commentManager->getAllReportedComments(),
@@ -70,7 +70,7 @@ class LoginsController extends Controller
 
     public function toBeContacted()
     {
-        echo $this->twig->render('ContactView.twig');
+        echo $this->twig->render('ContactView.html.twig');
     } 
 
 }

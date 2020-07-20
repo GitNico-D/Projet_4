@@ -8,14 +8,12 @@ class CommentController extends Controller
 {
     public function createComment($chapterId)
     {
-        var_dump($chapterId);
         if(!empty($_POST['commentAuthor']) && !empty($_POST['commentTitle']))
         {
             $commentAuthor = htmlspecialchars($_POST['commentAuthor']);
             $commentTitle = htmlspecialchars($_POST['commentTitle']);
             $commentContent = htmlspecialchars($_POST['commentContent']);
             $commentAdded = $this->commentManager->addComment($commentAuthor, $commentTitle, $commentContent, $chapterId);
-            var_dump($affectedLines);
             if ($commentAdded === false)
             {
                 throw new Exception('Impossible d\'ajouter le commentaire');
@@ -29,7 +27,7 @@ class CommentController extends Controller
         }
         else
         {   
-            echo 'Veuillez remplir les champs !';
+            // echo 'Veuillez remplir les champs !';
         }
         header('location: /readChapter/' . $chapterId);
     }
@@ -42,7 +40,6 @@ class CommentController extends Controller
 
     public function reportComment($chapterId, $commentId) 
     {
-        // var_dump($commentId);
         $reportedComment = $this->commentManager->addReport($commentId);
         $this->commentManager->getTotalReports($commentId);
         if ($reportedComment = false)
@@ -54,9 +51,4 @@ class CommentController extends Controller
             header('location: /readChapter/' . $chapterId);
         }
     }
-
-    // public function allReportedComments()
-    // {
-    //     $reportedCommentList = $this->commentManager->getAllReportedComments();
-    // }
 }

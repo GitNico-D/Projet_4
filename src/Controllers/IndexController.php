@@ -13,7 +13,7 @@ class IndexController extends Controller
      */
     public function home()
     {
-        echo $this->twig->render('HomeView.twig', 
+        echo $this->twig->render('HomeView.html.twig', 
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]
         );
