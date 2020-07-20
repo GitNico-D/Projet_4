@@ -1,8 +1,10 @@
-{% extends "/layout/layout.twig" %}
+{% extends "/layout.html.twig" %}
+
+{% block pageTitle %} Se connecter | {{ parent() }} {% endblock pageTitle %}
 
 {% block main %}
     <div class="form-signin text-center">
-        <form action="index.php?page=getLogin" method="post" class="card my-3">
+        <form action="getLogin" method="post" class="card my-3">
             <img src="img/logo-jf" class="form-signin-img">
             <h3 class="font-weight-normal">Connectez-vous</h3>
             <label for="email" class="sr-only"></label>

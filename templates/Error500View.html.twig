@@ -1,0 +1,14 @@
+{% extends "/layout.html.twig" %}
+
+{% block pageTitle %} Erreur 500 | {{ parent() }} {% endblock pageTitle %}
+
+{% block main %}    
+    <div class="page-title text-center">
+        <img src="/img/error500.png" alt="" class="main-header-img">
+        <div class="container page-title-container">
+            <h1 class="page-title-h1"><span class="text-dark">Désolé une erreur serveur, veuillez recharger la page : {{ error }}</span></h1>
+        </div>
+        <a href="/index"><button class="btn error500-btn margin-top">Retour à l'accueil</button></a>
+    </div>
+{% endblock main %}
+

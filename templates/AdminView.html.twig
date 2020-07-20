@@ -1,28 +1,6 @@
-{% extends "/layout/layout.twig" %}
+{% extends "/layout.html.twig" %}
 
 {% block pageTitle %} Page administrateur | {{ parent() }} {% endblock pageTitle %}
-
-{% block navbarContent %}
-    {% if isAdmin %}
-    <div class="adminHeader-container">
-        <a class="adminHeader-img" href="/adminView"><img src="img/logo-jf-resize.png" alt=""></a>
-        <div class="adminHeader-title">
-            <span class="text-uppercase bold">Page administrateur</span>
-        </div>
-        <a class="btn adminHeader-btn" href="/getLogout" class="btn navbar-button">Déconnexion</a>
-    </div>
-    {% else %}
-        <a class="navbar-brand" href="/index.php"><img src="/img/logo-JF-resize.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="fas fa-bars"></span>
-        </button>  
-        <div class="collapse navbar-collapse text-center" id="navbarmain">
-            <span>Page administrateur</span>
-    {% endif %}
-{% endblock  navbarContent %}
-
-{% block mainHeader %}
-{% endblock %}
 
 {% block main %}
 <div class="container-fluid">
@@ -33,13 +11,13 @@
                     <span class="fas fa-house-user"></span><a class="nav-link sidebar-nav-link" href="#">Accueil</a>
                 </li>
                 <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-book"></span><a href="/adminView#publishChapterAdmin" class="nav-link sidebar-nav-link">Chapitres publiés</a>
+                    <span class="fas fa-book"></span><a href="/adminView#publishChapter" class="nav-link sidebar-nav-link">Chapitres publiés</a>
                 </li>
                 <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-book-reader"></span><a href="/adminView#pendingChapterAdmin" class="nav-link sidebar-nav-link">Chapitres en attente</a>
+                    <span class="fas fa-book-reader"></span><a href="/adminView#pendingChapter" class="nav-link sidebar-nav-link">Chapitres en attente</a>
                 </li>
                 <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-comment"></span><a href="/adminView#commentModerationAdmin" class="nav-link sidebar-nav-link">Modération</a>
+                    <span class="fas fa-comment"></span><a href="/adminView#commentModeration" class="nav-link sidebar-nav-link">Modération</a>
                 </li>
             </ul>
         </nav>
@@ -49,7 +27,7 @@
                 <a href="/createChapter" class="btn writingChapter-btn"><span class="button-text">Écrire</span></a>
             </section>
             <hr class="adminpageSeparator">
-            <section id="publishChapterAdmin" class="card publishChapterAdmin">
+            <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
                     <p class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</p>
                     <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span> <span class="bold"> Visionnage</span>, <span class="bold">Modification</span> ou <span class="bold">Supression</span> du chapitre</p>
@@ -82,7 +60,7 @@
                 {% endfor %}
             </section> 
             <hr class="adminpageSeparator">
-            <section id="pendingChapterAdmin" class="card pendingChapterAdmin">
+            <section id="pendingChapter" class="card pendingChapterAdmin">
                 <p class="pendingChapterAdmin-title text-center">Chapitre en attentes de publication</p>
                 <p class="text-muted text-center">
                     <span class="font-italic">Options disponibles :</span> 
@@ -121,7 +99,7 @@
                 {% endfor %}
             </section>
             <hr class="adminpageSeparator">
-            <section id="commentModerationAdmin" class="card commentModerationAdmin">
+            <section id="commentModeration" class="card commentModerationAdmin">
                 <p class="commentModerationAdmin-title text-center">Modération des commentaires</p>
                 <p class="publishChapterAdmin-text text-center">
                     Voici la liste de tous les commentaires que les utilisateurs ont signalés et nécessitant de la Modération.
@@ -143,7 +121,7 @@
                         </div>
                     </div>
                 {% endfor %} 
-            </section> -->
+            </section>
         </div>
         
     </div>

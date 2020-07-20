@@ -1,49 +1,6 @@
-{% extends "/layout/layout.twig" %}
+{% extends "/layout.html.twig" %}
 
 {% block pageTitle %} Accueil | {{ parent() }} {% endblock pageTitle %}
-
-{% block navbarContent %}
-    {% if isAdmin %}
-        <a class="navbar-brand" href="/adminView"><img src="img/logo-homepage-resize.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="fas fa-bars"></span>
-        </button>  
-        <div class="collapse navbar-collapse" id="navbarmain">
-            <ul class="navbar-nav text-uppercase mr-auto">
-                <li class="nav-item">
-                    <a href="#publishChapter" class="nav-link">Chapitres publiés</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#pendingChapter" class="nav-link">Chapitres en attente</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/#commentModeration" class="nav-link">Modération</a>
-                </li>
-            </ul>
-        </div>
-        <a href="/getLogout" class="btn navbar-button">Déconnexion</a>
-    {% else %}
-        <a class="navbar-brand" href="index"><img src="/img/logo-homepage-resize.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="fas fa-bars"></span>
-        </button>  
-        <div class="collapse navbar-collapse show" id="navbarmain">
-        <ul class="navbar-nav text-uppercase mr-auto">
-            <li class="nav-item">
-                <a href="/#about" class="nav-link ">A propos</a>
-            </li>
-            <li class="nav-item">
-                <a href="/#publishChapter" class="nav-link ">Accéder aux chapitres</a>
-            </li>
-            <li class="nav-item">
-                <a href="/contact" class="nav-link ">Contact</a>
-            </li>
-        </ul>
-        <div class="text-center">
-            <a href="/getLogin" class="btn navbar-button"><span class="button-text">Connexion</span></a>
-        </div>
-    {% endif %}
-{% endblock  navbarContent %}
 
 {% block mainHeader %}
     <div class="main-header-margintop">
@@ -56,7 +13,7 @@
 {% endblock %}
     
 {% block main %}
-    <section id="#about" class="container about">
+    <section id="about" class="container about">
         <div class="about-row">
             <div class="col-md-4 ">
                 <img src="/img/portrait1.png" class="about-img">
@@ -82,7 +39,7 @@
         </blockquote>
         <hr>
     </section>
-    <section id="#publishChapter" class="publishchapter">
+    <section id="publishChapter" class="publishchapter">
         <div class="jumbotron text-center">
             <div class="container publishchapter-container">
                 <h2 class="publishchapter-title display-4">
@@ -97,7 +54,7 @@
                 <div class="col-md-4">
                     <div class="chapter-card my-4">
                         <h4 class="chapter-card-header">{{ chapter.title }}</h4>
-                        <img src="/img/img-chapter-1.jpg">
+                        <img src={{ chapter.imgUrl }}>
                         <p class="chapter-card-body text-muted">
                             Publié le 
                             <span class="font-italic">{{ chapter.createDate }}</span> 

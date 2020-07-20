@@ -3,49 +3,41 @@
     <head>
         <meta charset=UTF-8>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description">{% block metaDescription %}{% endblock metaDescription %}>
         <title>{% block pageTitle %}Blog en création{% endblock pageTitle %}</title>
         
-        <meta {% block metaDescription %}{% endblock metaDescription %}>
         {% block stylesheet %}{% endblock stylesheet %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-background fixed-top">
-                <div class="container">
-                    
-                    {# include 'navbar.twig' #}
 
-                    {% block navbarContent %}{% endblock navbarContent %}        
+            {% if isAdmin %}
+                {% include 'navbarAdmin.html.twig' %}
+            {% else %}
+                {% include 'navbarUser.html.twig' %}
+            {% endif %}
 
-                </div>
-            </nav> 
         </header>
         <section id="main-header" class="main-header text-center">
 
             {% block mainHeader %}{% endblock mainHeader %}
 
         </section>
-        <section>
-            
-            {% block main %}
-            {% endblock main %}
+        <section>  
 
-        </section>
-        
-        <!-- <script type="text/javascript" src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
-        
-        {% block javascript %}{% endblock javascript %}
-        
+            {% block main %}{% endblock main %}
+
+        </section>                
         <footer class="footer">
 
             {# include '/templates/footer.twig' #}
 
         </footer>
+        {% block javascript %}{% endblock javascript %}
         <script src="https://kit.fontawesome.com/8b1d8d6405.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
     </body>
 </html>

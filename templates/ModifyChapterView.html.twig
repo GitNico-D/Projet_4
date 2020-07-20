@@ -1,0 +1,48 @@
+{% extends "/layout.html.twig" %}
+
+{% block pageTitle %} Modifcation de chapitre | {{ parent() }} {% endblock pageTitle %}
+
+{% block mainHeader %}
+<div class="page-title text-center">
+    <div class="container page-title-container">
+        <p class="page-title-text">Modification du  Chapitre {{ uniqueChapter.id }} :</p>
+        <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title}}</span></h1>
+    </div>
+</div>
+<hr class="singlePageSeparator">
+{% endblock %}
+
+{% block main %}
+<section class="container">
+    <div class="card my-4 modifyChapterCard">
+        <p class="card-header float-right modifyChapterCard-header">
+        Publié le 
+            <span class="font-italic bold">{{ uniqueChapter.createDate }}</span> 
+            par 
+            <span class="font-italic bold">{{ uniqueChapter.author }}</span>
+        </p>
+    </div>
+    <div class="container">
+        <form action="/applyUpdateChapter/{{ uniqueChapter.id }}" method="post">
+            <div class="form-group">
+                <label for="chapterTitle" class="h4 bold my-4 text-left">Titre</label>
+                <input type="text" class="form-control" id="chapterTitle" name="chapterTitle" value="{{ uniqueChapter.title }}">
+                <label for="chapterContent" class="h4 bold my-4">Contenu</label>
+                <textarea type="text" class="form-control text-justify" id="chapterContent" name="chapterContent" rows="30" >{{ uniqueChapter.content }}</textarea>
+                <div class="text-center">
+                    <button type="submit" name="saveAndPublish" class="btn savePublish-btn my-2">Enregistrer et publier</button>
+                    <button type="submit" name="saveDraft" class="btn saveDraft-btn my-2">Enregistrer en brouillon</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="text-center"> 
+        {% if isAdmin %}
+            <div class="modifyPage-return text-center">
+                <a href="/adminView">Retour à la page d'administration</a>
+            </div>
+        {% endif %} 
+    </div>  
+</section>  
+{% endblock main %}
+
