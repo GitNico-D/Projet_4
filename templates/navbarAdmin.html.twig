@@ -1,0 +1,24 @@
+{% block navbarContent %}
+<nav class="navbar navbar-expand-lg navbar-background fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/adminView"><img src="img/logo-homepage-resize.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav text-uppercase mr-auto">
+                <li class="nav-item">
+                    <a href="#publishChapter" class="nav-link">Chapitres publiés</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#pendingChapter" class="nav-link">Chapitres en attente</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#commentModeration" class="nav-link">Modération</a>
+                </li>
+            </ul>
+        </div>
+        <a href="/getLogout" class="btn navbar-button">Déconnexion</a>
+    </div>
+</nav> 
+{% endblock navbarContent %}
