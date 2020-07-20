@@ -13,6 +13,7 @@ class Chapter extends Model
     private $createDate;
     private $updateDate;
     private $published;
+    private $imgUrl;
 
     public function __construct($attributes = [])
     {
@@ -75,6 +76,11 @@ class Chapter extends Model
         $this->published = $published;
     }
 
+    public function setImgUrl($imgUrl)
+    {
+        $this->imgUrl = $imgUrl;
+    }
+
     // Getters //
 
     public function getId()
@@ -105,5 +111,10 @@ class Chapter extends Model
     public function getPublished()
     {
         return $this->published;
+    }
+
+    public function getImgUrl()
+    {
+        return $this->imgUrl;
     }
 }
