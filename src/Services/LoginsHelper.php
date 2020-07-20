@@ -14,7 +14,6 @@ class LoginsHelper
         else 
         {
             $isAdmin = false;
-            echo("Vous n'êtes pas administrateur");
         }
         return $isAdmin;
     }

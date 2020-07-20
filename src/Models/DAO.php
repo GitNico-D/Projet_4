@@ -10,6 +10,9 @@ abstract class DAO
     
     private function getDb()
     {
+        // $config = yaml_parse_file('dbConfig.yaml');
+        // $dbHost = $dbConfig['DATABASE_HOST'];
+        // var_dump($config);
         if ($this->db === null)
         {
             try
@@ -34,7 +37,6 @@ abstract class DAO
         if ($parameters)
         {
             $request = $this->getDb()->prepare($sql);
-            // var_dump($parameters);
             $request->execute($parameters);
             return $request;
         }
