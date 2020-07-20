@@ -2,51 +2,39 @@
 
 namespace App\src\Managers;
 
-use App\src\Models\DAO;
+use App\src\Core\Manager;
 use App\src\Models\Chapter;
 
-class ChapterManager extends DAO
+class ChapterManager extends Manager
 {
+    public $table = 'chapter';
+    public $className = 'App\src\Models\Chapter';
+
     public function getChapterById($chapterId) 
     {
-        $sqlRequest = 'SELECT * FROM chapter WHERE id = ?';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
-        $chapter = $result->fetch();
-        $result->closeCursor();
-        // Hydratation
-        $chapterObj = new Chapter($chapter);
-        return $chapterObj;
+        $this->whereKey = 'id';
+        return new Chapter($this->findOneBy($this->table, $this->whereKey, $chapterId));
     }
 
     public function getAllPublishedChapters()
     {
-        $sqlRequest = 'SELECT * FROM chapter WHERE published = true ORDER BY id ASC';
-        $result = $this->createQuery($sqlRequest);
-        $publishedChaptersList = [];
-        foreach ($result as $chapter)
-        {
-            $publishedChaptersList [] = new Chapter($chapter);
-        }
-        $result->closeCursor(); 
+        $whereKey = 'published';
+        $orderKey = 'id';
+        $publishedChaptersList = $this->findAll($this->table, $whereKey, true, $orderKey, $this->className);
         return $publishedChaptersList;
     }
 
     public function getAllUnpublishedChapters()
     {
-        $sqlRequest = 'SELECT * FROM chapter WHERE published = false ORDER BY id ASC';
-        $result = $this->createQuery($sqlRequest);
-        $unpublishedChaptersList = [];
-        foreach ($result as $chapter)
-        {
-            $unpublishedChaptersList [] = new Chapter($chapter);
-        }
-        $result->closeCursor(); 
+        $whereKey = 'published';
+        $orderKey = 'id';
+        $unpublishedChaptersList = $this->findAll($this->table, $whereKey, false, $orderKey, $this->className);
         return $unpublishedChaptersList;
     }
 
     public function publishedChapter($chapterId)
     {
-        $sqlRequest = 'UPDATE chapter SET published= true where id = ?';
+        $sqlRequest = 'UPDATE chapter SET published= true WHERE id = ?';
         $this->createQuery($sqlRequest, [$chapterId]);
     } 
 
@@ -63,10 +51,6 @@ class ChapterManager extends DAO
 
     public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId)
     {
-        var_dump($updatedChapterTitle);
-        var_dump($updatedChapterContent);
-        var_dump($chapterPublished);
-        var_dump($chapterId);
         $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished WHERE id = :chapterId';
         $updatedLines = $this->createQuery($sqlRequest, array(   
                 'updatedChapterTitle' => $updatedChapterTitle,
@@ -74,7 +58,6 @@ class ChapterManager extends DAO
                 'chapterPublished' => $chapterPublished,
                 'chapterId' => $chapterId
                 ));
-        var_dump($updatedLines);
         return $updatedLines;
     }
 
@@ -84,5 +67,3 @@ class ChapterManager extends DAO
         $this->createQuery($sqlRequest, [$chapterId]);
     }
 }
-
-//AdminPassword;

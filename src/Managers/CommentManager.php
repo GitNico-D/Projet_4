@@ -2,35 +2,28 @@
 
 namespace App\src\Managers;
 
-use App\src\Models\DAO;
+use App\src\Core\Manager;
 use App\src\Models\Comment;
 use App\src\Models\Reporting;
 
-class CommentManager extends DAO
+class CommentManager extends Manager
 {
+    public $table = 'comments';
+    public $className = 'App\src\Models\Comment';
+
     public function getCommentByChapterId($chapterId)
     {
-        $sqlRequest = 'SELECT * FROM comments WHERE chapterId = ? ORDER BY createdDate ASC';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
-        $commentList = [];
-        foreach ($result as $comment)
-        {
-            $commentList [] = new Comment($comment); 
-        }
-        $result->closeCursor();
+        $whereKey = 'chapterId';
+        $orderKey = 'createdDate';
+        $commentList = $this->findAll($this->table, $whereKey, $chapterId, $orderKey, $this->className);
         return $commentList;
     }
 
     public function getCommentIdList($chapterId)
     {
-        $sqlRequest = 'SELECT id FROM comments WHERE chapterId = ?';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
-        $commentIdList = [];
-        foreach ($result as $comment)
-        {
-            $commentIdList [] = $comment['id'];
-        }
-        $result->closeCursor();
+        $selectValue = 'id';
+        $whereKey = 'chapterId';
+        $commentIdList = $this->findBy($selectValue, $this->table, $whereKey, $chapterId);
         return $commentIdList;
     }
 
