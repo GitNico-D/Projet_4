@@ -3,7 +3,7 @@
 require '../vendor/autoload.php';
 require '../src/Core/Controller.php';
 require "../config/dbConfig.php";
-// require '../config/dbConfig.yml';
+// require '../config/db-config.yml';
 
 use App\src\Services\RouterHelper;
 use App\src\Services\LoginsHelper;
