@@ -4,7 +4,7 @@
   "description": "~ PROJET_4 ~",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./public/css/scss/style.scss:./public/css/style.css"
+    "sass": "sass --watch ./public/scss/style.scss:./public/css/style.css"
   },
   "author": "",
   "license": "ISC",
