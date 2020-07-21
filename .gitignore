@@ -1,5 +1,5 @@
 vendor/
+.public/
 .vscode/
-public/css/style.css.map
-public/css/style.scss
+public/css/
 nodes_modules/
