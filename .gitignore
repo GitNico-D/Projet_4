@@ -2,3 +2,4 @@ vendor/
 .vscode/
 public/css/style.css.map
 public/css/style.scss
+nodes_modules/

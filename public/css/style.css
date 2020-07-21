@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .bold {
   font-weight: bold;
 }
@@ -22,51 +23,41 @@ hr {
 .navbar {
   color: black;
 }
-
 .navbar .nav-item {
   vertical-align: middle;
 }
-
 .navbar .nav-link {
   font-weight: bold;
   color: black;
   margin-left: 2rem;
 }
-
 .navbar .nav-link:hover {
   color: #FED036;
 }
-
 .navbar-background {
   background-color: white;
 }
-
 .navbar-button {
   text-decoration: none;
   color: white;
   border: 1px solid #FED036;
   background-color: #FED036;
 }
-
 .navbar-button:hover {
   color: #FED036;
   border: 1px solid #FED036;
   background-color: white;
 }
-
 .navbar-toggler {
   background-color: #FED036;
   border: 1xp solid black;
 }
-
 .navbar-toggler .fa-bars {
   color: white;
 }
-
 .navbar-collapse {
   padding: 0 0 0 2rem;
 }
-
 .navbar-collapse .show .nav-link {
   margin: 0;
   padding: 0;
@@ -82,34 +73,28 @@ hr {
   margin-bottom: 2rem;
   padding: 2rem;
 }
-
 .page-title-img {
   width: 100%;
   max-width: 1920px;
   margin: auto;
 }
-
 .page-title-jumbotron {
   background-color: transparent;
   margin-bottom: unset;
 }
-
 .page-title-text {
   color: black;
   font-size: 3rem;
   font-style: italic;
 }
-
 .page-title-h1 {
   font-size: 3.5rem;
   color: white;
 }
-
 .page-title span {
   color: #FED036;
   font-style: italic;
 }
-
 .page-title a {
   color: #FED036;
 }
@@ -118,15 +103,13 @@ hr {
   display: inline;
   margin: auto;
 }
-
 .savePublish-btn {
   background-color: #28a745;
   border: 1px solid #28a745;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .savePublish-btn:hover {
   color: #28a745;
   background-color: white;
@@ -136,15 +119,13 @@ hr {
 .saveDraft {
   display: inline;
 }
-
 .saveDraft-btn {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .saveDraft-btn:hover {
   color: #FED036;
   background-color: white;
@@ -155,20 +136,17 @@ hr {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .nextChapter-btn:hover, .previousChapter-btn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .nextChapter-return, .previousChapter-return {
   color: black;
 }
-
 .nextChapter-return:hover, .previousChapter-return:hover {
   color: #FED036;
   text-decoration: none;
@@ -177,11 +155,9 @@ hr {
 .singlePage-return, .modifyPage-return {
   padding: 2rem;
 }
-
 .singlePage-return a, .modifyPage-return a {
   color: black;
 }
-
 .singlePage-return a:hover, .modifyPage-return a:hover {
   color: #FED036;
   text-decoration: none;
@@ -190,11 +166,9 @@ hr {
 .publishChapterSingleCard, .modifyChapterCard {
   border: unset;
 }
-
 .publishChapterSingleCard-header, .modifyChapterCard-header {
   background-color: unset;
 }
-
 .publishChapterSingleCard-body, .modifyChapterCard-body {
   padding: 3rem 0 3rem 0;
 }
@@ -208,7 +182,6 @@ hr {
   background-color: unset;
   padding-left: unset;
 }
-
 .commentCard-content {
   margin: 0;
   padding: 0.5rem 0 0 1.25rem;
@@ -224,19 +197,16 @@ hr {
   width: 80%;
   margin: auto;
 }
-
 .leaveComment-title {
   padding: 1rem;
 }
-
 .leaveComment-btn {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .leaveComment-btn:hover {
   color: #FED036;
   background-color: white;
@@ -246,21 +216,17 @@ hr {
 .reporting-comment {
   padding: 0.75rem 0 0 1.25rem;
 }
-
 .reporting-link {
   color: #dc3454;
 }
-
 .reporting-link:hover {
   color: black;
   text-decoration: none;
 }
-
 .reporting-icon {
   margin-left: 1rem;
   color: #dc3454;
 }
-
 .reporting-icon:hover {
   color: black;
 }
@@ -269,20 +235,17 @@ hr {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .addChapter-btn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .addChapter-link {
   color: black;
 }
-
 .addChapter-link:hover {
   color: #FED036;
   text-decoration: none;
@@ -295,62 +258,50 @@ hr {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-
 .form-signin .card {
   padding: 1rem;
 }
-
 .form-signin h3 {
   margin-bottom: 2rem;
 }
-
 .form-signin-fa {
   color: #dc3454;
   margin-bottom: 2rem;
 }
-
 .form-signin p {
   margin-top: 3rem;
 }
-
 .form-signin button {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .form-signin button:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .form-signin button:active {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
   text-decoration: none;
 }
-
-.form-signin input[type="password"] {
+.form-signin input[type=password] {
   margin-bottom: 1.5rem;
 }
-
 .form-signin-img {
   width: initial !important;
   padding-bottom: 2rem;
   margin: auto;
 }
-
 .form-signin-link {
   color: #FED036;
 }
-
 .form-signin-link:hover {
   text-decoration: none;
   color: black;
@@ -358,8 +309,7 @@ hr {
 
 .form-signin .form-control {
   position: relative;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   height: auto;
   padding: 10px;
   font-size: 16px;
@@ -368,42 +318,34 @@ hr {
 .main-header {
   position: relative;
 }
-
 .main-header-img {
   width: 100%;
   max-width: 1920px;
   margin: auto;
 }
-
 .main-header-jumbotron {
   background-color: transparent;
   margin-bottom: unset;
 }
-
 .main-header-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-
 .main-header-text {
   color: white;
   font-size: 6rem;
   font-style: italic;
 }
-
 .main-header-h1 {
   font-size: 4.5rem;
   color: white;
 }
-
 .main-header span {
   color: #FED036;
   font-style: italic;
 }
-
 .main-header a {
   color: #FED036;
 }
@@ -411,40 +353,27 @@ hr {
 .about {
   padding-top: 8rem;
 }
-
 .about-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
+  align-items: flex-start;
+  flex-flow: row wrap;
 }
-
 .about-text {
   padding: 0 2rem 2rem 2rem;
   text-align: center;
 }
-
 .about-text-title {
   margin: 0;
   padding-bottom: 1rem;
   border-bottom: 1px solid black;
 }
-
 .about-text-content {
   padding-top: 1.5rem;
   text-align: justify;
 }
-
 .about-quote {
   margin: 2rem 0 4rem 0;
 }
-
 .about-quote p {
   font-size: 1.2rem;
   font-weight: bold;
@@ -452,88 +381,66 @@ hr {
   background: #eee;
   border-radius: 5px;
 }
-
 .about-quote pbefore {
-  content: '\201C';
+  content: "“";
 }
-
 .about-quote pafter {
-  content: '\201D';
+  content: "”";
 }
-
 .about-quote footer {
   text-align: right;
 }
-
 .about-img {
   padding: 0;
   margin-top: 1rem;
   width: 100%;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .publishchapter {
   padding-top: 6rem;
 }
-
 .publishchapter-title {
   padding: 2rem;
   font-size: 3rem;
 }
 
 .chapter {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  justify-content: space-around;
+  align-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
-
 .chapter-card {
   margin: 0;
   padding: 2rem;
   border-radius: 1px;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 .chapter-card-header {
   text-align: left;
   padding: 0 0 1rem 0;
 }
-
 .chapter-card-body {
   text-align: right;
   padding: 1rem 0 0 0;
 }
-
 .chapter-card-content {
   padding: 1rem 0 1rem 0;
 }
-
 .chapter-card-btn {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .chapter-card-btn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .chapter-card img {
   width: 100%;
 }
@@ -541,49 +448,33 @@ hr {
 .main {
   margin-top: 7rem;
 }
-
 .main-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-top: 7rem;
 }
 
 .adminHeader-container {
   margin: 1rem 0 1rem 0;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   vertical-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
-
 .adminHeader-title {
   text-align: center;
   font-size: 2rem;
 }
-
 .adminHeader-btn {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .adminHeader-btn:hover {
   color: #FED036;
   background-color: white;
@@ -593,26 +484,21 @@ hr {
 .sidebar {
   background-color: #f7f7f7d7;
 }
-
 .sidebar-list {
   list-style: none;
   padding: 1rem 0 0 0;
 }
-
 .sidebar-nav-item {
   padding: 0 0 1rem 0;
 }
-
 .sidebar-nav-link {
   display: inline;
   color: black;
   text-decoration: none;
 }
-
 .sidebar-nav-link:hover {
   color: #FED036;
 }
-
 .sidebar-img img {
   margin: auto;
   width: 100%;
@@ -625,38 +511,32 @@ hr {
   margin-bottom: 2rem;
   padding: 2rem;
 }
-
 .writingChapter-title {
   font-size: 2.5rem;
   margin-bottom: 2rem;
 }
-
 .writingChapter-btn {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
   width: 40%;
   margin: auto;
 }
-
 .writingChapter-btn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .writingChapter-btn::before {
   padding-right: 1.5rem;
 }
-
 .writingChapter-btn::after {
   padding-left: 1.5rem;
 }
-
 .writingChapter-btn::after, .writingChapter-btn::before {
-  content: "\f56b";
+  content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1.25rem;
@@ -668,59 +548,48 @@ hr {
   padding: 1rem;
   border: none;
 }
-
 .publishChapterCard-header, .unpublishChapterCard-header {
   background-color: white;
 }
-
 .publishChapterCard-header p, .unpublishChapterCard-header p {
   margin-top: 0.5rem;
   vertical-align: middle;
 }
-
 .publishChapterCard-link:hover, .unpublishChapterCard-link:hover {
   color: #FED036;
   cursor: pointer;
 }
-
 .publishChapterCard-title, .unpublishChapterCard-title {
   font-size: 1.5rem;
 }
-
 .publishChapterCard-title::before, .unpublishChapterCard-title::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1.25rem;
-  content: "\f358";
+  content: "";
   color: #FED036;
   padding-right: 1rem;
 }
-
 .publishChapterCard-title::after, .unpublishChapterCard-title::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1.25rem;
-  content: "\f358";
+  content: "";
   color: #FED036;
 }
-
 .publishChapterCard-title:hover, .unpublishChapterCard-title:hover {
   color: #FED036;
 }
-
 .publishChapterCard-text, .unpublishChapterCard-text {
   font-size: 1.1rem;
 }
-
 .publishChapterCard-card, .unpublishChapterCard-card {
   padding: 1.5rem;
 }
-
 .publishChapterCard-collapse, .unpublishChapterCard-collapse {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-top-style: none;
 }
-
 .publishChapterCard-icons, .unpublishChapterCard-icons {
   color: white;
 }
@@ -730,117 +599,99 @@ hr {
   margin-top: 1rem;
   padding: 1.5rem;
 }
-
 .commentModerationCard-title {
   text-align: left;
   font-size: 1.25rem;
 }
-
 .commentModerationCard-text {
-  font-size: 1.10rem;
+  font-size: 1.1rem;
   margin-top: 1.5rem;
 }
 
 .publishChapterCard-btn, .unpublishChapterCard-btn, .commentModerationCard-btn {
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
   margin-right: 2rem;
 }
-
 .publishChapterCard .modifybtn, .unpublishChapterCard .modifybtn, .commentModerationCard .modifybtn {
   background-color: #FED036;
   border: 1px solid #FED036;
 }
-
 .publishChapterCard .modifybtn:hover, .unpublishChapterCard .modifybtn:hover, .commentModerationCard .modifybtn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .publishChapterCard .modifybtn::before, .unpublishChapterCard .modifybtn::before, .commentModerationCard .modifybtn::before {
   content: " ";
   padding-left: 1.5rem;
 }
-
 .publishChapterCard .modifybtn::after, .unpublishChapterCard .modifybtn::after, .commentModerationCard .modifybtn::after {
-  content: "\f044";
+  content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1.25rem;
   color: #FED036;
   padding-left: 1rem;
 }
-
 .publishChapterCard .readbtn, .unpublishChapterCard .readbtn, .commentModerationCard .readbtn {
   background-color: #FED036;
   border: 1px solid #FED036;
 }
-
 .publishChapterCard .readbtn:hover, .unpublishChapterCard .readbtn:hover, .commentModerationCard .readbtn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .publishChapterCard .readbtn::before, .unpublishChapterCard .readbtn::before, .commentModerationCard .readbtn::before {
   content: " ";
   padding-left: 1.5rem;
 }
-
 .publishChapterCard .readbtn::after, .unpublishChapterCard .readbtn::after, .commentModerationCard .readbtn::after {
-  content: "\f5da";
+  content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1.25rem;
   color: #FED036;
   padding-left: 1rem;
 }
-
 .publishChapterCard .publishbtn, .publishChapterCard .validatebtn, .unpublishChapterCard .publishbtn, .unpublishChapterCard .validatebtn, .commentModerationCard .publishbtn, .commentModerationCard .validatebtn {
   background-color: #28a745;
   border: 1px solid #28a745;
 }
-
 .publishChapterCard .publishbtn:hover, .publishChapterCard .validatebtn:hover, .unpublishChapterCard .publishbtn:hover, .unpublishChapterCard .validatebtn:hover, .commentModerationCard .publishbtn:hover, .commentModerationCard .validatebtn:hover {
   color: #28a745;
   background-color: white;
   border: 1px solid #28a745;
 }
-
 .publishChapterCard .publishbtn::before, .publishChapterCard .validatebtn::before, .unpublishChapterCard .publishbtn::before, .unpublishChapterCard .validatebtn::before, .commentModerationCard .publishbtn::before, .commentModerationCard .validatebtn::before {
   content: " ";
   padding-left: 1.5rem;
 }
-
 .publishChapterCard .publishbtn::after, .publishChapterCard .validatebtn::after, .unpublishChapterCard .publishbtn::after, .unpublishChapterCard .validatebtn::after, .commentModerationCard .publishbtn::after, .commentModerationCard .validatebtn::after {
-  content: "\f058";
+  content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1.25rem;
   color: #28a745;
   padding-left: 1rem;
 }
-
 .publishChapterCard .deletebtn, .unpublishChapterCard .deletebtn, .commentModerationCard .deletebtn {
   background-color: #dc3454;
   border: 1px solid #dc3454;
 }
-
 .publishChapterCard .deletebtn:hover, .unpublishChapterCard .deletebtn:hover, .commentModerationCard .deletebtn:hover {
   color: #dc3454;
   background-color: white;
   border: 1px solid #dc3454;
 }
-
 .publishChapterCard .deletebtn::before, .unpublishChapterCard .deletebtn::before, .commentModerationCard .deletebtn::before {
   content: " ";
   padding-left: 1.5rem;
 }
-
 .publishChapterCard .deletebtn::after, .unpublishChapterCard .deletebtn::after, .commentModerationCard .deletebtn::after {
-  content: "\f057";
+  content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1.25rem;
@@ -853,13 +704,11 @@ hr {
   padding-top: 6rem;
   padding: 0.5rem;
 }
-
 .publishChapterAdmin-title, .pendingChapterAdmin-title, .commentModerationAdmin-title {
   background-color: #f7f7f7d7;
   font-size: 2.5rem;
   margin-bottom: 2rem;
 }
-
 .publishChapterAdmin-text, .pendingChapterAdmin-text, .commentModerationAdmin-text {
   font-size: 1.1rem;
 }
@@ -872,20 +721,17 @@ hr {
   background-color: #FED036;
   border: 1px solid #FED036;
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
 }
-
 .contactForm-btn:hover {
   color: #FED036;
   background-color: white;
   border: 1px solid #FED036;
 }
-
 .contactForm-return {
   color: black;
 }
-
 .contactForm-return:hover {
   color: #FED036;
   text-decoration: none;
@@ -896,7 +742,6 @@ hr {
   border: 1px solid #FED036;
   color: white;
 }
-
 .error404-btn:hover, .error500-btn:hover {
   color: #FED036;
   background-color: white;
@@ -911,7 +756,6 @@ hr {
     font-size: 2.5rem;
   }
 }
-
 @media (max-width: 1024px) {
   .navbar-brand {
     display: block;
@@ -935,20 +779,22 @@ hr {
     text-align: center;
   }
 }
-
 @media (max-width: 768px) {
   .about-text {
     padding: 2rem 0 0 0;
   }
+
   .main-header-text {
     font-size: 2rem;
   }
   .main-header-h1 {
     font-size: 1.25rem;
   }
+
   .sidebar {
     text-align: center;
   }
+
   .adminHeader-container {
     width: 100%;
     display: block;
@@ -969,13 +815,13 @@ hr {
   .adminHeader-img img {
     margin: auto;
   }
+
   .publishChapterCard-btn, .unpublishChapterCard-btn, .commentModerationCard-btn {
     text-decoration: none;
     padding: unset;
     margin: auto;
   }
 }
-
 @media (max-width: 500px) {
   .main-header-margintop {
     margin-top: 5rem;
@@ -986,6 +832,7 @@ hr {
   .main-header-h1 {
     font-size: 1.25rem;
   }
+
   .page-title-text {
     font-size: 2rem;
   }
@@ -994,6 +841,7 @@ hr {
     margin-top: 1.5rem;
     text-align: center;
   }
+
   .leaveComment-title {
     text-align: center;
   }
@@ -1003,11 +851,11 @@ hr {
     margin: auto;
   }
 }
-
 @media (max-width: 340px) {
   .main-header-margintop {
     margin-top: 8rem;
   }
+
   .page-title-text {
     font-size: 1rem;
   }
@@ -1015,4 +863,5 @@ hr {
     font-size: 1.5rem;
   }
 }
+
 /*# sourceMappingURL=style.css.map */
