@@ -3,4 +3,3 @@ vendor/
 .vscode/
 public/css/
 node_modules/
-test/
