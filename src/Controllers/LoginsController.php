@@ -26,7 +26,7 @@ class LoginsController extends Controller
                 // $commentIdList = $this->commentManager->getCommentIdList($chapterId);
                 // $reportList = $this->commentManager->getReportComments($commentIdList);
                 $isAdmin = true;
-                echo $this->twig->render('AdminView.html.twig', 
+                echo $this->twig->render('admin_page.html.twig', 
                     ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
                     'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
@@ -39,13 +39,13 @@ class LoginsController extends Controller
             {
                 // echo('Email ou mot de passe invalide');
                 // header('Location : /index');
-                echo $this->twig->render('LoginsView.html.twig');
+                echo $this->twig->render('logins.html.twig');
             }                
         }
         else
         {   
             // echo 'Veuillez remplir les champs !';
-            echo $this->twig->render('LoginsView.html.twig');
+            echo $this->twig->render('logins.html.twig');
         }
     }
 
@@ -58,7 +58,7 @@ class LoginsController extends Controller
     
     public function returnAdminView($isAdmin)
     {
-        echo $this->twig->render('AdminView.html.twig', 
+        echo $this->twig->render('admin_page.html.twig', 
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
             'reportedCommentList' => $this->commentManager->getAllReportedComments(),
@@ -70,7 +70,7 @@ class LoginsController extends Controller
 
     public function toBeContacted()
     {
-        echo $this->twig->render('ContactView.html.twig');
+        echo $this->twig->render('contact.html.twig');
     } 
 
 }

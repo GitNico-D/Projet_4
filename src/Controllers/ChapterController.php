@@ -34,7 +34,7 @@ class ChapterController extends Controller
         {   
             // echo 'Veuillez remplir les champs !';
         }
-        echo $this->twig->render('addChapterView.html.twig', ['isAdmin' => $isAdmin]);
+        echo $this->twig->render('adding_chapter.html.twig', ['isAdmin' => $isAdmin]);
     }
 
     /**
@@ -52,7 +52,7 @@ class ChapterController extends Controller
         // $totalReports = $this->commentManager->getTotalReports();
         // var_dump($reportingList);
         // var_dump ($totalReports);
-        echo $this->twig->render('SingleView.html.twig', 
+        echo $this->twig->render('reading_chapter.html.twig', 
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
             // 'totalReports' => $this->commentManager->getTotalReports(),
@@ -65,7 +65,7 @@ class ChapterController extends Controller
     public function updateChapter($chapterId, $isAdmin)
     {
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        echo $this->twig->render('ModifyChapterView.html.twig', 
+        echo $this->twig->render('modifying_chapter.html.twig', 
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'isAdmin' => $isAdmin]
         );       
