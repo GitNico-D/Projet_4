@@ -2,4 +2,4 @@ vendor/
 .public/
 .vscode/
 public/css/
-nodes_modules/
+node_modules/
