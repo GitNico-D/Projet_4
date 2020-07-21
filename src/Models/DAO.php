@@ -10,14 +10,15 @@ abstract class DAO
     
     private function getDb()
     {
-        // $config = yaml_parse_file('dbConfig.yaml');
-        // $dbHost = $dbConfig['DATABASE_HOST'];
-        // var_dump($config);
+        $dbConfig = yaml_parse_file('../config/db-config.yml');
+        $config = yaml_parse_file('../config/config.yml');
         if ($this->db === null)
         {
             try
             {
-                $this->db = new PDO(DB_HOST, DB_USERNAME, DB_PASSWORD);
+                $this->db = new PDO('mysql:host=' . $dbConfig['DATABASE_HOST'] .';port=' . $dbConfig['DATABASE_PORT'] . 
+                                    ';dbname=' . $dbConfig['DATABASE_NAME'] .';charset=' . $config['APP_CHARSET'],
+                                    $dbConfig['DATABASE_USERNAME'], $dbConfig['DATABASE_PASSWORD']);
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $this->db;
             }
