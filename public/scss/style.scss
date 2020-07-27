@@ -113,13 +113,16 @@ hr
     &-text
     {
         color: black;
-        font-size: 3rem;
+        margin-top: 1rem;
+        font-size: 2rem;
         font-style: italic;
     }
     &-h1 
     {
-        font-size: 3.5rem;
+        font-size: 3rem;
+        width: 80%;
         color: white;
+        margin: auto;
     }
     span
     {
@@ -130,6 +133,17 @@ hr
     {
         color: $yellow;
     }
+}
+
+.tox-tinymce
+{
+    margin-top: 1rem;
+    border: unset;
+}
+
+.tox-statusbar
+{
+    visibility: hidden;
 }
 
 //// MODIFFY CHAPTER PAGE ////
@@ -315,14 +329,13 @@ hr
 
 //// ADDCHAPTER PAGE ////
 
-.addChapter
+.writingForm
 {
     &-btn
     {
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
-        padding: .5rem 1rem;
         color: white;
         &:hover
         {
@@ -338,6 +351,44 @@ hr
         {
             color: $yellow;
             text-decoration: none;
+        }
+    }
+    &-labelAuthor, &-labelTitle
+    {
+        text-align: left;
+        font-size: 1.4rem;
+        font-weight: bold;
+        font-style: italic;
+        border-bottom: 1px dashed #495057;
+    }
+    &-labelContent
+    {
+        font-size: 1.1rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+    &-authorInput
+    {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        border: none;
+        border-radius: unset;
+        &:focus
+        {
+            border-bottom: 1px solid $yellow;
+            box-shadow: unset;
+        }
+    } 
+    &-titleInput
+    {
+        margin-bottom: 2rem;
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        border-radius: unset;
+        &:focus
+        {
+            border-bottom: 1px solid $yellow;
+            box-shadow: unset;
         }
     }
 }
