@@ -83,15 +83,14 @@
                             </div>                      
                             <div id="unpublishCollapse{{ plusOne }}" class="collapse" aria-labelledby="unpublishHeading{{ plusOne }}" data-parent="#accordion">
                                 <div class="card-body">
-                                    <p class="font-italic bold">Extrait :</p>
-                                    {{ chapter.content | slice(0, 350) }}...
+                                    <textarea id="extractChapter" class="font-italic bold">Extrait :</textarea>
+                                    {{ chapter.content | slice(0, 350) | raw }}...
                                 </div>
                                 <div class="text-center">
-                                    <a href="/readChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn my-3">
-                                        Visionner
+                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn my-3">
+                                        Modifier
                                     </a>
-                                    <a href="/modifyChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn publishbtn my-3">Publier</a>
-                                    <a href="/deleteChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn deletebtn my-3">Supprimer</a>                   
+                                    <a href="/publishChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn publishbtn my-3">Publier</a>               
                                 </div>
                             </div>
                         </div>
@@ -123,8 +122,7 @@
                 {% endfor %} 
             </section>
         </div>
-        
     </div>
 </div>
-
+</div>
 {% endblock main %}

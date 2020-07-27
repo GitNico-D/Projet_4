@@ -22,7 +22,8 @@
                 par 
                 <span class="font-italic bold">{{ uniqueChapter.author }}</span>
             </p>
-            <p class="card-body publishChapterSingleCard-body text-center-justify"> {{ uniqueChapter.content }}</p>
+            {# <p id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify">{{ uniqueChapter.content | raw }}</p> #}
+            <textarea id="chapterContent" name="chapterContent" id="" cols="30" rows="10">{{ uniqueChapter.content | raw }}</textarea>
         </div>
         <div class="text-center">
             {% if chapterNumber <= 1 and chapterNumber is defined %}            
@@ -75,7 +76,7 @@
     <h4 class="leaveComment-title">Laisser un commentaire</h4>
         <form action="index.php?page=createComment&chapterId={{ uniqueChapter.id }}" method="post" class="leaveComment-form">
             <div class="form-group">
-                <label for="commentAuthor" class="bold">Pseudonyme</label>    
+                <label for="commentAuthor" class="bold" >Pseudonyme</label>    
                 <input type="text" class="form-control" id="commentAuthor" name="commentAuthor"></input>
                 <label for="commentTitle" class="bold">Titre</label>
                 <input type="text" class="form-control" id="commentTitle" name="commentTitle">
@@ -89,4 +90,15 @@
         </form>    
     </div>  
 </section>
+{% block javascript %}    
+    <script type="text/javascript" src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#chapterContent',
+            height: 1000,
+                toolbar: '',
+                menubar: '',
+            });
+        </script>
+    {% endblock javascript %} 
 {% endblock main %}

@@ -14,20 +14,22 @@
 {% block main %} 
     <div class="container">
         <form action="/createChapter" method="post">
-            <div class="form-group">
-                <label for="chapterAuthor">Auteur du chapitre</label>
-                <input type="text" class="form-control" id="chapterAuthor" name="chapterAuthor">
-                <label for="chapterTitle">Titre du chapitre</label>
-                <input type="text" class="form-control" id="chapterTitle" name="chapterTitle">
-                <label for="chapterContent">Contenu du chapitre</label>
-                <textarea type="text" class="form-control" id="chapterContent" name="chapterContent"></textarea>
-                <button type="submit" class="btn addChapter-btn my-2">Enregistrer chapitre</button>
+            <div class="form-group writingForm">
+                <label for="chapterAuthor" class="writingForm-labelAuthor">Auteur</label>
+                <input type="text" class="form-control writingForm-authorInput" id="chapterAuthor" name="chapterAuthor" value="Jean">
+                <label for="chapterTitle" class=" writingForm-labelTitle">Titre du chapitre</label>
+                <input type="text" class="form-control writingForm-titleInput" id="chapterTitle" name="chapterTitle">
+                <label for="chapterContent" class="writingForm-labelContent">Contenu</label>
+                <textarea type="text" class="form-control writingForm-contentTextarea" id="chapterContent" name="chapterContent"></textarea>
+                <div class="text-center">
+                    <button type="submit" class="btn writingForm-btn my-3">Enregistrer chapitre</button>
+                </div>
             </div>
         </form>
     </div>
     {% if isAdmin %}
     <div class="text-center">
-        <a href="/adminView" class="addChapter-link">Retour à la page d'administration</a>
+        <a href="/adminView" class="writingForm-link">Retour à la page d'administration</a>
     </div>
     {% endif %}
 
@@ -36,19 +38,21 @@
     <script type="text/javascript">
         tinymce.init({
             selector: '#chapterContent',
-            height: 500,
+            height: 1000,
             plugins: [
                 'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
                 'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
                 'table emoticons template paste help'
                 ],
-                toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
-                'bullist numlist outdent indent | link image | print preview media fullpage | ' +
-                'forecolor backcolor emoticons | help',
+                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | ' +
+                'alignleft aligncenter alignright alignjustify | outdent indent |  ' +
+                'numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons |' +
+                'fullscreen  preview save print | insertfile image codesample | ltr rtl',
+                toolbar_sticky: true,
                 menu: {
-                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | spellchecker | emoticons'}
+                    favs: {items: 'code visualaid | searchreplace | spellchecker | emoticons'}
                 },
-                menubar: 'favs file edit view insert format tools table help',
+                menubar: 'favs file edit view insert format tools help',
             });
         </script>
     {% endblock javascript %}    
