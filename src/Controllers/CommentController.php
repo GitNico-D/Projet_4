@@ -20,9 +20,8 @@ class CommentController extends Controller
             }
             else 
             {
-                header('location: /');
-                
-                echo('Chapitre ajouté');
+                $alertMessage = 'Votre commentaire à été ajouté !';
+                header('location: /', $alertMessage );
             }
         }
         else
