@@ -14,25 +14,42 @@ class ChapterController extends Controller
      */
     public function createChapter($isAdmin)
     {
-        if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
+        if (!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']) && !empty($_POST['chapterImg']))
         {
             $newChapterAuthor = htmlspecialchars($_POST['chapterAuthor']);
             $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
             $newChapterContent = htmlspecialchars($_POST['chapterContent']);
-            $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent);
-            if ($affectedLines === false)
+            $newChapterImg = $_POST['chapterImg'];
+            if (isset($_POST['saveAndPublish'])) 
             {
-                throw new Exception ('Impossible d\'ajouter le chapitre');
-            }
+                $chapterPublished = true;
+                $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterPublished, $newChapterImg);
+                if ($affectedLines === false) 
+                {
+                    throw new Exception('Impossible d\'ajouter le chapitre');
+                } 
+                else 
+                {
+                    header('location: /createChapter');
+                    // echo('Chapitre ajouté');
+                }
+            } 
+            elseif (isset($_POST['saveDraft'])) {
+                $chapterPublished = false;
+                $updateLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterPublished, $newChapterImg);
+                if ($updateLines === false) 
+                {
+                    throw new Exception('Impossible de modifier le chapitre');
+                } 
+                else 
+                {
+                    header('location: /readChapter/' . $chapterId);
+                }
+            } 
             else 
             {
-                header('location: /adminView');
-                // echo('Chapitre ajouté');
+                // echo 'Veuillez remplir les champs !';
             }
-        }
-        else
-        {   
-            // echo 'Veuillez remplir les champs !';
         }
         echo $this->twig->render('adding_chapter.html.twig', ['isAdmin' => $isAdmin]);
     }
@@ -46,7 +63,7 @@ class ChapterController extends Controller
      */
     public function readChapter($chapterId, $isAdmin)
     {
-        $commentIdList = $this->commentManager->getCommentIdList($chapterId);
+        // $commentIdList = $this->commentManager->getCommentIdList($chapterId);
         // $totalReportsList = $this->commentManager->getTotalReportsComments($commentIdList);
         // $reportingList = $this->commentManager->getReportComments($commentIdList);
         // $totalReports = $this->commentManager->getTotalReports();
@@ -89,22 +106,24 @@ class ChapterController extends Controller
         header('location: /adminView');
     }
     
-    public function applyUpdateChapter($chapterId)
+    public function updateChapterAction($chapterId)
     {
         $updatedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
         $updatedChapterContent = htmlspecialchars($_POST['chapterContent']);
+        $updatedChapterImg = $_POST['chapterImg'];
         if(!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']))
         {
             if(isset($_POST['saveAndPublish']))
             {
                 $chapterPublished = true;
-                $updatedLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId);
+                $updatedLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId);
                 if ($updatedLines === false)
                 {
                         throw new Exception('Impossible de modifier le chapitre');
                 }
                 else 
                 {
+                    $alertMessage = 'Chapitre ajouté';
                     header('location: /readChapter/' . $chapterId);
                 }
             } 
