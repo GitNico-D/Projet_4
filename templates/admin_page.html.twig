@@ -8,7 +8,7 @@
         <nav class="sidebar col-md-2">
             <ul class="sidebar-list">
                 <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-house-user"></span><a class="nav-link sidebar-nav-link" href="#">Accueil</a>
+                    <span class="fas fa-feather-alt"></span><a class="nav-link sidebar-nav-link" href="#">Écrire</a>
                 </li>
                 <li class="nav-item sidebar-nav-item">
                     <span class="fas fa-book"></span><a href="/adminView#publishChapter" class="nav-link sidebar-nav-link">Chapitres publiés</a>
@@ -30,7 +30,7 @@
             <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
                     <p class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</p>
-                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span> <span class="bold"> Visionnage</span>, <span class="bold">Modification</span> ou <span class="bold">Supression</span> du chapitre</p>
+                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span><span class="bold"> Visionnage</span>,<span class="bold">Modification</span>du chapitre</p>
                 {% set plusOne = 0 %}
                 {% for chapter in publishedChaptersList %}
                     {% if plusOne < publishedChaptersList|length %} 
@@ -47,12 +47,11 @@
                         <div id="collapse{{ plusOne }}" class="collapse publishChapterCard-collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#accordion">
                             <div class="card-body">
                                 <p class="font-italic bold">Extrait :</p>
-                                {{ chapter.content | slice(0, 500) }}...
+                                <p>{{ chapter.content | raw | slice(0, 500) }}...</p>
                             </div>
                             <div class="text-center">
                                 <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn readbtn my-3">Visionner</a>
-                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn modifybtn my-3">Modifier</a>
-                                <a href="/deleteChapter/{{ chapter.id }}" class="btn publishChapterCard-btn deletebtn my-3">Supprimer</a>                   
+                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn modifybtn my-3">Modifier</a>                  
                             </div>
                         </div>
                     </div>
@@ -83,8 +82,9 @@
                             </div>                      
                             <div id="unpublishCollapse{{ plusOne }}" class="collapse" aria-labelledby="unpublishHeading{{ plusOne }}" data-parent="#accordion">
                                 <div class="card-body">
-                                    <textarea id="extractChapter" class="font-italic bold">Extrait :</textarea>
-                                    {{ chapter.content | slice(0, 350) | raw }}...
+                                    <p  class="font-italic bold">Extrait :</p>
+                                    <p id="extractChapter">
+                                    {{ chapter.content | raw | slice(0, 350)  }}...</p>
                                 </div>
                                 <div class="text-center">
                                     <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn my-3">

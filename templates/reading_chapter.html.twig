@@ -5,7 +5,25 @@
 {% block mainHeader %}
 <div class="page-title text-center">
     <div class="container page-title-container">
-    <img src={{ uniqueChapter.imgUrl }} alt="">
+        {# {% if isAdmin %}
+            {% if uniqueChapter.imgUrl is not null %}
+                <img src={{ uniqueChapter.imgUrl }} alt="">
+                <p> 
+                    <a href="" class="btn modifyImg-btn">Modifier l'image</a>
+                </p>
+            {% else %}
+            <form action="addChapterImg" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="chapterImg" name="chapterImg" placeholder="Ajouter l'url de l'image du chapitre"></input>
+                    <button type="submit" class="btn chapterImg-btn">Ajouter une image</a>
+                </div>
+            </form>
+            {% endif %}
+        {% else %} #}
+            {% if uniqueChapter.imgUrl is not null %}
+                <img src={{ uniqueChapter.imgUrl }} alt="">
+            {% endif %}   
+        {# {% endif %} #}
         <p class="page-title-text">Chapitre {{ uniqueChapter.id }} :</p>
         <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title}}</span></h1>
     </div>
@@ -35,11 +53,11 @@
         </div>
         {% if isAdmin %}
             <div class="singlePage-return text-center">
-                <a href="/adminView" class=" my-2">Retour à l'accueil</a>
+                <i class="far fa-arrow-alt-circle-left"></i><a href="/adminView" class=" my-2">Retour à l'accueil</a>
             </div>  
         {% else %}
             <div class="singlePage-return text-center">
-                <a href="/index" class="my-2">Retour à l'accueil</a>
+                <i class="far fa-arrow-alt-circle-left"></i><a href="/index" class="my-2">Retour à l'accueil</a>
             </div>
         {% endif %}
     </div>

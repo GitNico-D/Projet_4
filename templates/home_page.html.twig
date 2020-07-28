@@ -54,7 +54,9 @@
                 <div class="col-md-4">
                     <div class="chapter-card my-4">
                         <h4 class="chapter-card-header">{{ chapter.title }}</h4>
-                        <img src={{ chapter.imgUrl }}>
+                        {% if chapter.imgUrl is not null %}
+                            <img src={{ chapter.imgUrl }}>
+                        {% endif %}    
                         <p class="chapter-card-body text-muted">
                             Publié le 
                             <span class="font-italic">{{ chapter.createDate }}</span> 
