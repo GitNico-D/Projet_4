@@ -29,9 +29,20 @@ hr
     width: 70%;
 }
 
+.btn:focus
+{
+    box-shadow: none;
+}
+
+.form-control:focus
+{
+    box-shadow: 0 0 0 0.2rem $yellow;
+    border-color: $yellow;
+}
+
 .navbar
 {
-    color: black;
+    color: black;    
     .nav-item
     {        
         vertical-align: middle;
@@ -61,6 +72,10 @@ hr
             color: $yellow;
             border: 1px solid $yellow;
             background-color: white;
+        }
+        &:focus
+        {
+            box-shadow: none;
         }
     }
     &-toggler
@@ -146,7 +161,7 @@ hr
     visibility: hidden;
 }
 
-//// MODIFFY CHAPTER PAGE ////
+//// UPDATE CHAPTER PAGE ////
 
 .savePublish
 {
@@ -187,7 +202,55 @@ hr
     }
 }
 
-//// SINGLE PAGE ////
+.updateForm
+{
+    &-labeltitle, &-labelimg
+        {
+            text-align: left;
+            font-size: 1.4rem;
+            font-weight: bold;
+            font-style: italic;
+            border-bottom: 1px dashed #495057;
+        }
+        &-labelcontent
+        {
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-style: italic;
+        }
+    &-titleinput, &-imginput
+    {
+        margin-bottom: 2rem;
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        border-radius: unset;
+        &:focus
+        {
+            border-bottom: 1px solid $yellow;
+            box-shadow: unset;
+        }
+    }
+    &-deletebtn
+    {
+        background-color: $red;
+        border: 1px solid $red;
+        color: white;
+        &:hover
+        {
+            color: $red;
+            background-color: white;
+            border: 1px solid $red;
+        }
+    }
+}
+
+.img-thumbnail
+{
+    width: 30%;
+    margin: auto;
+}
+
+//// READING PAGE ////
 
 .nextChapter, .previousChapter
 {
@@ -327,6 +390,24 @@ hr
     }
 }
 
+.chapterImg
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
+
 //// ADDCHAPTER PAGE ////
 
 .writingForm
@@ -353,7 +434,7 @@ hr
             text-decoration: none;
         }
     }
-    &-labelAuthor, &-labelTitle
+    &-labelAuthor, &-labelTitle, &-labelImg
     {
         text-align: left;
         font-size: 1.4rem;
@@ -363,7 +444,7 @@ hr
     }
     &-labelContent
     {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         font-weight: bold;
         font-style: italic;
     }
@@ -379,7 +460,7 @@ hr
             box-shadow: unset;
         }
     } 
-    &-titleInput
+    &-titleInput, &-imgInput
     {
         margin-bottom: 2rem;
         border: none;
@@ -725,12 +806,6 @@ hr
 
 .writingChapter
 {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // right: 0;
-    // width: 100%;
-    // z-index: 10;
     background-color: #fffdf5;
     margin: auto;
     margin-top: 2rem;    
@@ -738,7 +813,7 @@ hr
     padding: 2rem;
     &-title
     {
-        font-size: 2.5rem;
+        font-size: 1.6rem;
         margin-bottom: 2rem;
     }
     &-btn
@@ -748,7 +823,7 @@ hr
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
-        width: 40%;
+        width: 30%;
         margin: auto;
         &:hover
         {
@@ -866,13 +941,13 @@ hr
     }
     .modifybtn
     {
-        background-color: $yellow;
-        border: 1px solid $yellow;
+        background-color: $green;
+        border: 1px solid $green;
         &:hover
         {
-            color: $yellow;
+            color: $green;
             background-color: white;
-            border: 1px solid $yellow;
+            border: 1px solid $green;
         }
         &::before
         {
@@ -885,7 +960,7 @@ hr
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
             font-size: 1.25rem;
-            color: $yellow;
+            color: $green;
             padding-left: 1rem;
         }
     }
@@ -939,33 +1014,8 @@ hr
             padding-left: 1rem;
         }
     }
-    .deletebtn
-    {
-        background-color: $red;
-        border: 1px solid $red;
-        &:hover
-        {
-            color: $red;
-            background-color: white;
-            border: 1px solid $red;
-        }
-        &::before
-        {
-            content: " ";
-            padding-left: 1.5rem;
-        }
-        &::after
-        {
-            content: "\f057";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            font-size: 1.25rem;
-            color: $red;
-            padding-left: 1rem;
-        }
-    }
+    
 }
-
 
 .publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
 {
@@ -984,7 +1034,7 @@ hr
     }
 }
 
-.fa-house-user, .fa-book, .fa-comment, .fa-book-reader
+.fa-house-user, .fa-book, .fa-comment, .fa-book-reader, .fa-feather-alt, .fa-arrow-left
 {
     color: $yellow;
 }
