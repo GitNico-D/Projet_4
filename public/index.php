@@ -49,7 +49,7 @@ try {
                 $chapterId = RouterHelper::getChapterId($_GET);
                 $chapterController->deleteChapter($chapterId, $isAdmin);
             break;
-            case "applyUpdateChapter":
+            case "updateChapterAction":
                 // $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);   
                 $chapterId = RouterHelper::getChapterId($_GET);
                 $chapterController->applyUpdateChapter($chapterId);
