@@ -27,10 +27,76 @@
                 <a href="/createChapter" class="btn writingChapter-btn"><span class="button-text">Écrire</span></a>
             </section>
             <hr class="adminpageSeparator">
+            <section> 
+                <h4 class="summary-title my-5"> Vue d'ensemble </h4>
+                <div class="container">
+                    <p class="summary-subtitle my-5"> Tous les chapitres </p>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Auteur</th>
+                                <th scope="col">Crée le</th>
+                                <th scope="col">Publié</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for chapter in allChaptersList %}
+                            <tr>
+                                <td class="p-4 allChaptersList-title">{{ chapter.title }}</td>
+                                <td class="p-4">{{ chapter.author }}</td>
+                                <td class="font-italic p-4">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
+                                <td class="p-4">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+                <!-- <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Auteur</th>
+                            <th scope="col">Crée le</th>
+                            <th scope="col">Publié</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set plusOne = 0 %}
+                        {% for chapter in allChaptersList %}
+                            {% if plusOne < publishedChaptersList|length %} 
+                                {% set plusOne = plusOne + 1 %}
+                            {% endif %}
+                        <tr>
+                            <td class="p-4"><span class="allChaptersList-title">{{ chapter.title }} </span>
+                                <a class="btn allChaptersList-btn allChaptersList-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
+                                Détails</a>
+                                <div id="collapse{{ plusOne }}" class="collapse allChaptersList-collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p class="font-italic bold">Extrait :</p>
+                                        <p>{{ chapter.content | raw | slice(0, 500) }}...</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="/readChapter/{{ chapter.id }}" class="btn allChaptersList-btn readbtn my-3">Visionner</a>
+                                        <a href="/updateChapter/{{ chapter.id }}" class="btn allChaptersList-btn modifybtn my-3">Modifier</a>                  
+                                    </div>
+                                </div>   
+                             </td>
+                            <td class="p-4">{{ chapter.author }}</td>
+                            <td class="font-italic p-4">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
+                            <td class="p-4">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table> -->
+            
+            
             <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
                     <p class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</p>
-                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span><span class="bold"> Visionnage</span>,<span class="bold">Modification</span>du chapitre</p>
+                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span><span class="bold"> Visionnage</span>, <span class="bold">Modification</span> du chapitre</p>
                 {% set plusOne = 0 %}
                 {% for chapter in publishedChaptersList %}
                     {% if plusOne < publishedChaptersList|length %} 
@@ -39,7 +105,7 @@
                 <div id="accordion">
                     <div class="card publishChapterCard">
                         <div class="card-header publishChapterCard-header" id="heading{{ plusOne }}">                            
-                            <p class="font-italic float-right"> Publié le {{ chapter.createDate | date("m/d/Y \à H:i:s")}}</p>
+                            <p class="font-italic publishChapterCard-date"> Publié le {{ chapter.createDate | date("m/d/Y \à H:i:s")}}</p>
                             <a class="publishChapterCard-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
                                 <span class="publishChapterCard-title">{{ chapter.title }} </span>   
                             </a>                              
