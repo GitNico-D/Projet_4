@@ -13,19 +13,19 @@ class CommentManager extends Manager
 
     public function getCommentByChapterId($chapterId)
     {
-        $whereKey = 'chapterId';
-        $orderKey = 'createdDate';
-        $commentList = $this->findAll($this->table, $whereKey, $chapterId, $orderKey, $this->className);
+        // $whereKey = 'chapterId';
+        // $orderKey = 'createdDate';
+        $commentList = $this->findBy($this->table, array($chapterId => '1'), array('createdDate' => 'ASC'), 5, Comment::class);
         return $commentList;
     }
 
-    public function getCommentIdList($chapterId)
-    {
-        $selectValue = 'id';
-        $whereKey = 'chapterId';
-        $commentIdList = $this->findBy($selectValue, $this->table, $whereKey, $chapterId);
-        return $commentIdList;
-    }
+    // public function getCommentIdList($chapterId)
+    // {
+    //     $selectValue = 'id';
+    //     $whereKey = 'chapterId';
+    //     $commentIdList = $this->findBy($selectValue, $this->table, $whereKey, $chapterId);
+    //     return $commentIdList;
+    // }
 
     public function addComment($commentAuthor, $commentTitle, $commentContent, $chapterId)
     {

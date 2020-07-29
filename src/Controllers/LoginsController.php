@@ -27,7 +27,8 @@ class LoginsController extends Controller
                 // $reportList = $this->commentManager->getReportComments($commentIdList);
                 $isAdmin = true;
                 echo $this->twig->render('admin_page.html.twig', 
-                    ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
+                    ['allChaptersList' => $this->chapterManager->getAllChapters(),
+                    'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
                     'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
                     // 'reportList' => $this->commentManager->getReportComments($commentIdList),
@@ -59,7 +60,8 @@ class LoginsController extends Controller
     public function returnAdminView($isAdmin)
     {
         echo $this->twig->render('admin_page.html.twig', 
-            ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
+            ['allChaptersList' => $this->chapterManager->getAllChapters(),
+            'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
             'reportedCommentList' => $this->commentManager->getAllReportedComments(),
             // 'reportList' => $this->commentManager->getReportComments($commentIdList),

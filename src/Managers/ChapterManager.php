@@ -8,27 +8,28 @@ use App\src\Models\Chapter;
 class ChapterManager extends Manager
 {
     public $table = 'chapter';
-    public $className = 'App\src\Models\Chapter';
 
     public function getChapterById($chapterId) 
     {
-        $this->whereKey = 'id';
-        return new Chapter($this->findOneBy($this->table, $this->whereKey, $chapterId));
+        return new Chapter($this->findOneBy($this->table, array('id' => $chapterId)));
+    }
+
+    public function getAllChapters()
+    {
+        $allChaptersList = $this->findAll($this->table, Chapter::class);
+        return $allChaptersList;
     }
 
     public function getAllPublishedChapters()
     {
-        $whereKey = 'published';
-        $orderKey = 'id';
-        $publishedChaptersList = $this->findAll($this->table, $whereKey, true, $orderKey, $this->className);
+        $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'), 10, Chapter::class);
+        // $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'), Chapter::class);
         return $publishedChaptersList;
     }
 
     public function getAllUnpublishedChapters()
     {
-        $whereKey = 'published';
-        $orderKey = 'id';
-        $unpublishedChaptersList = $this->findAll($this->table, $whereKey, false, $orderKey, $this->className);
+        $unpublishedChaptersList = $this->findBy($this->table, array('published' => 0), array('createDate' => 'ASC'), 10, Chapter::class);
         return $unpublishedChaptersList;
     }
 
@@ -38,24 +39,26 @@ class ChapterManager extends Manager
         $this->createQuery($sqlRequest, [$chapterId]);
     } 
 
-    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
+    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $newChapterImg)
     {
-        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW())';
+        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate, imgUrl) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW(), :chapterImg)';
         $affectedLines = $this->createQuery($sqlRequest, array(
-            'chapterAuthor'=>$newChapterAuthor, 
-            'chapterTitle'=>$newChapterTitle, 
-            'chapterContent'=>$newChapterContent
+            'chapterAuthor' => $newChapterAuthor, 
+            'chapterTitle' => $newChapterTitle, 
+            'chapterContent' => $newChapterContent,
+            'chapterImg' => $newChapterImg
         ));
         return $affectedLines;
     }
 
-    public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $chapterId)
+    public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updateChapterImg, $chapterId)
     {
-        $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished WHERE id = :chapterId';
+        $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished, imgUrl= :updateChapterImg WHERE id = :chapterId';
         $updatedLines = $this->createQuery($sqlRequest, array(   
                 'updatedChapterTitle' => $updatedChapterTitle,
                 'updatedChapterContent' => $updatedChapterContent,
                 'chapterPublished' => $chapterPublished,
+                'chapterImg' => $updateChapterImg,
                 'chapterId' => $chapterId
                 ));
         return $updatedLines;
