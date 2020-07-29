@@ -850,6 +850,26 @@ hr
     }
 }
 
+.allChaptersList
+{
+    &-title
+    {
+        font-size: 1.1rem;
+    }
+}
+
+.summary
+{
+    &-title
+    {
+        font-size: 2.5rem;
+    }
+    &-subtitle
+    {
+        font-size: 1.5rem;
+    }
+}
+
 .publishChapterCard, .unpublishChapterCard
 {
     margin-top: 1rem;
@@ -868,6 +888,10 @@ hr
     {
         color: $yellow;
         cursor: pointer; 
+    }
+    &-date
+    {
+        float: right;
     }
     &-title
     {
@@ -1014,6 +1038,36 @@ hr
             padding-left: 1rem;
         }
     }
+    .deletebtn
+    {
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        margin-right: 2rem;
+        background-color: $red;
+        border: 1px solid $red;
+        color: white;
+        &:hover
+        {
+            color: $red;
+            background-color: white;
+            border: 1px solid $red;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.5rem;
+        }
+        &::after
+        {
+            content: "\f057";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $red;
+            padding-left: 1rem;
+        }
+    }
     
 }
 
@@ -1034,9 +1088,21 @@ hr
     }
 }
 
+//// FONT AWESOME COLOR CHANGE ////
+
 .fa-house-user, .fa-book, .fa-comment, .fa-book-reader, .fa-feather-alt, .fa-arrow-left
 {
     color: $yellow;
+}
+
+.fa-check
+{
+    color: $green;
+}
+
+.fa-times
+{
+    color: $red;
 }
 
 //// CONTACT PAGE ////
@@ -1196,7 +1262,18 @@ hr
         }         
     } 
     
-    .publishChapterCard, .unpublishChapterCard, .commentModerationCard
+    .commentModerationCard
+    {
+
+        &-deletebtn, &-validatebtn
+        {
+            text-decoration: none;
+            padding: unset;
+            margin: auto;
+        }
+    }
+
+    .publishChapterCard, .unpublishChapterCard
     {
         &-btn
         {
@@ -1204,7 +1281,49 @@ hr
             padding: unset;
             margin: auto;
         }
+    }
 
+    .publishChapterCard, .unpublishChapterCard
+    {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: none;
+        &-header 
+        {
+            text-align: center;
+            background-color: white;
+        }
+        &-date
+        {
+            font-size: 0.8rem;
+        }
+        &-title
+        {
+            font-weight: bold;
+            font-size: 1.2rem;
+            &::before
+            {
+                font-size: 0.8rem;
+                padding-right: 0.5rem;
+            } 
+            &::after
+            {
+                font-size: 0.8rem;         
+            }
+        }
+        &-text
+        {
+            font-size: 1.1rem;
+        }
+    }
+
+    .writingChapter
+    {
+        &-btn
+        {
+            width: unset;
+            margin: unset;
+        }
     }
 }
 
@@ -1253,8 +1372,71 @@ hr
             margin: auto;
         }
     }
-}
 
+    .publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
+    {
+        &-title
+        {
+            font-size: 2rem;
+        }
+    }
+
+    .publishChapterCard, .unpublishChapterCard, .commentModerationCard
+    {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: none;
+        &-header 
+        {
+            text-align: center;
+            background-color: white;
+        }
+        &-date
+        {
+            float: unset;
+            display: block;
+        }
+        &-title
+        {
+            display: block;
+            font-weight: bold;
+            font-size: 1rem;
+            &::before
+            {
+            font-size: 0.8rem;
+            padding-right: 0.5rem;
+            } 
+            &::after
+            {
+                font-size: 0.8rem;         
+            }
+        }
+        &-text
+        {
+            font-size: 1.1rem;
+        }
+    }
+
+    .commentModerationCard
+    {
+        &-title
+        {
+            text-align: center;
+        }
+        &-text
+        {
+            font-size: 0.8rem;
+        }
+    }
+    
+    .navbar 
+    {
+        &-button
+        {
+            margin-top: 1rem;
+        }
+    }
+}
 
 @media (max-width: 340px)
 {
@@ -1275,6 +1457,26 @@ hr
         h1
         {
             font-size: 1.5rem;
+        }
+    }
+    .publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
+    {
+        &-title
+        {
+            font-size: 1.5rem;
+        }
+    }
+
+    .writingChapter
+    {
+        &-title
+        {
+            font-size: 1.2rem;
+        }
+        &-btn
+        {
+            width: unset;
+            margin: unset;
         }
     }
 }
