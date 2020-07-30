@@ -77,7 +77,7 @@
                         {{ comment.content }}
                     </p>
                     <div class="reporting-comment text-left">
-                        <a href="/reportComment/{{ uniqueChapter.id }}&commentId={{ comment.id }}"
+                        <a href="/reportComment/{{ uniqueChapter.id }}/{{ comment.id }}"
                             class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon"></i></a>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
 <section class="container">
     <div class=" my-4">
     <h4 class="leaveComment-title">Laisser un commentaire</h4>
-        <form action="index.php?page=createComment&chapterId={{ uniqueChapter.id }}" method="post" class="leaveComment-form">
+        <form action="/createComment/{{ uniqueChapter.id }}" method="post" class="leaveComment-form">
             <div class="form-group">
                 <label for="commentAuthor" class="bold" >Pseudonyme</label>    
                 <input type="text" class="form-control" id="commentAuthor" name="commentAuthor"></input>

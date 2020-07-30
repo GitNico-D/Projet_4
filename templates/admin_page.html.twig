@@ -29,7 +29,7 @@
             <hr class="adminpageSeparator">
             <section> 
                 <h4 class="summary-title my-5"> Vue d'ensemble </h4>
-                <div class="container">
+                <div class="container summary-container">
                     <p class="summary-subtitle my-5"> Tous les chapitres </p>
                     <table class="table table-hover">
                         <thead>
@@ -43,56 +43,18 @@
                         <tbody>
                             {% for chapter in allChaptersList %}
                             <tr>
-                                <td class="p-4 allChaptersList-title">{{ chapter.title }}</td>
-                                <td class="p-4">{{ chapter.author }}</td>
-                                <td class="font-italic p-4">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
-                                <td class="p-4">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
+                                <td class=" allChaptersList-title">{{ chapter.title }}</td>
+                                <td class="">{{ chapter.author }}</td>
+                                <td class="font-italic ">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
+                                <td class="">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
-            </section>
-
-                <!-- <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Auteur</th>
-                            <th scope="col">Crée le</th>
-                            <th scope="col">Publié</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% set plusOne = 0 %}
-                        {% for chapter in allChaptersList %}
-                            {% if plusOne < publishedChaptersList|length %} 
-                                {% set plusOne = plusOne + 1 %}
-                            {% endif %}
-                        <tr>
-                            <td class="p-4"><span class="allChaptersList-title">{{ chapter.title }} </span>
-                                <a class="btn allChaptersList-btn allChaptersList-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
-                                Détails</a>
-                                <div id="collapse{{ plusOne }}" class="collapse allChaptersList-collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p class="font-italic bold">Extrait :</p>
-                                        <p>{{ chapter.content | raw | slice(0, 500) }}...</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="/readChapter/{{ chapter.id }}" class="btn allChaptersList-btn readbtn my-3">Visionner</a>
-                                        <a href="/updateChapter/{{ chapter.id }}" class="btn allChaptersList-btn modifybtn my-3">Modifier</a>                  
-                                    </div>
-                                </div>   
-                             </td>
-                            <td class="p-4">{{ chapter.author }}</td>
-                            <td class="font-italic p-4">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
-                            <td class="p-4">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> -->
-            
-            
+                {{ dump(totalReportedComments) }}
+            </section>            
+            <hr class="adminpageSeparator">
             <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
                     <p class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</p>
@@ -116,8 +78,8 @@
                                 <p>{{ chapter.content | raw | slice(0, 500) }}...</p>
                             </div>
                             <div class="text-center">
-                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn readbtn my-3">Visionner</a>
-                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn modifybtn my-3">Modifier</a>                  
+                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn readbtn ">Visionner</a>
+                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn modifybtn ">Modifier</a>                  
                             </div>
                         </div>
                     </div>
@@ -153,10 +115,10 @@
                                     {{ chapter.content | raw | slice(0, 350)  }}...</p>
                                 </div>
                                 <div class="text-center">
-                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn my-3">
+                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn ">
                                         Modifier
                                     </a>
-                                    <a href="/publishChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn publishbtn my-3">Publier</a>               
+                                    <a href="/publishChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn publishbtn ">Publier</a>               
                                 </div>
                             </div>
                         </div>
@@ -174,18 +136,30 @@
                     <span class="text-muted bold">VALIDATION</span>, 
                     <span class="text-muted bold">SUPPRESSION</span> du commentaire
                 </p>   
-                {% for comment in reportedCommentList %}
+                {# {% for reportedComment in reportedCommentByChapterList %}
                     <div class="card commentModerationCard text-center">
                         <p class="card-header commentModerationCard-title bold">
-                            <span class="font-italic">Posté le</span> {{ comment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ comment.author }}
+                            <span class="font-italic">Posté le</span> {{ reportedComment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ reportedComment.author }}
                         </p>
-                        <p class="card-body commentModerationCard-text text-center-justify">{{ comment.content }}</p>
+                        <p class="card-body commentModerationCard-text text-center-justify">{{ reportedComment.content }}</p>
                         <div class="text-center">
-                            <a href="/validateComment/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn my-3">Valider</a>
-                            <a href="/deleteComment/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn my-3">Supprimer</a>
+                            <a href="/validateComment/{{ reportedComment.id }}" class="btn commentModerationCard-btn validatebtn ">Valider</a>
+                            <a href="/deleteComment/{{ reportedComment.id }}" class="btn commentModerationCard-btn deletebtn ">Supprimer</a>
                         </div>
                     </div>
-                {% endfor %} 
+                    {% endfor %}  #}
+                {% for comment in reportedCommentList %}
+                        <div class="card commentModerationCard text-center">
+                            <p class="card-header commentModerationCard-title bold">
+                                <span class="font-italic">Posté le</span> {{ comment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ comment.author }}
+                            </p>
+                            <p class="card-body commentModerationCard-text text-center-justify">{{ comment.content }}</p>
+                            <div class="text-center">
+                                <a href="/validateComment/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn ">Valider</a>
+                                <a href="/deleteComment/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn ">Supprimer</a>
+                            </div>
+                        </div>
+                {% endfor %}    
             </section>
         </div>
     </div>
