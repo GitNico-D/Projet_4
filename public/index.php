@@ -2,7 +2,6 @@
 
 require '../vendor/autoload.php';
 require '../src/Core/Controller.php';
-require "../config/dbConfig.php";
 // require '../config/db-config.yml';
 
 use App\src\Services\RouterHelper;
@@ -26,8 +25,7 @@ $errorController = new ErrorController();
         
 try {
     if (array_key_exists("page", $_GET) && isset($_GET["page"]) && is_string($_GET["page"])) {
-        switch ($_GET["page"]) 
-        {
+        switch ($_GET["page"]) {
             case 'createChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterController->createChapter($isAdmin);
@@ -38,9 +36,9 @@ try {
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
                 $chapterController->readChapter($chapterId, $isAdmin);
-            break;            
+            break;
             case "updateChapter":
-                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);                
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
                 $chapterController->updateChapter($chapterId, $isAdmin);
             break;
@@ -50,16 +48,16 @@ try {
                 $chapterController->deleteChapter($chapterId, $isAdmin);
             break;
             case "updateChapterAction":
-                // $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);   
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $chapterController->applyUpdateChapter($chapterId);
-            break;            
+                $chapterController->updateChapterAction($chapterId);
+            break;
             case 'publishChapter':
                 $chapterId = RouterHelper::getChapterId($_GET);
                 $chapterController->publishChapter($chapterId);
             break;
             case 'getLogin':
-                $loginsController->getLogin();  
+                $loginsController->getLogin();
             break;
             case 'getLogout':
                 $loginsController->getLogout();
@@ -79,30 +77,23 @@ try {
             break;
             case "adminView":
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-                $loginsController->returnAdminView($isAdmin);  
-            break; 
+                $loginsController->returnAdminView($isAdmin);
+            break;
             case "contact":
-                $loginsController->toBeContacted();  
-            break;         
+                $loginsController->toBeContacted();
+            break;
             default:
                 throw new Exception('Page introuvable');
             break;
             }
-        }
-        else
-        { 
-            $isAdmin = LoginsHelper::checkAdminConnected($_SESSION); 
-            $indexController->home($isAdmin);
-        }
-} 
-catch (Exception $error)
-{
-    if ((int)$error->getCode() != 0)
-    {
-        $errorController->error500($error);
+    } else {
+        $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
+        $indexController->home($isAdmin);
     }
-    else
-    {
+} catch (Exception $error) {
+    if ((int)$error->getCode() != 0) {
+        $errorController->error500($error);
+    } else {
         $errorController->error404($error);
     }
 }
