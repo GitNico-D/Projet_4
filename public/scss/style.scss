@@ -821,9 +821,9 @@ hr
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
-        padding: .5rem 1rem;
+        // padding: .5rem 1rem;
         color: white;
-        width: 30%;
+        width: 25%;
         margin: auto;
         &:hover
         {
@@ -833,18 +833,18 @@ hr
         }
         &::before
         {
-            padding-right: 1.5rem;
+            padding-right: 1.25rem;
         }
         &::after
         {
-            padding-left: 1.5rem;
+            padding-left: 1.25rem;
         }
         &::after, &::before
         {
             content: "\f56b";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            font-size: 1.25rem;
+            font-size: 1.05rem;
             color: $yellow;
         }
     }
@@ -873,21 +873,24 @@ hr
 .publishChapterCard, .unpublishChapterCard
 {
     margin-top: 1rem;
-    padding: 1rem;
-    border: none;
     &-header 
     {
         background-color: white;
+        vertical-align: middle;
+
+        padding: .5rem 1rem .5rem 1rem;
         p
         {
             margin-top: 0.5rem;
-            vertical-align: middle;
         }
     }
-    &-link:hover
+    &-link
     {
-        color: $yellow;
-        cursor: pointer; 
+        &:hover
+        {
+            color: $yellow;
+            cursor: pointer; 
+        }
     }
     &-date
     {
@@ -903,7 +906,7 @@ hr
         font-size: 1.25rem;
         content: "\f358";
         color: $yellow;
-        padding-right: 1rem;
+        padding-right: 0.5rem;
         } 
         &::after
         {
@@ -929,7 +932,7 @@ hr
     &-collapse
     {
         border: 1px solid rgba(0,0,0,.125);
-        border-top-style: none;
+        // border-top-style: none;
     }
     &-icons
     {
@@ -941,15 +944,16 @@ hr
 {
     border: 1px solid rgba(0,0,0,.125);
     margin-top: 1rem;
-    padding: 1.5rem;
+    padding: 0.5rem;
     &-title
     {
         text-align: left;
-        font-size: 1.25rem;
+        // font-size: 1.25rem;
     }
     &-text
     {
-        font-size: 1.10rem;
+        padding: 0.25rem;
+        // font-size: 1.rem;
         margin-top: 1.5rem;
     }
 } 
@@ -959,9 +963,8 @@ hr
     &-btn
     {
         text-decoration: none;
-        padding: .5rem 1rem;
         color: white;
-        margin-right: 2rem;
+        margin: 0rem 1rem 0rem 0rem;
     }
     .modifybtn
     {
@@ -1026,14 +1029,13 @@ hr
         &::before
         {
             content: " ";
-            padding-left: 1.5rem;
+            padding-left: 1.75rem;
         }
         &::after
         {
             content: "\f058";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            font-size: 1.25rem;
             color: $green;
             padding-left: 1rem;
         }
@@ -1041,9 +1043,7 @@ hr
     .deletebtn
     {
         text-decoration: none;
-        padding: .5rem 1rem;
         color: white;
-        margin-right: 2rem;
         background-color: $red;
         border: 1px solid $red;
         color: white;
@@ -1056,14 +1056,13 @@ hr
         &::before
         {
             content: " ";
-            padding-left: 1.5rem;
+            padding-left: 1.75rem;
         }
         &::after
         {
             content: "\f057";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            font-size: 1.25rem;
             color: $red;
             padding-left: 1rem;
         }
@@ -1079,12 +1078,22 @@ hr
     &-title
     {
         background-color: #f7f7f7d7;
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin-bottom: 2rem;
     }
-    &-text
+    // &-text
+    // {
+    //     font-size: 1.1rem;
+    // }
+}
+
+
+.table
+{
+    td
     {
-        font-size: 1.1rem;
+        vertical-align: middle;
+        padding: 1rem;
     }
 }
 
@@ -1438,7 +1447,7 @@ hr
     }
 }
 
-@media (max-width: 340px)
+@media (max-width: 360px)
 {
     .main-header
     {
@@ -1477,6 +1486,30 @@ hr
         {
             width: unset;
             margin: unset;
+        }
+    }
+
+    .table
+    {
+        td
+        {
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 0.25rem;
+        }
+    }
+
+    .summary
+    {
+        &-title
+        {
+            text-align: center;
+        }
+        &-container
+        {
+            padding-right: unset;
+            padding-left: unset;
+
         }
     }
 }
