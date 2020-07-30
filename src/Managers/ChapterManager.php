@@ -39,26 +39,27 @@ class ChapterManager extends Manager
         $this->createQuery($sqlRequest, [$chapterId]);
     } 
 
-    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $newChapterImg)
+    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterPublished, $newChapterImg)
     {
-        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate, imgUrl) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW(), :chapterImg)';
+        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate, published, imgUrl) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW(), :chapterPublished, :chapterImg)';
         $affectedLines = $this->createQuery($sqlRequest, array(
             'chapterAuthor' => $newChapterAuthor, 
             'chapterTitle' => $newChapterTitle, 
             'chapterContent' => $newChapterContent,
+            'chapterPublished' => $chapterPublished,
             'chapterImg' => $newChapterImg
         ));
         return $affectedLines;
     }
 
-    public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updateChapterImg, $chapterId)
+    public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId)
     {
-        $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished, imgUrl= :updateChapterImg WHERE id = :chapterId';
+        $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished, imgUrl= :updatedChapterImg WHERE id = :chapterId';
         $updatedLines = $this->createQuery($sqlRequest, array(   
                 'updatedChapterTitle' => $updatedChapterTitle,
                 'updatedChapterContent' => $updatedChapterContent,
                 'chapterPublished' => $chapterPublished,
-                'chapterImg' => $updateChapterImg,
+                'updatedChapterImg' => $updatedChapterImg,
                 'chapterId' => $chapterId
                 ));
         return $updatedLines;
