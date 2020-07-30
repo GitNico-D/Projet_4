@@ -12,7 +12,13 @@ RewriteEngine on
 # Règles de réécriture d'URL :
 #--------------------------------------------------
 
-# Page avec numéro de chapitre :
+# Page avec chapterId et commentId:
+RewriteRule ^([a-zA-Z]+)/([0-9]+)/([0-9]+)$ index.php?page=$1&chapterId=$2&commentId=$3
+
+# Page avec commentId :
+RewriteRule ^([a-zA-Z]+)/([0-9]+)$ index.php?page=$1&commentId=$2
+
+# Page avec chapterId :
 RewriteRule ^([a-zA-Z]+)/([0-9]+)$ index.php?page=$1&chapterId=$2
 
 # Page :
