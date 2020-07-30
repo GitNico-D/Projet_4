@@ -7,6 +7,13 @@ use App\src\Models\DAO;
 class Manager extends DAO
 {
     
+    /**
+     * findOneBy
+     *
+     * @param string $table
+     * @param array $where
+     * @return void
+     */
     public function findOneBy(string $table, array $where)
     {
         $sqlRequest = "SELECT * FROM " . $table . " WHERE ";
@@ -53,6 +60,16 @@ class Manager extends DAO
     //     return $requestResult;
     // }
 
+    /**
+     * findBy
+     *
+     * @param mixed $table
+     * @param mixed $where
+     * @param mixed $orderBy
+     * @param mixed $limit
+     * @param mixed $className
+     * @return void
+     */
     public function findBy($table, $where, $orderBy, $limit = NULL, $className)
     {
         $sqlRequest = 'SELECT * FROM ' . $table;
@@ -124,6 +141,13 @@ class Manager extends DAO
     //     return $dataList;
     // }
 
+    /**
+     * findAll
+     *
+     * @param mixed $table
+     * @param mixed $className
+     * @return void
+     */
     public function findAll($table, $className)
     {
         $sqlRequest = "SELECT * FROM " . $table ;
