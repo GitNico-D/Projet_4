@@ -11,8 +11,9 @@ class IndexController extends Controller
      *
      * @return void
      */
-    public function home()
+    public function home($isAdmin)
     {
+        var_dump($isAdmin);
         echo $this->twig->render('home_page.html.twig', 
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]
