@@ -1,5 +1,5 @@
-vendor/
-.public/
-.vscode/
-public/css/
-node_modules/
+/vendor/
+/.public/
+/.vscode/
+/public/css/
+/node_modules/
