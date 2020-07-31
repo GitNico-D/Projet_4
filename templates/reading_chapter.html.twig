@@ -5,25 +5,9 @@
 {% block mainHeader %}
 <div class="page-title text-center">
     <div class="container page-title-container">
-        {# {% if isAdmin %}
             {% if uniqueChapter.imgUrl is not null %}
-                <img src={{ uniqueChapter.imgUrl }} alt="">
-                <p> 
-                    <a href="" class="btn modifyImg-btn">Modifier l'image</a>
-                </p>
-            {% else %}
-            <form action="addChapterImg" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="chapterImg" name="chapterImg" placeholder="Ajouter l'url de l'image du chapitre"></input>
-                    <button type="submit" class="btn chapterImg-btn">Ajouter une image</a>
-                </div>
-            </form>
-            {% endif %}
-        {% else %} #}
-            {% if uniqueChapter.imgUrl is not null %}
-                <img src={{ uniqueChapter.imgUrl }} alt="">
+                <img src={{ uniqueChapter.imgUrl }} alt="" class="page-title-img">
             {% endif %}   
-        {# {% endif %} #}
         <p class="page-title-text">Chapitre {{ uniqueChapter.id }} :</p>
         <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title}}</span></h1>
     </div>
@@ -57,7 +41,7 @@
             </div>  
         {% else %}
             <div class="singlePage-return text-center">
-                <i class="far fa-arrow-alt-circle-left"></i><a href="/index" class="my-2">Retour à l'accueil</a>
+                <i class="far fa-arrow-alt-circle-left"></i><a href="/" class="my-2">Retour à l'accueil</a>
             </div>
         {% endif %}
     </div>
@@ -71,7 +55,7 @@
                     <p class="text-left card-header commentCard-header">
                         <span class="font-italic bold">{{ comment.author }}</span>
                         posté le <span class="font-italic">{{ comment.createdDate | date("m/d/Y \à H:i:s") }}</span> 
-                        <span class="float-right">totalReports = {{ totalReports }}</span>
+                        <!-- <span class="float-right">totalReports = {{ totalReports }}</span> -->
                     </p>
                     <p class="card-body text-left commentCard-content">
                         {{ comment.content }}

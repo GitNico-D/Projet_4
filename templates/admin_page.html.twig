@@ -52,7 +52,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{ dump(totalReportedComments) }}
             </section>            
             <hr class="adminpageSeparator">
             <section id="publishChapter" class="card publishChapterAdmin">
@@ -155,8 +154,8 @@
                             </p>
                             <p class="card-body commentModerationCard-text text-center-justify">{{ comment.content }}</p>
                             <div class="text-center">
-                                <a href="/validateComment/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn ">Valider</a>
-                                <a href="/deleteComment/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn ">Supprimer</a>
+                                <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn ">Valider</a>
+                                <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn ">Supprimer</a>
                             </div>
                         </div>
                 {% endfor %}    
