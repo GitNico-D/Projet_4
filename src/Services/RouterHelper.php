@@ -6,7 +6,6 @@ use Exception;
 
 class RouterHelper
 {
-
     /**
      * getPageIx
      *
@@ -31,10 +30,11 @@ class RouterHelper
     public static function getChapterId(array $get)
     {
         if (array_key_exists("chapterId", $get) && isset($get["chapterId"]) && is_numeric($get["chapterId"]) && $get["chapterId"] >= 0) {
-            return $get["chapterId"];
+            $chapterId = $get["chapterId"];
         } else {
             throw new Exception("Chapitre introuvable !");
         }
+        return $chapterId;
     }
 
     /**

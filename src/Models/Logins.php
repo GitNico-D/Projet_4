@@ -12,7 +12,7 @@ class Logins extends Model
     private $password;
     private $status;
 
-    public function __construct(Array $data)
+    public function __construct(array $data)
     {
         $this->hydrate($data);
     }

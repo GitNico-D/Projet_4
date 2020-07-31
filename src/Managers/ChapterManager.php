@@ -9,7 +9,7 @@ class ChapterManager extends Manager
 {
     public $table = 'chapter';
 
-    public function getChapterById($chapterId) 
+    public function getChapterById($chapterId)
     {
         return new Chapter($this->findOneBy($this->table, array('id' => $chapterId)));
     }
@@ -23,7 +23,6 @@ class ChapterManager extends Manager
     public function getAllPublishedChapters()
     {
         $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'), 10, Chapter::class);
-        // $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'), Chapter::class);
         return $publishedChaptersList;
     }
 
@@ -37,14 +36,14 @@ class ChapterManager extends Manager
     {
         $sqlRequest = 'UPDATE chapter SET published= true WHERE id = ?';
         $this->createQuery($sqlRequest, [$chapterId]);
-    } 
+    }
 
     public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterPublished, $newChapterImg)
     {
         $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate, published, imgUrl) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW(), :chapterPublished, :chapterImg)';
         $affectedLines = $this->createQuery($sqlRequest, array(
-            'chapterAuthor' => $newChapterAuthor, 
-            'chapterTitle' => $newChapterTitle, 
+            'chapterAuthor' => $newChapterAuthor,
+            'chapterTitle' => $newChapterTitle,
             'chapterContent' => $newChapterContent,
             'chapterPublished' => $chapterPublished,
             'chapterImg' => $newChapterImg
@@ -55,7 +54,7 @@ class ChapterManager extends Manager
     public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId)
     {
         $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished, imgUrl= :updatedChapterImg WHERE id = :chapterId';
-        $updatedLines = $this->createQuery($sqlRequest, array(   
+        $updatedLines = $this->createQuery($sqlRequest, array(
                 'updatedChapterTitle' => $updatedChapterTitle,
                 'updatedChapterContent' => $updatedChapterContent,
                 'chapterPublished' => $chapterPublished,

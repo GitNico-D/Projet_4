@@ -68,7 +68,6 @@ class CommentManager extends Manager
         $result = $this->createQuery($sqlRequest, [$chapterId]);
         $totalComments = $result->fetch();
         $result->closeCursor();
-        var_dump($totalComments['totalComments']);
         return $totalComments['totalComments'];
     }
 
@@ -94,7 +93,6 @@ class CommentManager extends Manager
     {
         $sqlRequest = 'SELECT * FROM comments INNER JOIN reporting ON comments.id = reporting.commentId GROUP BY reporting.commentId';
         $result = $this->createQuery($sqlRequest);
-        
         $reportedCommentList = [];
         foreach ($result as $comment) {
             $reportedCommentList [] = new Comment($comment);
@@ -107,73 +105,14 @@ class CommentManager extends Manager
     {
         $sqlRequest = 'SELECT COUNT(*) AS totalreportedComment FROM comments INNER JOIN reporting ON comments.id = reporting.commentId GROUP BY reporting.commentId';
         $result = $this->createQuery($sqlRequest);
-        var_dump($result);
-        $totalReportedComments = $result->fetch();
-        ($totalReportedComments['totalReportedComments']);
+        // var_dump($result);
+        $totalReportedComment = [];
+        // var_dump($totalReportedComments['totalreportedComment']);
+        foreach ($result as $total) {
+            $totalReportedComment [] = $total;
+        }
+        // var_dump($totalReportedComment);
         $result->closeCursor();
-        return $totalReportedComments['totalReportedComments'];
+        return $totalReportedComment;
     }
-
-    // public function getCommentIdList($chapterId)
-    // {
-    //     $selectValue = 'id';
-    //     $whereKey = 'chapterId';
-    //     $commentIdList = $this->findBy($selectValue, $this->table, $whereKey, $chapterId);
-    //     return $commentIdList;
-    // }
-
-    // public function reportedCommentByChapter()
-    // {
-    //     $sqlRequest= 'SELECT * FROM comments INNER JOIN reporting ON comments.id = reporting.commentId WHERE chapterId = comments.chapterId GROUP BY reporting.commentId';
-    //     $result = $this->createQuery($sqlRequest);
-    //     $reportedCommentByChapterList = [];
-    //     foreach ($result as $comment)
-    //     {
-    //         $reportedCommentByChapterList [] = new Comment($comment); 
-    //     }
-    //     $result->closeCursor();
-    //     var_dump($reportedCommentByChapterList);
-    //     return $reportedCommentByChapterList;
-    // }
-
-    
-    // public function getReportComments($commentIdList)
-    // {
-    //     $reportList = [];
-    //     foreach ($commentIdList as $commentId)
-    //     {
-    //         $sqlRequest = 'SELECT * FROM reporting WHERE commentId = ?';
-    //         $result = $this->createQuery($sqlRequest, [$commentId]);
-    //         foreach ($result as $reporting)
-    //         {
-    //             $reportList [] = new Reporting($reporting); 
-    //         }
-    //         $result->closeCursor();
-    //     }
-    //     return $reportList;   
-    // }
-
-    // public function getCommentsReportsCount($commentIdList)
-    // {
-    //     $reportList = [];
-    //     foreach ($commentIdList as $commentId)
-    //     {
-    //         $sqlRequest = 'SELECT * FROM reporting WHERE commentId = ?';
-    //         $result = $this->createQuery($sqlRequest, [$commentId]);
-    //         $totalReports = $this->getTotalReports($commentId);
-    //         var_dump("Si commentId = " . $commentId . " alors le nombre de reports = " . $this->getTotalReports($commentId));
-    //     }
-    //     $result->closeCursor();
-    //     return $totalReports;    
-    // }
-
-    // public function getTotalReports($commentId)
-    // {
-    //     var_dump($commentId);
-    //     $sqlRequest = 'SELECT COUNT(*) AS totalReports FROM reporting WHERE commentId = ?';
-    //     $result = $this->createQuery($sqlRequest, [$commentId]);
-    //     $totalReports = $result->fetch();
-    //     var_dump($totalReports);
-    //     return $totalReports['totalReports'];
-    // }
 }

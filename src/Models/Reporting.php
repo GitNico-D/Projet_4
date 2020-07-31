@@ -10,7 +10,7 @@ class Reporting extends Model
     private $reportingDate;
     private $commentId;
 
-    public function __construct(Array $data)
+    public function __construct(array $data)
     {
         $this->hydrate($data);
     }
@@ -18,17 +18,17 @@ class Reporting extends Model
     // Setters //
 
     public function setReportId($reportId)
-    {        
+    {
         $this->reportId = $reportId;
     }
 
     public function setReportingDate($reportingDate)
-    {        
+    {
         $this->reportingDate = $reportingDate;
     }
 
     public function setCommentId($commentId)
-    {        
+    {
         $this->commentId = $commentId;
     }
 
@@ -48,5 +48,4 @@ class Reporting extends Model
     {
         return $this->commentId;
     }
-
 }
