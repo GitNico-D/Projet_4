@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 10 juil. 2020 à 15:37
+-- Généré le :  ven. 31 juil. 2020 à 19:23
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -37,20 +37,22 @@ CREATE TABLE IF NOT EXISTS `chapter` (
   `createDate` datetime NOT NULL,
   `updateDate` datetime NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT 0,
+  `imgUrl` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `chapter`
 --
 
-INSERT INTO `chapter` (`id`, `author`, `title`, `content`, `createDate`, `updateDate`, `published`) VALUES
-(4, 'Jean', 'Quatrième chapitre !', 'It\'s toe-tappingly tragic! Oh Leela! You\'re the only person I could turn to;\r\n     you\'re the only person who ever loved me. Bender, being God isn\'t easy. If you do too much, people get dependent \r\n     on you, and if you do nothing, they lose hope. You have to use a light touch. Like a safecracker, or a pickpocket.\r\n     Oh, I don\'t have time for this. I have to go and buy a single piece of fruit with a coupon and then return it, making \r\n     people wait behind me while I complain. Does anybody else feel jealous and aroused and worried?', '2020-06-14 19:33:31', '2020-06-14 19:33:31', 1),
-(21, 'Jean', 'Huitième chapitre', 'Contenu du huitième chapitre', '2020-07-02 15:04:38', '2020-07-02 15:04:38', 1),
-(3, 'Jean', 'Troisième chapitre !', '### In your time, yes, but nowadays shut up! Besides, these are adult stemcells, \r\n    harvested from perfectly healthy adults whom I killed for their stemcells.Stop! Don\'t shoot fire stick in \r\n    space canoe! Cause explosive decompression! Come, Comrade Bender! We must take to the streets! But existing \r\n    is basically all I do! Large bet on myself in round one.\r\n    * Bender, this is Fry\'s decision… and he made it wrong. So it\'s time for us to interfere in his life.\r\n    * You wouldn\'t. Ask anyway!\r\n    * File not found.', '2020-05-05 19:03:10', '2020-05-05 19:03:10', 1),
-(5, 'Jean', 'Cinquième chapitre', 'It\'s toe-tappingly tragic! Oh Leela! You\'re the only person I could turn to;\r\n     you\'re the only person who ever loved me. Bender, being God isn\'t easy. If you do too much, people get dependent \r\n     on you, and if you do nothing, they lose hope. You have to use a light touch. Like a safecracker, or a pickpocket.\r\n     Oh, I don\'t have time for this. I have to go and buy a single piece of fruit with a coupon and then return it, making \r\n     people wait behind me while I complain. Does anybody else feel jealous and aroused and worried?', '2020-06-19 09:22:52', '2020-06-19 09:22:52', 0),
-(6, 'Jean', 'Sixième Chapitre', 'Yeah. Give a little credit to our public schools. And then the battle\'s not so bad? Why am I sticky and naked? Did I miss something fun? That\'s not soon enough! Who am I making this out to? Hi, I\'m a naughty nurse, and I really need someone to talk to. $9.95 a minute.\r\n\r\nOh no! The professor will hit me! But if Zoidberg \'fixes\' it… then perhaps gifts! I\'ll get my kit! These old Doomsday Devices are dangerously unstable. I\'ll rest easier not knowing where they are.\r\n\r\nMoving along… Stop it, stop it. It\'s fine. I will \'destroy\' you! Incidentally, you have a dime up your nose. Oh, but you can. But you may have to metaphorically make a deal with the devil. And by \"devil\", I mean Robot Devil. And by \"metaphorically\", I mean get your coat.\r\n\r\nIf rubbin\' frozen dirt in your crotch is wrong, hey I don\'t wanna be right. So I really am important? How I feel when I\'m drunk is correct? I could if you hadn\'t turned on the light and shut off my stereo.', '2020-06-19 13:55:02', '2020-06-19 13:55:02', 1),
-(1, 'Jean', 'Premier chapitre !', '<h1>Good news, everyone! I\'ve taught the toaster to feel love!</h1>\r\n<p>You can crush me but you can\'t crush my spirit! We\'ll need to have a look inside you with this camera. I love you, buddy! What kind of a father would I be if I said no? I\'m Santa Claus!</p>\r\n<p>Can we have Bender Burgers again? Bender, quit destroying the universe! <strong> Why would I want to know that?</strong> <em> No.</em> We\'re on the top.</p>\r\n<h2>We\'ll go deliver this crate like professionals, and then we\'ll go home.</h2>\r\n<p>Ow, my spirit! You won\'t have time for sleeping, soldier, not with all the bed making you\'ll be doing. Oh yeah, good luck with that. Good news, everyone! There\'s a report on TV with some very bad news!</p>\r\n<ol>\r\n<li>You, minion. Lift my arm. AFTER HIM!</li><li>As an interesting side note, as a head without a body, I envy the dead.</li><li>We need rest. The spirit is willing, but the flesh is spongy and bruised.</li>\r\n</ol>\r\n\r\n<h3>Now Fry, it\'s been a few years since medical school, so remind me. Disemboweling in your species: fatal or non-fatal?</h3>\r\n<p>When will that be? It\'s toe-tappingly tragic! Why not indeed! Yes! In your face, Gandhi! Good man. Nixon\'s pro-war and pro-family.</p>\r\n<ul>\r\n<li>Also Zoidberg.</li><li>No argument here.</li><li>Alright, let\'s mafia things up a bit. Joey, burn down the ship. Clamps, burn down the crew.</li>\r\n</ul>', '2020-05-04 10:30:45', '2020-07-09 18:58:02', 1);
+INSERT INTO `chapter` (`id`, `author`, `title`, `content`, `createDate`, `updateDate`, `published`, `imgUrl`) VALUES
+(1, 'Jean', '1 - Bienvenu en Alaska', '&lt;h1&gt;Ah, yes! John Quincy Adding Machine. He struck a chord with the voters when he pledged not to go on a killing spree.&lt;/h1&gt;\r\n&lt;p&gt;You seem malnourished. Are you suffering from intestinal parasites? The alien mothership is in orbit here. If we can hit that bullseye, the rest of the dominoes will fall like a house of cards. Checkmate.&lt;/p&gt;\r\n&lt;p&gt;&lt;em&gt;Morbo will now introduce tonight\'s candidates&amp;hellip; PUNY HUMAN NUMBER ONE, PUNY HUMAN NUMBER TWO, and Morbo\'s good friend, Richard Nixon.&lt;/em&gt;&amp;nbsp;When the lights go out, it\'s nobody\'s business what goes on between two consenting adults.&lt;/p&gt;\r\n&lt;h2&gt;We\'re rescuing ya.&lt;/h2&gt;\r\n&lt;p&gt;Shut up and get to the point! When the lights go out, it\'s nobody\'s business what goes on between two consenting adults. I barely knew Philip, but as a clergyman I have no problem telling his most intimate friends all about him.&lt;/p&gt;\r\n&lt;ol&gt;\r\n&lt;li&gt;&lt;span style=&quot;color: #000000; background-color: #bfedd2;&quot;&gt;You\'ve killed me! Oh, you\'ve killed me!&lt;/span&gt;&lt;/li&gt;\r\n&lt;li&gt;&lt;span style=&quot;color: #000000; background-color: #bfedd2;&quot;&gt;Spare me your space age technobabble, Attila the Hun!&lt;/span&gt;&lt;/li&gt;\r\n&lt;li&gt;&lt;span style=&quot;color: #000000; background-color: #bfedd2;&quot;&gt;Man, I\'m sore all over. I feel like I just went ten rounds with mighty Thor.&lt;/span&gt;&lt;/li&gt;\r\n&lt;/ol&gt;', '2020-07-31 20:35:03', '2020-07-31 20:35:03', 1, '/img/img-chapter-1.png'),
+(2, 'Jean', '2- Aller simple ?', '&lt;h3&gt;I\'m sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in.&lt;/h3&gt;\r\n&lt;p&gt;All I want is to be a monkey of moderate intelligence who wears a suit&amp;hellip; that\'s why I\'m transferring to business school! Oh right. I forgot about the battle. Meh. I could if you hadn\'t turned on the light and shut off my stereo.&lt;/p&gt;\r\n&lt;ul&gt;\r\n&lt;li&gt;Shut up and get to the point!&lt;/li&gt;\r\n&lt;li&gt;Fry, we have a crate to deliver.&lt;/li&gt;\r\n&lt;li&gt;You\'ve killed me! Oh, you\'ve killed me!&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;Doomsday device? Ah, now the ball\'s in Farnsworth\'s court! In your time, yes, but nowadays shut up! Besides, these are adult stemcells, harvested from perfectly healthy adults whom I killed for their stemcells.&lt;/p&gt;\r\n&lt;p&gt;Just once I\'d like to eat dinner with a celebrity who isn\'t bound and gagged. Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man. OK, this has gotta stop. I\'m going to remind Fry of his humanity the way only a woman can.&lt;/p&gt;', '2020-07-31 20:35:52', '2020-07-31 20:35:52', 1, '/img/img-chapter-2.png'),
+(3, 'Jean', '3 - Une vie plus simple', '&lt;p&gt;Just once I\'d like to eat dinner with a celebrity who isn\'t bound and gagged. Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man. OK, this has gotta stop. I\'m going to remind Fry of his humanity the way only a woman can.&lt;/p&gt;\r\n&lt;p&gt;Look, everyone wants to be like Germany, but do we really have the pure strength of \'will\'? We\'re rescuing ya. Good man. Nixon\'s pro-war and pro-family. Your best is an idiot! I can explain. It\'s very valuable.&lt;/p&gt;\r\n&lt;p&gt;Bite my shiny metal ass. Aww, it\'s true. I\'ve been hiding it for so long. You mean while I\'m sleeping in it? I videotape every customer that comes in here, so that I may blackmail them later. Fry! Quit doing the right thing, you jerk!&lt;/p&gt;\r\n&lt;p&gt;Bender, hurry! This fuel\'s expensive! Also, we\'re dying! What kind of a father would I be if I said no? Guards! Bring me the forms I need to fill out to have her taken away! Why, those are the Grunka-Lunkas! They work here in the Slurm factory.&lt;/p&gt;\r\n&lt;p&gt;Oh Leela! You\'re the only person I could turn to; you\'re the only person who ever loved me. I saw you with those two &quot;ladies of the evening&quot; at Elzars. Explain that. As an interesting side note, as a head without a body, I envy the dead.&lt;/p&gt;\r\n&lt;p&gt;Wow! A superpowers drug you can just rub onto your skin? You\'d think it would be something you\'d have to freebase. But existing is basically all I do! Tell them I hate them. You\'re going to do his laundry?&lt;/p&gt;\r\n&lt;p&gt;I\'m just glad my fat, ugly mama isn\'t alive to see this day. Now, now. Perfectly symmetrical violence never solved anything. File not found. Professor, make a woman out of me. She also liked to shut up!&lt;/p&gt;\r\n&lt;p&gt;Good man. Nixon\'s pro-war and pro-family. Incidentally, you have a dime up your nose. Please, Don-Bot&amp;hellip; look into your hard drive, and open your mercy file! Leela, are you alright? You got wanged on the head.&lt;/p&gt;\r\n&lt;p&gt;Bender?! You stole the atom. Pansy. Really?! OK, if everyone\'s finished being stupid. Yes! In your face, Gandhi!&lt;/p&gt;\r\n&lt;p&gt;Now, now. Perfectly symmetrical violence never solved anything. No. We\'re on the top. Oh, you\'re a dollar naughtier than most. Ok, we\'ll go deliver this crate like professionals, and then we\'ll go ride the bumper cars.&lt;/p&gt;', '2020-07-31 20:39:11', '2020-07-31 20:39:11', 1, '/img/img-chapter-3.png'),
+(4, 'Jean', '4 - Une nuit agité', '&lt;p&gt;All I want is to be a monkey of moderate intelligence who wears a suit&amp;hellip; that\'s why I\'m transferring to business school! Oh right. I forgot about the battle. Meh. I could if you hadn\'t turned on the light and shut off my stereo.&lt;/p&gt;\r\n&lt;ul&gt;\r\n&lt;li&gt;Shut up and get to the point!&lt;/li&gt;\r\n&lt;li&gt;Fry, we have a crate to deliver.&lt;/li&gt;\r\n&lt;li&gt;You\'ve killed me! Oh, you\'ve killed me!&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;Doomsday device? Ah, now the ball\'s in Farnsworth\'s court! In your time, yes, but nowadays shut up! Besides, these are adult stemcells, harvested from perfectly healthy adults whom I killed for their stemcells.&lt;/p&gt;\r\n&lt;p&gt;Just once I\'d like to eat dinner with a celebrity who isn\'t bound and gagged. Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man. OK, this has gotta stop. I\'m going to remind Fry of his humanity the way only a woman can.&lt;/p&gt;\r\n&lt;p&gt;Look, everyone wants to be like Germany, but do we really have the pure strength of \'will\'? We\'re rescuing ya. Good man. Nixon\'s pro-war and pro-family. Your best is an idiot! I can explain. It\'s very valuable.&lt;/p&gt;\r\n&lt;p&gt;Bite my shiny metal ass. Aww, it\'s true. I\'ve been hiding it for so long. You mean while I\'m sleeping in it? I videotape every customer that comes in here, so that I may blackmail them later. Fry! Quit doing the right thing, you jerk!&lt;/p&gt;\r\n&lt;p&gt;Bender, hurry! This fuel\'s expensive! Also, we\'re dying! What kind of a father would I be if I said no? Guards! Bring me the forms I need to fill out to have her taken away! Why, those are the Grunka-Lunkas! They work here in the Slurm factory.&lt;/p&gt;\r\n&lt;p&gt;Oh Leela! You\'re the only person I could turn to; you\'re the only person who ever loved me. I saw you with those two &quot;ladies of the evening&quot; at Elzars. Explain that. As an interesting side note, as a head without a body, I envy the dead.&lt;/p&gt;\r\n&lt;p&gt;Wow! A superpowers drug you can just rub onto your skin? You\'d think it would be something you\'d have to freebase. But existing is basically all I do! Tell them I hate them. You\'re going to do his laundry?&lt;/p&gt;\r\n&lt;p&gt;I\'m just glad my fat, ugly mama isn\'t alive to see this day. Now, now. Perfectly symmetrical violence never solved anything. File not found. Professor, make a woman out of me. She also liked to shut up!&lt;/p&gt;\r\n&lt;p&gt;Good man. Nixon\'s pro-war and pro-family. Incidentally, you have a dime up your nose. Please, Don-Bot&amp;hellip; look into your hard drive, and open your mercy file! Leela, are you alright? You got wanged on the head.&lt;/p&gt;\r\n&lt;p&gt;Bender?! You stole the atom. Pansy. Really?! OK, if everyone\'s finished being stupid. Yes! In your face, Gandhi!&lt;/p&gt;\r\n&lt;p&gt;Now, now. Perfectly symmetrical violence never solved anything. No. We\'re on the top. Oh, you\'re a dollar naughtier than most. Ok, we\'ll go deliver this crate like professionals, and then we\'ll go ride the bumper cars.&lt;/p&gt;', '2020-07-31 20:55:33', '2020-07-31 20:55:33', 1, '/img/img-chapter-4.png'),
+(5, 'Jean', '5 - Des préparatifs long et compliqués', '&lt;h3&gt;I\'m sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in.&lt;/h3&gt;\r\n&lt;p&gt;All I want is to be a monkey of moderate intelligence who wears a suit&amp;hellip; that\'s why I\'m transferring to business school! Oh right. I forgot about the battle. Meh. I could if you hadn\'t turned on the light and shut off my stereo.&lt;/p&gt;\r\n&lt;ul&gt;\r\n&lt;li&gt;Shut up and get to the point!&lt;/li&gt;\r\n&lt;li&gt;Fry, we have a crate to deliver.&lt;/li&gt;\r\n&lt;li&gt;You\'ve killed me! Oh, you\'ve killed me!&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;Doomsday device? Ah, now the ball\'s in Farnsworth\'s court! In your time, yes, but nowadays shut up! Besides, these are adult stemcells, harvested from perfectly healthy adults whom I killed for their stemcells.&lt;/p&gt;\r\n&lt;p&gt;Just once I\'d like to eat dinner with a celebrity who isn\'t bound and gagged. Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man. OK, this has gotta stop. I\'m going to remind Fry of his humanity the way only a woman can.&lt;/p&gt;\r\n&lt;p&gt;Look, everyone wants to be like Germany, but do we really have the pure strength of \'will\'? We\'re rescuing ya. Good man. Nixon\'s pro-war and pro-family. Your best is an idiot! I can explain. It\'s very valuable.&lt;/p&gt;\r\n&lt;p&gt;Bite my shiny metal ass. Aww, it\'s true. I\'ve been hiding it for so long. You mean while I\'m sleeping in it? I videotape every customer that comes in here, so that I may blackmail them later. Fry! Quit doing the right thing, you jerk!&lt;/p&gt;\r\n&lt;p&gt;Bender, hurry! This fuel\'s expensive! Also, we\'re dying! What kind of a father would I be if I said no? Guards! Bring me the forms I need to fill out to have her taken away! Why, those are the Grunka-Lunkas! They work here in the Slurm factory.&lt;/p&gt;\r\n&lt;p&gt;Oh Leela! You\'re the only person I could turn to; you\'re the only person who ever loved me. I saw you with those two &quot;ladies of the evening&quot; at Elzars. Explain that. As an interesting side note, as a head without a body, I envy the dead.&lt;/p&gt;\r\n&lt;p&gt;Wow! A superpowers drug you can just rub onto your skin? You\'d think it would be something you\'d have to freebase. But existing is basically all I do! Tell them I hate them. You\'re going to do his laundry?&lt;/p&gt;\r\n&lt;p&gt;I\'m just glad my fat, ugly mama isn\'t alive to see this day. Now, now. Perfectly symmetrical violence never solved anything. File not found. Professor, make a woman out of me. She also liked to shut up!&lt;/p&gt;\r\n&lt;p&gt;Good man. Nixon\'s pro-war and pro-family. Incidentally, you have a dime up your nose. Please, Don-Bot&amp;hellip; look into your hard drive, and open your mercy file! Leela, are you alright? You got wanged on the head.&lt;/p&gt;\r\n&lt;p&gt;Bender?! You stole the atom. Pansy. Really?! OK, if everyone\'s finished being stupid. Yes! In your face, Gandhi!&lt;/p&gt;\r\n&lt;p&gt;Now, now. Perfectly symmetrical violence never solved anything. No. We\'re on the top. Oh, you\'re a dollar naughtier than most. Ok, we\'ll go deliver this crate like professionals, and then we\'ll go ride the bumper cars.&lt;/p&gt;', '2020-07-31 20:57:51', '2020-07-31 20:57:51', 1, '/img/img-chapter-5.png'),
+(6, 'Jean', '6 - Jamais l\'un sans l\'autre', '&lt;h1&gt;Stop talking, brain thinking. Hush.&lt;/h1&gt;\r\n&lt;p&gt;All I\'ve got to do is pass as an ordinary human being. Simple. What could possibly go wrong? The way I see it, every life is a pile of good things and bad things.&amp;hellip;hey.&amp;hellip;the good things don\'t always soften the bad things; but vice-versa the bad things don\'t necessarily spoil the good things and make them unimportant.&lt;/p&gt;\r\n&lt;p&gt;&lt;strong&gt;I\'m nobody\'s taxi service; I\'m not gonna be there to catch you every time you feel like jumping out of a spaceship.&lt;/strong&gt;&amp;nbsp;&lt;em&gt;*Insistently* Bow ties are cool!&lt;/em&gt;&amp;nbsp;Come on Amy, I\'m a normal bloke, tell me what normal blokes do!&lt;/p&gt;\r\n&lt;h2&gt;They\'re not aliens, they\'re Earth&amp;hellip;liens!&lt;/h2&gt;\r\n&lt;p&gt;Saving the world with meals on wheels. No&amp;hellip; It\'s a thing; it\'s like a plan, but with more greatness. No&amp;hellip; It\'s a thing; it\'s like a plan, but with more greatness. Stop talking, brain thinking. Hush.&lt;/p&gt;\r\n&lt;ol&gt;\r\n&lt;li&gt;No, I\'ll fix it. I\'m good at fixing rot. Call me the Rotmeister. No, I\'m the Doctor. Don\'t call me the Rotmeister.&lt;/li&gt;\r\n&lt;li&gt;It\'s a fez. I wear a fez now. Fezes are cool.&lt;/li&gt;\r\n&lt;li&gt;Did I mention we have comfy chairs?&lt;/li&gt;\r\n&lt;/ol&gt;\r\n&lt;h3&gt;You know when grown-ups tell you \'everything\'s going to be fine\' and you think they\'re probably lying to make you feel better?&lt;/h3&gt;\r\n&lt;p&gt;It\'s a fez. I wear a fez now. Fezes are cool. I am the last of my species, and I know how that weighs on the heart so don\'t lie to me! You hit me with a cricket bat. Aw, you\'re all Mr. Grumpy Face today.&lt;/p&gt;\r\n&lt;ul&gt;\r\n&lt;li&gt;You hate me; you want to kill me! Well, go on! Kill me! KILL ME!&lt;/li&gt;\r\n&lt;li&gt;It\'s a fez. I wear a fez now. Fezes are cool.&lt;/li&gt;\r\n&lt;li&gt;It\'s a fez. I wear a fez now. Fezes are cool.&lt;/li&gt;\r\n&lt;/ul&gt;', '2020-07-31 20:58:31', '2020-07-31 20:58:31', 0, '/img/img-chapter-7.png'),
+(7, 'Jean', '7 - A définir', '&lt;p&gt;&lt;span style=&quot;background-color: #fbeeb8; color: #e03e2d;&quot;&gt;&lt;em&gt;En cours d\'&amp;eacute;criture&lt;/em&gt;&lt;/span&gt;&lt;/p&gt;\r\n&lt;h2 style=&quot;text-align: center;&quot;&gt;They\'re not aliens, they\'re Earth&amp;hellip;liens!&lt;/h2&gt;\r\n&lt;p&gt;Saving the world with meals on wheels. No&amp;hellip; It\'s a thing; it\'s like a plan, but with more greatness. No&amp;hellip; It\'s a thing; it\'s like a plan, but with more greatness. Stop talking, brain thinking. Hush.&lt;/p&gt;\r\n&lt;ol&gt;\r\n&lt;li&gt;No, I\'ll fix it. I\'m good at fixing rot. Call me the Rotmeister. No, I\'m the Doctor. Don\'t call me the Rotmeister.&lt;/li&gt;\r\n&lt;li&gt;It\'s a fez. I wear a fez now. Fezes are cool.&lt;/li&gt;\r\n&lt;li&gt;Did I mention we have comfy chairs?&lt;/li&gt;\r\n&lt;/ol&gt;\r\n&lt;h3&gt;You know when grown-ups tell you \'everything\'s going to be fine\' and you think they\'re probably lying to make you feel better?&lt;/h3&gt;\r\n&lt;p&gt;It\'s a fez. I wear a fez now. Fezes are cool. I am the last of my species, and I know how that weighs on the heart so don\'t lie to me! You hit me with a cricket bat. Aw, you\'re all Mr. Grumpy Face today.&lt;/p&gt;\r\n&lt;ul&gt;\r\n&lt;li&gt;You hate me; you want to kill me! Well, go on! Kill me! KILL ME!&lt;/li&gt;\r\n&lt;li&gt;It\'s a fez. I wear a fez now. Fezes are cool.&lt;/li&gt;\r\n&lt;li&gt;It\'s a fez. I wear a fez now. Fezes are cool&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;', '2020-07-31 20:59:59', '2020-07-31 20:59:59', 0, '/img/img-chapter-8.png');
 
 -- --------------------------------------------------------
 
@@ -66,36 +68,30 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `content` text DEFAULT NULL,
   `createdDate` datetime DEFAULT NULL,
   `updatedDate` datetime NOT NULL,
-  `report` tinyint(1) NOT NULL DEFAULT 0,
   `chapterId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `foreignNewsId` (`chapterId`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+  KEY `foreignchapterId` (`chapterId`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `comments`
 --
 
-INSERT INTO `comments` (`id`, `author`, `title`, `content`, `createdDate`, `updatedDate`, `report`, `chapterId`) VALUES
-(1, 'Jean', 'First', 'I suggest you try it again, Luke. !', '2020-05-10 09:52:24', '2020-05-10 09:52:24', 0, 1),
-(2, 'Claude', 'Second', ' Hey, Luke! May the Force be with you.', '2020-05-11 00:45:30', '2020-05-10 09:52:24', 0, 1),
-(3, 'Bob', 'Third', 'Great ! ', '2020-05-11 18:00:04', '2020-05-10 09:52:24', 0, 1),
-(4, 'Toto', 'Fourth', 'He is here. You don\'t believe in the Force, do you', '2020-05-09 20:05:57', '2020-05-10 09:52:24', 0, 2),
-(5, 'Moam', 'Fifth', 'Still, she\'s got a lot of spirit. I don\'t know, what do you think', '2020-05-09 18:12:59', '2020-05-10 09:52:24', 0, 2),
-(6, 'Baba', 'Sixth', 'Send a detachment down to retrieve them, and see to it personally, Commander', '2020-05-18 10:05:10', '2020-05-10 09:52:24', 0, 2),
-(7, 'Gui', 'Seventh', 'Alderaan is peaceful. We have no weapons', '2020-05-05 11:11:22', '2020-05-10 09:52:24', 0, 3),
-(8, 'Aurora', 'Eight', 'I am a member of the Imperial Senate on a diplomatic mission to Alderaan', '2020-05-05 20:11:12', '2020-05-10 09:52:24', 0, 3),
-(10, 'Bob', 'A quant la suite?', 'On attend la suite avec grande impatience ! ', '2020-06-26 17:39:22', '2020-06-26 17:39:22', 0, 2),
-(11, 'Bob', 'A quant la suite?', 'On attend la suite avec grande impatience ! ', '2020-06-26 17:43:57', '2020-06-26 17:43:57', 0, 2),
-(12, 'Bob', 'A quant la suite?', 'On attend la suite avec grande impatience ! ', '2020-06-26 17:44:51', '2020-06-26 17:44:51', 0, 2),
-(13, 'Bob', 'A quant la suite?', 'On attend la suite avec grande impatience ! ', '2020-06-26 17:45:45', '2020-06-26 17:45:45', 0, 2),
-(14, 'John', 'Vraiment ?', 'Mais cs fkfdnfn  nandnzeikjanbiuonaoiu noiufza ', '2020-06-26 17:46:38', '2020-06-26 17:46:38', 0, 2),
-(15, 'Bob', 'Vraiment ?', 'C\'est pas dingue... ', '2020-07-01 17:50:10', '2020-07-01 17:50:10', 0, 20),
-(16, 'Bee', 'Rien ne va plus', 'Rien ne va plus, l\'intrigue par dans tout les sens ! Abandonne on livre il mène à rien !!!', '2020-07-02 15:06:04', '2020-07-02 15:06:04', 1, 21),
-(17, 'Bob', 'Prenant', 'A quand la suite ? vite', '2020-07-02 15:09:02', '2020-07-02 15:09:02', 0, 21),
-(18, 'Non', 'Non', 'Allo ?', '2020-07-02 15:10:39', '2020-07-02 15:10:39', 0, 21),
-(20, 'NON', 'NON', 'NON NON NON NON NON NON NON', '2020-07-02 16:31:29', '2020-07-02 16:31:29', 0, 21),
-(21, 'Bob', 'A quant la suite', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ', '2020-07-09 19:36:54', '2020-07-09 19:36:54', 0, 1);
+INSERT INTO `comments` (`id`, `author`, `title`, `content`, `createdDate`, `updatedDate`, `chapterId`) VALUES
+(1, 'Bob', 'Prenant', 'Concept original. Histoire commence bien, a voir la suite !', '2020-07-31 21:01:17', '2020-07-31 21:01:17', 1),
+(2, 'Fonctionne', 'J\'espère', 'Que ce cela', '2020-07-31 11:26:17', '2020-07-31 11:26:17', 4),
+(3, 'Claude', 'Youpi', 'Je n\'avais plus grand chose à me mettre sous la dent, content d\'avoir trouvé ce blog :)', '2020-07-31 21:03:32', '2020-07-31 21:03:32', 1),
+(4, 'John', 'fqsfqsfq', 'fqfqs fdqsdqs dqsd', '2020-07-31 21:03:44', '2020-07-31 21:03:44', 1),
+(5, 'NON', 'NON NON', 'NON NON NON ', '2020-07-31 21:04:09', '2020-07-31 21:04:09', 1),
+(6, 'Bob', 'English version ?', 'I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. ', '2020-07-31 21:05:22', '2020-07-31 21:05:22', 2),
+(7, 'Lucie', 'Vraiment ?', 'Bof bof, ça me parait difficile de commencer plus mal et pourtant j\'ai déjà lieu certains de vos ouvrages, Très déçu....', '2020-07-31 21:06:26', '2020-07-31 21:06:26', 2),
+(8, 'Claude', 'A la suite', 'Superbe ! Plus vite :)', '2020-07-31 21:07:05', '2020-07-31 21:07:05', 2),
+(9, 'NON ', 'NON ', 'NON NON NON et TOUJOURS NON ', '2020-07-31 21:08:21', '2020-07-31 21:08:21', 2),
+(10, 'NONI find your lack of faith disturbing. Look, I can take you as far as Anchorhead. ', 'I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. ', 'I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. I find your lack of faith disturbing. Look, I can take you as far as Anchorhead. ', '2020-07-31 21:08:54', '2020-07-31 21:08:54', 3),
+(11, 'Denis', 'Allo la modération !', 'Il faudrait se réveillé sur la modération non ? ', '2020-07-31 21:09:32', '2020-07-31 21:09:32', 3),
+(12, 'First ', 'First ', 'First', '2020-07-31 21:11:56', '2020-07-31 21:11:56', 4),
+(13, 'Jean', 'Une dernier', 'Un dernier commentaire pour la route', '2020-07-31 21:14:12', '2020-07-31 21:14:12', 4),
+(14, 'John', 'A quand la suite ', 'Les parutions vont être fixe ? Quel va être le rythme de publication ??', '2020-07-31 21:02:55', '2020-07-31 21:02:55', 1);
 
 -- --------------------------------------------------------
 
@@ -134,56 +130,28 @@ CREATE TABLE IF NOT EXISTS `reporting` (
   `reportingDate` datetime NOT NULL,
   `commentId` int(11) NOT NULL,
   PRIMARY KEY (`reportId`),
-  KEY `foreigncomment_id` (`commentId`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+  KEY `foreigncommentId` (`commentId`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `reporting`
 --
 
 INSERT INTO `reporting` (`reportId`, `reportingDate`, `commentId`) VALUES
-(1, '2020-07-02 16:01:49', 18),
-(2, '2020-07-02 16:20:51', 17),
-(3, '2020-07-02 16:21:21', 16),
-(4, '2020-07-02 16:37:21', 18),
-(5, '2020-07-02 16:37:28', 20),
-(6, '2020-07-02 16:37:31', 20),
-(7, '2020-07-02 16:37:33', 20),
-(8, '2020-07-02 18:47:56', 19),
-(9, '2020-07-02 19:01:59', 19),
-(10, '2020-07-02 19:02:02', 19),
-(11, '2020-07-03 11:51:10', 18),
-(12, '2020-07-03 11:51:14', 18),
-(13, '2020-07-03 11:51:22', 20),
-(14, '2020-07-03 11:51:25', 20),
-(15, '2020-07-03 14:46:44', 20),
-(16, '2020-07-03 14:47:15', 20),
-(17, '2020-07-03 17:38:10', 19),
-(18, '2020-07-09 15:11:01', 1),
-(19, '2020-07-09 15:11:10', 1),
-(20, '2020-07-09 15:22:08', 2),
-(21, '2020-07-10 10:45:27', 16),
-(22, '2020-07-10 10:46:51', 16),
-(23, '2020-07-10 10:47:21', 16),
-(24, '2020-07-10 10:57:58', 16),
-(25, '2020-07-10 10:58:21', 16),
-(26, '2020-07-10 10:59:31', 16),
-(27, '2020-07-10 11:00:24', 16),
-(28, '2020-07-10 11:02:43', 16),
-(29, '2020-07-10 11:03:23', 16),
-(30, '2020-07-10 11:03:40', 16),
-(31, '2020-07-10 11:06:22', 16),
-(32, '2020-07-10 11:11:25', 16),
-(33, '2020-07-10 11:17:07', 16),
-(34, '2020-07-10 11:17:33', 16),
-(35, '2020-07-10 11:18:09', 16),
-(36, '2020-07-10 11:18:43', 16),
-(37, '2020-07-10 11:20:09', 16),
-(38, '2020-07-10 11:20:50', 16),
-(39, '2020-07-10 11:25:58', 16),
-(40, '2020-07-10 11:31:14', 20),
-(41, '2020-07-10 11:33:19', 9),
-(42, '2020-07-10 11:34:36', 9);
+(1, '2020-07-31 21:21:53', 10),
+(2, '2020-07-31 21:22:25', 10),
+(3, '2020-07-31 21:22:33', 9),
+(4, '2020-07-31 21:22:35', 9),
+(5, '2020-07-31 21:22:37', 9),
+(6, '2020-07-31 21:22:39', 9),
+(7, '2020-07-31 21:22:45', 4),
+(8, '2020-07-31 21:22:47', 5),
+(9, '2020-07-31 21:22:50', 5),
+(10, '2020-07-31 21:22:52', 5),
+(11, '2020-07-31 21:22:54', 4),
+(12, '2020-07-31 21:22:56', 4),
+(13, '2020-07-31 21:22:59', 5),
+(14, '2020-07-31 21:23:07', 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
