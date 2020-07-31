@@ -139,6 +139,11 @@ hr
         color: white;
         margin: auto;
     }
+    &-img
+    {
+        width: 100%;
+        margin: auto;
+    }
     span
     {
         color:$yellow;
@@ -154,6 +159,8 @@ hr
 {
     margin-top: 1rem;
     border: unset;
+    border: 1px solid #efefef!important;
+
 }
 
 .tox-statusbar
@@ -302,6 +309,8 @@ hr
     &-header
     {
         background-color: unset;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
     }
     &-body
     {
@@ -666,15 +675,19 @@ hr
         padding: 2rem;
         font-size: 3rem;
     }
+
 }
 
 .chapter
 {
-    display: flex;
-    justify-content: space-around;
-    align-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: row;
+    &-row
+    {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: auto;
+        overflow: hidden;
+    }
     &-card
     {
         margin: 0;
@@ -690,6 +703,7 @@ hr
         {
             text-align: right;
             padding: 1rem 0 0 0;
+            overflow: hidden;
         }
         &-content
         {
