@@ -14,10 +14,10 @@ class IndexController extends Controller
     public function home($isAdmin)
     {
         var_dump($isAdmin);
-        echo $this->twig->render('home_page.html.twig', 
+        echo $this->twig->render(
+            'home_page.html.twig',
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]
         );
     }
-
 }

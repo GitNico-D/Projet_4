@@ -3,6 +3,7 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
+use Exception;
 
 class LoginsController extends Controller
 {
@@ -64,16 +65,20 @@ class LoginsController extends Controller
      */
     public function returnAdminView($isAdmin)
     {
-        echo $this->twig->render(
-            'admin_page.html.twig',
-            ['allChaptersList' => $this->chapterManager->getAllChapters(),
-            'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
-            'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-            // 'reportList' => $this->commentManager->getReportComments($commentIdList),
-            'isAdmin' => $isAdmin,
-            'session' => $_SESSION]
-        );
+        if ($isAdmin) {
+            echo $this->twig->render(
+                'admin_page.html.twig',
+                ['allChaptersList' => $this->chapterManager->getAllChapters(),
+                'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
+                'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+                'reportedCommentList' => $this->commentManager->getAllReportedComments(),
+                'totalReportedComments' => $this->commentManager->distinctReportedCommentsCount(),
+                'isAdmin' => $isAdmin,
+                'session' => $_SESSION]
+            );
+        } else {
+            throw new Exception('Accès interdit !');
+        }
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\src\Controllers;
 
 use App\src\Core\Controller;
 
+use Exception;
+
 class CommentController extends Controller
 {
     public function createComment($chapterId)
@@ -33,8 +35,6 @@ class CommentController extends Controller
 
     public function reportComment($chapterId, $commentId)
     {
-        var_dump($chapterId);
-        var_dump($commentId);
         $reportedComment = $this->commentManager->addReport($commentId);
         // $this->commentManager->getTotalReports($commentId);
         if ($reportedComment = false) {

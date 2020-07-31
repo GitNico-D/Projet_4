@@ -3,11 +3,11 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
-use App\src\Core\Twig;
+use Exception;
 
 class ChapterController extends Controller
 {
-    
+
     /**
      * createChapter
      *
@@ -27,7 +27,7 @@ class ChapterController extends Controller
                 if ($affectedLines === false) {
                     throw new Exception('Impossible d\'ajouter le chapitre');
                 } else {
-                    header('location: /createChapter');
+                    header('Location: /createChapter');
                     // echo('Chapitre ajouté');
                 }
             } elseif (isset($_POST['saveDraft'])) {
@@ -36,7 +36,7 @@ class ChapterController extends Controller
                 if ($affectedLines === false) {
                     throw new Exception('Impossible de modifier le chapitre');
                 } else {
-                    header('location: /createChapter');
+                    header('Location: /createChapter');
                 }
             } else {
                 // echo 'Veuillez remplir les champs !';
@@ -54,21 +54,18 @@ class ChapterController extends Controller
      */
     public function readChapter($chapterId, $isAdmin)
     {
-        // $commentIdList = $this->commentManager->getCommentIdList($chapterId);
-        // $totalReportsList = $this->commentManager->getTotalReportsComments($commentIdList);
-        // $reportingList = $this->commentManager->getReportComments($commentIdList);
-        // $totalReports = $this->commentManager->getTotalReports();
-        // var_dump($reportingList);
-        // var_dump ($totalReports);
-        echo $this->twig->render(
-            'reading_chapter.html.twig',
-            ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
-            'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
-            // 'totalReports' => $this->commentManager->getTotalReports(),
-            'totalComments' => $this->commentManager->totalChapterComments($chapterId),
-            'chapterNumber' => $chapterId,
-            'isAdmin' => $isAdmin]
-        );
+        if ($chapterId) {
+            echo $this->twig->render(
+                'reading_chapter.html.twig',
+                ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
+                'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
+                'totalComments' => $this->commentManager->totalChapterComments($chapterId),
+                'chapterNumber' => $chapterId,
+                'isAdmin' => $isAdmin]
+            );
+        } else {
+            throw new Exception("Chapitre introuvable !");
+        }
     }
 
     /**
@@ -97,7 +94,7 @@ class ChapterController extends Controller
     public function deleteChapter($chapterId, $isAdmin)
     {
         $this->chapterManager->deleteChapterById($chapterId);
-        header('location: /adminView');
+        header('Location: /adminView');
     }
 
     /**
@@ -109,7 +106,7 @@ class ChapterController extends Controller
     public function publishChapter($chapterId)
     {
         $this->chapterManager->publishedChapter($chapterId);
-        header('location: /adminView');
+        header('Location: /adminView');
     }
     
     /**
