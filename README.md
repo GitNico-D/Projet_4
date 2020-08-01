@@ -1,8 +1,13 @@
 ~ PROJET_4 ~
  
+Installation sass:
+    npm install sass -g
+Compilation sass:
+    npm run sass
+
 Changement d'accés à la BDD :
-    =>  Dans le fichier dbConfig.php situé dans le dossier config,
-        modifier les valeurs DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD.
+    =>  Dans le fichier db_config.yml situé dans le dossier config,
+        modifier les valeurs correspondant à votre base de données.
 
 Le fichier db.sql situé à la racine vous permettra d'importer la base de données.
 
