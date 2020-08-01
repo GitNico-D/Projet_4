@@ -485,70 +485,72 @@ hr
 
 //// LOGIN PAGE ////
 
-.form-signin
+.formflex
 {
-    width: 100%;
-    max-width: 330px;   
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    .card 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    .form-signin
     {
-        padding: 1rem;
-    }
-    h3 
-    {
-        margin-bottom: 2rem;
-    }
-    &-fa 
-    {
-        color: $red;
-        margin-bottom: 2rem;
-    }
-    p 
-    {
-        margin-top: 3rem;
-    }
-    button 
-    {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover
+        width: 100%;
+        max-width: 330px;   
+        .card 
         {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
+            padding: 1rem;
         }
-        &:active
+        h3 
         {
-            color: $yellow;
-            background-color: white;
+            margin-bottom: 2rem;
+        }
+        &-fa 
+        {
+            color: $red;
+            margin-bottom: 2rem;
+        }
+        p 
+        {
+            margin-top: 3rem;
+        }
+        button 
+        {
+            background-color: $yellow;
             border: 1px solid $yellow;
             text-decoration: none;
+            padding: .5rem 1rem;
+            color: white;
+            &:hover
+            {
+                color: $yellow;
+                background-color: white;
+                border: 1px solid $yellow;
+            }
+            &:active
+            {
+                color: $yellow;
+                background-color: white;
+                border: 1px solid $yellow;
+                text-decoration: none;
+            }
         }
-    }
-    input[type="password"]
-    {   
-        margin-bottom: 1.5rem;
-    }   
-    &-img
-    {
-        width: initial!important;
-        padding-bottom: 2rem;
-        margin: auto;
-    }
-    &-link
-    {
-        color: $yellow;
-        &:hover
+        input[type="password"]
+        {   
+            margin-bottom: 1.5rem;
+        }   
+        &-img
         {
-            text-decoration: none;
-            color: black;
+            width: initial!important;
+            padding-bottom: 2rem;
+            margin: auto;
+        }
+        &-link
+        {
+            color: $yellow;
+            &:hover
+            {
+                text-decoration: none;
+                color: black;
+            }
         }
     }
 }
@@ -1210,6 +1212,7 @@ hr
         }
         &-collapse
         {
+            z-index: 10;
             padding: 0;
         }
         &-button
