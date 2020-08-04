@@ -2,100 +2,72 @@
 
 ///// COMMUN CSS ////
 
-.bold
-{
+.bold {
     font-weight: bold;
 }
 
-.margin-top
-{
-    margin-top: 10px;
-}
-
-hr
-{
+hr {
     margin-top: 4rem;
 }
 
-.header
-{
-    // position: relative;
-    height: 100px;
-}
-
-.adminpageSeparator
-{
+.adminpageSeparator {
     border: 4px double $red;
     width: 70%;
 }
 
-.btn:focus
-{
+.btn:focus {
     box-shadow: none;
 }
 
-.form-control:focus
-{
+.form-control:focus {
     box-shadow: 0 0 0 0.2rem $yellow;
     border-color: $yellow;
 }
 
-.navbar
-{
-    color: black;    
-    .nav-item
-    {        
-        vertical-align: middle;
-    }
-    .nav-link
-    {        
-        font-weight: bold;
+.navbar {
+    .nav-link {
         color: black;
-        margin-left: 2rem;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
         }
-    } 
-    &-background 
-    {
+    }
+
+    &-background {
         background-color: white;
-    }                
-    &-button
-    {
-        text-decoration: none;  
+    }
+
+    &-button {
+        text-decoration: none;
         color: white;
         border: 1px solid $yellow;
         background-color: $yellow;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             border: 1px solid $yellow;
             background-color: white;
         }
-        &:focus
-        {
+
+        &:focus {
             box-shadow: none;
         }
     }
-    &-toggler
-    {
+
+    &-toggler {
         background-color: $yellow;
         border: 1xp solid black;
-        
-        .fa-bars
-        {
+
+        .fa-bars {
             color: white;
         }
     }
-    &-collapse
-    {
-        // text-align: center;
+
+    &-collapse {
         padding: 0 0 0 2rem;
-        .show
-        {
-            .nav-link
-            {
+
+        .show {
+            .nav-link {
                 margin: 0;
                 padding: 0;
             }
@@ -103,86 +75,57 @@ hr
     }
 }
 
-.collapse .show 
-{
+.collapse .show {
     margin-top: 15rem;
     padding: 0;
 }
 
-.page-title
-{
-    margin-top: 90px;    
-    margin-bottom: 2rem;
-    padding: 2rem;
-    &-img 
-    {
-        width: 100%;
-        max-width: 1920px;
-        margin: auto;
-    }
-    &-jumbotron
-    {
-        background-color: transparent;
-        margin-bottom: unset;
-    }
-    &-text
-    {
+.page-title {
+    margin-top: 90px;
+
+    &-text {
         color: black;
-        margin-top: 1rem;
         font-size: 2rem;
-        font-style: italic;
     }
-    &-h1 
-    {
+
+    &-h1 {
         font-size: 3rem;
-        width: 80%;
         color: white;
-        margin: auto;
     }
-    &-img
-    {
-        width: 100%;
-        margin: auto;
+
+    span {
+        color: $yellow;
     }
-    span
-    {
-        color:$yellow;
-        font-style: italic;
-    }
-    a
-    {
+
+    a {
         color: $yellow;
     }
 }
 
-.tox-tinymce
-{
+.tox-tinymce {
     margin-top: 1rem;
     border: unset;
-    border: 1px solid #efefef!important;
-
+    border: 1px solid #efefef !important;
 }
 
-.tox-statusbar
-{
+.tox-statusbar {
     visibility: hidden;
 }
 
 //// UPDATE CHAPTER PAGE ////
 
-.savePublish
-{
+.savePublish {
     display: inline;
     margin: auto;
-    &-btn
-    {
+
+    &-btn {
         background-color: $green;
         border: 1px solid $green;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $green;
             background-color: white;
             border: 1px solid $green;
@@ -190,18 +133,17 @@ hr
     }
 }
 
-.saveDraft
-{
+.saveDraft {
     display: inline;
-    &-btn
-    {
+
+    &-btn {
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
@@ -209,41 +151,42 @@ hr
     }
 }
 
-.updateForm
-{
-    &-labeltitle, &-labelimg
-        {
-            text-align: left;
-            font-size: 1.4rem;
-            font-weight: bold;
-            font-style: italic;
-            border-bottom: 1px dashed #495057;
-        }
-        &-labelcontent
-        {
-            font-size: 1.3rem;
-            font-weight: bold;
-            font-style: italic;
-        }
-    &-titleinput, &-imginput
-    {
+.updateForm {
+
+    &-labeltitle,
+    &-labelimg {
+        text-align: left;
+        font-size: 1.4rem;
+        font-weight: bold;
+        font-style: italic;
+        border-bottom: 1px dashed #495057;
+    }
+
+    &-labelcontent {
+        font-size: 1.3rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    &-titleinput,
+    &-imginput {
         margin-bottom: 2rem;
         border: none;
         border-bottom: 1px solid #ced4da;
         border-radius: unset;
-        &:focus
-        {
+
+        &:focus {
             border-bottom: 1px solid $yellow;
             box-shadow: unset;
         }
     }
-    &-deletebtn
-    {
+
+    &-deletebtn {
         background-color: $red;
         border: 1px solid $red;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $red;
             background-color: white;
             border: 1px solid $red;
@@ -251,51 +194,46 @@ hr
     }
 }
 
-.img-thumbnail
-{
+.img-thumbnail {
     width: 30%;
     margin: auto;
 }
 
 //// READING PAGE ////
 
-.nextChapter, .previousChapter
-{
-    &-btn
-    {
+.nextChapter,
+.previousChapter {
+    &-btn {
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
         }
     }
-    &-return
-    {
+
+    &-return {
         color: black;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             text-decoration: none;
         }
     }
 }
 
-.singlePage, .modifyPage
-{
-    &-return
-    {
-        padding: 2rem;
-        a
-        {
+.singlePage,
+.modifyPage {
+    &-return {
+        a {
             color: black;
-            &:hover
-            {
+
+            &:hover {
                 color: $yellow;
                 text-decoration: none;
             }
@@ -303,68 +241,20 @@ hr
     }
 }
 
-.publishChapterSingleCard, .modifyChapterCard
-{
-    border: unset;
-    &-header
-    {
-        background-color: unset;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-    }
-    &-body
-    {
-        padding: 3rem 0 3rem 0;
-    }
-}
-
-.singlePageSeparator
-{
-    width: 50%;
-    margin: auto;
-}
-
-.commentCard
-{
-    &-header
-    {
-        background-color: unset;
-        padding-left: unset;
-    }
-    &-content
-    {
-        margin: 0;
-        padding: 0.5rem 0 0 1.25rem;
-    }
-}
-
-.commentSeparator
-{
-    width: 50%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.leaveComment
-{
-    &-form
-    {
+.leaveComment {
+    &-form {
         width: 80%;
         margin: auto;
     }
-    &-title
-    {
-        padding: 1rem;
-    }
-    &-btn
-    {
+
+    &-btn {
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
@@ -372,111 +262,78 @@ hr
     }
 }
 
-.reporting
-{
-    &-comment
-    {
-        padding: 0.75rem 0 0 1.25rem;
-    }
-    &-link
-    {
-        // text-decoration: none;
+.reporting {
+    &-link {
         color: $red;
-        &:hover
-        {
+
+        &:hover {
             color: black;
             text-decoration: none;
         }
     }
-    &-icon
-    {
-        margin-left: 1rem;
-        color: $red;
-        &:hover
-        {
-            color: black;
-        }
-    }
-}
 
-.chapterImg
-{
-    &-btn
-    {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover
-        {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
+    &-icon {
+        color: $red;
+
+        &:hover {
+            color: black;
         }
     }
 }
 
 //// ADDCHAPTER PAGE ////
 
-.writingForm
-{
-    &-btn
-    {
+.writingForm {
+    &-btn {
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
         }
     }
-    &-link
-    {   
+
+    &-link {
         color: black;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             text-decoration: none;
         }
     }
-    &-labelAuthor, &-labelTitle, &-labelImg
-    {
-        text-align: left;
+
+    &-labelAuthor,
+    &-labelTitle,
+    &-labelImg {
         font-size: 1.4rem;
-        font-weight: bold;
-        font-style: italic;
         border-bottom: 1px dashed #495057;
     }
-    &-labelContent
-    {
+
+    &-labelContent {
         font-size: 1.3rem;
-        font-weight: bold;
-        font-style: italic;
     }
-    &-authorInput
-    {
+
+    &-authorInput {
         font-size: 1.1rem;
-        margin-bottom: 1rem;
-        border: none;
-        border-radius: unset;
-        &:focus
-        {
+
+        &:focus {
             border-bottom: 1px solid $yellow;
             box-shadow: unset;
         }
-    } 
-    &-titleInput, &-imgInput
-    {
-        margin-bottom: 2rem;
+    }
+
+    &-titleInput,
+    &-imgInput {
+        // margin-bottom: 2rem;
         border: none;
         border-bottom: 1px solid #ced4da;
-        border-radius: unset;
-        &:focus
-        {
+
+        // border-radius: unset;
+        &:focus {
             border-bottom: 1px solid $yellow;
             box-shadow: unset;
         }
@@ -485,69 +342,45 @@ hr
 
 //// LOGIN PAGE ////
 
-.formflex
-{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.formflex {
     padding-top: 5rem;
-    .form-signin
-    {
-        width: 100%;
-        max-width: 330px;   
-        .card 
-        {
-            padding: 1rem;
-        }
-        h3 
-        {
+
+    .form-signin {
+        max-width: 330px;
+
+        h3 {
             margin-bottom: 2rem;
         }
-        &-fa 
-        {
-            color: $red;
-            margin-bottom: 2rem;
-        }
-        p 
-        {
-            margin-top: 3rem;
-        }
-        button 
-        {
+
+        button {
             background-color: $yellow;
             border: 1px solid $yellow;
             text-decoration: none;
             padding: .5rem 1rem;
             color: white;
-            &:hover
-            {
+
+            &:hover {
                 color: $yellow;
                 background-color: white;
                 border: 1px solid $yellow;
             }
-            &:active
-            {
+
+            &:active {
                 color: $yellow;
                 background-color: white;
                 border: 1px solid $yellow;
                 text-decoration: none;
             }
         }
-        input[type="password"]
-        {   
-            margin-bottom: 1.5rem;
-        }   
-        &-img
-        {
-            width: initial!important;
-            padding-bottom: 2rem;
-            margin: auto;
+
+        &-img {
+            width: initial !important;
         }
-        &-link
-        {
+
+        &-link {
             color: $yellow;
-            &:hover
-            {
+
+            &:hover {
                 text-decoration: none;
                 color: black;
             }
@@ -555,308 +388,157 @@ hr
     }
 }
 
-.form-signin .form-control 
-{
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-}
 
 //// HOME PAGE ////
 
-.main-header
-{
+.main-header {
     position: relative;
-    &-img 
-    {
+
+    &-img {
         width: 100%;
         max-width: 1920px;
         margin: auto;
     }
-    &-jumbotron
-    {
+
+    &-jumbotron {
         background-color: transparent;
         margin-bottom: unset;
     }
-    &-container 
-    {
+
+    &-container {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);        
+        transform: translate(-50%, -50%);
     }
-    &-text
-    {
+
+    &-text {
         color: white;
         font-size: 6rem;
         font-style: italic;
     }
-    &-h1 
-    {
+
+    &-h1 {
         font-size: 4.5rem;
         color: white;
     }
-    span
-    {
-        color:$yellow;
+
+    span {
+        color: $yellow;
         font-style: italic;
     }
-    a
-    {
+
+    a {
         color: $yellow;
     }
 }
 
-.about
-{
+.about {
     padding-top: 8rem;
-    &-row
-    {
-        display: flex;
-        align-items: flex-start;
-        flex-flow: row wrap;
-    }
-    &-text
-    {
-        padding: 0 2rem 2rem 2rem;
-        text-align: center;
-        &-title
-        {
-            margin: 0;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid black;
-        }
-        &-content
-        {
-            padding-top: 1.5rem;
-            text-align: justify;
-        }
-    }
-    &-quote
-    {
-        margin: 2rem 0 4rem 0;
-        p
-        {
+
+    &-quote {
+        p {
             font-size: 1.2rem;
-            font-weight: bold;
-            padding: 15px;
-            background: #eee;
-            border-radius: 5px;
-            &before
-            {
-                content: '\201C';
-            }
-            &after
-            {
-                content: '\201D';
-            }
         }
-        footer
-        {
+
+        footer {
             text-align: right;
         }
     }
-   
-    &-img
-    {
-        padding: 0;
-        margin-top: 1rem;
-        width: 100%;
+
+    &-img {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
 }
 
-.publishchapter
-{
+.publishchapter {
     padding-top: 6rem;
-    &-title
-    {
-        padding: 2rem;
+
+    &-title {
         font-size: 3rem;
     }
 
 }
 
-.chapter
-{
-    &-row
-    {
-        display: flex;
-        flex-wrap: wrap;
-        width: 90%;
-        margin: auto;
-        overflow: hidden;
-    }
-    &-card
-    {
-        margin: 0;
-        padding: 2rem;
+.chapter {
+    &-card {
         border-radius: 1px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        &-header
-        {
-            text-align: left;
-            padding: 0 0 1rem 0;
-        }
-        &-body
-        {
-            text-align: right;
-            padding: 1rem 0 0 0;
-            overflow: hidden;
-        }
-        &-content
-        {
-            padding: 1rem 0 1rem 0;
-        }
-        &-btn
-        {
+
+        &-btn {
             background-color: $yellow;
             border: 1px solid $yellow;
             text-decoration: none;
             padding: .5rem 1rem;
             color: white;
-            &:hover
-            {
+
+            &:hover {
                 color: $yellow;
                 background-color: white;
                 border: 1px solid $yellow;
             }
-        }
-        img
-        {
-            width: 100%;
         }
     }
 }
 
 //// ADMIN PAGE ////
 
-.main
-{
+.main {
     margin-top: 7rem;
-    &-row
-    {
-        display: flex; 
-        flex-wrap: wrap; 
-        margin-top: 7rem;   
-    }
 
+    &-row {
+        margin-top: 7rem;
+    }
 }
 
-.adminHeader
-{
-    &-container
-    {
-        margin: 1rem 0 1rem 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        vertical-align: center;
-        align-items: center;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-    &-title
-    {
-        text-align: center;
-        font-size: 2rem;
-    }
-    &-btn
-    {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover
-        {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
-    }
-    
-}
-
-.sidebar
-{
+.sidebar {
     background-color: #f7f7f7d7;
+
     // position: fixed;
-    &-list
-    {
-        list-style: none;
-        padding: 1rem 0 0 0;
-    }
-    &-nav
-    {
-        &-item
-        {
-            // color: whitesmoke;
-            padding:  0 0 1rem 0;
-        }
-        &-link 
-        {
-            display: inline;
-            // padding:  0 2rem 2rem 0;
+    &-nav {
+        &-link {
             color: black;
             text-decoration: none;
-            &:hover
-            {
+
+            &:hover {
                 color: $yellow;
             }
         }
-    }    
-    &-img
-    {
-        img
-        {
-            margin: auto;
-            width: 100%;
-
-        }
-    }        
+    }
 }
 
-.writingChapter
-{
+.writingChapter {
     background-color: #fffdf5;
-    margin: auto;
-    margin-top: 2rem;    
-    margin-bottom: 2rem;
-    padding: 2rem;
-    &-title
-    {
+
+    &-title {
         font-size: 1.6rem;
-        margin-bottom: 2rem;
     }
-    &-btn
-    {
+
+    &-btn {
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
-        // padding: .5rem 1rem;
         color: white;
         width: 25%;
         margin: auto;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
         }
-        &::before
-        {
+
+        &::before {
             padding-right: 1.25rem;
         }
-        &::after
-        {
+
+        &::after {
             padding-left: 1.25rem;
         }
-        &::after, &::before
-        {
+
+        &::after,
+        &::before {
             content: "\f56b";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
@@ -866,139 +548,88 @@ hr
     }
 }
 
-.allChaptersList
-{
-    &-title
-    {
-        font-size: 1.1rem;
-    }
+.allChaptersList {
+    font-size: 1.1rem;
 }
 
-.summary
-{
-    &-title
-    {
+.summary {
+    &-title {
         font-size: 2.5rem;
     }
-    &-subtitle
-    {
+
+    &-subtitle {
         font-size: 1.5rem;
     }
 }
 
-.publishChapterCard, .unpublishChapterCard
-{
-    margin-top: 1rem;
-    &-header 
-    {
-        background-color: white;
-        vertical-align: middle;
+.publishChapterCard,
+.unpublishChapterCard {
+    &-link {
+        &:hover {
+            color: $yellow;
+            cursor: pointer;
+        }
+    }
 
-        padding: .5rem 1rem .5rem 1rem;
-        p
-        {
-            margin-top: 0.5rem;
-        }
-    }
-    &-link
-    {
-        &:hover
-        {
-            color: $yellow;
-            cursor: pointer; 
-        }
-    }
-    &-date
-    {
-        float: right;
-    }
-    &-title
-    {
+    &-title {
         font-size: 1.5rem;
-        &::before
-        {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        font-size: 1.25rem;
-        content: "\f358";
-        color: $yellow;
-        padding-right: 0.5rem;
-        } 
-        &::after
-        {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        font-size: 1.25rem;
-        content: "\f358";
-        color: $yellow;          
+
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            content: "\f358";
+            color: $yellow;
+            padding-right: 0.5rem;
         }
-        &:hover
-        {
+
+        &::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            content: "\f358";
+            color: $yellow;
+        }
+
+        &:hover {
             color: $yellow;
         }
     }
-    &-text
-    {
-        font-size: 1.1rem;
-    }
-    &-card
-    {
-        padding: 1.5rem;
-    }
-    &-collapse
-    {
-        border: 1px solid rgba(0,0,0,.125);
-        // border-top-style: none;
-    }
-    &-icons
-    {
+
+    &-icons {
         color: white;
     }
 }
 
-.commentModerationCard
-{
-    border: 1px solid rgba(0,0,0,.125);
-    margin-top: 1rem;
-    padding: 0.5rem;
-    &-title
-    {
-        text-align: left;
-        // font-size: 1.25rem;
-    }
-    &-text
-    {
-        padding: 0.25rem;
-        // font-size: 1.rem;
-        margin-top: 1.5rem;
-    }
-} 
+.commentModerationCard {
+    border: 1px solid rgba(0, 0, 0, .125);
+}
 
-.publishChapterCard, .unpublishChapterCard, .commentModerationCard
-{
-    &-btn
-    {
+.publishChapterCard,
+.unpublishChapterCard,
+.commentModerationCard {
+    &-btn {
         text-decoration: none;
         color: white;
         margin: 0rem 1rem 0rem 0rem;
     }
-    .modifybtn
-    {
+
+    .modifybtn {
         background-color: $green;
         border: 1px solid $green;
-        &:hover
-        {
+
+        &:hover {
             color: $green;
             background-color: white;
             border: 1px solid $green;
         }
-        &::before
-        {
+
+        &::before {
             content: " ";
             padding-left: 1.5rem;
         }
-        &::after
-        {
+
+        &::after {
             content: "\f044";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
@@ -1007,23 +638,23 @@ hr
             padding-left: 1rem;
         }
     }
-    .readbtn
-    {
+
+    .readbtn {
         background-color: $yellow;
         border: 1px solid $yellow;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
         }
-        &::before
-        {
+
+        &::before {
             content: " ";
             padding-left: 1.5rem;
         }
-        &::after
-        {
+
+        &::after {
             content: "\f5da";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
@@ -1032,23 +663,24 @@ hr
             padding-left: 1rem;
         }
     }
-    .publishbtn, .validatebtn
-    {
+
+    .publishbtn,
+    .validatebtn {
         background-color: $green;
         border: 1px solid $green;
-        &:hover
-        {
+
+        &:hover {
             color: $green;
             background-color: white;
             border: 1px solid $green;
         }
-        &::before
-        {
+
+        &::before {
             content: " ";
             padding-left: 1.75rem;
         }
-        &::after
-        {
+
+        &::after {
             content: "\f058";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
@@ -1056,26 +688,26 @@ hr
             padding-left: 1rem;
         }
     }
-    .deletebtn
-    {
+
+    .deletebtn {
         text-decoration: none;
         color: white;
         background-color: $red;
         border: 1px solid $red;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $red;
             background-color: white;
             border: 1px solid $red;
         }
-        &::before
-        {
+
+        &::before {
             content: " ";
             padding-left: 1.75rem;
         }
-        &::after
-        {
+
+        &::after {
             content: "\f057";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
@@ -1083,76 +715,63 @@ hr
             padding-left: 1rem;
         }
     }
-    
+
 }
 
-.publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
-{
+.publishChapterAdmin,
+.pendingChapterAdmin,
+.commentModerationAdmin {
     margin: 5rem 0 6rem 0;
     padding-top: 6rem;
     padding: 0.5rem;
-    &-title
-    {
+
+    &-title {
         background-color: #f7f7f7d7;
         font-size: 2rem;
         margin-bottom: 2rem;
-    }
-    // &-text
-    // {
-    //     font-size: 1.1rem;
-    // }
-}
-
-
-.table
-{
-    td
-    {
-        vertical-align: middle;
-        padding: 1rem;
     }
 }
 
 //// FONT AWESOME COLOR CHANGE ////
 
-.fa-house-user, .fa-book, .fa-comment, .fa-book-reader, .fa-feather-alt, .fa-arrow-left
-{
+.fa-house-user,
+.fa-book,
+.fa-comment,
+.fa-book-reader,
+.fa-feather-alt,
+.fa-arrow-left {
     color: $yellow;
 }
 
-.fa-check
-{
+.fa-check {
     color: $green;
 }
 
-.fa-times
-{
+.fa-times {
     color: $red;
 }
 
 //// CONTACT PAGE ////
 
-.contactForm
-{
-    &-btn
-    {
+.contactForm {
+    &-btn {
         background-color: $yellow;
         border: 1px solid $yellow;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
         }
     }
-    &-return
-    {
+
+    &-return {
         color: black;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             text-decoration: none;
         }
@@ -1161,15 +780,14 @@ hr
 
 //// ERROR PAGE ////
 
-.error404, .error500
-{
-    &-btn
-    {
+.error404,
+.error500 {
+    &-btn {
         background-color: $yellow;
         border: 1px solid $yellow;
         color: white;
-        &:hover
-        {
+
+        &:hover {
             color: $yellow;
             background-color: white;
             border: 1px solid $yellow;
@@ -1179,351 +797,310 @@ hr
 
 //// MEDIA QUERRIES ////
 
-@media (max-width: 1024px)
-{
-    .main-header
-    {
-        &-text
-        {
+@media (min-width: 1024px) {
+    .main-header {
+        &-text {
             font-size: 4rem;
         }
-        &-h1
-        {
+
+        &-h1 {
             font-size: 2.5rem;
         }
     }
-}
 
-
-@media (max-width: 1024px)
-{
-    .navbar
-    {
-        &-brand
-        {
+    .navbar {
+        &-brand {
             display: block;
             margin: auto;
         }
-        &-toggler
-        {
+
+        &-toggler {
             margin: auto;
             margin-top: 1rem;
             display: block;
         }
-        &-collapse
-        {
+
+        &-collapse {
             z-index: 10;
             padding: 0;
         }
-        &-button
-        {
+
+        &-button {
             margin: auto;
         }
-        .nav-link
-        {
+
+        .nav-link {
             margin: 0;
         }
-        .text-uppercase
-        {
+
+        .text-uppercase {
             text-align: center;
         }
     }
 }
 
-@media (max-width: 768px)
-{
-    .about
-    {
-        &-text
-        {
+@media (max-width: 768px) {
+    .about {
+        &-text {
             padding: 2rem 0 0 0;
-            
+
         }
     }
 
-    .main-header
-    {
-        &-text
-        {
+    .main-header {
+        &-text {
             font-size: 2rem;
         }
-        &-h1
-        {
+
+        &-h1 {
             font-size: 1.25rem;
         }
     }
 
-    .sidebar
-    {
+    .sidebar {
         text-align: center;
     }
 
-    .adminHeader
-    {
-        &-container
-        {
+    .adminHeader {
+        &-container {
             width: 100%;
             display: block;
-            
-        } 
-        &-title
-        {
+
+        }
+
+        &-title {
             display: block;
             font-size: 1.5rem;
             margin: 1rem 0 1rem 0;
         }
-        &-btn
-        {
+
+        &-btn {
             display: block;
             text-align: center;
         }
-        &-img
-        {
+
+        &-img {
             width: 100%;
             margin: auto;
-            img
-            {
+
+            img {
                 margin: auto;
             }
-        }         
-    } 
-    
-    .commentModerationCard
-    {
+        }
+    }
 
-        &-deletebtn, &-validatebtn
-        {
+    .commentModerationCard {
+
+        &-deletebtn,
+        &-validatebtn {
             text-decoration: none;
             padding: unset;
             margin: auto;
         }
     }
 
-    .publishChapterCard, .unpublishChapterCard
-    {
-        &-btn
-        {
+    .publishChapterCard,
+    .unpublishChapterCard {
+        &-btn {
             text-decoration: none;
             padding: unset;
             margin: auto;
         }
     }
 
-    .publishChapterCard, .unpublishChapterCard
-    {
+    .publishChapterCard,
+    .unpublishChapterCard {
         margin-top: 1rem;
         padding: 1rem;
         border: none;
-        &-header 
-        {
+
+        &-header {
             text-align: center;
             background-color: white;
         }
-        &-date
-        {
+
+        &-date {
             font-size: 0.8rem;
         }
-        &-title
-        {
+
+        &-title {
             font-weight: bold;
             font-size: 1.2rem;
-            &::before
-            {
+
+            &::before {
                 font-size: 0.8rem;
                 padding-right: 0.5rem;
-            } 
-            &::after
-            {
-                font-size: 0.8rem;         
+            }
+
+            &::after {
+                font-size: 0.8rem;
             }
         }
-        &-text
-        {
+
+        &-text {
             font-size: 1.1rem;
         }
     }
 
-    .writingChapter
-    {
-        &-btn
-        {
+    .writingChapter {
+        &-btn {
             width: unset;
             margin: unset;
         }
     }
 }
 
-@media (max-width: 500px)
-{
-    .main-header
-    {
-        &-margintop
-        {
+@media (max-width: 500px) {
+    .main-header {
+        &-margintop {
             margin-top: 5rem;
         }
-        &-text
-        {
+
+        &-text {
             font-size: 2rem;
         }
-        &-h1
-        {
+
+        &-h1 {
             font-size: 1.25rem;
         }
     }
 
-    .page-title
-    {
-        &-text
-        {
+    .page-title {
+        &-text {
             font-size: 2rem;
         }
-        &-h1
-        {
+
+        &-h1 {
             font-size: 2.5rem;
             margin-top: 1.5rem;
             text-align: center;
         }
     }
 
-    .leaveComment
-    {
-        &-title
-        {
+    .leaveComment {
+        &-title {
             text-align: center;
         }
-        &-form
-        {
+
+        &-form {
             padding: 0;
             width: 100%;
             margin: auto;
         }
     }
 
-    .publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
-    {
-        &-title
-        {
+    .publishChapterAdmin,
+    .pendingChapterAdmin,
+    .commentModerationAdmin {
+        &-title {
             font-size: 2rem;
         }
     }
 
-    .publishChapterCard, .unpublishChapterCard, .commentModerationCard
-    {
+    .publishChapterCard,
+    .unpublishChapterCard,
+    .commentModerationCard {
         margin-top: 1rem;
         padding: 1rem;
         border: none;
-        &-header 
-        {
+
+        &-header {
             text-align: center;
             background-color: white;
         }
-        &-date
-        {
+
+        &-date {
             float: unset;
             display: block;
         }
-        &-title
-        {
+
+        &-title {
             display: block;
             font-weight: bold;
             font-size: 1rem;
-            &::before
-            {
-            font-size: 0.8rem;
-            padding-right: 0.5rem;
-            } 
-            &::after
-            {
-                font-size: 0.8rem;         
+
+            &::before {
+                font-size: 0.8rem;
+                padding-right: 0.5rem;
+            }
+
+            &::after {
+                font-size: 0.8rem;
             }
         }
-        &-text
-        {
+
+        &-text {
             font-size: 1.1rem;
         }
     }
 
-    .commentModerationCard
-    {
-        &-title
-        {
+    .commentModerationCard {
+        &-title {
             text-align: center;
         }
-        &-text
-        {
+
+        &-text {
             font-size: 0.8rem;
         }
     }
-    
-    .navbar 
-    {
-        &-button
-        {
+
+    .navbar {
+        &-button {
             margin-top: 1rem;
         }
     }
 }
 
-@media (max-width: 360px)
-{
-    .main-header
-    {
-        &-margintop
-        {
+@media (max-width: 360px) {
+    .main-header {
+        &-margintop {
             margin-top: 8rem;
         }
     }
 
-    .page-title
-    {
-        &-text
-        {
+    .page-title {
+        &-text {
             font-size: 1rem;
         }
-        h1
-        {
-            font-size: 1.5rem;
-        }
-    }
-    .publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
-    {
-        &-title
-        {
+
+        h1 {
             font-size: 1.5rem;
         }
     }
 
-    .writingChapter
-    {
-        &-title
-        {
+    .publishChapterAdmin,
+    .pendingChapterAdmin,
+    .commentModerationAdmin {
+        &-title {
+            font-size: 1.5rem;
+        }
+    }
+
+    .writingChapter {
+        &-title {
             font-size: 1.2rem;
         }
-        &-btn
-        {
+
+        &-btn {
             width: unset;
             margin: unset;
         }
     }
 
-    .table
-    {
-        td
-        {
+    .table {
+        td {
             font-size: 0.9rem;
             text-align: center;
             padding: 0.25rem;
         }
     }
 
-    .summary
-    {
-        &-title
-        {
+    .summary {
+        &-title {
             text-align: center;
         }
-        &-container
-        {
+
+        &-container {
             padding-right: unset;
             padding-left: unset;
 
