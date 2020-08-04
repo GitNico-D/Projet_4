@@ -16,19 +16,19 @@ class ChapterManager extends Manager
 
     public function getAllChapters()
     {
-        $allChaptersList = $this->findAll($this->table, Chapter::class);
+        $allChaptersList = $this->findAll($this->table);
         return $allChaptersList;
     }
 
     public function getAllPublishedChapters()
     {
-        $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'), 10, Chapter::class);
+        $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'));
         return $publishedChaptersList;
     }
 
     public function getAllUnpublishedChapters()
     {
-        $unpublishedChaptersList = $this->findBy($this->table, array('published' => 0), array('createDate' => 'ASC'), 10, Chapter::class);
+        $unpublishedChaptersList = $this->findBy($this->table, array('published' => 0), array('createDate' => 'ASC'), 10);
         return $unpublishedChaptersList;
     }
 
