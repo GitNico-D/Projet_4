@@ -16,7 +16,7 @@ abstract class DAO
             try {
                 $this->db = new PDO(
                     'mysql:host=' . $dbConfig['DATABASE_HOST'] .';port=' . $dbConfig['DATABASE_PORT'] .
-                                    ';dbname=' . $dbConfig['DATABASE_NAME'] .';charset=' . $config['APP_CHARSET'],
+                                    ';dbname=' . $dbConfig['DATABASE_NAME'] .';charset=' . $dbConfig['DATABASE_CHARSET'],
                     $dbConfig['DATABASE_USERNAME'],
                     $dbConfig['DATABASE_PASSWORD']
                 );
@@ -33,7 +33,7 @@ abstract class DAO
     public function createQuery($sql, $parameters = null)
     {
         if ($parameters) {
-            // var_dump($parameters);
+            var_dump($parameters);
             $request = $this->getDb()->prepare($sql);
             $request->execute($parameters);
             return $request;
