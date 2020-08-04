@@ -8,8 +8,7 @@ use App\src\Models\Reporting;
 
 class CommentManager extends Manager
 {
-    public $table = 'comments';
-    public $className = 'App\src\Models\Comment';
+    public $table = 'comment';
 
     /**
      * getCommentByChapterId
@@ -19,7 +18,7 @@ class CommentManager extends Manager
      */
     public function getCommentByChapterId($chapterId)
     {
-        $commentList = $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10, Comment::class);
+        $commentList = $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10);
         return $commentList;
     }
 
