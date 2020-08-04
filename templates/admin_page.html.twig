@@ -4,26 +4,26 @@
 
 {% block main %}
 <div class="container-fluid">
-    <div class="row main-row">
+    <div class="row main-row d-flex flex-xrap">
         <nav class="sidebar col-md-2">
-            <ul class="sidebar-list">
-                <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-feather-alt"></span><a class="nav-link sidebar-nav-link" href="#">Écrire</a>
+            <ul class="sidebar-list list-unstyled pt-3">
+                <li class="nav-item pb-3">
+                    <span class="fas fa-feather-alt"></span><a class="nav-link d-inline  sidebar-nav-link" href="#">Écrire</a>
                 </li>
-                <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-book"></span><a href="/adminView#publishChapter" class="nav-link sidebar-nav-link">Chapitres publiés</a>
+                <li class="nav-item pb-3">
+                    <span class="fas fa-book"></span><a href="/adminView#publishChapter" class="nav-link d-inline sidebar-nav-link">Chapitres publiés</a>
                 </li>
-                <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-book-reader"></span><a href="/adminView#pendingChapter" class="nav-link sidebar-nav-link">Chapitres en attente</a>
+                <li class="nav-item pb-3">
+                    <span class="fas fa-book-reader"></span><a href="/adminView#pendingChapter" class="nav-link d-inline sidebar-nav-link">Chapitres en attente</a>
                 </li>
-                <li class="nav-item sidebar-nav-item">
-                    <span class="fas fa-comment"></span><a href="/adminView#commentModeration" class="nav-link sidebar-nav-link">Modération</a>
+                <li class="nav-item pb-3">
+                    <span class="fas fa-comment"></span><a href="/adminView#commentModeration" class="nav-link d-inline sidebar-nav-link">Modération</a>
                 </li>
             </ul>
         </nav>
         <div class="main col-md-10">
-            <section id="writingChapter" class="card writingChapter">
-                <p class="writingChapter-title text-center"> Créer un nouveau chapitre </p>
+            <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
+                <p class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </p>
                 <a href="/createChapter" class="btn writingChapter-btn"><span class="button-text">Écrire</span></a>
             </section>
             <hr class="adminpageSeparator">
@@ -43,10 +43,10 @@
                         <tbody>
                             {% for chapter in allChaptersList %}
                             <tr>
-                                <td class=" allChaptersList-title">{{ chapter.title }}</td>
-                                <td class="">{{ chapter.author }}</td>
-                                <td class="font-italic ">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
-                                <td class="">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
+                                <td class="allChaptersList align-middle p-3">{{ chapter.title }}</td>
+                                <td class="align-middle p-3">{{ chapter.author }}</td>
+                                <td class="font-italic align-middle p-3">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
+                                <td class="align-middle p-3">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -64,9 +64,9 @@
                         {% set plusOne = plusOne + 1 %}
                     {% endif %}
                 <div id="accordion">
-                    <div class="card publishChapterCard">
-                        <div class="card-header publishChapterCard-header" id="heading{{ plusOne }}">                            
-                            <p class="font-italic publishChapterCard-date"> Publié le {{ chapter.createDate | date("m/d/Y \à H:i:s")}}</p>
+                    <div class="card publishChapterCard m-1">
+                        <div class="card-header p-3 align-middle bg-white" id="heading{{ plusOne }}">                            
+                            <p class="font-italic mt-2 float-right publishChapterCard-Date"> Publié le {{ chapter.createDate | date("m/d/Y \à H:i:s")}}</p>
                             <a class="publishChapterCard-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
                                 <span class="publishChapterCard-title">{{ chapter.title }} </span>   
                             </a>                              
@@ -100,9 +100,9 @@
                         {% set plusOne = plusOne + 1 %}
                     {% endif %}
                     <div id="accordion">
-                        <div class="card unpublishChapterCard">
-                            <div class="card-header unpublishChapterCard-header" id="unpublishHeading{{ plusOne }}">                            
-                                <p class="font-italic float-right"> Créé le {{ chapter.createDate | date("m/d/Y \à H:i:s") }}</p>
+                        <div class="card unpublishChapterCard m-1">
+                            <div class="card-header p-3 align-middle bg-white" id="unpublishHeading{{ plusOne }}">                            
+                                <p class="font-italic mt-2 float-right publishChapterCard-Date"> Créé le {{ chapter.createDate | date("m/d/Y \à H:i:s") }}</p>
                                 <a class="unpublishChapterCard-link" data-toggle="collapse" data-target="#unpublishCollapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
                                     <span class="unpublishChapterCard-title">{{ chapter.title }} </span>   
                                 </a>                              
@@ -135,24 +135,12 @@
                     <span class="text-muted bold">VALIDATION</span>, 
                     <span class="text-muted bold">SUPPRESSION</span> du commentaire
                 </p>   
-                {# {% for reportedComment in reportedCommentByChapterList %}
-                    <div class="card commentModerationCard text-center">
-                        <p class="card-header commentModerationCard-title bold">
-                            <span class="font-italic">Posté le</span> {{ reportedComment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ reportedComment.author }}
-                        </p>
-                        <p class="card-body commentModerationCard-text text-center-justify">{{ reportedComment.content }}</p>
-                        <div class="text-center">
-                            <a href="/validateComment/{{ reportedComment.id }}" class="btn commentModerationCard-btn validatebtn ">Valider</a>
-                            <a href="/deleteComment/{{ reportedComment.id }}" class="btn commentModerationCard-btn deletebtn ">Supprimer</a>
-                        </div>
-                    </div>
-                    {% endfor %}  #}
                 {% for comment in reportedCommentList %}
-                        <div class="card commentModerationCard text-center">
-                            <p class="card-header commentModerationCard-title bold">
+                        <div class="card commentModerationCard mt-3 p-3 text-center">
+                            <p class="card-header text-left bold">
                                 <span class="font-italic">Posté le</span> {{ comment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ comment.author }}
                             </p>
-                            <p class="card-body commentModerationCard-text text-center-justify">{{ comment.content }}</p>
+                            <p class="card-body commentModerationCard-text p-1 mt-3 text-center-justify">{{ comment.content }}</p>
                             <div class="text-center">
                                 <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn ">Valider</a>
                                 <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn ">Supprimer</a>

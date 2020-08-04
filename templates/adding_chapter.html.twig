@@ -14,14 +14,14 @@
 {% block main %} 
     <div class="container">
         <form action="/createChapter" method="post">
-            <div class="form-group writingForm">
-                <label for="chapterAuthor" class="writingForm-labelAuthor">Auteur</label>
-                <input type="text" class="form-control writingForm-authorInput" id="chapterAuthor" name="chapterAuthor" value="Jean">
-                <label for="chapterTitle" class=" writingForm-labelTitle">Titre du chapitre</label>
-                <input type="text" class="form-control writingForm-titleInput" id="chapterTitle" name="chapterTitle">
-                <label for="chapterImg" class="writingForm-labelImg">Image du chapitre</label>
-                <input type="text" class="form-control writingForm-imgInput" id="chapterImg" name="chapterImg" placeholder="Ajouter l'url ou le chemin d'accès à votre image">
-                <label for="chapterContent" class="writingForm-labelContent">Contenu</label>
+            <div class="form-group writingForm mt-5">
+                <label for="chapterAuthor" class="text-left font-weight-bold font-italic writingForm-labelAuthor">Auteur</label>
+                <input type="text" class="form-control writingForm-authorInput mb-3 border-0 rounded-0" id="chapterAuthor" name="chapterAuthor" value="Jean">
+                <label for="chapterTitle" class="text-left font-weight-bold font-italic writingForm-labelTitle">Titre du chapitre</label>
+                <input type="text" class="form-control writingForm-titleInput mb-5 rounded-0" id="chapterTitle" name="chapterTitle">
+                <label for="chapterImg" class="text-left font-weight-bold font-italic writingForm-labelImg">Image du chapitre</label>
+                <input type="text" class="form-control writingForm-imgInput mb-5 rounded-0" id="chapterImg" name="chapterImg" placeholder="Ajouter l'url ou le chemin d'accès à votre image">
+                <label for="chapterContent" class="text-left font-weight-bold font-italic writingForm-labelContent">Contenu</label>
                 <textarea type="text" class="form-control writingForm-contentTextarea" id="chapterContent" name="chapterContent"></textarea>
                 <div class="text-center">
                     <button type="submit" name="saveAndPublish" class="btn savePublish-btn my-2">Enregistrer et publier</button>
