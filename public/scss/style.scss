@@ -1,0 +1,1532 @@
+@import "variables";
+
+///// COMMUN CSS ////
+
+.bold
+{
+    font-weight: bold;
+}
+
+.margin-top
+{
+    margin-top: 10px;
+}
+
+hr
+{
+    margin-top: 4rem;
+}
+
+.header
+{
+    // position: relative;
+    height: 100px;
+}
+
+.adminpageSeparator
+{
+    border: 4px double $red;
+    width: 70%;
+}
+
+.btn:focus
+{
+    box-shadow: none;
+}
+
+.form-control:focus
+{
+    box-shadow: 0 0 0 0.2rem $yellow;
+    border-color: $yellow;
+}
+
+.navbar
+{
+    color: black;    
+    .nav-item
+    {        
+        vertical-align: middle;
+    }
+    .nav-link
+    {        
+        font-weight: bold;
+        color: black;
+        margin-left: 2rem;
+        &:hover
+        {
+            color: $yellow;
+        }
+    } 
+    &-background 
+    {
+        background-color: white;
+    }                
+    &-button
+    {
+        text-decoration: none;  
+        color: white;
+        border: 1px solid $yellow;
+        background-color: $yellow;
+        &:hover
+        {
+            color: $yellow;
+            border: 1px solid $yellow;
+            background-color: white;
+        }
+        &:focus
+        {
+            box-shadow: none;
+        }
+    }
+    &-toggler
+    {
+        background-color: $yellow;
+        border: 1xp solid black;
+        
+        .fa-bars
+        {
+            color: white;
+        }
+    }
+    &-collapse
+    {
+        // text-align: center;
+        padding: 0 0 0 2rem;
+        .show
+        {
+            .nav-link
+            {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.collapse .show 
+{
+    margin-top: 15rem;
+    padding: 0;
+}
+
+.page-title
+{
+    margin-top: 90px;    
+    margin-bottom: 2rem;
+    padding: 2rem;
+    &-img 
+    {
+        width: 100%;
+        max-width: 1920px;
+        margin: auto;
+    }
+    &-jumbotron
+    {
+        background-color: transparent;
+        margin-bottom: unset;
+    }
+    &-text
+    {
+        color: black;
+        margin-top: 1rem;
+        font-size: 2rem;
+        font-style: italic;
+    }
+    &-h1 
+    {
+        font-size: 3rem;
+        width: 80%;
+        color: white;
+        margin: auto;
+    }
+    &-img
+    {
+        width: 100%;
+        margin: auto;
+    }
+    span
+    {
+        color:$yellow;
+        font-style: italic;
+    }
+    a
+    {
+        color: $yellow;
+    }
+}
+
+.tox-tinymce
+{
+    margin-top: 1rem;
+    border: unset;
+    border: 1px solid #efefef!important;
+
+}
+
+.tox-statusbar
+{
+    visibility: hidden;
+}
+
+//// UPDATE CHAPTER PAGE ////
+
+.savePublish
+{
+    display: inline;
+    margin: auto;
+    &-btn
+    {
+        background-color: $green;
+        border: 1px solid $green;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $green;
+            background-color: white;
+            border: 1px solid $green;
+        }
+    }
+}
+
+.saveDraft
+{
+    display: inline;
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
+
+.updateForm
+{
+    &-labeltitle, &-labelimg
+        {
+            text-align: left;
+            font-size: 1.4rem;
+            font-weight: bold;
+            font-style: italic;
+            border-bottom: 1px dashed #495057;
+        }
+        &-labelcontent
+        {
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-style: italic;
+        }
+    &-titleinput, &-imginput
+    {
+        margin-bottom: 2rem;
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        border-radius: unset;
+        &:focus
+        {
+            border-bottom: 1px solid $yellow;
+            box-shadow: unset;
+        }
+    }
+    &-deletebtn
+    {
+        background-color: $red;
+        border: 1px solid $red;
+        color: white;
+        &:hover
+        {
+            color: $red;
+            background-color: white;
+            border: 1px solid $red;
+        }
+    }
+}
+
+.img-thumbnail
+{
+    width: 30%;
+    margin: auto;
+}
+
+//// READING PAGE ////
+
+.nextChapter, .previousChapter
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    &-return
+    {
+        color: black;
+        &:hover
+        {
+            color: $yellow;
+            text-decoration: none;
+        }
+    }
+}
+
+.singlePage, .modifyPage
+{
+    &-return
+    {
+        padding: 2rem;
+        a
+        {
+            color: black;
+            &:hover
+            {
+                color: $yellow;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.publishChapterSingleCard, .modifyChapterCard
+{
+    border: unset;
+    &-header
+    {
+        background-color: unset;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    &-body
+    {
+        padding: 3rem 0 3rem 0;
+    }
+}
+
+.singlePageSeparator
+{
+    width: 50%;
+    margin: auto;
+}
+
+.commentCard
+{
+    &-header
+    {
+        background-color: unset;
+        padding-left: unset;
+    }
+    &-content
+    {
+        margin: 0;
+        padding: 0.5rem 0 0 1.25rem;
+    }
+}
+
+.commentSeparator
+{
+    width: 50%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.leaveComment
+{
+    &-form
+    {
+        width: 80%;
+        margin: auto;
+    }
+    &-title
+    {
+        padding: 1rem;
+    }
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
+
+.reporting
+{
+    &-comment
+    {
+        padding: 0.75rem 0 0 1.25rem;
+    }
+    &-link
+    {
+        // text-decoration: none;
+        color: $red;
+        &:hover
+        {
+            color: black;
+            text-decoration: none;
+        }
+    }
+    &-icon
+    {
+        margin-left: 1rem;
+        color: $red;
+        &:hover
+        {
+            color: black;
+        }
+    }
+}
+
+.chapterImg
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
+
+//// ADDCHAPTER PAGE ////
+
+.writingForm
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    &-link
+    {   
+        color: black;
+        &:hover
+        {
+            color: $yellow;
+            text-decoration: none;
+        }
+    }
+    &-labelAuthor, &-labelTitle, &-labelImg
+    {
+        text-align: left;
+        font-size: 1.4rem;
+        font-weight: bold;
+        font-style: italic;
+        border-bottom: 1px dashed #495057;
+    }
+    &-labelContent
+    {
+        font-size: 1.3rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+    &-authorInput
+    {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        border: none;
+        border-radius: unset;
+        &:focus
+        {
+            border-bottom: 1px solid $yellow;
+            box-shadow: unset;
+        }
+    } 
+    &-titleInput, &-imgInput
+    {
+        margin-bottom: 2rem;
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        border-radius: unset;
+        &:focus
+        {
+            border-bottom: 1px solid $yellow;
+            box-shadow: unset;
+        }
+    }
+}
+
+//// LOGIN PAGE ////
+
+.formflex
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    .form-signin
+    {
+        width: 100%;
+        max-width: 330px;   
+        .card 
+        {
+            padding: 1rem;
+        }
+        h3 
+        {
+            margin-bottom: 2rem;
+        }
+        &-fa 
+        {
+            color: $red;
+            margin-bottom: 2rem;
+        }
+        p 
+        {
+            margin-top: 3rem;
+        }
+        button 
+        {
+            background-color: $yellow;
+            border: 1px solid $yellow;
+            text-decoration: none;
+            padding: .5rem 1rem;
+            color: white;
+            &:hover
+            {
+                color: $yellow;
+                background-color: white;
+                border: 1px solid $yellow;
+            }
+            &:active
+            {
+                color: $yellow;
+                background-color: white;
+                border: 1px solid $yellow;
+                text-decoration: none;
+            }
+        }
+        input[type="password"]
+        {   
+            margin-bottom: 1.5rem;
+        }   
+        &-img
+        {
+            width: initial!important;
+            padding-bottom: 2rem;
+            margin: auto;
+        }
+        &-link
+        {
+            color: $yellow;
+            &:hover
+            {
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+}
+
+.form-signin .form-control 
+{
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+//// HOME PAGE ////
+
+.main-header
+{
+    position: relative;
+    &-img 
+    {
+        width: 100%;
+        max-width: 1920px;
+        margin: auto;
+    }
+    &-jumbotron
+    {
+        background-color: transparent;
+        margin-bottom: unset;
+    }
+    &-container 
+    {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);        
+    }
+    &-text
+    {
+        color: white;
+        font-size: 6rem;
+        font-style: italic;
+    }
+    &-h1 
+    {
+        font-size: 4.5rem;
+        color: white;
+    }
+    span
+    {
+        color:$yellow;
+        font-style: italic;
+    }
+    a
+    {
+        color: $yellow;
+    }
+}
+
+.about
+{
+    padding-top: 8rem;
+    &-row
+    {
+        display: flex;
+        align-items: flex-start;
+        flex-flow: row wrap;
+    }
+    &-text
+    {
+        padding: 0 2rem 2rem 2rem;
+        text-align: center;
+        &-title
+        {
+            margin: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid black;
+        }
+        &-content
+        {
+            padding-top: 1.5rem;
+            text-align: justify;
+        }
+    }
+    &-quote
+    {
+        margin: 2rem 0 4rem 0;
+        p
+        {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px;
+            background: #eee;
+            border-radius: 5px;
+            &before
+            {
+                content: '\201C';
+            }
+            &after
+            {
+                content: '\201D';
+            }
+        }
+        footer
+        {
+            text-align: right;
+        }
+    }
+   
+    &-img
+    {
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+}
+
+.publishchapter
+{
+    padding-top: 6rem;
+    &-title
+    {
+        padding: 2rem;
+        font-size: 3rem;
+    }
+
+}
+
+.chapter
+{
+    &-row
+    {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: auto;
+        overflow: hidden;
+    }
+    &-card
+    {
+        margin: 0;
+        padding: 2rem;
+        border-radius: 1px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        &-header
+        {
+            text-align: left;
+            padding: 0 0 1rem 0;
+        }
+        &-body
+        {
+            text-align: right;
+            padding: 1rem 0 0 0;
+            overflow: hidden;
+        }
+        &-content
+        {
+            padding: 1rem 0 1rem 0;
+        }
+        &-btn
+        {
+            background-color: $yellow;
+            border: 1px solid $yellow;
+            text-decoration: none;
+            padding: .5rem 1rem;
+            color: white;
+            &:hover
+            {
+                color: $yellow;
+                background-color: white;
+                border: 1px solid $yellow;
+            }
+        }
+        img
+        {
+            width: 100%;
+        }
+    }
+}
+
+//// ADMIN PAGE ////
+
+.main
+{
+    margin-top: 7rem;
+    &-row
+    {
+        display: flex; 
+        flex-wrap: wrap; 
+        margin-top: 7rem;   
+    }
+
+}
+
+.adminHeader
+{
+    &-container
+    {
+        margin: 1rem 0 1rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        vertical-align: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    &-title
+    {
+        text-align: center;
+        font-size: 2rem;
+    }
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    
+}
+
+.sidebar
+{
+    background-color: #f7f7f7d7;
+    // position: fixed;
+    &-list
+    {
+        list-style: none;
+        padding: 1rem 0 0 0;
+    }
+    &-nav
+    {
+        &-item
+        {
+            // color: whitesmoke;
+            padding:  0 0 1rem 0;
+        }
+        &-link 
+        {
+            display: inline;
+            // padding:  0 2rem 2rem 0;
+            color: black;
+            text-decoration: none;
+            &:hover
+            {
+                color: $yellow;
+            }
+        }
+    }    
+    &-img
+    {
+        img
+        {
+            margin: auto;
+            width: 100%;
+
+        }
+    }        
+}
+
+.writingChapter
+{
+    background-color: #fffdf5;
+    margin: auto;
+    margin-top: 2rem;    
+    margin-bottom: 2rem;
+    padding: 2rem;
+    &-title
+    {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        // padding: .5rem 1rem;
+        color: white;
+        width: 25%;
+        margin: auto;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+        &::before
+        {
+            padding-right: 1.25rem;
+        }
+        &::after
+        {
+            padding-left: 1.25rem;
+        }
+        &::after, &::before
+        {
+            content: "\f56b";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.05rem;
+            color: $yellow;
+        }
+    }
+}
+
+.allChaptersList
+{
+    &-title
+    {
+        font-size: 1.1rem;
+    }
+}
+
+.summary
+{
+    &-title
+    {
+        font-size: 2.5rem;
+    }
+    &-subtitle
+    {
+        font-size: 1.5rem;
+    }
+}
+
+.publishChapterCard, .unpublishChapterCard
+{
+    margin-top: 1rem;
+    &-header 
+    {
+        background-color: white;
+        vertical-align: middle;
+
+        padding: .5rem 1rem .5rem 1rem;
+        p
+        {
+            margin-top: 0.5rem;
+        }
+    }
+    &-link
+    {
+        &:hover
+        {
+            color: $yellow;
+            cursor: pointer; 
+        }
+    }
+    &-date
+    {
+        float: right;
+    }
+    &-title
+    {
+        font-size: 1.5rem;
+        &::before
+        {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 1.25rem;
+        content: "\f358";
+        color: $yellow;
+        padding-right: 0.5rem;
+        } 
+        &::after
+        {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 1.25rem;
+        content: "\f358";
+        color: $yellow;          
+        }
+        &:hover
+        {
+            color: $yellow;
+        }
+    }
+    &-text
+    {
+        font-size: 1.1rem;
+    }
+    &-card
+    {
+        padding: 1.5rem;
+    }
+    &-collapse
+    {
+        border: 1px solid rgba(0,0,0,.125);
+        // border-top-style: none;
+    }
+    &-icons
+    {
+        color: white;
+    }
+}
+
+.commentModerationCard
+{
+    border: 1px solid rgba(0,0,0,.125);
+    margin-top: 1rem;
+    padding: 0.5rem;
+    &-title
+    {
+        text-align: left;
+        // font-size: 1.25rem;
+    }
+    &-text
+    {
+        padding: 0.25rem;
+        // font-size: 1.rem;
+        margin-top: 1.5rem;
+    }
+} 
+
+.publishChapterCard, .unpublishChapterCard, .commentModerationCard
+{
+    &-btn
+    {
+        text-decoration: none;
+        color: white;
+        margin: 0rem 1rem 0rem 0rem;
+    }
+    .modifybtn
+    {
+        background-color: $green;
+        border: 1px solid $green;
+        &:hover
+        {
+            color: $green;
+            background-color: white;
+            border: 1px solid $green;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.5rem;
+        }
+        &::after
+        {
+            content: "\f044";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $green;
+            padding-left: 1rem;
+        }
+    }
+    .readbtn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.5rem;
+        }
+        &::after
+        {
+            content: "\f5da";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: $yellow;
+            padding-left: 1rem;
+        }
+    }
+    .publishbtn, .validatebtn
+    {
+        background-color: $green;
+        border: 1px solid $green;
+        &:hover
+        {
+            color: $green;
+            background-color: white;
+            border: 1px solid $green;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.75rem;
+        }
+        &::after
+        {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: $green;
+            padding-left: 1rem;
+        }
+    }
+    .deletebtn
+    {
+        text-decoration: none;
+        color: white;
+        background-color: $red;
+        border: 1px solid $red;
+        color: white;
+        &:hover
+        {
+            color: $red;
+            background-color: white;
+            border: 1px solid $red;
+        }
+        &::before
+        {
+            content: " ";
+            padding-left: 1.75rem;
+        }
+        &::after
+        {
+            content: "\f057";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: $red;
+            padding-left: 1rem;
+        }
+    }
+    
+}
+
+.publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
+{
+    margin: 5rem 0 6rem 0;
+    padding-top: 6rem;
+    padding: 0.5rem;
+    &-title
+    {
+        background-color: #f7f7f7d7;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    // &-text
+    // {
+    //     font-size: 1.1rem;
+    // }
+}
+
+
+.table
+{
+    td
+    {
+        vertical-align: middle;
+        padding: 1rem;
+    }
+}
+
+//// FONT AWESOME COLOR CHANGE ////
+
+.fa-house-user, .fa-book, .fa-comment, .fa-book-reader, .fa-feather-alt, .fa-arrow-left
+{
+    color: $yellow;
+}
+
+.fa-check
+{
+    color: $green;
+}
+
+.fa-times
+{
+    color: $red;
+}
+
+//// CONTACT PAGE ////
+
+.contactForm
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+    &-return
+    {
+        color: black;
+        &:hover
+        {
+            color: $yellow;
+            text-decoration: none;
+        }
+    }
+}
+
+//// ERROR PAGE ////
+
+.error404, .error500
+{
+    &-btn
+    {
+        background-color: $yellow;
+        border: 1px solid $yellow;
+        color: white;
+        &:hover
+        {
+            color: $yellow;
+            background-color: white;
+            border: 1px solid $yellow;
+        }
+    }
+}
+
+//// MEDIA QUERRIES ////
+
+@media (max-width: 1024px)
+{
+    .main-header
+    {
+        &-text
+        {
+            font-size: 4rem;
+        }
+        &-h1
+        {
+            font-size: 2.5rem;
+        }
+    }
+}
+
+
+@media (max-width: 1024px)
+{
+    .navbar
+    {
+        &-brand
+        {
+            display: block;
+            margin: auto;
+        }
+        &-toggler
+        {
+            margin: auto;
+            margin-top: 1rem;
+            display: block;
+        }
+        &-collapse
+        {
+            z-index: 10;
+            padding: 0;
+        }
+        &-button
+        {
+            margin: auto;
+        }
+        .nav-link
+        {
+            margin: 0;
+        }
+        .text-uppercase
+        {
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 768px)
+{
+    .about
+    {
+        &-text
+        {
+            padding: 2rem 0 0 0;
+            
+        }
+    }
+
+    .main-header
+    {
+        &-text
+        {
+            font-size: 2rem;
+        }
+        &-h1
+        {
+            font-size: 1.25rem;
+        }
+    }
+
+    .sidebar
+    {
+        text-align: center;
+    }
+
+    .adminHeader
+    {
+        &-container
+        {
+            width: 100%;
+            display: block;
+            
+        } 
+        &-title
+        {
+            display: block;
+            font-size: 1.5rem;
+            margin: 1rem 0 1rem 0;
+        }
+        &-btn
+        {
+            display: block;
+            text-align: center;
+        }
+        &-img
+        {
+            width: 100%;
+            margin: auto;
+            img
+            {
+                margin: auto;
+            }
+        }         
+    } 
+    
+    .commentModerationCard
+    {
+
+        &-deletebtn, &-validatebtn
+        {
+            text-decoration: none;
+            padding: unset;
+            margin: auto;
+        }
+    }
+
+    .publishChapterCard, .unpublishChapterCard
+    {
+        &-btn
+        {
+            text-decoration: none;
+            padding: unset;
+            margin: auto;
+        }
+    }
+
+    .publishChapterCard, .unpublishChapterCard
+    {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: none;
+        &-header 
+        {
+            text-align: center;
+            background-color: white;
+        }
+        &-date
+        {
+            font-size: 0.8rem;
+        }
+        &-title
+        {
+            font-weight: bold;
+            font-size: 1.2rem;
+            &::before
+            {
+                font-size: 0.8rem;
+                padding-right: 0.5rem;
+            } 
+            &::after
+            {
+                font-size: 0.8rem;         
+            }
+        }
+        &-text
+        {
+            font-size: 1.1rem;
+        }
+    }
+
+    .writingChapter
+    {
+        &-btn
+        {
+            width: unset;
+            margin: unset;
+        }
+    }
+}
+
+@media (max-width: 500px)
+{
+    .main-header
+    {
+        &-margintop
+        {
+            margin-top: 5rem;
+        }
+        &-text
+        {
+            font-size: 2rem;
+        }
+        &-h1
+        {
+            font-size: 1.25rem;
+        }
+    }
+
+    .page-title
+    {
+        &-text
+        {
+            font-size: 2rem;
+        }
+        &-h1
+        {
+            font-size: 2.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+    }
+
+    .leaveComment
+    {
+        &-title
+        {
+            text-align: center;
+        }
+        &-form
+        {
+            padding: 0;
+            width: 100%;
+            margin: auto;
+        }
+    }
+
+    .publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
+    {
+        &-title
+        {
+            font-size: 2rem;
+        }
+    }
+
+    .publishChapterCard, .unpublishChapterCard, .commentModerationCard
+    {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: none;
+        &-header 
+        {
+            text-align: center;
+            background-color: white;
+        }
+        &-date
+        {
+            float: unset;
+            display: block;
+        }
+        &-title
+        {
+            display: block;
+            font-weight: bold;
+            font-size: 1rem;
+            &::before
+            {
+            font-size: 0.8rem;
+            padding-right: 0.5rem;
+            } 
+            &::after
+            {
+                font-size: 0.8rem;         
+            }
+        }
+        &-text
+        {
+            font-size: 1.1rem;
+        }
+    }
+
+    .commentModerationCard
+    {
+        &-title
+        {
+            text-align: center;
+        }
+        &-text
+        {
+            font-size: 0.8rem;
+        }
+    }
+    
+    .navbar 
+    {
+        &-button
+        {
+            margin-top: 1rem;
+        }
+    }
+}
+
+@media (max-width: 360px)
+{
+    .main-header
+    {
+        &-margintop
+        {
+            margin-top: 8rem;
+        }
+    }
+
+    .page-title
+    {
+        &-text
+        {
+            font-size: 1rem;
+        }
+        h1
+        {
+            font-size: 1.5rem;
+        }
+    }
+    .publishChapterAdmin, .pendingChapterAdmin, .commentModerationAdmin
+    {
+        &-title
+        {
+            font-size: 1.5rem;
+        }
+    }
+
+    .writingChapter
+    {
+        &-title
+        {
+            font-size: 1.2rem;
+        }
+        &-btn
+        {
+            width: unset;
+            margin: unset;
+        }
+    }
+
+    .table
+    {
+        td
+        {
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 0.25rem;
+        }
+    }
+
+    .summary
+    {
+        &-title
+        {
+            text-align: center;
+        }
+        &-container
+        {
+            padding-right: unset;
+            padding-left: unset;
+
+        }
+    }
+}

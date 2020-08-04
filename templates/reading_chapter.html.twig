@@ -1,0 +1,106 @@
+{% extends "/layout.html.twig" %}
+
+{% block pageTitle %} Chapitre {{ uniqueChapter.id }} | {{ parent() }} {% endblock pageTitle %}
+
+{% block mainHeader %}
+<div class="page-title text-center">
+    <div class="container page-title-container">
+            {% if uniqueChapter.imgUrl is not null %}
+                <img src={{ uniqueChapter.imgUrl }} alt="" class="page-title-img">
+            {% endif %}   
+        <p class="page-title-text">Chapitre {{ uniqueChapter.id }} :</p>
+        <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title}}</span></h1>
+    </div>
+</div>
+<hr class="singlePageSeparator">
+{% endblock %}
+
+{% block main %}
+<section id="publishChapter" class="container">
+        <div class="card my-4 publishChapterSingleCard">
+            <p class="card-header float-right publishChapterSingleCard-header">
+            Publié le 
+                <span class="font-italic bold">{{ uniqueChapter.createDate | date("m/d/Y \à H:i:s") }}</span> 
+                par 
+                <span class="font-italic bold">{{ uniqueChapter.author }}</span>
+            </p>
+            {# <p id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify">{{ uniqueChapter.content | raw }}</p> #}
+            <textarea id="chapterContent" name="chapterContent" id="" cols="30" rows="10">{{ uniqueChapter.content | raw }}</textarea>
+        </div>
+        <div class="text-center">
+            {% if chapterNumber <= 1 and chapterNumber is defined %}            
+                <a href="/readChapter/{{ chapterNumber + 1 }}" class="btn nextChapter-btn my-2">Chapitre Suivant</a>
+            {% else %}
+                <a href="/readChapter/{{ chapterNumber - 1 }}" class="btn previousChapter-btn my-2">Chapitre précédent</a>
+                <a href="/readChapter/{{ chapterNumber + 1 }}"class="btn nextChapter-btn my-2">Chapitre Suivant</a> 
+            {% endif %}  
+        </div>
+        {% if isAdmin %}
+            <div class="singlePage-return text-center">
+                <i class="far fa-arrow-alt-circle-left"></i><a href="/adminView" class=" my-2">Retour à la page d'administration</a>
+            </div>  
+        {% else %}
+            <div class="singlePage-return text-center">
+                <i class="far fa-arrow-alt-circle-left"></i><a href="/" class="my-2">Retour à l'accueil</a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+<hr class="commentSeparator">
+<section id="comment" class="container"> 
+    <h4 class="text-left">{{ totalComments }} Commentaires</h4>
+        {% for comment in commentList %}
+            <div class="container text-center">
+                <div class="my-4 commentCard">
+                    <p class="text-left card-header commentCard-header">
+                        <span class="font-italic bold">{{ comment.author }}</span>
+                        posté le <span class="font-italic">{{ comment.createdDate | date("m/d/Y \à H:i:s") }}</span> 
+                        <!-- <span class="float-right">totalReports = {{ totalReports }}</span> -->
+                    </p>
+                    <p class="card-body text-left commentCard-content">
+                        {{ comment.content }}
+                    </p>
+                    <div class="reporting-comment text-left">
+                        <a href="/reportComment/{{ uniqueChapter.id }}/{{ comment.id }}"
+                            class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <h2 class="card-header text-center">Aucun commentaires</h2>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<hr class="commentSeparator">
+<section class="container">
+    <div class=" my-4">
+    <h4 class="leaveComment-title">Laisser un commentaire</h4>
+        <form action="/createComment/{{ uniqueChapter.id }}" method="post" class="leaveComment-form">
+            <div class="form-group">
+                <label for="commentAuthor" class="bold" >Pseudonyme</label>    
+                <input type="text" class="form-control" id="commentAuthor" name="commentAuthor"></input>
+                <label for="commentTitle" class="bold">Titre</label>
+                <input type="text" class="form-control" id="commentTitle" name="commentTitle">
+                <label for="commentContent" class="bold">Votre commentaire</label>
+                <textarea type="text" class="form-control" id="commentContent" name="commentContent" rows="10"></textarea>
+                <div class="commentButton text-center">
+
+                    <button type="submit" name="submit" class="btn leaveComment-btn my-2">Soumettre commentaire</button>
+                </div>
+            </div>
+        </form>    
+    </div>  
+</section>
+{% block javascript %}    
+    <script type="text/javascript" src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#chapterContent',
+            height: 1000,
+                toolbar: '',
+                menubar: '',
+            });
+        </script>
+    {% endblock javascript %} 
+{% endblock main %}

@@ -1,0 +1,64 @@
+{% extends "/layout.html.twig" %}
+
+{% block pageTitle %} Ajouter un article | {{ parent() }} {% endblock pageTitle %}
+
+{% block mainHeader %}
+    <div class="page-title text-center">
+        <div class="page-title-container container">
+            <p class="page-title-text">Ajouter</p>
+            <h1 class="text-lead page-title-h1"><span>un nouveau chapitre</span></h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <form action="/createChapter" method="post">
+            <div class="form-group writingForm">
+                <label for="chapterAuthor" class="writingForm-labelAuthor">Auteur</label>
+                <input type="text" class="form-control writingForm-authorInput" id="chapterAuthor" name="chapterAuthor" value="Jean">
+                <label for="chapterTitle" class=" writingForm-labelTitle">Titre du chapitre</label>
+                <input type="text" class="form-control writingForm-titleInput" id="chapterTitle" name="chapterTitle">
+                <label for="chapterImg" class="writingForm-labelImg">Image du chapitre</label>
+                <input type="text" class="form-control writingForm-imgInput" id="chapterImg" name="chapterImg" placeholder="Ajouter l'url ou le chemin d'accès à votre image">
+                <label for="chapterContent" class="writingForm-labelContent">Contenu</label>
+                <textarea type="text" class="form-control writingForm-contentTextarea" id="chapterContent" name="chapterContent"></textarea>
+                <div class="text-center">
+                    <button type="submit" name="saveAndPublish" class="btn savePublish-btn my-2">Enregistrer et publier</button>
+                    <button type="submit" name="saveDraft" class="btn saveDraft-btn my-2">Enregistrer en brouillon</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if isAdmin %}
+    <div class="text-center">
+        <a href="/adminView" class="writingForm-link">Retour à la page d'administration</a>
+    </div>
+    {% endif %}
+
+    {% block javascript %}    
+    <script type="text/javascript" src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#chapterContent',
+            height: 1000,
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'
+                ],
+                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | ' +
+                'alignleft aligncenter alignright alignjustify | outdent indent |  ' +
+                'numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons |' +
+                'fullscreen  preview save print | insertfile image codesample | ltr rtl',
+                toolbar_sticky: true,
+                menu: {
+                    favs: {items: 'code visualaid | searchreplace | spellchecker | emoticons'}
+                },
+                menubar: 'favs file edit view insert format tools help',
+            });
+        </script>
+    {% endblock javascript %}    
+{% endblock main %}
+        
+

@@ -6,37 +6,37 @@ use App\src\Core\Model;
 
 class Reporting extends Model
 {
-    private $id;
+    private $reportId;
     private $reportingDate;
     private $commentId;
 
-    public function __construct(Array $data)
+    public function __construct(array $data)
     {
         $this->hydrate($data);
     }
 
     // Setters //
 
-    public function setId($id)
-    {        
-        $this->id = $id;
+    public function setReportId($reportId)
+    {
+        $this->reportId = $reportId;
     }
 
     public function setReportingDate($reportingDate)
-    {        
+    {
         $this->reportingDate = $reportingDate;
     }
 
     public function setCommentId($commentId)
-    {        
+    {
         $this->commentId = $commentId;
     }
 
     // Getters //
 
-    public function getId()
+    public function getReportId()
     {
-        return $this->id;
+        return $this->reportId;
     }
 
     public function getReportingDate()
@@ -48,5 +48,4 @@ class Reporting extends Model
     {
         return $this->commentId;
     }
-
 }

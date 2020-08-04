@@ -2,75 +2,64 @@
 
 namespace App\src\Managers;
 
-use App\src\Models\DAO;
+use App\src\Core\Manager;
 use App\src\Models\Chapter;
 
-class ChapterManager extends DAO
+class ChapterManager extends Manager
 {
-    public function getChapterById($chapterId) 
+    public $table = 'chapter';
+
+    public function getChapterById($chapterId)
     {
-        $sqlRequest = 'SELECT * FROM chapter WHERE id = ?';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
-        $chapter = $result->fetch();
-        $result->closeCursor();
-        // Hydratation
-        $chapterObj = new Chapter($chapter);
-        return $chapterObj;
+        return new Chapter($this->findOneBy($this->table, array('id' => $chapterId)));
+    }
+
+    public function getAllChapters()
+    {
+        $allChaptersList = $this->findAll($this->table, Chapter::class);
+        return $allChaptersList;
     }
 
     public function getAllPublishedChapters()
     {
-        $sqlRequest = 'SELECT * FROM chapter WHERE published = true ORDER BY id ASC';
-        $result = $this->createQuery($sqlRequest);
-        $publishedChaptersList = [];
-        foreach ($result as $chapter)
-        {
-            $publishedChaptersList [] = new Chapter($chapter);
-        }
-        $result->closeCursor(); 
+        $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'), 10, Chapter::class);
         return $publishedChaptersList;
     }
 
     public function getAllUnpublishedChapters()
     {
-        $sqlRequest = 'SELECT * FROM chapter WHERE published = false ORDER BY id ASC';
-        $result = $this->createQuery($sqlRequest);
-        $unpublishedChaptersList = [];
-        foreach ($result as $chapter)
-        {
-            $unpublishedChaptersList [] = new Chapter($chapter);
-        }
-        $result->closeCursor(); 
+        $unpublishedChaptersList = $this->findBy($this->table, array('published' => 0), array('createDate' => 'ASC'), 10, Chapter::class);
         return $unpublishedChaptersList;
     }
 
     public function publishedChapter($chapterId)
     {
-        $sqlRequest = 'UPDATE chapter SET published= true where id = ?';
+        $sqlRequest = 'UPDATE chapter SET published= true WHERE id = ?';
         $this->createQuery($sqlRequest, [$chapterId]);
-    } 
+    }
 
-    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent)
+    public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterPublished, $newChapterImg)
     {
-        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW())';
+        $sqlRequest = 'INSERT INTO chapter (author, title, content, createDate, updateDate, published, imgUrl) VALUES (:chapterAuthor, :chapterTitle, :chapterContent, NOW(), NOW(), :chapterPublished, :chapterImg)';
         $affectedLines = $this->createQuery($sqlRequest, array(
-            'chapterAuthor'=>$newChapterAuthor, 
-            'chapterTitle'=>$newChapterTitle, 
-            'chapterContent'=>$newChapterContent
+            'chapterAuthor' => $newChapterAuthor,
+            'chapterTitle' => $newChapterTitle,
+            'chapterContent' => $newChapterContent,
+            'chapterPublished' => $chapterPublished,
+            'chapterImg' => $newChapterImg
         ));
         return $affectedLines;
     }
 
-    public function modifyChapterById($modifiedChapterTitle, $modifiedChapterContent, $chapterPublished, $chapterId)
+    public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId)
     {
-        var_dump($chapterId);
-        $sqlRequest = 'UPDATE chapter SET title= :chapterTitle, content= :chapterContent, updateDate= NOW(), published= :chapterPublished WHERE id= :chapterId';
-        // $updatedLines = $this->createQuery($sqlRequest);
-        $updatedLines = $this->createQuery($sqlRequest, array(   
-                'chapterTitle'=>$modifiedChapterTitle,
-                'chapterContent'=>$modifiedChapterContent,
-                'chapterPublished'=>$chapterPublished,
-                'id' => $chapterId
+        $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished, imgUrl= :updatedChapterImg WHERE id = :chapterId';
+        $updatedLines = $this->createQuery($sqlRequest, array(
+                'updatedChapterTitle' => $updatedChapterTitle,
+                'updatedChapterContent' => $updatedChapterContent,
+                'chapterPublished' => $chapterPublished,
+                'updatedChapterImg' => $updatedChapterImg,
+                'chapterId' => $chapterId
                 ));
         return $updatedLines;
     }
@@ -81,5 +70,3 @@ class ChapterManager extends DAO
         $this->createQuery($sqlRequest, [$chapterId]);
     }
 }
-
-//AdminPassword;

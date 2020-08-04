@@ -1,4 +1,5 @@
-vendor/
-.vscode/
-public/css/style.css.map
-public/css/style.scss
+/vendor/
+/.public/
+/.vscode/
+/public/css/
+/node_modules/

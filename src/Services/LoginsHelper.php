@@ -4,17 +4,18 @@ namespace App\src\Services;
 
 class LoginsHelper
 {
-    
-    public static function checkAdminConnected(Array $session)
+    /**
+     * checkAdminConnected
+     *
+     * @param Array $session
+     * @return void
+     */
+    public static function checkAdminConnected(array $session)
     {
-        if (array_key_exists('loginsEmail', $session) && isset($session['loginsEmail']))
-        {
+        if (array_key_exists('loginsEmail', $session) && isset($session['loginsEmail'])) {
             $isAdmin = true;
-        } 
-        else 
-        {
+        } else {
             $isAdmin = false;
-            echo("Vous n'êtes pas administrateur");
         }
         return $isAdmin;
     }

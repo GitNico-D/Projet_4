@@ -13,6 +13,7 @@ class Chapter extends Model
     private $createDate;
     private $updateDate;
     private $published;
+    private $imgUrl;
 
     public function __construct($attributes = [])
     {
@@ -29,24 +30,21 @@ class Chapter extends Model
      */
     public function setId($id)
     {
-        if (is_numeric($id))
-        {
+        if (is_numeric($id)) {
             $this->id = $id;
         }
     }
 
     public function setAuthor($author)
     {
-        if (is_string($author))
-        {
+        if (is_string($author)) {
             $this->author = $author;
         }
     }
 
     public function setTitle($title)
     {
-        if (is_string($title))
-        {
+        if (is_string($title)) {
             $this->title = $title;
         }
     }
@@ -54,12 +52,9 @@ class Chapter extends Model
     public function setContent($content)
     {
         $error = false;
-        if (is_string($content))
-        {
+        if (is_string($content)) {
             $this->content = $content;
-        }
-        else 
-        {
+        } else {
             $error = true;
         }
         return $error;
@@ -73,6 +68,11 @@ class Chapter extends Model
     public function setPublished($published)
     {
         $this->published = $published;
+    }
+
+    public function setImgUrl($imgUrl)
+    {
+        $this->imgUrl = $imgUrl;
     }
 
     // Getters //
@@ -105,5 +105,10 @@ class Chapter extends Model
     public function getPublished()
     {
         return $this->published;
+    }
+
+    public function getImgUrl()
+    {
+        return $this->imgUrl;
     }
 }

@@ -1,0 +1,84 @@
+{% extends "/layout.html.twig" %}
+
+{% block pageTitle %} Accueil | {{ parent() }} {% endblock pageTitle %}
+
+{% block mainHeader %}
+    <div class="main-header-margintop">
+        <img src="/img/write.jpg" alt="" class="main-header-img">
+    </div>
+    <div class="main-header-container container">
+        <p class="main-header-text">Bienvenue</p>
+        <h1 class="text-lead main-header-h1">L'aventure <span>"Billet simple pour l'alaska"</span> commence <a href="#publishChapter">ici</a></h1>
+    </div>
+{% endblock %}
+    
+{% block main %}
+    <section id="about" class="container about">
+        <div class="about-row">
+            <div class="col-md-4 ">
+                <img src="/img/portrait1.png" class="about-img">
+            </div>
+            <div class="col-md-8 about-text">            
+                <h2 class="display-4 about-text-title ">
+                    A propos de moi
+                </h2>
+                <p class="about-text-content">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
+                    text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 
+                    survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised 
+                    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                     like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
+        </div>
+        <blockquote class="container about-quote text-center">
+            <p>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
+            <footer>— Jean Forteroche,
+                 <cite>Brave New World</cite>
+            </footer>
+        </blockquote>
+        <hr>
+    </section>
+    <section id="publishChapter" class="publishchapter">
+        <div class="jumbotron text-center">
+            <div class="container publishchapter-container">
+                <h2 class="publishchapter-title display-4">
+                    Chapitres disponibles
+                </h2>
+                <p class="lead text-muted">Retrouvez ci-dessous tous les chapitres disponibles.</p> 
+                <p class="lead text-muted">N'hésitez pas a laisser un commentaire pour me faire un retour de vos impressions !</p>
+            </div>
+        </div>
+        <div class="row chapter-row text-center">
+            {% for chapter in publishedChaptersList %}
+                <div class="col-md-4">
+                    <div class="chapter-card my-4">
+                        <h4 class="chapter-card-header">{{ chapter.title }}</h4>
+                        {% if chapter.imgUrl is not null %}
+                            <img src={{ chapter.imgUrl }}>
+                        {% endif %}    
+                        <p class="chapter-card-body text-muted">
+                            Publié le 
+                            <span class="font-italic">{{ chapter.createDate }}</span> 
+                            par 
+                            <span class="font-italic">{{ chapter.author }}</span>
+                        </p>
+                        <p class="chapter-card-content text-justify"> {{ chapter.content | slice(0, 150)}}...<p>
+                        <a href="/readChapter/{{ chapter.id }}" class="btn chapter-card-btn my-3">
+                            Lire le chapitre
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="chapter text-center">
+                    <div class="col-md-4">
+                        <div class="chapter-card my-4">
+                            <h2 class="card-header">Pas de chapitre trouvé</h2>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+    </section>
+{% endblock %}

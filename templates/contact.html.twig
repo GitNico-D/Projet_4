@@ -1,0 +1,35 @@
+{% extends "/layout.html.twig" %}
+
+{% block pageTitle %} Contact | {{ parent() }} {% endblock pageTitle %}
+
+{% block mainHeader %}
+    <div class="page-title text-center">
+        <div class="page-title-container container">
+            <h1 class="text-lead page-title-h1"><span>Pour me contacter</span></h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}      
+    <div class="container">
+        <form action="index.php?page=contactForm" method="post">
+            <div class="form-group text-center">
+                <label for="lastName">Nom</label>
+                <input type="text" class="form-control" id="lastName" name="lastName">
+                <label for="firstName">Prénom</label>
+                <input type="text" class="form-control" id="firstName" name="firstName">
+                <label for="email">Votre e-mail</label>
+                <input type="email" class="form-control" id="email" name="email">
+                <label for="messageContent">Votre message</label>
+                <textarea type="text" class="form-control" id="messageContent" name="messageContent" rows="10"></textarea>
+                <button type="submit" class="btn contactForm-btn my-2">Envoyer</button>
+            </div>
+        </form>
+    </div>
+    <div class="text-center">
+        <a href="/index" class="contactForm-return">Retour à l'accueil</a>
+    </div>
+
+{% endblock main %}
+
+
