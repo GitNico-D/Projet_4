@@ -3,10 +3,18 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
+use App\src\Managers\LoginsManager;
+use App\src\Managers\ChapterManager;
+use App\src\Managers\CommentManager;
 use Exception;
 
 class LoginsController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->loginsManager = new LoginsManager();
+    // }
+
     /**
      * getLogin
      *
@@ -14,6 +22,9 @@ class LoginsController extends Controller
      */
     public function getLogin()
     {
+        $this->loginsManager = new LoginsManager();
+        $this->chapterManager = new ChapterManager();
+        $this->commentManager = new CommentManager();
         if (!empty($_POST['loginsEmail']) && !empty($_POST['loginsPassword'])) {
             $loginsEmail = htmlspecialchars($_POST['loginsEmail']);
             $passwordVerification = $this->loginsManager->loginsVerification($loginsEmail);
@@ -23,7 +34,7 @@ class LoginsController extends Controller
                 $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
                 $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
                 $isAdmin = true;
-                echo $this->twig->render(
+                echo $this->render(
                     'admin_page.html.twig',
                     ['allChaptersList' => $this->chapterManager->getAllChapters(),
                     'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
@@ -37,11 +48,11 @@ class LoginsController extends Controller
             } else {
                 // echo('Email ou mot de passe invalide');
                 // header('Location : /index');
-                echo $this->twig->render('logins.html.twig');
+                echo $this->render('logins.html.twig');
             }
         } else {
             // echo 'Veuillez remplir les champs !';
-            echo $this->twig->render('logins.html.twig');
+            echo $this->render('logins.html.twig');
         }
     }
 
@@ -65,8 +76,11 @@ class LoginsController extends Controller
      */
     public function returnAdminView($isAdmin)
     {
+        $this->loginsManager = new LoginsManager();
+        $this->chapterManager = new ChapterManager();
+        $this->commentManager = new CommentManager();
         if ($isAdmin) {
-            echo $this->twig->render(
+            echo $this->render(
                 'admin_page.html.twig',
                 ['allChaptersList' => $this->chapterManager->getAllChapters(),
                 'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
@@ -88,6 +102,6 @@ class LoginsController extends Controller
      */
     public function toBeContacted()
     {
-        echo $this->twig->render('contact.html.twig');
+        echo $this->render('contact.html.twig');
     }
 }

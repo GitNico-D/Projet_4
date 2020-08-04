@@ -3,10 +3,20 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
+use App\src\Managers\ChapterManager;
+use App\src\Managers\CommentManager;
 use Exception;
 
 class ChapterController extends Controller
 {
+    public $chapterManager;
+    public $commentManager;
+
+    // public function __construct()
+    // {
+    //     $this->chapterManager = new ChapterManager();
+    //     $this->commentManager = new CommentManager();
+    // }
 
     /**
      * createChapter
@@ -16,6 +26,8 @@ class ChapterController extends Controller
      */
     public function createChapter($isAdmin)
     {
+        $this->chapterManager = new ChapterManager();
+        $this->commentManager = new CommentManager();
         if (!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']) && !empty($_POST['chapterImg'])) {
             $newChapterAuthor = htmlspecialchars($_POST['chapterAuthor']);
             $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
@@ -42,7 +54,7 @@ class ChapterController extends Controller
                 // echo 'Veuillez remplir les champs !';
             }
         }
-        echo $this->twig->render('adding_chapter.html.twig', ['isAdmin' => $isAdmin]);
+        echo $this->render('adding_chapter.html.twig', ['isAdmin' => $isAdmin]);
     }
 
     /**
@@ -54,8 +66,10 @@ class ChapterController extends Controller
      */
     public function readChapter($chapterId, $isAdmin)
     {
+        $this->chapterManager = new ChapterManager();
+        $this->commentManager = new CommentManager();
         if ($chapterId) {
-            echo $this->twig->render(
+            echo $this->render(
                 'reading_chapter.html.twig',
                 ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
                 'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
@@ -77,8 +91,9 @@ class ChapterController extends Controller
      */
     public function updateChapter($chapterId, $isAdmin)
     {
+        $this->chapterManager = new ChapterManager();
         $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
-        echo $this->twig->render(
+        echo $this->render(
             'modifying_chapter.html.twig',
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
             'isAdmin' => $isAdmin]
@@ -93,6 +108,7 @@ class ChapterController extends Controller
      */
     public function deleteChapter($chapterId, $isAdmin)
     {
+        $this->chapterManager = new ChapterManager();
         $this->chapterManager->deleteChapterById($chapterId);
         header('Location: /adminView');
     }
@@ -105,6 +121,7 @@ class ChapterController extends Controller
      */
     public function publishChapter($chapterId)
     {
+        $this->chapterManager = new ChapterManager();
         $this->chapterManager->publishedChapter($chapterId);
         header('Location: /adminView');
     }
@@ -117,6 +134,7 @@ class ChapterController extends Controller
      */
     public function updateChapterAction($chapterId)
     {
+        $this->chapterManager = new ChapterManager();
         $updatedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
         $updatedChapterContent = htmlspecialchars($_POST['chapterContent']);
         $updatedChapterImg = $_POST['chapterImg'];
