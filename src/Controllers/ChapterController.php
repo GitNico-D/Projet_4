@@ -33,9 +33,10 @@ class ChapterController extends Controller
             $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
             $newChapterContent = htmlspecialchars($_POST['chapterContent']);
             $newChapterImg = $_POST['chapterImg'];
+            $chapterCreateDate = date("Y-m-d H:i:s");
             if (isset($_POST['saveAndPublish'])) {
                 $chapterPublished = true;
-                $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterPublished, $newChapterImg);
+                $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
                 if ($affectedLines === false) {
                     throw new Exception('Impossible d\'ajouter le chapitre');
                 } else {
@@ -44,7 +45,7 @@ class ChapterController extends Controller
                 }
             } elseif (isset($_POST['saveDraft'])) {
                 $chapterPublished = false;
-                $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterPublished, $newChapterImg);
+                $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
                 if ($affectedLines === false) {
                     throw new Exception('Impossible de modifier le chapitre');
                 } else {
@@ -138,11 +139,12 @@ class ChapterController extends Controller
         $updatedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
         $updatedChapterContent = htmlspecialchars($_POST['chapterContent']);
         $updatedChapterImg = $_POST['chapterImg'];
+        $chapterUpdateDate = date("Y-m-d H:i:s");
         // if(!empty($_POST['chapterTitle'] && !empty($_POST['chapterImg'])))
         // {
         if (isset($_POST['saveAndPublish'])) {
             $chapterPublished = true;
-            $updatedLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId);
+            $updatedLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterUpdateDate, $chapterPublished, $updatedChapterImg, $chapterId);
             if ($updatedLines === false) {
                 throw new Exception('Impossible de modifier le chapitre');
             } else {
@@ -151,7 +153,7 @@ class ChapterController extends Controller
             }
         } elseif (isset($_POST['saveDraft'])) {
             $chapterPublished = false;
-            $updateLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId);
+            $updateLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterUpdateDate, $chapterPublished, $updatedChapterImg, $chapterId);
             if ($updateLines === false) {
                 throw new Exception('Impossible de modifier le chapitre');
             } else {
