@@ -12,22 +12,26 @@ class ChapterController extends Controller
     public $chapterManager;
     public $commentManager;
 
-    // public function __construct()
-    // {
-    //     $this->chapterManager = new ChapterManager();
-    //     $this->commentManager = new CommentManager();
-    // }
+    /**
+     * ChapterController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->chapterManager = new ChapterManager();
+        $this->commentManager = new CommentManager();
+    }
 
     /**
      * createChapter
      *
      * @param mixed $isAdmin
      * @return void
+     * @throws Exception
+     * @throws Exception
      */
     public function createChapter($isAdmin)
     {
-        $this->chapterManager = new ChapterManager();
-        $this->commentManager = new CommentManager();
         if (!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']) && !empty($_POST['chapterImg'])) {
             $newChapterAuthor = htmlspecialchars($_POST['chapterAuthor']);
             $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
@@ -36,8 +40,8 @@ class ChapterController extends Controller
             $chapterCreateDate = date("Y-m-d H:i:s");
             if (isset($_POST['saveAndPublish'])) {
                 $chapterPublished = true;
-                $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
-                if ($affectedLines === false) {
+                $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
+                if ($insertLines === false) {
                     throw new Exception('Impossible d\'ajouter le chapitre');
                 } else {
                     header('Location: /createChapter');
@@ -45,14 +49,12 @@ class ChapterController extends Controller
                 }
             } elseif (isset($_POST['saveDraft'])) {
                 $chapterPublished = false;
-                $affectedLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
-                if ($affectedLines === false) {
+                $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
+                if ($insertLines === false) {
                     throw new Exception('Impossible de modifier le chapitre');
                 } else {
                     header('Location: /createChapter');
                 }
-            } else {
-                // echo 'Veuillez remplir les champs !';
             }
         }
         echo $this->render('adding_chapter.html.twig', ['isAdmin' => $isAdmin]);
@@ -64,19 +66,18 @@ class ChapterController extends Controller
      * @param mixed $chapterId
      * @param mixed $isAdmin
      * @return void
+     * @throws Exception
      */
     public function readChapter($chapterId, $isAdmin)
     {
-        $this->chapterManager = new ChapterManager();
-        $this->commentManager = new CommentManager();
         if ($chapterId) {
             echo $this->render(
                 'reading_chapter.html.twig',
                 ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
-                'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
-                'totalComments' => $this->commentManager->totalChapterComments($chapterId),
-                'chapterNumber' => $chapterId,
-                'isAdmin' => $isAdmin]
+                    'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
+                    'totalComments' => $this->commentManager->totalChapterComments($chapterId),
+                    'chapterNumber' => $chapterId,
+                    'isAdmin' => $isAdmin]
             );
         } else {
             throw new Exception("Chapitre introuvable !");
@@ -92,8 +93,7 @@ class ChapterController extends Controller
      */
     public function updateChapter($chapterId, $isAdmin)
     {
-        $this->chapterManager = new ChapterManager();
-        $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
+        // $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
         echo $this->render(
             'modifying_chapter.html.twig',
             ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
@@ -105,6 +105,7 @@ class ChapterController extends Controller
      * deleteChapter
      *
      * @param mixed $chapterId
+     * @param $isAdmin
      * @return void
      */
     public function deleteChapter($chapterId, $isAdmin)
@@ -126,12 +127,13 @@ class ChapterController extends Controller
         $this->chapterManager->publishedChapter($chapterId);
         header('Location: /adminView');
     }
-    
+
     /**
      * updateChapterAction
      *
      * @param mixed $chapterId
      * @return void
+     * @throws Exception
      */
     public function updateChapterAction($chapterId)
     {

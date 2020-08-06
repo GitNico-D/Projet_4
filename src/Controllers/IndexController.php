@@ -9,22 +9,19 @@ class IndexController extends Controller
 {
     public $chapterManager;
 
-    // public function __construct()
-    // {
-    //     $this->chapterManager = new ChapterManager;
-    //     var_dump($this->chapterManager);
-    // }
+    public function __construct()
+    {
+        parent::__construct();
+        $this->chapterManager = new ChapterManager;
+    }
 
     /**
      * home
      *
      * @return void
      */
-    public function home($isAdmin)
+    public function home()
     {
-        var_dump($isAdmin);
-        $this->chapterManager = new ChapterManager();
-        var_dump($this->chapterManager);
         echo $this->render('home_page.html.twig',
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
             'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]

@@ -10,10 +10,17 @@ use Exception;
 
 class LoginsController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->loginsManager = new LoginsManager();
-    // }
+    public $chapterManager;
+    public $commentManager;
+    public $loginsManager;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->loginsManager = new LoginsManager();
+        $this->chapterManager = new ChapterManager();
+        $this->commentManager = new CommentManager();
+    }
 
     /**
      * getLogin
@@ -22,9 +29,6 @@ class LoginsController extends Controller
      */
     public function getLogin()
     {
-        $this->loginsManager = new LoginsManager();
-        $this->chapterManager = new ChapterManager();
-        $this->commentManager = new CommentManager();
         if (!empty($_POST['loginsEmail']) && !empty($_POST['loginsPassword'])) {
             $loginsEmail = htmlspecialchars($_POST['loginsEmail']);
             $passwordVerification = $this->loginsManager->loginsVerification($loginsEmail);
@@ -67,18 +71,16 @@ class LoginsController extends Controller
         session_destroy();
         header('Location: /');
     }
-    
+
     /**
      * returnAdminView
      *
      * @param mixed $isAdmin
      * @return void
+     * @throws Exception
      */
     public function returnAdminView($isAdmin)
     {
-        $this->loginsManager = new LoginsManager();
-        $this->chapterManager = new ChapterManager();
-        $this->commentManager = new CommentManager();
         if ($isAdmin) {
             echo $this->render(
                 'admin_page.html.twig',
