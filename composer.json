@@ -1,10 +1,14 @@
 {
     "autoload": {
-        "psr-4":{"App\\src\\":"src/"}
+        "psr-4":{
+            "App\\src\\":"src/",
+            "App\\config\\":"config/"}
     },
     "require": {
         "twig/twig": "^3.0",
-        "twig/markdown-extra": "^3.0"
+        "twig/markdown-extra": "^3.0",
+      "ext-yaml": "*",
+      "ext-pdo": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16"
