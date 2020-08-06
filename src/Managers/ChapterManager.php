@@ -9,68 +9,92 @@ class ChapterManager extends Manager
 {
     public $table = 'chapter';
 
+    /**
+     * getChapterById
+     *
+     * @param mixed $chapterId
+     * @return Chapter
+     */
     public function getChapterById($chapterId)
     {
-        return new Chapter($this->findOneBy($this->table, array('id' => $chapterId)));
+        return $this->findOneBy($this->table, array('id' => $chapterId));
     }
 
+    /**
+     * getAllChapters
+     *
+     * @return array of Chapter
+     */
     public function getAllChapters()
     {
-        $allChaptersList = $this->findAll($this->table);
-        return $allChaptersList;
+        return $this->findAll($this->table);
     }
 
+    /**
+     * getAllPublishedChapters
+     *
+     * @return array of Chapter
+     */
     public function getAllPublishedChapters()
     {
-        $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'));
-        return $publishedChaptersList;
+        return $this->findBy($this->table, array('published' => true));
     }
 
-    
-    // public function getAllPublishedChapters()
-    // {
-    //     // $publishedChaptersList = $this->findBy($this->table, array('published' => 1), array('createDate' => 'ASC'));
-    //     $sqlRequest = 'SELECT * FROM chapter WHERE published = ? ORDER BY createDate ASC';
-    //     var_dump($sqlRequest);
-
-    //     $result = $this->createQuery($sqlRequest, ['published' => 1]);
-    //     var_dump($result);
-    //     $publishedChaptersList = [];
-    //     // $entity = 'App\src\Models\\' . ucfirst($table);
-    //     foreach ($result as $data) {
-    //         var_dump($data);
-    //         $publishedChaptersList [] = new Chapter($data);
-    //     }
-    //     $result->closeCursor();
-    //     var_dump($publishedChaptersList);
-    //     return $publishedChaptersList;
-    // }
-
+    /**
+     * getAllUnpublishedChapters
+     *
+     * @return array of Chapter
+     */
     public function getAllUnpublishedChapters()
     {
-        $unpublishedChaptersList = $this->findBy($this->table, array('published' => 0), array('createDate' => 'ASC'), 10);
-        return $unpublishedChaptersList;
+        return $this->findBy($this->table, array('published' => 0));
     }
 
+    /**
+     * publishedChapter
+     *
+     * @param mixed $chapterId
+     * @return void
+     */
     public function publishedChapter($chapterId)
     {
         $sqlRequest = 'UPDATE chapter SET published= true WHERE id = ?';
         $this->createQuery($sqlRequest, [$chapterId]);
     }
 
+    /**
+     * addChapterInDb
+     *
+     * @param mixed $newChapterAuthor
+     * @param mixed $newChapterTitle
+     * @param mixed $newChapterContent
+     * @param mixed $chapterCreateDate
+     * @param mixed $chapterPublished
+     * @param mixed $newChapterImg
+     * @return void
+     */
+    // public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg)
+    // {
+    //     return $this->insertInto(
+    //         $this->table,
+    //         array('author', 'title', 'content', 'createDate', 'updateDate', 'published', 'imgUrl'),
+    //         array('chapterAuthor' => $newChapterAuthor,
+    //             'chapterTitle' => $newChapterTitle,
+    //             'chapterContent' => $newChapterContent,
+    //             'chapterCreateDate' => $chapterCreateDate,
+    //             'chapterUpdateDate' => $chapterCreateDate,
+    //             'chapterPublished' => $chapterPublished,
+    //             'chapterImg' => $newChapterImg
+    //             )
+    //     );
+    // }
+
     public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg)
     {
-        $insertLines = $this->insertInto($this->table, 
+        return $this->insertInto(
+            $this->table,
             array('author', 'title', 'content', 'createDate', 'updateDate', 'published', 'imgUrl'),
-            array('chapterAuthor' => $newChapterAuthor, 
-                'chapterTitle' => $newChapterTitle,
-                'chapterContent' => $newChapterContent,
-                'chapterCreateDate' => $chapterCreateDate,
-                'chapterUpdateDate' => $chapterCreateDate,
-                'chapterPublished' => $chapterPublished,
-                'chapterImg' => $newChapterImg
-                ));
-        return $insertLines;
+            array($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterCreateDate, $chapterPublished, $newChapterImg));
     }
 
     // public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId)
@@ -86,29 +110,46 @@ class ChapterManager extends Manager
     //     return $updatedLines;
     // }
 
+    /**
+     * updateChapterById
+     *
+     * @param mixed $updatedChapterTitle
+     * @param mixed $updatedChapterContent
+     * @param mixed $updatedChapterDate
+     * @param mixed $chapterPublished
+     * @param mixed $updatedChapterImg
+     * @param mixed $chapterId
+     * @return void
+     */
     public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $updatedChapterDate, $chapterPublished, $updatedChapterImg, $chapterId)
     {
-        $updatedLines = $this->update($this->table, 
-                array('title' => 'updatedChapterTitle', 
-                    'content' => 'updatedChapterContent', 
+        return $this->update(
+            $this->table,
+            array('title' => 'updatedChapterTitle',
+                    'content' => 'updatedChapterContent',
                     'updateDate' => 'updatedChapterDate',
-                    'published' => 'chapterPublished', 
+                    'published' => 'chapterPublished',
                     'imgUrl' => 'updatedChapterImg'),
-                array('updatedChapterTitle' => $updatedChapterTitle,
+            array('updatedChapterTitle' => $updatedChapterTitle,
                     'updatedChapterContent' => $updatedChapterContent,
-                    'updatedChapterDate' => $updatedChapterDate,                    
+                    'updatedChapterDate' => $updatedChapterDate,
                     'chapterPublished' => $chapterPublished,
                     'updatedChapterImg' => $updatedChapterImg),
-                array('chapterId' => $chapterId)
-                );
-        return $updatedLines;
+            array('chapterId' => $chapterId)
+        );
     }
+ 
 
-    
-
+    /**
+     * deleteChapterById
+     *
+     * @param mixed $chapterId
+     * @return void
+     */
     public function deleteChapterById($chapterId)
     {
-        $sqlRequest = 'DELETE FROM chapter WHERE id = ?';
-        $this->createQuery($sqlRequest, [$chapterId]);
+        // $sqlRequest = 'DELETE FROM chapter WHERE id = ?';
+        // $this->createQuery($sqlRequest, [$chapterId]);
+        $this->delete($this->table, array('id' => $chapterId));
     }
 }
