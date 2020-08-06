@@ -29,22 +29,21 @@
         </div>
         <div class="text-center">
             {% if chapterNumber <= 1 and chapterNumber is defined %}            
-                <a href="/readChapter/{{ chapterNumber + 1 }}" class="btn nextChapter-btn my-2">Chapitre Suivant</a>
+                <a href="/readChapter/{{ chapterNumber + 1 }}" class="btn yellowbtn my-2">Chapitre Suivant</a>
             {% else %}
-                <a href="/readChapter/{{ chapterNumber - 1 }}" class="btn previousChapter-btn my-2">Chapitre précédent</a>
-                <a href="/readChapter/{{ chapterNumber + 1 }}"class="btn nextChapter-btn my-2">Chapitre Suivant</a> 
+                <a href="/readChapter/{{ chapterNumber - 1 }}" class="btn yellowbtn my-2">Chapitre précédent</a>
+                <a href="/readChapter/{{ chapterNumber + 1 }}"class="btn yellowbtn my-2">Chapitre Suivant</a> 
             {% endif %}  
         </div>
         {% if isAdmin %}
             <div class="singlePage-return text-center p-4">
-                <i class="far fa-arrow-alt-circle-left"></i><a href="/adminView" class="my-2">Retour à la page d'administration</a>
+                <i class="far fa-arrow-alt-circle-left"></i><a href="/adminView" class="ml-2 my-2">Retour à la page d'administration</a>
             </div>  
         {% else %}
             <div class="singlePage-return text-center p-4">
-                <i class="far fa-arrow-alt-circle-left"></i><a href="/" class="my-2">Retour à l'accueil</a>
+                <i class="far fa-arrow-alt-circle-left"></i><a href="/" class="ml-2 my-2">Retour à l'accueil</a>
             </div>
         {% endif %}
-    </div>
 </section>
 <hr class="w-50 my-4">
 <section id="comment" class="container comment"> 
@@ -69,8 +68,6 @@
         {% else %}
             <h2 class="card-header text-center">Aucun commentaires</h2>
         {% endfor %}
-        </div>
-    </div>
 </section>
 <hr class="commentSeparator">
 <section class="container">
@@ -79,13 +76,13 @@
         <form action="/createComment/{{ uniqueChapter.id }}" method="post" class="leaveComment-form">
             <div class="form-group">
                 <label for="commentAuthor" class="bold" >Pseudonyme</label>    
-                <input type="text" class="form-control" id="commentAuthor" name="commentAuthor"></input>
+                    <input type="text" class="form-control" id="commentAuthor" name="commentAuthor">
                 <label for="commentTitle" class="bold">Titre</label>
-                <input type="text" class="form-control" id="commentTitle" name="commentTitle">
+                    <input type="text" class="form-control" id="commentTitle" name="commentTitle">
                 <label for="commentContent" class="bold">Votre commentaire</label>
-                <textarea type="text" class="form-control" id="commentContent" name="commentContent" rows="10"></textarea>
+                    <textarea class="form-control" id="commentContent" name="commentContent" rows="10"></textarea>
                 <div class="commentButton text-center">
-                    <button type="submit" name="submit" class="btn leaveComment-btn my-2">Soumettre commentaire</button>
+                    <button type="submit" name="submit" class="btn yellowbtn my-2">Soumettre commentaire</button>
                 </div>
             </div>
         </form>    

@@ -24,7 +24,9 @@
         <div class="main col-md-10">
             <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
                 <p class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </p>
-                <a href="/createChapter" class="btn writingChapter-btn"><span class="button-text">Écrire</span></a>
+                <div class="text-center">
+                    <a href="/createChapter" class="btn yellowbtn"><span class="button-text">Écrire</span></a>
+                </div>
             </section>
             <hr class="adminpageSeparator">
             <section> 
@@ -45,7 +47,7 @@
                             <tr>
                                 <td class="allChaptersList align-middle p-3">{{ chapter.title }}</td>
                                 <td class="align-middle p-3">{{ chapter.author }}</td>
-                                <td class="font-italic align-middle p-3">{{ chapter.createDate | date("m/d/Y \à H:i:s") }}</td>
+                                <td class="font-italic align-middle p-3">{{ chapter.createDate | date("d/m/Y \à H:i:s") }}</td>
                                 <td class="align-middle p-3">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
                             </tr>
                             {% endfor %}
@@ -63,22 +65,22 @@
                     {% if plusOne < publishedChaptersList|length %} 
                         {% set plusOne = plusOne + 1 %}
                     {% endif %}
-                <div id="accordion">
+                <div id="publishaccordion{{ plusOne }}">
                     <div class="card publishChapterCard m-1">
                         <div class="card-header p-3 align-middle bg-white" id="heading{{ plusOne }}">                            
-                            <p class="font-italic mt-2 float-right publishChapterCard-Date"> Publié le {{ chapter.createDate | date("m/d/Y \à H:i:s")}}</p>
-                            <a class="publishChapterCard-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
+                            <p class="font-italic mt-2 publishChapterCard-date"> Publié le {{ chapter.createDate | date("d/m/Y \à H:i:s")}}</p>
+                            <a href="#" class="publishChapterCard-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
                                 <span class="publishChapterCard-title">{{ chapter.title }} </span>   
                             </a>                              
                         </div>                      
-                        <div id="collapse{{ plusOne }}" class="collapse publishChapterCard-collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#accordion">
+                        <div id="collapse{{ plusOne }}" class="collapse publishChapterCard-collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#publishaccordion{{ plusOne }}">
                             <div class="card-body">
                                 <p class="font-italic bold">Extrait :</p>
                                 <p>{{ chapter.content | raw | slice(0, 500) }}...</p>
                             </div>
                             <div class="text-center">
-                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn readbtn ">Visionner</a>
-                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn modifybtn ">Modifier</a>                  
+                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn yellowbtn ">Visionner</a>
+                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn greenbtn ">Modifier</a>                  
                             </div>
                         </div>
                     </div>
@@ -94,30 +96,30 @@
                     <span class="bold">Publication</span> ou 
                     <span class="bold">Suppression</span> du chapitre
                 </p>
-                {% set plusOne = 0 %}
+                <!-- {% set plusOne = 0 %} -->
                 {% for chapter in unpublishedChaptersList %}
-                    {% if plusOne < unpublishedChaptersList|length %} 
+                    <!-- {% if plusOne < unpublishedChaptersList|length %} 
                         {% set plusOne = plusOne + 1 %}
-                    {% endif %}
-                    <div id="accordion">
+                    {% endif %} -->
+                    <div id="unpublishedaccordion{{ chapter.id }}">
                         <div class="card unpublishChapterCard m-1">
-                            <div class="card-header p-3 align-middle bg-white" id="unpublishHeading{{ plusOne }}">                            
-                                <p class="font-italic mt-2 float-right publishChapterCard-Date"> Créé le {{ chapter.createDate | date("m/d/Y \à H:i:s") }}</p>
-                                <a class="unpublishChapterCard-link" data-toggle="collapse" data-target="#unpublishCollapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
+                            <div class="card-header p-3 align-middle bg-white" id="unpublishHeading{{ chapter.id }}">                            
+                                <p class="font-italic mt-2 publishChapterCard-date"> Créé le {{ chapter.createDate | date("d/m/Y \à H:i:s") }}</p>
+                                <a href="#" class="unpublishChapterCard-link" data-toggle="collapse" data-target="#unpublishCollapse{{ chapter.id }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
                                     <span class="unpublishChapterCard-title">{{ chapter.title }} </span>   
                                 </a>                              
                             </div>                      
-                            <div id="unpublishCollapse{{ plusOne }}" class="collapse" aria-labelledby="unpublishHeading{{ plusOne }}" data-parent="#accordion">
+                            <div id="unpublishCollapse{{ chapter.id }}" class="collapse" aria-labelledby="unpublishHeading{{ chapter.id }}" data-parent="#unpublishedaccordion{{ chapter.id }}">
                                 <div class="card-body">
                                     <p  class="font-italic bold">Extrait :</p>
-                                    <p id="extractChapter">
+                                    <p>
                                     {{ chapter.content | raw | slice(0, 350)  }}...</p>
                                 </div>
                                 <div class="text-center">
-                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn readbtn ">
+                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn yellowbtn ">
                                         Modifier
                                     </a>
-                                    <a href="/publishChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn publishbtn ">Publier</a>               
+                                    <a href="/publishChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn greenbtn ">Publier</a>               
                                 </div>
                             </div>
                         </div>
@@ -142,14 +144,13 @@
                             </p>
                             <p class="card-body commentModerationCard-text p-1 mt-3 text-center-justify">{{ comment.content }}</p>
                             <div class="text-center">
-                                <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn validatebtn ">Valider</a>
-                                <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn deletebtn ">Supprimer</a>
+                                <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn greenbtn ">Valider</a>
+                                <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn redbtn ">Supprimer</a>
                             </div>
                         </div>
                 {% endfor %}    
             </section>
         </div>
     </div>
-</div>
 </div>
 {% endblock main %}

@@ -26,18 +26,18 @@
         <form action="/updateChapterAction/{{ uniqueChapter.id }}" method="post">
             <div class="form-group">
                 <label for="chapterTitle" class="h4 bold my-4 text-left updateForm-labeltitle">Titre</label>
-                <input type="text" class="form-control updateForm-titleinput" id="chapterTitle" name="chapterTitle" value="{{ uniqueChapter.title }}">
-                <label for="chapterTitle" class="h4 bold my-4 text-left updateForm-labelimg">Image</label>
-                {% if uniqueChapter is not null %}
-                    <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
-                {% endif %}
-                <input type="text" class="form-control updateForm-imginput" id="chapterImg" name="chapterImg" value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}">                            
+                    <input type="text" class="form-control updateForm-titleinput" id="chapterTitle" name="chapterTitle" value="{{ uniqueChapter.title }}">
+                <label for="chapterTitle" class="h4 font-weight-bold font-italic my-4 text-left updateForm-labelimg">Image</label>
+                    {% if uniqueChapter is not null %}
+                        <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
+                    {% endif %}
+                    <input type="text" class="form-control updateForm-imginput" id="chapterImg" name="chapterImg" value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}">                            
                 <label for="chapterContent" class="h4 bold my-4">Contenu</label>
-                <textarea type="text" class="form-control text-justify" id="chapterContent" name="chapterContent" rows="30" >{{ uniqueChapter.content | raw }}</textarea>
+                    <textarea class="form-control text-justify" id="chapterContent" name="chapterContent" rows="30" >{{ uniqueChapter.content | raw }}</textarea>
                 <div class="text-center">
-                    <button type="submit" name="saveAndPublish" class="btn savePublish-btn my-2">Enregistrer et publier</button>
-                    <button type="submit" name="saveDraft" class="btn saveDraft-btn my-2">Enregistrer en brouillon</button>                    
-                    <a href="/deleteChapter/{{ uniqueChapter.id }}" class="btn updateForm-deletebtn my-3">Supprimer</a> 
+                    <button type="submit" name="saveAndPublish" class="btn savePublish greenbtn my-2">Enregistrer et publier</button>
+                    <button type="submit" name="saveDraft" class="btn saveDraft yellowbtn my-2">Enregistrer en brouillon</button>                    
+                    <a href="/deleteChapter/{{ uniqueChapter.id }}" class="btn updateForm redbtn my-3">Supprimer</a> 
                 </div>
             </div>
         </form>
@@ -45,32 +45,33 @@
     <div class="text-center"> 
         {% if isAdmin %}
             <div class="modifyPage-return text-center">
-                <i class="fas fa-arrow-left"></i><a href="/adminView">Retour à la page d'administration</a></i>
+                <i class="fas fa-arrow-left"></i><a href="/adminView">Retour à la page d'administration</a>
             </div>
         {% endif %} 
     </div>  
-</section>  
+</section> 
+
 {% block javascript %}    
-    <script type="text/javascript" src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script type="text/javascript">
-        tinymce.init({
-            selector: '#chapterContent',
-            height: 1000,
-            plugins: [
-                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-                'table emoticons template paste help'
-                ],
-                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | ' +
-                'alignleft aligncenter alignright alignjustify | outdent indent |  ' +
-                'numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons |' +
-                'fullscreen  preview save print | insertfile image codesample | ltr rtl',
-                toolbar_sticky: true,
-                menu: {
-                    favs: {items: 'code visualaid | searchreplace | spellchecker | emoticons'}
-                },
-                menubar: 'favs file edit view insert format tools help',
-            });
+    <script src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: '#chapterContent',
+                height: 1000,
+                plugins: [
+                    'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                    'table emoticons template paste help'
+                    ],
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | ' +
+                    'alignleft aligncenter alignright alignjustify | outdent indent |  ' +
+                    'numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons |' +
+                    'fullscreen  preview save print | insertfile image codesample | ltr rtl',
+                    toolbar_sticky: true,
+                    menu: {
+                        favs: {items: 'code visualaid | searchreplace | spellchecker | emoticons'}
+                    },
+                    menubar: 'favs file edit view insert format tools help',
+                });
         </script>
     {% endblock javascript %} 
 {% endblock main %}
