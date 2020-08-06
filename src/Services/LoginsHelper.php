@@ -4,11 +4,12 @@ namespace App\src\Services;
 
 class LoginsHelper
 {
+   
     /**
      * checkAdminConnected
      *
-     * @param Array $session
-     * @return void
+     * @param array $session
+     * @return bool
      */
     public static function checkAdminConnected(array $session)
     {

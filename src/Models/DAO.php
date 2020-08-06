@@ -3,6 +3,7 @@
 namespace App\src\Models;
 
 use PDO;
+use Exception;
 
 abstract class DAO
 {
@@ -11,7 +12,6 @@ abstract class DAO
     private function getDb()
     {
         $dbConfig = yaml_parse_file('../config/db-config.yml');
-        $config = yaml_parse_file('../config/config.yml');
         if ($this->db === null) {
             try {
                 $this->db = new PDO(

@@ -7,6 +7,12 @@ use App\src\Models\Logins;
 
 class LoginsManager extends DAO
 {
+    /**
+     * loginsVerification
+     *
+     * @param mixed $loginsEmail
+     * @return void
+     */
     public function loginsVerification($loginsEmail)
     {
         $sqlRequest = 'SELECT * FROM logins WHERE email = ?';

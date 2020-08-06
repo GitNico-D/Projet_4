@@ -18,8 +18,9 @@ class CommentManager extends Manager
      */
     public function getCommentByChapterId($chapterId)
     {
-        $commentList = $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10);
-        return $commentList;
+        // $commentList = 
+        // return $commentList;
+        return $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10);
     }
 
     /**

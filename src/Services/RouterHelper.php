@@ -10,7 +10,7 @@ class RouterHelper
      * getPageIx
      *
      * @param mixed $get
-     * @return void
+     * @return int|string
      */
     public static function getPageIx(array $get)
     {
@@ -25,7 +25,8 @@ class RouterHelper
      * getChapterId
      *
      * @param array $get
-     * @return void
+     * @return int
+     * @throws Exception
      */
     public static function getChapterId(array $get)
     {
@@ -41,7 +42,8 @@ class RouterHelper
      * getCommentId
      *
      * @param array $get
-     * @return void
+     * @return int
+     * @throws Exception
      */
     public static function getCommentId(array $get)
     {
