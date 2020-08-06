@@ -37,21 +37,6 @@ hr {
         background-color: white;
     }
 
-    &-button {
-        text-decoration: none;
-        color: white;
-        border: 1px solid $yellow;
-        background-color: $yellow;
-        &:hover {
-            color: $yellow;
-            border: 1px solid $yellow;
-            background-color: white;
-        }
-        &:focus {
-            box-shadow: none;
-        }
-    }
-
     &-toggler {
         background-color: $yellow;
         border: 1xp solid black;
@@ -106,47 +91,55 @@ hr {
     visibility: hidden;
 }
 
-//// UPDATE CHAPTER PAGE ////
+//// CUSTOM BUTTON ////
 
-.savePublish {
-    display: inline;
-    margin: auto;
-    &-btn {
-        background-color: $green;
-        border: 1px solid $green;
+.redbtn{
+    background-color: $red;
+        border: 1px solid $red;
         text-decoration: none;
         padding: .5rem 1rem;
         color: white;
         &:hover {
-            color: $green;
+            color: $red;
             background-color: white;
-            border: 1px solid $green;
+            border: 1px solid $red;
         }
-    }
 }
 
-.saveDraft {
-    display: inline;
-    &-btn {
-        background-color: $yellow;
+.yellowbtn{
+    background-color: $yellow;
+    border: 1px solid $yellow;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    color: white;
+    &:hover {
+        color: $yellow;
+        background-color: white;
         border: 1px solid $yellow;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
     }
 }
+
+.greenbtn{
+    background-color: $green;
+    border: 1px solid $green;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    color: white;
+    &:hover {
+        color: $green;
+        background-color: white;
+        border: 1px solid $green;
+    }
+}
+
+//// UPDATE CHAPTER PAGE ////
 
 .updateForm {
     &-labeltitle,
     &-labelimg {
         text-align: left;
         font-size: 1.4rem;
-        font-weight: bold;
+        // font-weight: bold;
         font-style: italic;
         border-bottom: 1px dashed #495057;
     }
@@ -166,17 +159,6 @@ hr {
             box-shadow: unset;
         }
     }
-
-    &-deletebtn {
-        background-color: $red;
-        border: 1px solid $red;
-        color: white;
-        &:hover {
-            color: $red;
-            background-color: white;
-            border: 1px solid $red;
-        }
-    }
 }
 
 .img-thumbnail {
@@ -188,19 +170,6 @@ hr {
 
 .nextChapter,
 .previousChapter {
-    &-btn {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
-    }
-
     &-return {
         color: black;
         &:hover {
@@ -228,18 +197,6 @@ hr {
         width: 80%;
         margin: auto;
     }
-    &-btn {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
-    }
 }
 
 .reporting {
@@ -262,17 +219,6 @@ hr {
 //// ADDCHAPTER PAGE ////
 
 .writingForm {
-    &-btn {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        color: white;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
-    }
 
     &-link {
         color: black;
@@ -324,16 +270,6 @@ hr {
         }
 
         button {
-            background-color: $yellow;
-            border: 1px solid $yellow;
-            text-decoration: none;
-            padding: .5rem 1rem;
-            color: white;
-            &:hover {
-                color: $yellow;
-                background-color: white;
-                border: 1px solid $yellow;
-            }
             &:active {
                 color: $yellow;
                 background-color: white;
@@ -417,25 +353,6 @@ hr {
 
 }
 
-.chapter {
-    &-card {
-        border-radius: 1px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        &-btn {
-            background-color: $yellow;
-            border: 1px solid $yellow;
-            text-decoration: none;
-            padding: .5rem 1rem;
-            color: white;
-            &:hover {
-                color: $yellow;
-                background-color: white;
-                border: 1px solid $yellow;
-            }
-        }
-    }
-}
-
 //// ADMIN PAGE ////
 
 .main {
@@ -459,22 +376,12 @@ hr {
 }
 
 .writingChapter {
+    width: 60%;
     background-color: #fffdf5;
     &-title {
         font-size: 1.6rem;
     }
-    &-btn {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        color: white;
-        width: 25%;
-        margin: auto;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
+    .yellowbtn {
         &::before {
             padding-right: 1.25rem;
         }
@@ -508,7 +415,9 @@ hr {
 .publishChapterCard,
 .unpublishChapterCard {
     &-link {
+        color: black;
         &:hover {
+            text-decoration: none;
             color: $yellow;
             cursor: pointer;
         }
@@ -548,20 +457,8 @@ hr {
 .publishChapterCard,
 .unpublishChapterCard,
 .commentModerationCard {
-    &-btn {
-        text-decoration: none;
-        color: white;
-        margin: 0rem 1rem 0rem 0rem;
-    }
 
-    .modifybtn {
-        background-color: $green;
-        border: 1px solid $green;
-        &:hover {
-            color: $green;
-            background-color: white;
-            border: 1px solid $green;
-        }
+    .greenbtn {
         &::before {
             content: " ";
             padding-left: 1.5rem;
@@ -576,14 +473,7 @@ hr {
         }
     }
 
-    .readbtn {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
+    .yellowbtn {
         &::before {
             content: " ";
             padding-left: 1.5rem;
@@ -600,13 +490,6 @@ hr {
 
     .publishbtn,
     .validatebtn {
-        background-color: $green;
-        border: 1px solid $green;
-        &:hover {
-            color: $green;
-            background-color: white;
-            border: 1px solid $green;
-        }
         &::before {
             content: " ";
             padding-left: 1.75rem;
@@ -620,17 +503,7 @@ hr {
         }
     }
 
-    .deletebtn {
-        text-decoration: none;
-        color: white;
-        background-color: $red;
-        border: 1px solid $red;
-        color: white;
-        &:hover {
-            color: $red;
-            background-color: white;
-            border: 1px solid $red;
-        }
+    .redbtn {
         &::before {
             content: " ";
             padding-left: 1.75rem;
@@ -681,18 +554,6 @@ hr {
 //// CONTACT PAGE ////
 
 .contactForm {
-    &-btn {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
-    }
 
     &-return {
         color: black;
@@ -705,19 +566,6 @@ hr {
 
 //// ERROR PAGE ////
 
-.error404,
-.error500 {
-    &-btn {
-        background-color: $yellow;
-        border: 1px solid $yellow;
-        color: white;
-        &:hover {
-            color: $yellow;
-            background-color: white;
-            border: 1px solid $yellow;
-        }
-    }
-}
 
 //// MEDIA QUERRIES ////
 
@@ -786,7 +634,13 @@ hr {
         .lead {
             font-size: 1rem;
         }
+
     }
+
+    .chapter-card {
+        border-radius: 1px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
 
     .chapter-row{
         h4 {
@@ -833,7 +687,6 @@ hr {
 
         &-date {
             text-align: center;
-            float: unset!important;
             font-size: 0.9rem;
         }
 
@@ -931,12 +784,6 @@ hr {
         &-title {
             text-align: center;
         }
-
-        &-form {
-            padding: 0;
-            width: 100%;
-            margin: auto;
-        }
     }
 
     .publishChapterAdmin,
@@ -970,7 +817,7 @@ hr {
         }
 
         &-date {
-            float: unset;
+            float: right;
             display: block;
         }
 
@@ -1009,6 +856,7 @@ hr {
             padding: 1rem;
         }
     }
+
     .navbar {
         &-button {
             margin-top: 1rem;
@@ -1093,17 +941,14 @@ hr {
         margin-top: 1rem;
         padding: 1rem;
         border: none;
-
         &-header {
             text-align: center;
             background-color: white;
         }
-
         &-date {
             float: right!important;
             font-size: 0.8rem;
         }
-
         &-title {
             display: unset;
             font-weight: unset;
@@ -1131,6 +976,9 @@ hr {
 
 @media (min-width: 1024px) {
     .main-header {
+        &-margintop {
+            margin-top: 0.5rem;
+        }
         &-text {
             font-size: 6rem;
         }
