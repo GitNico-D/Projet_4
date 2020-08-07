@@ -18,8 +18,6 @@ class CommentManager extends Manager
      */
     public function getCommentByChapterId($chapterId)
     {
-        // $commentList = 
-        // return $commentList;
         return $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10);
     }
 
@@ -80,7 +78,7 @@ class CommentManager extends Manager
     public function addReport($commentId)
     {
         var_dump($commentId);
-        $sqlRequest = 'INSERT INTO reporting(reportingDate, commentId) VALUES (NOW(), :commentId)';
+        $sqlRequest = 'INSERT INTO reporting (reportingDate, commentId) VALUES (NOW(), :commentId)';
         $this->createQuery($sqlRequest, array('commentId' => $commentId));
     }
     

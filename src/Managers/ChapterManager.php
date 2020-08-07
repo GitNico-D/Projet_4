@@ -47,7 +47,7 @@ class ChapterManager extends Manager
      */
     public function getAllUnpublishedChapters()
     {
-        return $this->findBy($this->table, array('published' => 0));
+        return $this->findBy($this->table, array('published' => false));
     }
 
     /**
@@ -58,8 +58,7 @@ class ChapterManager extends Manager
      */
     public function publishedChapter($chapterId)
     {
-        $sqlRequest = 'UPDATE chapter SET published= true WHERE id = ?';
-        $this->createQuery($sqlRequest, [$chapterId]);
+        return $this->update($this->table, array('published' => true), array('id' => $chapterId));
     }
 
     /**
@@ -73,43 +72,14 @@ class ChapterManager extends Manager
      * @param mixed $newChapterImg
      * @return void
      */
-    // public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg)
-    // {
-    //     return $this->insertInto(
-    //         $this->table,
-    //         array('author', 'title', 'content', 'createDate', 'updateDate', 'published', 'imgUrl'),
-    //         array('chapterAuthor' => $newChapterAuthor,
-    //             'chapterTitle' => $newChapterTitle,
-    //             'chapterContent' => $newChapterContent,
-    //             'chapterCreateDate' => $chapterCreateDate,
-    //             'chapterUpdateDate' => $chapterCreateDate,
-    //             'chapterPublished' => $chapterPublished,
-    //             'chapterImg' => $newChapterImg
-    //             )
-    //     );
-    // }
-
     public function addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg)
     {
         return $this->insertInto(
             $this->table,
-            array('author', 'title', 'content', 'createDate', 'updateDate', 'published', 'imgUrl'),
-            array($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterCreateDate, $chapterPublished, $newChapterImg));
+            array('author' => $newChapterAuthor, 'title' => $newChapterTitle, 'content' => $newChapterContent,
+                 'createDate' => $chapterCreateDate, 'updateDate' => $chapterCreateDate, 'published' => $chapterPublished,
+                 'imgUrl' => $newChapterImg));
     }
-
-    // public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterPublished, $updatedChapterImg, $chapterId)
-    // {
-    //     $sqlRequest = 'UPDATE chapter SET title= :updatedChapterTitle, content= :updatedChapterContent, updateDate = NOW(), published= :chapterPublished, imgUrl= :updatedChapterImg WHERE id = :chapterId';
-    //     $updatedLines = $this->createQuery($sqlRequest, array(
-    //             'updatedChapterTitle' => $updatedChapterTitle,
-    //             'updatedChapterContent' => $updatedChapterContent,
-    //             'chapterPublished' => $chapterPublished,
-    //             'updatedChapterImg' => $updatedChapterImg,
-    //             'chapterId' => $chapterId
-    //             ));
-    //     return $updatedLines;
-    // }
-
     /**
      * updateChapterById
      *
@@ -125,21 +95,11 @@ class ChapterManager extends Manager
     {
         return $this->update(
             $this->table,
-            array('title' => 'updatedChapterTitle',
-                    'content' => 'updatedChapterContent',
-                    'updateDate' => 'updatedChapterDate',
-                    'published' => 'chapterPublished',
-                    'imgUrl' => 'updatedChapterImg'),
-            array('updatedChapterTitle' => $updatedChapterTitle,
-                    'updatedChapterContent' => $updatedChapterContent,
-                    'updatedChapterDate' => $updatedChapterDate,
-                    'chapterPublished' => $chapterPublished,
-                    'updatedChapterImg' => $updatedChapterImg),
-            array('chapterId' => $chapterId)
-        );
+            array('title' => $updatedChapterTitle, 'content' => $updatedChapterContent,'updateDate' => $updatedChapterDate,
+                'published' => $chapterPublished, 'imgUrl' => $updatedChapterImg),
+            array('id' => $chapterId));
     }
  
-
     /**
      * deleteChapterById
      *
@@ -148,8 +108,6 @@ class ChapterManager extends Manager
      */
     public function deleteChapterById($chapterId)
     {
-        // $sqlRequest = 'DELETE FROM chapter WHERE id = ?';
-        // $this->createQuery($sqlRequest, [$chapterId]);
-        $this->delete($this->table, array('id' => $chapterId));
+        return $this->delete($this->table, array('id' => $chapterId));
     }
 }
