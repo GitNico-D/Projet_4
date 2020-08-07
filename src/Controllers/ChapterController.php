@@ -37,7 +37,7 @@ class ChapterController extends Controller
             $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
             $newChapterContent = htmlspecialchars($_POST['chapterContent']);
             $newChapterImg = $_POST['chapterImg'];
-            $chapterCreateDate = date("Y-m-d H:i:s");
+            $chapterCreateDate = date("d-m-Y H:i:s");
             if (isset($_POST['saveAndPublish'])) {
                 $chapterPublished = true;
                 $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
@@ -141,7 +141,7 @@ class ChapterController extends Controller
         $updatedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
         $updatedChapterContent = htmlspecialchars($_POST['chapterContent']);
         $updatedChapterImg = $_POST['chapterImg'];
-        $chapterUpdateDate = date("Y-m-d H:i:s");
+        $chapterUpdateDate = date("d-m-Y H:i:s");
         // if(!empty($_POST['chapterTitle'] && !empty($_POST['chapterImg'])))
         // {
         if (isset($_POST['saveAndPublish'])) {
