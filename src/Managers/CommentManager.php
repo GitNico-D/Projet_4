@@ -30,16 +30,14 @@ class CommentManager extends Manager
      * @param mixed $chapterId
      * @return void
      */
-    public function addComment($commentAuthor, $commentTitle, $commentContent, $chapterId)
+    public function addComment($commentAuthor, $commentTitle, $commentContent, $commentCreatedDate, $chapterId)
     {
-        $sqlRequest = 'INSERT INTO comments(author, title, content, createdDate, updatedDate, chapterId) VALUES (:commentAuthor, :commentTitle, :commentContent, NOW(), NOW(), :chapterId)';
-        $commentAdded = $this->createQuery($sqlRequest, array(
-            'commentAuthor' => $commentAuthor,
-            'commentTitle' => $commentTitle,
-            'commentContent' => $commentContent,
-            'chapterId' => $chapterId
-        ));
-        return $commentAdded;
+        return $this->insertInto(
+            $this->table,
+            array('author' => $commentAuthor, 'title' => $commentTitle, 'content' => $commentContent, 
+                'createdDate' => $commentCreatedDate, 'updatedDate' => $commentCreatedDate,
+                'chapterId' => $chapterId)
+                );
     }
 
     /**
@@ -50,25 +48,10 @@ class CommentManager extends Manager
      */
     public function deleteCommentById($commentId)
     {
-        $sqlRequest = 'DELETE FROM comments WHERE id = ?';
-        $this->createQuery($sqlRequest, [$commentId]);
+        $this->table = 'comment';
+        return $this->delete($this->table, array('id' => $commentId));
     }
-
-    /**
-     * totalChapterComments
-     *
-     * @param mixed $chapterId
-     * @return void
-     */
-    public function totalChapterComments($chapterId)
-    {
-        $sqlRequest = 'SELECT COUNT(*) as totalComments FROM comments WHERE chapterId = ?';
-        $result = $this->createQuery($sqlRequest, [$chapterId]);
-        $totalComments = $result->fetch();
-        $result->closeCursor();
-        return $totalComments['totalComments'];
-    }
-
+    
     /**
      * addReport
      *
@@ -77,9 +60,24 @@ class CommentManager extends Manager
      */
     public function addReport($commentId)
     {
-        var_dump($commentId);
-        $sqlRequest = 'INSERT INTO reporting (reportingDate, commentId) VALUES (NOW(), :commentId)';
-        $this->createQuery($sqlRequest, array('commentId' => $commentId));
+        $this->table = 'reporting';
+        $reportingDate = date("d-m-Y H:i:s");
+        return $this->insertInto($this->table, array('reportingDate' => $reportingDate, 'commentId' => $commentId));
+    }
+    
+    /**
+     * totalChapterComments
+     *
+     * @param mixed $chapterId
+     * @return void
+     */
+    public function totalChapterComments($chapterId)
+    {
+        $sqlRequest = 'SELECT COUNT(*) as totalComments FROM comment WHERE chapterId = ?';
+        $result = $this->createQuery($sqlRequest, [$chapterId]);
+        $totalComments = $result->fetch();
+        $result->closeCursor();
+        return $totalComments['totalComments'];
     }
     
     /**
@@ -89,7 +87,7 @@ class CommentManager extends Manager
      */
     public function getAllReportedComments()
     {
-        $sqlRequest = 'SELECT * FROM comments INNER JOIN reporting ON comments.id = reporting.commentId GROUP BY reporting.commentId';
+        $sqlRequest = 'SELECT * FROM comment INNER JOIN reporting ON comment.id = reporting.commentId GROUP BY reporting.commentId';
         $result = $this->createQuery($sqlRequest);
         $reportedCommentList = [];
         foreach ($result as $comment) {
@@ -101,15 +99,12 @@ class CommentManager extends Manager
 
     public function distinctReportedCommentsCount()
     {
-        $sqlRequest = 'SELECT COUNT(*) AS totalreportedComment FROM comments INNER JOIN reporting ON comments.id = reporting.commentId GROUP BY reporting.commentId';
+        $sqlRequest = 'SELECT COUNT(*) AS totalreportedComment FROM comment INNER JOIN reporting ON comment.id = reporting.commentId GROUP BY reporting.commentId';
         $result = $this->createQuery($sqlRequest);
-        // var_dump($result);
         $totalReportedComment = [];
-        // var_dump($totalReportedComments['totalreportedComment']);
         foreach ($result as $total) {
             $totalReportedComment [] = $total;
         }
-        // var_dump($totalReportedComment);
         $result->closeCursor();
         return $totalReportedComment;
     }

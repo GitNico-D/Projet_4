@@ -6,7 +6,7 @@
 <div class="page-title text-center mb-4 p-4">
     <div class="container page-title-container">
             {% if uniqueChapter.imgUrl is not null %}
-                <img src={{ uniqueChapter.imgUrl }} alt="" class="w-100 mw-80 m-auto">
+                <img src={{ uniqueChapter.imgUrl }} alt="" class="chapterimg m-auto">
             {% endif %}   
         <p class="page-title-text mt-4 font-italic">Chapitre {{ uniqueChapter.id }} :</p>
         <h1 class="text-lead w-80 m-auto page-title-h1"><span class="font-italic">{{ uniqueChapter.title}}</span></h1>
@@ -25,7 +25,6 @@
                 <span class="font-italic bold">{{ uniqueChapter.author }}</span>
             </p>
             <p id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify py-4">{{ uniqueChapter.content | raw }}</p>
-            {# <textarea id="chapterContent" name="chapterContent" id="" cols="30" rows="25">{{ uniqueChapter.content | raw }}</textarea> #}
         </div>
         <div class="text-center">
             {% if chapterNumber <= 1 and chapterNumber is defined %}            
@@ -53,7 +52,7 @@
                 <div class="my-4">
                     <p class="text-left card-header p-0 bg-white">
                         <span class="font-italic bold">{{ comment.author }}</span>
-                        posté le <span class="font-italic">{{ comment.createdDate | date("m/d/Y \à H:i:s") }}</span> 
+                        posté le <span class="font-italic">{{ comment.createdDate | date("d/m/Y \à H:i:s") }}</span> 
                         <!-- <span class="float-right">totalReports = {{ totalReports }}</span> -->
                     </p>
                     <p class="card-body text-left m-0 pt-2 pl-4">

@@ -96,11 +96,7 @@
                     <span class="bold">Publication</span> ou 
                     <span class="bold">Suppression</span> du chapitre
                 </p>
-                <!-- {% set plusOne = 0 %} -->
                 {% for chapter in unpublishedChaptersList %}
-                    <!-- {% if plusOne < unpublishedChaptersList|length %} 
-                        {% set plusOne = plusOne + 1 %}
-                    {% endif %} -->
                     <div id="unpublishedaccordion{{ chapter.id }}">
                         <div class="card unpublishChapterCard m-1">
                             <div class="card-header p-3 align-middle bg-white" id="unpublishHeading{{ chapter.id }}">                            
@@ -138,16 +134,16 @@
                     <span class="text-muted bold">SUPPRESSION</span> du commentaire
                 </p>   
                 {% for comment in reportedCommentList %}
-                        <div class="card commentModerationCard mt-3 p-3 text-center">
-                            <p class="card-header text-left bold">
-                                <span class="font-italic">Posté le</span> {{ comment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ comment.author }}
-                            </p>
-                            <p class="card-body commentModerationCard-text p-1 mt-3 text-center-justify">{{ comment.content }}</p>
-                            <div class="text-center">
-                                <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn greenbtn ">Valider</a>
-                                <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn redbtn ">Supprimer</a>
-                            </div>
+                    <div class="card commentModerationCard mt-3">
+                        <p class="card-header text-left bold">
+                            <span class="font-italic">Posté le</span> {{ comment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ comment.author }}
+                        </p>
+                        <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ comment.content }}</p>
+                        <div class="text-center">
+                            <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn greenbtn">Valider</a>
+                            <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn redbtn">Supprimer</a>
                         </div>
+                    </div>
                 {% endfor %}    
             </section>
         </div>
