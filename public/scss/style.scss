@@ -91,6 +91,17 @@ hr {
     visibility: hidden;
 }
 
+//// FOOTER ////
+
+.social{
+    .link{
+        text-decoration: none;
+        &:hover{
+            color: $yellow;
+        }
+    }
+}
+
 //// CUSTOM BUTTON ////
 
 .redbtn{
@@ -512,6 +523,7 @@ hr {
             content: "\f057";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
+            font-size: 1.25rem;
             color: $red;
             padding-left: 1rem;
         }
@@ -636,6 +648,12 @@ hr {
 
     }
 
+    .chapterimg {
+        width: 100%;
+        max-width: 70%;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
+    }
+
     .chapter-card {
         border-radius: 1px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -677,18 +695,15 @@ hr {
     .unpublishChapterCard,
     .commentModerationCard {
         margin-top: 1rem;
-        padding: 1rem;
+        padding: 0 4rem 0 4rem;
         border: none;
-
         &-header {
             text-align: center;
         }
-
         &-date {
             text-align: center;
             font-size: 0.9rem;
         }
-
         &-title {
             display: block;
             text-align: center;
@@ -703,9 +718,11 @@ hr {
                 font-size: 0.8rem;
             }
         }
-
         &-text {
-            font-size: 1.1rem;
+            font-size: 0.8rem;
+        }
+        &-btn {
+            margin-top: 0.3rem;
         }
     }
 
@@ -806,20 +823,14 @@ hr {
     .publishChapterCard,
     .unpublishChapterCard,
     .commentModerationCard {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: none;
 
         &-header {
-            text-align: center;
             background-color: white;
         }
-
         &-date {
             float: right;
             display: block;
         }
-
         &-title {
             font-size: 1.2rem;
             &::before {
@@ -844,7 +855,8 @@ hr {
         }
 
         &-text {
-            font-size: 0.8rem;
+            font-size: 1rem;
+            width: 80%;
         }
     }
 
@@ -937,9 +949,6 @@ hr {
 
     .publishChapterCard,
     .unpublishChapterCard {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: none;
         &-header {
             text-align: center;
             background-color: white;
@@ -1021,9 +1030,6 @@ hr {
     }
     .publishChapterCard,
     .unpublishChapterCard {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: none;
 
         &-header {
             text-align: center;
