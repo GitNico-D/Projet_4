@@ -25,9 +25,9 @@ abstract class Controller
             "debug" => true
         ));
         $this->twig->addExtension(new DebugExtension());
-        $this->twig->addGlobal('session', $_SESSION);
+        $this->twig->addGlobal("session", $_SESSION);
         $this->twig->addGlobal('locale', $config['APP_LOCALE']);
-        $this->twig->addGlobal('langage', $config['APP_CHARSET']);
+        $this->twig->addGlobal('charset', $config['APP_CHARSET']);
     }
 
     public function render($view, $options = [])
@@ -35,7 +35,7 @@ abstract class Controller
         try {
             return $this->twig->render($view, $options);
         } catch (Exception $errorView) {
-            die('Erreur de connection : ' . $errorView->getMessage());
+            throw ("Template introuvable" . $errorView);
         }
     }
 }
