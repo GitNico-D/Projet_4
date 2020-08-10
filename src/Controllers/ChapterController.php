@@ -5,6 +5,7 @@ namespace App\src\Controllers;
 use App\src\Core\Controller;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
+use App\src\Models\Chapter;
 use Exception;
 
 class ChapterController extends Controller
@@ -33,14 +34,20 @@ class ChapterController extends Controller
     public function createChapter($isAdmin)
     {
         if (!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']) && !empty($_POST['chapterImg'])) {
-            $newChapterAuthor = htmlspecialchars($_POST['chapterAuthor']);
-            $newChapterTitle = htmlspecialchars($_POST['chapterTitle']);
-            $newChapterContent = htmlspecialchars($_POST['chapterContent']);
-            $newChapterImg = $_POST['chapterImg'];
-            $chapterCreateDate = date("d-m-Y H:i:s");
+            $newChapter = new Chapter();
+            $newChapter->setAuthor(htmlspecialchars($_POST['chapterAuthor']));
+            $newChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
+            $newChapter->setContent(htmlspecialchars($_POST['chapterContent']));
+            $createDate = date("Y-m-d H:i:s");
+            $newChapter->setCreateDate($createDate);
+            $newChapter->setUpdateDate($createDate);
+            $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
+            // $this->insertInto($newChapter);
             if (isset($_POST['saveAndPublish'])) {
-                $chapterPublished = true;
-                $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
+                $newChapter->setPublished(true);
+                var_dump($newChapter);
+                $insertLines = $this->chapterManager->addChapterInDb($newChapter);
+                // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
                 if ($insertLines === false) {
                     throw new Exception('Impossible d\'ajouter le chapitre');
                 } else {
@@ -48,8 +55,9 @@ class ChapterController extends Controller
                     // echo('Chapitre ajouté');
                 }
             } elseif (isset($_POST['saveDraft'])) {
-                $chapterPublished = false;
-                $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
+                $newChapter->setPublished(false);
+                $insertLines = $this->chapterManager->addChapterInDb($newChapter);
+                // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
                 if ($insertLines === false) {
                     throw new Exception('Impossible de modifier le chapitre');
                 } else {
@@ -110,7 +118,6 @@ class ChapterController extends Controller
      */
     public function deleteChapter($chapterId, $isAdmin)
     {
-        $this->chapterManager = new ChapterManager();
         $this->chapterManager->deleteChapterById($chapterId);
         header('Location: /adminView');
     }
@@ -123,7 +130,6 @@ class ChapterController extends Controller
      */
     public function publishChapter($chapterId)
     {
-        $this->chapterManager = new ChapterManager();
         $this->chapterManager->publishedChapter($chapterId);
         header('Location: /adminView');
     }
@@ -137,7 +143,6 @@ class ChapterController extends Controller
      */
     public function updateChapterAction($chapterId)
     {
-        $this->chapterManager = new ChapterManager();
         $updatedChapterTitle = htmlspecialchars($_POST['chapterTitle']);
         $updatedChapterContent = htmlspecialchars($_POST['chapterContent']);
         $updatedChapterImg = $_POST['chapterImg'];
