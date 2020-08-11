@@ -35,9 +35,9 @@ class ChapterManager extends Manager
         //  $this->findAll($this->table);
         foreach($this->findAll($this->table) as $chapter)
         {
-            $chapterList [] = new Chapter($chapter);
+            $allChaptersList [] = new Chapter($chapter);
         }
-        return $chapterList;
+        return $allChaptersList;
     }
 
     /**
@@ -53,9 +53,9 @@ class ChapterManager extends Manager
         // return $this->findBy($this->table, array('published' => true));
         foreach($this->findBy($this->table, array('published' => true)) as $chapter)
         {
-            $chapterList [] = new Chapter($chapter);
+            $publishedChaptersList [] = new Chapter($chapter);
         }
-        return $chapterList;
+        return $publishedChaptersList;
     }
 
     /**
@@ -65,7 +65,12 @@ class ChapterManager extends Manager
      */
     public function getAllUnpublishedChapters()
     {
-        return $this->findBy($this->table, array('published' => false));
+        // return $this->findBy($this->table, array('published' => false));
+        foreach($this->findBy($this->table, array('published' => false)) as $chapter)
+        {
+            $unpublishedChaptersList [] = new Chapter($chapter);
+        }
+        return $unpublishedChaptersList;
     }
 
     /**
@@ -99,11 +104,11 @@ class ChapterManager extends Manager
         //     $parameters [$insertKey] = $newChapter->"get". $insertValue();
         // }
         // var_dump($parameters);
-        return $this->insertInto($this->table, $newChapter
+        // return $this->insertInto($this->table, $newChapter
             // array('author' => $newChapter->getAuthor(), 'title' => $newChapter->getTitle(), 'content' => $newChapter->getContent(),
             //      'createDate' => $newChapter->getCreateDate(), 'updateDate' => $newChapter->getCreateDate(), 'published' => $newChapter->getPublished(),
             //      'imgUrl' => $newChapter->getImgUrl())
-        );
+        // );
     }
     
     /**
