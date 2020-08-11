@@ -10,7 +10,6 @@ class ChapterManager extends Manager
 {
     public $table = 'chapter';
 
-
     /**
      * getChapterById
      *
@@ -21,7 +20,6 @@ class ChapterManager extends Manager
     {
         // $newChapter = new Chapter;
         // var_dump($this->findOneBy($this->table, array('id' => $chapterId)));
-        var_dump(file_exists("App\src\Models\Chapter.php"));
         return new Chapter($this->findOneBy($this->table, array('id' => $chapterId)));
     }
 
@@ -97,18 +95,11 @@ class ChapterManager extends Manager
      */
     public function addChapterInDb($newChapter)
     {
-        var_dump($newChapter);
-        // $parameters = [];
-        // foreach($newChapter as $insertKey => $insertValue)
-        // {
-        //     $parameters [$insertKey] = $newChapter->"get". $insertValue();
-        // }
-        // var_dump($parameters);
-        // return $this->insertInto($this->table, $newChapter
-            // array('author' => $newChapter->getAuthor(), 'title' => $newChapter->getTitle(), 'content' => $newChapter->getContent(),
-            //      'createDate' => $newChapter->getCreateDate(), 'updateDate' => $newChapter->getCreateDate(), 'published' => $newChapter->getPublished(),
-            //      'imgUrl' => $newChapter->getImgUrl())
-        // );
+        var_dump(extract($newChapter));
+        return $this->insertInto($this->table, 
+            array('author' => $newChapter->getAuthor(), 'title' => $newChapter->getTitle(), 'content' => $newChapter->getContent(),
+                 'createDate' => $newChapter->getCreateDate(), 'updateDate' => $newChapter->getCreateDate(), 'imgUrl' => $newChapter->getImgUrl())
+        );
     }
     
     /**
@@ -122,14 +113,17 @@ class ChapterManager extends Manager
      * @param mixed $chapterId
      * @return void
      */
-    public function updateChapterById($updatedChapterTitle, $updatedChapterContent, $updatedChapterDate, $chapterPublished, $updatedChapterImg, $chapterId)
+    public function updateChapterById($updatedChapter)
     {
-        return $this->update(
-            $this->table,
-            array('title' => $updatedChapterTitle, 'content' => $updatedChapterContent,'updateDate' => $updatedChapterDate,
-                'published' => $chapterPublished, 'imgUrl' => $updatedChapterImg),
-            array('id' => $chapterId)
-        );
+        // var_dump($updatedChapter);
+        // return $this->update(
+        //     $this->table,
+        //     array('title' => $updatedChapter->getTitle(), 'content' => $updatedChapter->getContent(),'updateDate' => $updatedChapter->getUpdateDate(),
+        //         'published' => $updatedChapter->getPublished(), 
+        //         // 'imgUrl' => $updatedChapter->getImgUrl()
+        //     ),
+        //     array('id' => $updatedChapter->getId())
+        // );
     }
  
     /**
@@ -138,8 +132,8 @@ class ChapterManager extends Manager
      * @param mixed $chapterId
      * @return void
      */
-    public function deleteChapterById($chapterId)
+    public function deleteChapterById($deletedChapter)
     {
-        return $this->delete($this->table, array('id' => $chapterId));
+        return $this->delete($this->table, array('id' => $deletedChapter->getId()));
     }
 }
