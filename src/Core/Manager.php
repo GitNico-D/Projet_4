@@ -59,17 +59,18 @@ class Manager extends DAO
             $whereClause [] = $whereKey . ' = :' . $whereKey;
         }
         $sqlRequest .= ' WHERE ' . implode(' AND ', $whereClause);
-        if ($orderBy) {
-            foreach ($orderBy as $orderByKey => $orderByValue) {
-                $sqlRequest .= $orderByKey . ' ' . $orderByValue;
-            }
-            $sqlRequest .= ' ORDER BY ' . implode($orderByArray);
-        }
-        if ($limit) {
-            $sqlRequest .= ' LIMIT ' . $limit;
-        }
+        // if ($orderBy) {
+        //     foreach ($orderBy as $orderByKey => $orderByValue) {
+        //         $sqlRequest .= $orderByKey . ' ' . $orderByValue;
+        //     }
+        //     $sqlRequest .= ' ORDER BY ' . implode($orderByArray);
+        // }
+        // if ($limit) {
+        //     $sqlRequest .= 'LIMIT ' . $limit;
+        // }
+        // var_dump($sqlRequest);
         $result = $this->createQuery($sqlRequest, $where);
-        // $dataList = [];
+        $dataList = [];
         // $entity = 'App\src\Models\\' . ucfirst($table);
         // $entity = ucfirst($table);
         // $entity = $entity::class;
@@ -98,10 +99,10 @@ class Manager extends DAO
         $dataList = [];
         $entity = 'App\src\Models\\' . ucfirst($table);
         foreach ($result as $data) {
-            $dataList [] = new $entity($data);
+            $dataList [] = $data;
         }
         $result->closeCursor();
-        var_dump($dataList);
+        // var_dump($dataList);
         return $dataList;
     }
     
@@ -111,21 +112,23 @@ class Manager extends DAO
      * @param mixed $table
      * @param mixed $parameters
      * @return PDOStatement
-     */
-    // public function insertInto($table, $parameters)
-    // {
-    //     $sqlRequest = 'INSERT INTO ' . $table;
-    //     var_dump($parameters);
-    //     $arrayField = [];
-    //     $arrayFieldValue = [];
-    //     foreach ($parameters as $parametersKey => $parametersValue) {
-    //         $arrayField [] = $parametersKey;
-    //         $arrayFieldValue [] = " :" . $parametersKey;
-    //     }
-    //     var_dump($arrayField);
-    //     $sqlRequest .= " (" . implode(", ", $arrayField) . ") VALUES (" . implode(", ", $arrayFieldValue) . ")";
-    //     return $this->createQuery($sqlRequest, $par);
-    // }
+    */
+    public function insertInto($table, $entity)
+    {
+        $sqlRequest = 'INSERT INTO ' . $table;
+        var_dump($entity);
+        $arrayField = [];
+        $arrayFieldValue = [];
+        foreach ($entity as $entityKey => $entityValue) {
+            $arrayField [] = $entityKey;
+            $arrayFieldValue [] = " :" . $entityKey;
+            $parameters [$entityKey ] = $entityValue;
+        }
+        var_dump($arrayField);
+        var_dump($parameters);
+        $sqlRequest .= " (" . implode(", ", $arrayField) . ") VALUES (" . implode(", ", $arrayFieldValue) . ")";
+        return $this->createQuery($sqlRequest, $parameters);
+    }
 
     /**
      * update
@@ -159,12 +162,12 @@ class Manager extends DAO
      * @param mixed $where
      * @return void
      */
-    public function delete($table, $where)
+    public function delete($table, $entity)
     {
         $sqlRequest = "DELETE FROM " . $table;
-        foreach ($where as $whereKey => $whereValue) {
-            $sqlRequest .= " WHERE " . $whereKey . "= :" . $whereKey;
+        foreach ($entity as $entityKey => $entityValue) {
+            $sqlRequest .= " WHERE " . $entityKey . "= :" . $entityKey;
         }
-        $this->createQuery($sqlRequest, $where);
+        $this->createQuery($sqlRequest, $entity);
     }
 }
