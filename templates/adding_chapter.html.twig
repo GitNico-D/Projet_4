@@ -13,6 +13,9 @@
 
 {% block main %} 
     <div class="container">
+        {% if session.error is not null %}
+            <div class="display-4 text-center bg-warning rounded mt-4">{{ session.error }}</div>
+            {% endif %}
         <form action="/createChapter" method="post">
             <div class="form-group writingForm mt-5">
                 <label for="chapterAuthor" class="text-left font-weight-bold font-italic writingForm-labelAuthor">Auteur</label>
@@ -27,7 +30,6 @@
                     <input type="submit" name="save" class="btn greenbtn my-2" value="Enregistrer"/>
                     {# <button type="submit" name="saveDraft" class="btn yellowbtn my-2">Enregistrer en brouillon</button> #}
                 </div>
-                <div class="text-center bg-light">{{ session.error ?? '{{ session.error}}' }}</div>
             </div>
         </form>
     </div>
