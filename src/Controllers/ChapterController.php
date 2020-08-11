@@ -2,6 +2,7 @@
 
 namespace App\src\Controllers;
 
+use App\src\Services\VerificationHelper;
 use App\src\Core\Controller;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
@@ -33,36 +34,73 @@ class ChapterController extends Controller
      */
     public function createChapter($isAdmin)
     {
-        if (!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']) && !empty($_POST['chapterImg'])) {
-            $newChapter = new Chapter();
-            $newChapter->setAuthor(htmlspecialchars($_POST['chapterAuthor']));
-            $newChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
-            $newChapter->setContent(htmlspecialchars($_POST['chapterContent']));
-            $createDate = date("Y-m-d H:i:s");
-            $newChapter->setCreateDate($createDate);
-            $newChapter->setUpdateDate($createDate);
-            $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
-            // $this->insertInto($newChapter);
-            if (isset($_POST['saveAndPublish'])) {
-                $newChapter->setPublished(true);
+        // $newChapter = new Chapter();
+        // var_dump($newChapter);
+        // $this->insertInto($newChapter);
+        var_dump(isset($_POST['save']));
+        $_SESSION['error'] = '';
+
+        if (isset($_POST['save'])) {
+            // var_dump($_POST);
+            // VerificationHelper::notBlank($_POST);
+            // $error = VerificationHelper::notBlank($_POST);
+            // $_SESSION['error'] = $error;
+            // var_dump($error);
+            // if(!$error) {
+                
+                // $newChapter->setAuthor(htmlspecialchars($_POST['chapterAuthor']));
+                // $newChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
+                // $newChapter->setContent(htmlspecialchars($_POST['chapterContent']));
+                // $createDate = date("Y-m-d H:i:s");
+                // $newChapter->setCreateDate($createDate);
+                // $newChapter->setUpdateDate($createDate);
+                // $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
+                // $newChapter->setPublished(true);
+                
+                // $insertLines =
+                // $this->chapterManager->addChapterInDb($newChapter);
+            // }
+            $_SESSION['error'] = '';
+            if (!empty($_POST['chapterAuthor']) AND !empty($_POST['chapterTitle']) AND !empty($_POST['chapterImg']) AND !empty($_POST['chapterContent'])) {
+                $newChapter = new Chapter();
                 var_dump($newChapter);
-                $insertLines = $this->chapterManager->addChapterInDb($newChapter);
-                // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
-                if ($insertLines === false) {
-                    throw new Exception('Impossible d\'ajouter le chapitre');
-                } else {
-                    header('Location: /createChapter');
+            // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
+                // if ($insertLines === false) {
+                //     throw new Exception('Impossible d\'ajouter le chapitre');
+                // } else {
+                //     header('Location: /createChapter');
                     // echo('Chapitre ajouté');
-                }
-            } elseif (isset($_POST['saveDraft'])) {
-                $newChapter->setPublished(false);
-                $insertLines = $this->chapterManager->addChapterInDb($newChapter);
-                // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
-                if ($insertLines === false) {
-                    throw new Exception('Impossible de modifier le chapitre');
-                } else {
-                    header('Location: /createChapter');
-                }
+                // }'
+            // } else {
+            //     throw new Exception('Impossible d\'ajouter le chapitre');
+            //     header('Location: /createChapter');
+            // }
+        } 
+        else {
+            $_SESSION['error'] = 'Veuillez remplir tous les champs';
+            header('Location: /createChapter');
+            // 
+            // } elseif (isset($_POST['saveDraft'])) {
+            //     if (!empty($_POST['chapterAuthor']) && !empty($_POST['chapterTitle']) && !empty($_POST['chapterImg'])) {
+            //         $newChapter = new Chapter();
+            //         $newChapter->setAuthor(htmlspecialchars($_POST['chapterAuthor']));
+            //         $newChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
+            //         $newChapter->setContent(htmlspecialchars($_POST['chapterContent']));
+            //         $createDate = date("Y-m-d H:i:s");
+            //         $newChapter->setCreateDate($createDate);
+            //         $newChapter->setUpdateDate($createDate);
+            //         $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
+            //         $newChapter->setPublished(true);
+            //     // $error = $this->notBlank()
+            //     var_dump($newChapter);
+            //     $newChapter->setPublished(false);
+            //     $insertLines = $this->chapterManager->addChapterInDb($newChapter);
+            //     // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
+            //     if ($insertLines === false) {
+            //         throw new Exception('Impossible de modifier le chapitre');
+            //     } else {
+            //         header('Location: /createChapter');
+            //     }
             }
         }
         echo $this->render('adding_chapter.html.twig', ['isAdmin' => $isAdmin]);
