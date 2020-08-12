@@ -4,9 +4,9 @@ namespace App\src\Core;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-// use Twig\Error\Error;
-// use Twig\Error\RuntimeError;
-// use Twig\Error\SyntaxError;
+//use Twig\Error\Error;
+//use Twig\Error\RuntimeError;
+//use Twig\Error\SyntaxError;
 use Twig\Extension\DebugExtension;
 
 use Exception;
@@ -32,10 +32,10 @@ abstract class Controller
 
     public function render($view, $options = [])
     {
-        try {
+        if(!$view) {
+            throw new Exception("Template introuvable");
+        } else  {
             return $this->twig->render($view, $options);
-        } catch (Exception $errorView) {
-            throw ("Template introuvable" . $errorView);
         }
     }
 }
