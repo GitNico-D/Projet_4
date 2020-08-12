@@ -22,6 +22,13 @@
             </ul>
         </nav>
         <div class="main col-md-10">
+            {{ dump(session) }}
+            {% if session.success is not null %}
+            <div class="display-4 text-center bg-success rounded my-4">{{ session.success }}</div>
+            {% endif %}
+            {% if session.danger is not null %}
+            <div class="display-4 text-center bg-danger rounded my-4">{{ session.danger }}</div>
+            {% endif %}
             <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
                 <p class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </p>
                 <div class="text-center">
@@ -94,7 +101,6 @@
                     <span class="font-italic">Options disponibles :</span> 
                     <span class="bold">Modification</span>, 
                     <span class="bold">Publication</span> ou 
-                    <span class="bold">Suppression</span> du chapitre
                 </p>
                 {% for chapter in unpublishedChaptersList %}
                     <div id="unpublishedaccordion{{ chapter.id }}">

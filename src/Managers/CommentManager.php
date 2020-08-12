@@ -18,7 +18,13 @@ class CommentManager extends Manager
      */
     public function getCommentByChapterId($chapterId)
     {
-        return $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10);
+        // return $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10);
+        $commentList = [];
+        foreach($this->findBy($this->table, array('chapterId' => $chapterId)) as $comment)
+        {
+            $commentList [] = new Comment($comment);
+        }
+        return $commentList;
     }
 
     /**
@@ -48,10 +54,16 @@ class CommentManager extends Manager
      */
     public function deleteCommentById($commentId)
     {
-        $this->table = 'comment';
+        // $this->table = 'comment';
         return $this->delete($this->table, array('id' => $commentId));
     }
     
+    public function deleteChapterComments($chapterId) 
+    {
+        // $this->table = 'comment';
+        return $this->delete($this->table, array('chapterId' => $chapterId));
+    }
+
     /**
      * addReport
      *

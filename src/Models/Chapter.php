@@ -65,6 +65,11 @@ class Chapter extends Model
         $this->createDate = $createDate;
     }
 
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = $updateDate;
+    }
+
     public function setPublished($published)
     {
         $this->published = $published;
@@ -100,6 +105,11 @@ class Chapter extends Model
     public function getCreateDate()
     {
         return $this->createDate;
+    }
+
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
     }
 
     public function getPublished()

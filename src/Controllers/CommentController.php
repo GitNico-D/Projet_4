@@ -23,12 +23,14 @@ class CommentController extends Controller
             $commentAuthor = htmlspecialchars($_POST['commentAuthor']);
             $commentTitle = htmlspecialchars($_POST['commentTitle']);
             $commentContent = htmlspecialchars($_POST['commentContent']);
-            $commentAdded = $this->commentManager->addComment($commentAuthor, $commentTitle, $commentContent, $chapterId);
+            $commentCreatedDate = date("d-m-Y H:i:s");
+            var_dump($commentCreatedDate);
+            $commentAdded = $this->commentManager->addComment($commentAuthor, $commentTitle, $commentContent, $commentCreatedDate, $chapterId);
             if ($commentAdded === false) {
                 throw new Exception('Impossible d\'ajouter le commentaire');
             } else {
                 $alertMessage = 'Votre commentaire à été ajouté !';
-                header('Location: /readChapter/' . $chapterId, $alertMessage);
+                header('Location: /readChapter/' . $chapterId);
             }
         }
         header('Location: /readChapter/' . $chapterId);

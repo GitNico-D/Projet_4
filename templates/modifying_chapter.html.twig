@@ -35,8 +35,8 @@
                 <label for="chapterContent" class="h4 bold my-4">Contenu</label>
                     <textarea class="form-control text-justify" id="chapterContent" name="chapterContent" rows="30" >{{ uniqueChapter.content | raw }}</textarea>
                 <div class="text-center">
-                    <button type="submit" name="saveAndPublish" class="btn savePublish greenbtn my-2">Enregistrer et publier</button>
-                    <button type="submit" name="saveDraft" class="btn saveDraft yellowbtn my-2">Enregistrer en brouillon</button>                    
+                    <input type="submit" name="saveAndPublish" class="btn savePublish greenbtn my-2" value="Enregistrer et publier">
+                    <input type="submit" name="saveDraft" class="btn saveDraft yellowbtn my-2" value="Enregistrer en brouillon">                   
                     <a href="/deleteChapter/{{ uniqueChapter.id }}" class="btn updateForm redbtn my-3">Supprimer</a> 
                 </div>
             </div>
