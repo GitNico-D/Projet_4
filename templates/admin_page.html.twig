@@ -22,7 +22,6 @@
             </ul>
         </nav>
         <div class="main col-md-10">
-            {{ dump(session) }}
             {% if session.success is not null %}
             <div class="display-4 text-center bg-success rounded my-4">{{ session.success }}</div>
             {% endif %}
@@ -61,7 +60,17 @@
                         </tbody>
                     </table>
                 </div>
-            </section>            
+            </section>
+            {% for commentReported in reportedCommentList %}
+                {% for reporting in reportingList %}
+                    {% if reporting.commentId == commentReported.id %}
+                    <p>{{ reporting.commentId }} , {{ commentReported.id }}</p>
+                        <p>Des commentaire sur le chapitre {{ commentReported.chapterId }} nécessite de la modération</div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            {{ dump(reportedCommentList) }}  
+            {{ dump(reportingList) }}          
             <hr class="adminpageSeparator">
             <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
@@ -74,8 +83,12 @@
                     {% endif %}
                 <div id="publishaccordion{{ plusOne }}">
                     <div class="card publishChapterCard m-1">
-                        <div class="card-header p-3 align-middle bg-white" id="heading{{ plusOne }}">                            
-                            <p class="font-italic mt-2 publishChapterCard-date"> Publié le {{ chapter.createDate | date("d/m/Y \à H:i:s")}}</p>
+                        <div class="card-header p-3 align-middle bg-white" id="heading{{ plusOne }}">  
+                            {% if chapter.createDate == chapter.updateDate %}                          
+                                <p class="font-italic mt-2 publishChapterCard-date"> Publié le {{ chapter.createDate | date("d/m/Y \à H:i:s")}}</p>
+                            {% else %}
+                                <p class="font-italic mt-2 publishChapterCard-date"> Modifié le {{ chapter.updateDate | date("d/m/Y \à H:i:s")}}</p>
+                            {% endif %}
                             <a href="#" class="publishChapterCard-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
                                 <span class="publishChapterCard-title">{{ chapter.title }} </span>   
                             </a>                              
