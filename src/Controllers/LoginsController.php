@@ -44,8 +44,9 @@ class LoginsController extends Controller
                     'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
                     'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                    'totalReportedComments' => $this->commentManager->distinctReportedCommentsCount(),
-                    // 'reportList' => $this->commentManager->getReportComments($commentIdList),
+                    'reportingList' => $this->commentManager->allReporting(),
+                    'totalReporting' => $this->commentManager->totalReportCount(),
+                    // 'totalReportedComments' => $this->commentManager->distinctReportedCommentsCount(),
                     'isAdmin' => $isAdmin,
                     'session' => $_SESSION]
                 );
@@ -70,6 +71,7 @@ class LoginsController extends Controller
         $_SESSION = array();
         session_destroy();
         header('Location: /');
+        exit;
     }
 
     /**
@@ -88,7 +90,8 @@ class LoginsController extends Controller
                 'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
                 'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
                 'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                'totalReportedComments' => $this->commentManager->distinctReportedCommentsCount(),
+                'reportingList' => $this->commentManager->allReporting(),
+                'totalReporting' => $this->commentManager->totalReportCount(),
                 'isAdmin' => $isAdmin,
                 'session' => $_SESSION]
             );

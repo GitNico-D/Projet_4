@@ -20,11 +20,13 @@ class IndexController extends Controller
      *
      * @return void
      */
-    public function home()
+    public function home($isAdmin)
     {
-        echo $this->render('home_page.html.twig',
+        echo $this->render(
+            'home_page.html.twig',
             ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]
-            );
+            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+            'isAdmin' => $isAdmin]
+        );
     }
 }

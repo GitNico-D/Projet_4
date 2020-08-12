@@ -4,6 +4,8 @@ namespace App\src\Controllers;
 
 use App\src\Core\Controller;
 use App\src\Managers\CommentManager;
+use App\src\Models\Comment;
+use App\src\Models\Reporting;
 
 use Exception;
 
@@ -19,13 +21,14 @@ class CommentController extends Controller
 
     public function createComment($chapterId)
     {
-        if (!empty($_POST['commentAuthor']) && !empty($_POST['commentTitle'] && !empty($_POST['commentContent']))) {
-            $commentAuthor = htmlspecialchars($_POST['commentAuthor']);
-            $commentTitle = htmlspecialchars($_POST['commentTitle']);
-            $commentContent = htmlspecialchars($_POST['commentContent']);
-            $commentCreatedDate = date("d-m-Y H:i:s");
-            var_dump($commentCreatedDate);
-            $commentAdded = $this->commentManager->addComment($commentAuthor, $commentTitle, $commentContent, $commentCreatedDate, $chapterId);
+        if (!empty($_POST['commentAuthor']) and !empty($_POST['commentContent'])) {
+            $newComment = new Comment();
+            $newComment->setAuthor(htmlspecialchars($_POST['commentAuthor']));
+            $newComment->setContent(htmlspecialchars($_POST['commentContent']));
+            $newComment->setCreatedDate(date("Y-m-d H:i:s"));
+            $newComment->setChapterId($chapterId);
+            // $commentAdded =
+            $this->commentManager->addComment($newComment);
             if ($commentAdded === false) {
                 throw new Exception('Impossible d\'ajouter le commentaire');
             } else {
@@ -44,6 +47,7 @@ class CommentController extends Controller
      */
     public function deleteComment($commentId)
     {
+        $comment->getId($commentId);
         $this->commentManager->deleteCommentById($commentId);
         header('Location: /adminView');
     }
@@ -58,7 +62,10 @@ class CommentController extends Controller
      */
     public function reportComment($chapterId, $commentId)
     {
-        $reportedComment = $this->commentManager->addReport($commentId);
+        $newReporting = new Reporting();
+        $newReporting->setReportingDate(date("Y-m-d H:i:s"));
+        $newReporting->setCommentId($commentId);
+        $reportedComment = $this->commentManager->addReport($newReporting);
         // $this->commentManager->getTotalReports($commentId);
         if ($reportedComment = false) {
             throw new Exception('Impossible de signaler le commentaire');

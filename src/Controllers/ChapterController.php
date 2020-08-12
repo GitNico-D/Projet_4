@@ -2,12 +2,12 @@
 
 namespace App\src\Controllers;
 
-use App\src\Services\VerificationHelper;
+// use App\src\Services\VerificationHelper;
 use App\src\Core\Controller;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
 use App\src\Models\Chapter;
-use App\src\Models\Comment;
+
 use Exception;
 
 class ChapterController extends Controller
@@ -37,12 +37,11 @@ class ChapterController extends Controller
     {
         $_SESSION['error'] = '';
         $_SESSION['success'] = '';
-
         if (isset($_POST['save'])) {
             // $error = VerificationHelper::notBlank($_POST);
             var_dump($_POST['chapterAuthor']);
-            if (!empty($_POST['chapterAuthor']) AND !empty($_POST['chapterTitle']) AND !empty($_POST['chapterImg']) AND !empty($_POST['chapterContent'])) {
-            // if (!$error) {
+            if (!empty($_POST['chapterAuthor']) and !empty($_POST['chapterTitle']) and !empty($_POST['chapterImg']) and !empty($_POST['chapterContent'])) {
+                // if (!$error) {
                 $newChapter = new Chapter();
                 $newChapter->setAuthor(htmlspecialchars($_POST['chapterAuthor']));
                 $newChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
@@ -52,21 +51,17 @@ class ChapterController extends Controller
                 $newChapter->setUpdateDate($createDate);
                 $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
                 var_dump($newChapter);
-                // $insertLines = 
+                // $insertLines =
                 $this->chapterManager->addChapterInDb($newChapter);
                 // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
                 if ($insertLines === false) {
-                    
-                        throw new Exception('Impossible d\'ajouter le chapitre');
+                    throw new Exception('Impossible d\'ajouter le chapitre');
                 } else {
                     $_SESSION['success'] = 'Le nouveau chapitre à été enregistré';
                     header('Location: /adminView');
-                //     header('Location: /createChapter');
-                    // echo('Chapitre ajouté');
                 }
             } else {
                 $_SESSION['error'] = 'Veuillez remplir tous les champs';
-                    // $_SESSION['error'] = $error;
                 header('Location: /createChapter');
             }
         }
@@ -83,18 +78,16 @@ class ChapterController extends Controller
      */
     public function readChapter($chapterId, $isAdmin)
     {
-        if ($chapterId) {
-            echo $this->render(
-                'reading_chapter.html.twig',
-                ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
-                    'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
-                    'totalComments' => $this->commentManager->totalChapterComments($chapterId),
-                    'chapterNumber' => $chapterId,
-                    'isAdmin' => $isAdmin]
-            );
-        } else {
-            throw new Exception("Chapitre introuvable !");
-        }
+        echo $this->render(
+            'reading_chapter.html.twig',
+            ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
+                'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
+                'totalComments' => $this->commentManager->totalChapterComments($chapterId),
+                'reportingList' => $this->commentManager->allReporting(),
+                'totalReporting' => $this->commentManager->totalReportCount(),
+                'chapterNumber' => $chapterId,
+                'isAdmin' => $isAdmin]
+        );
     }
 
     /**
@@ -153,19 +146,19 @@ class ChapterController extends Controller
     public function updateChapterAction($chapterId)
     {
         $_SESSION['modify'] = '';
-        if (isset($_POST['saveAndPublish'])) {
-            if (!empty($_POST['chapterTitle']) and !empty($_POST['chapterImg']) and !empty($_POST['chapterImg'])) {
+        if (isset($_POST['save'])) {
+            var_dump($_POST);
+            if (!empty(htmlspecialchars($_POST['chapterTitle'])) and !empty(htmlspecialchars($_POST['chapterImg'])) and !empty(htmlspecialchars($_POST['chapterImg']))) {
                 $updatedChapter = new Chapter();
-                $updatedChapter->getId($chapterId);
-                var_dump($updatedChapter);
+                $updatedChapter->setId($chapterId);
                 $updatedChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
                 $updatedChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
                 $updatedChapter->setContent(htmlspecialchars($_POST['chapterContent']));
-                $updatedChapter->setUpdateDate(date("d-m-Y H:i:s"));
+                $updatedChapter->setUpdateDate(date("Y-m-d H:i:s"));
                 $updatedChapter->setPublished(true);
-                // $updatedLines =
-                // $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterUpdateDate, $chapterPublished, $updatedChapterImg, $chapterId);
-                $this->chapterManager->updateChapterById($updatedChapter);
+                var_dump($updatedChapter);
+                //  $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterUpdateDate, $chapterPublished, $updatedChapterImg, $chapterId);
+                $updatedLines = $this->chapterManager->updateChapterById($updatedChapter);
                 if ($updatedLines === false) {
                     throw new Exception('Impossible de modifier le chapitre');
                 } else {
@@ -175,17 +168,8 @@ class ChapterController extends Controller
             } else {
                 $_SESSION['error'] = 'Veuillez remplir tous les champs';
                 // $_SESSION['error'] = $error;
-                header('Location: /createChapter');
-            }
-        } elseif (isset($_POST['saveDraft'])) {
-            $chapterPublished = false;
-            $updateLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterUpdateDate, $chapterPublished, $updatedChapterImg, $chapterId);
-            if ($updateLines === false) {
-                throw new Exception('Impossible de modifier le chapitre');
-            } else {
-                header('Location: /readChapter/' . $chapterId);
+                header('Location: /updateChapter');
             }
         }
     }
-// }
 }
