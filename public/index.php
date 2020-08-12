@@ -1,8 +1,10 @@
 <?php
 
+session_start();
+ob_start();
+
 require '../vendor/autoload.php';
-require '../src/Core/Controller.php';
-// require '../config/db-config.yml';
+// require '../src/Core/Controller.php';
 
 use App\src\Services\RouterHelper;
 use App\src\Services\LoginsHelper;
@@ -13,16 +15,12 @@ use App\src\Controllers\CommentController;
 use App\src\Controllers\LoginsController;
 use App\src\Controllers\ErrorController;
 
-session_start();
-ob_start();
-
 $indexController = new IndexController();
 $chapterController = new ChapterController();
 $commentController = new CommentController();
 $loginsController = new LoginsController();
 $errorController = new ErrorController();
-
-        
+  
 try {
     if (array_key_exists("page", $_GET) && isset($_GET["page"]) && is_string($_GET["page"])) {
         switch ($_GET["page"]) {
@@ -84,11 +82,10 @@ try {
             break;
             default:
                 throw new Exception('Page introuvable');
-            break;
             }
     } else {
         $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-        $indexController->home($isAdmin);
+        $indexController->home($isAdmin );
     }
 } catch (Exception $error) {
     if ((int)$error->getCode() != 0) {
