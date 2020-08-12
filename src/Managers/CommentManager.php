@@ -5,6 +5,7 @@ namespace App\src\Managers;
 use App\src\Core\Manager;
 use App\src\Models\Comment;
 use App\src\Models\Reporting;
+use PDOStatement;
 
 class CommentManager extends Manager
 {
@@ -14,14 +15,12 @@ class CommentManager extends Manager
      * getCommentByChapterId
      *
      * @param mixed $chapterId
-     * @return void
+     * @return array
      */
     public function getCommentByChapterId($chapterId)
     {
-        // return $this->findBy($this->table, array('chapterId' => $chapterId), array('createdDate' => 'ASC'), 10);
         $commentList = [];
-        foreach($this->findBy($this->table, array('chapterId' => $chapterId)) as $comment)
-        {
+        foreach ($this->findBy($this->table, array('chapterId' => $chapterId)) as $comment) {
             $commentList [] = new Comment($comment);
         }
         return $commentList;
@@ -30,35 +29,31 @@ class CommentManager extends Manager
     /**
      * addComment
      *
-     * @param mixed $commentAuthor
-     * @param mixed $commentTitle
-     * @param mixed $commentContent
-     * @param mixed $chapterId
-     * @return void
+     * @param mixed $newComment
+     * @return PDOStatement
      */
-    public function addComment($commentAuthor, $commentTitle, $commentContent, $commentCreatedDate, $chapterId)
+    public function addComment(Comment $newComment)
     {
         return $this->insertInto(
             $this->table,
-            array('author' => $commentAuthor, 'title' => $commentTitle, 'content' => $commentContent, 
-                'createdDate' => $commentCreatedDate, 'updatedDate' => $commentCreatedDate,
-                'chapterId' => $chapterId)
-                );
+            array('author' => $newComment->getAuthor(), 'content' => $newComment->getContent(),
+                'createdDate' => $newComment->getCreatedDate(), 'chapterId' => $newComment->getChapterId())
+        );
     }
 
     /**
      * deleteCommentById
      *
-     * @param mixed $commentId
+     * @param Comment $comment
      * @return void
      */
-    public function deleteCommentById($commentId)
+    public function deleteCommentById(Comment $comment)
     {
         // $this->table = 'comment';
-        return $this->delete($this->table, array('id' => $commentId));
+        return $this->delete($this->table, array('id' => $comment->getId()));
     }
     
-    public function deleteChapterComments($chapterId) 
+    public function deleteChapterComments($chapterId)
     {
         // $this->table = 'comment';
         return $this->delete($this->table, array('chapterId' => $chapterId));
@@ -68,13 +63,12 @@ class CommentManager extends Manager
      * addReport
      *
      * @param mixed $commentId
-     * @return void
+     * @return PDOStatement
      */
-    public function addReport($commentId)
+    public function addReport(Reporting $newReporting)
     {
         $this->table = 'reporting';
-        $reportingDate = date("d-m-Y H:i:s");
-        return $this->insertInto($this->table, array('reportingDate' => $reportingDate, 'commentId' => $commentId));
+        return $this->insertInto($this->table, array('reportingDate' => $newReporting->getReportingDate(), 'commentId' => $newReporting->getCommentId()));
     }
     
     /**
@@ -91,11 +85,34 @@ class CommentManager extends Manager
         $result->closeCursor();
         return $totalComments['totalComments'];
     }
-    
+
+    public function allReporting()
+    {
+        $this->table = 'reporting';
+        $reportingList = [];
+        foreach($this->findAll($this->table) as $reporting) {
+            $reportingList [] = new Reporting($reporting);
+        }
+        return $reportingList;
+    }
+
+    public function totalReportCount()
+    {
+        $sqlRequest = 'SELECT COUNT(*) as totalReport, commentId FROM `reporting` GROUP BY commentId';
+        $result = $this->createQuery($sqlRequest);
+        $totalReporting = [];
+        foreach($result as $data){
+            $totalReporting [] = $data;
+        }
+        $result->closeCursor();
+        var_dump($totalReporting);
+        return $totalReporting;
+    }
+
     /**
      * getAllReportedComments
      *
-     * @return void
+     * @return array
      */
     public function getAllReportedComments()
     {
