@@ -10,7 +10,7 @@ class Reporting extends Model
     private $reportingDate;
     private $commentId;
 
-    public function __construct(array $data)
+    public function __construct($data = [])
     {
         $this->hydrate($data);
     }
