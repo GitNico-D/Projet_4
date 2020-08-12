@@ -3,20 +3,10 @@
 namespace App\src\Core;
 
 use App\src\Models\DAO;
-use App\src\Models\Chapter;
 use PDOStatement;
 
 class Manager extends DAO
 {
-    /**
-     * @var Chapter
-     */
-    // private $newChapter;
-
-    // public function __construct()
-    // {
-    //     $this->newChapter = new Chapter;
-    // }
     /**
      * findOneBy
      *
@@ -26,19 +16,14 @@ class Manager extends DAO
      */
     public function findOneBy($table, $where)
     {
-        var_dump($table);
         $sqlRequest = "SELECT * FROM " . $table . " WHERE ";
         foreach ($where as $whereKey => $whereValue) {
             $sqlRequest .= $whereKey . " = :" . $whereKey;
         }
         $result = $this->createQuery($sqlRequest, $where);
         $requestResult = $result->fetch();
-        // $entity = 'App\src\Models\\' . ucfirst($table);
-        // var_dump($requestResult);
         $result->closeCursor();
-        // return new $entity($requestResult);
         return $requestResult;
-
     }
    
     /**
@@ -59,15 +44,12 @@ class Manager extends DAO
             $whereClause [] = $whereKey . ' = :' . $whereKey;
         }
         $sqlRequest .= ' WHERE ' . implode(' AND ', $whereClause);
-        // if ($orderBy) {
-        //     foreach ($orderBy as $orderByKey => $orderByValue) {
-        //         $sqlRequest .= $orderByKey . ' ' . $orderByValue;
-        //     }
-        //     $sqlRequest .= ' ORDER BY ' . implode($orderByArray);
-        // }
-        // if ($limit) {
-        //     $sqlRequest .= 'LIMIT ' . $limit;
-        // }
+        if ($orderBy) {
+                $sqlRequest .= $orderByKey . ' ' . $orderByValue;
+        }
+        if ($limit) {
+            $sqlRequest .= 'LIMIT ' . $limit;
+        }
         // var_dump($sqlRequest);
         $result = $this->createQuery($sqlRequest, $where);
         $dataList = [];
@@ -79,7 +61,7 @@ class Manager extends DAO
         //     $dataList [] = new $entity($data);
         // }
         // $result->closeCursor();
-        foreach ($result as $data) {
+        while ($data = $result->fetch()) {
             $dataList [] = $data;
         }
         $result->closeCursor();
@@ -97,35 +79,31 @@ class Manager extends DAO
         $sqlRequest = "SELECT * FROM " . $table ;
         $result = $this->createQuery($sqlRequest);
         $dataList = [];
-        $entity = 'App\src\Models\\' . ucfirst($table);
+        // $entity = 'App\src\Models\\' . ucfirst($table);
         foreach ($result as $data) {
             $dataList [] = $data;
         }
         $result->closeCursor();
-        // var_dump($dataList);
         return $dataList;
     }
-    
+
     /**
      * insertInto
      *
      * @param mixed $table
-     * @param mixed $parameters
+     * @param $entity
      * @return PDOStatement
-    */
-    public function insertInto($table, $entity)
+     */
+    public function insertInto($table, $parameters)
     {
         $sqlRequest = 'INSERT INTO ' . $table;
         var_dump($entity);
         $arrayField = [];
         $arrayFieldValue = [];
-        foreach ($entity as $entityKey => $entityValue) {
-            $arrayField [] = $entityKey;
-            $arrayFieldValue [] = " :" . $entityKey;
-            $parameters [$entityKey ] = $entityValue;
+        foreach ($parameters as $parametersKey => $parametersValue) {
+            $arrayField [] = $parametersKey;
+            $arrayFieldValue [] = " :" . $parametersKey;
         }
-        var_dump($arrayField);
-        var_dump($parameters);
         $sqlRequest .= " (" . implode(", ", $arrayField) . ") VALUES (" . implode(", ", $arrayFieldValue) . ")";
         return $this->createQuery($sqlRequest, $parameters);
     }
@@ -142,6 +120,7 @@ class Manager extends DAO
     {
         $sqlRequest = "UPDATE " . $table . " SET ";
         $arrayValue = [];
+        var_dump($parameters);
         foreach ($parameters as $parametersKey => $parametersValue) {
             $arrayValue [] = $parametersKey . "= :" . $parametersKey;
         }
@@ -159,7 +138,7 @@ class Manager extends DAO
      * delete
      *
      * @param mixed $table
-     * @param mixed $where
+     * @param $entity
      * @return void
      */
     public function delete($table, $entity)
