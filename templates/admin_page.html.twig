@@ -22,12 +22,14 @@
             </ul>
         </nav>
         <div class="main col-md-10">
-            {% if session.success is not null %}
-            <div class="display-4 text-center bg-success rounded my-4">{{ session.success }}</div>
+            {{ dump(session) }}
+            {% if session.addSuccessMsg is not null %}
+                <div class="sessionFont text-white text-center bg-success rounded">{{ session.addSuccessMsg }}</div>
             {% endif %}
-            {% if session.danger is not null %}
-            <div class="display-4 text-center bg-danger rounded my-4">{{ session.danger }}</div>
+            {% if session.deleteMsg is not null %}
+                <div class="sessionFont text-white text-center bg-danger rounded">{{ session.deleteMsg }}</div>
             {% endif %}
+            
             <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
                 <p class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </p>
                 <div class="text-center">
@@ -61,16 +63,16 @@
                     </table>
                 </div>
             </section>
-            {% for commentReported in reportedCommentList %}
+            {# {% for commentReported in reportedCommentList %}
                 {% for reporting in reportingList %}
                     {% if reporting.commentId == commentReported.id %}
                     <p>{{ reporting.commentId }} , {{ commentReported.id }}</p>
                         <p>Des commentaire sur le chapitre {{ commentReported.chapterId }} nécessite de la modération</div>
                     {% endif %}
                 {% endfor %}
-            {% endfor %}
-            {{ dump(reportedCommentList) }}  
-            {{ dump(reportingList) }}          
+            {% endfor %} #}
+            {# {{ dump(reportedCommentList) }}  
+            {{ dump(reportingList) }}           #}
             <hr class="adminpageSeparator">
             <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
@@ -99,8 +101,8 @@
                                 <p>{{ chapter.content | raw | slice(0, 500) }}...</p>
                             </div>
                             <div class="text-center">
-                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn yellowbtn ">Visionner</a>
-                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn greenbtn ">Modifier</a>                  
+                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn yellowbtn">Visionner</a>
+                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn greenbtn">Modifier</a>                  
                             </div>
                         </div>
                     </div>
@@ -131,9 +133,7 @@
                                     {{ chapter.content | raw | slice(0, 350)  }}...</p>
                                 </div>
                                 <div class="text-center">
-                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn yellowbtn ">
-                                        Modifier
-                                    </a>
+                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn yellowbtn ">Modifier</a>
                                     <a href="/publishChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn greenbtn ">Publier</a>               
                                 </div>
                             </div>
@@ -159,8 +159,8 @@
                         </p>
                         <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ comment.content }}</p>
                         <div class="text-center">
-                            <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn greenbtn">Valider</a>
-                            <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn commentModerationCard-btn redbtn">Supprimer</a>
+                            <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn btn-sm commentModerationCard-btn greenbtn">Valider</a>
+                            <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn btn-sm commentModerationCard-btn redbtn">Supprimer</a>
                         </div>
                     </div>
                 {% endfor %}    

@@ -13,9 +13,9 @@
 
 {% block main %} 
     <div class="container">
-        {% if session.error is not null %}
-            <div class="display-4 text-center bg-warning rounded mt-4">{{ session.error }}</div>
-            {% endif %}
+        {% if session.addErrorMsg is not null %}
+            <div class="sessionFont text-white text-center bg-warning rounded">{{ session.addErrorMsg }}</div>
+        {% endif %}
         <form action="/createChapter" method="post">
             <div class="form-group writingForm mt-5">
                 <label for="chapterAuthor" class="text-left font-weight-bold font-italic writingForm-labelAuthor">Auteur</label>
@@ -28,7 +28,6 @@
                     <textarea class="form-control writingForm-contentTextarea" id="chapterContent" name="chapterContent"></textarea>
                 <div class="text-center">
                     <input type="submit" name="save" class="btn greenbtn my-2" value="Enregistrer"/>
-                    {# <button type="submit" name="saveDraft" class="btn yellowbtn my-2">Enregistrer en brouillon</button> #}
                 </div>
             </div>
         </form>
