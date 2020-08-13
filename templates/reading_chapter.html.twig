@@ -3,6 +3,9 @@
 {% block pageTitle %} Chapitre {{ uniqueChapter.id }} | {{ parent() }} {% endblock pageTitle %}
 
 {% block mainHeader %}
+{% if session.modifySuccessMsg is not null %}
+    <div class="sessionFont text-white text-center bg-success rounded">{{ session.modifySuccessMsg }}</div>
+{% endif %}
 <div class="page-title text-center mb-4 p-4">
     <div class="container page-title-container">
             {% if uniqueChapter.imgUrl is not null %}
@@ -57,14 +60,7 @@
             <div class="my-4">
                 <p class="text-left card-header p-0 bg-white">
                     <span class="font-italic bold">{{ comment.author }}</span>
-                    posté le <span class="font-italic">{{ comment.createdDate | date("d/m/Y \à H:i:s") }}</span> 
-                    {% for totalReport in totalReporting %}
-                        {% if totalReport.commentId == comment.id %}
-                        <p class="float-right font-weight-bold text-danger p-3 bg-light">
-                            Commentaire signalé, en attente de modération
-                        </p>
-                        {% endif %} 
-                    {% endfor %}
+                    posté le <span class="font-italic">{{ comment.createdDate | date("d/m/Y \à H:i:s") }}</span>
                 </p>
                 <p class="card-body text-left m-0 pt-2 pl-4">
                     {{ comment.content }}
@@ -73,11 +69,19 @@
                     <a href="/reportComment/{{ uniqueChapter.id }}/{{ comment.id }}"
                     class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon ml-3"></i>
                     {% for totalReport in totalReporting %}
-                        {% if totalReport.commentId == comment.id %} 
-                            {{ totalReport.totalReport }} </a>
+                        {% if totalReport.commentId == comment.id %}{{ totalReport.totalReport }}
                         {% endif %}
-                {% endfor %}    
+                     </a>
+                {% endfor %}
             </div>
+                {% for totalReport in totalReporting %}
+                    {% if totalReport.commentId == comment.id %}
+                    <p class="font-weight-bold text-warning p-3 mt-3 bg-light reporttag">
+                        Commentaire signalé, en attente de modération
+                    </p>
+                    {% endif %} 
+                {% endfor %}    
+            
         </div>
     </div>
     {% else %}
@@ -87,6 +91,9 @@
 <hr class="commentSeparator">
 <section class="container">
     <div class=" my-4">
+    {% if session.commentSuccess is not null %}
+        <div class="sessionFont text-white text-center bg-success rounded">{{ session.commentSuccess }}</div>
+    {% endif %}
     <h4 class="p-3">Laisser un commentaire</h4>
         <form action="/createComment/{{ uniqueChapter.id }}" method="post" class="leaveComment-form">
             <div class="form-group">
