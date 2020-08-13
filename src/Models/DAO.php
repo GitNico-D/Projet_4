@@ -33,7 +33,7 @@ abstract class DAO
     public function createQuery($sql, $parameters = null)
     {
         if ($parameters) {
-            var_dump($parameters);
+            // var_dump($parameters);
             $request = $this->getDb()->prepare($sql);
             $request->execute($parameters);
             return $request;
