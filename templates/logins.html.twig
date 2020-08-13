@@ -5,13 +5,16 @@
 {% block main %}
     <div class="formflex d-flex align-items-center justify-content-center">
         <div class="form-signin text-center w-100">
+            {% if session.fail is not null %}
+            <div class="text-white text-center bg-danger rounded py-2">{{ session.fail }}</div>
+            {% endif %}
             <form action="/getLogin" method="post" class="card p-4 my-3 ">
                 <img src="img/logo-jf.png" class="form-signin-img pb-4 m-auto">
                 <h3 class="font-weight-normal">Connectez-vous</h3>
                 <label for="loginsEmail" class="sr-only"></label>
-                    <input type="email" class="form-control p-2 mb-2" id="loginsEmail" name="loginsEmail" placeholder="Adresse email">
+                    <input type="email" class="form-control p-2 mb-2" id="loginsEmail" name="loginsEmail" placeholder="Adresse email" required>
                 <label for="loginsPassword" class="sr-only mb-4"></label>
-                    <input type="password" class="form-control p-2" id="loginsPassword" name="loginsPassword" placeholder="Mot de passe">
+                    <input type="password" class="form-control p-2" id="loginsPassword" name="loginsPassword" placeholder="Mot de passe" required>
                 <button type="submit" class="btn yellowbtn btn-block mt-3">Se connecter</button>
                 <p class="text-muted mt-5">© 2020</p>
             </form>
