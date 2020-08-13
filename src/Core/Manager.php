@@ -4,16 +4,40 @@ namespace App\src\Core;
 
 use App\src\Models\DAO;
 use PDOStatement;
+use Exception;
 
 class Manager extends DAO
+// class Manager 
 {
+    // public function __construct()
+    // {
+    //     PDOFactory::getMysqlConnection();
+    // }
+
+    public function requestValidation($table, $requestResult) 
+    {
+        if($requestResult === false) {
+            switch ($this->table) {
+                case 'chapter':
+                    throw new Exception ('Ce chapitre n\'existe pas');
+                break;
+                case 'comment':
+                    throw new Exception ('Ce commentaire n\'existe pas');
+                break;
+                case 'logins':
+                    throw new Exception ('Email ou mot de passe invalide');
+                break;
+            }
+        }
+    }
+
     /**
      * findOneBy
      *
      * @param string $table
      * @param array $where
      * @return Chapter
-     */
+      */
     public function findOneBy($table, $where)
     {
         $sqlRequest = "SELECT * FROM " . $table . " WHERE ";
@@ -23,8 +47,16 @@ class Manager extends DAO
         $result = $this->createQuery($sqlRequest, $where);
         $requestResult = $result->fetch();
         $result->closeCursor();
+        $this->requestValidation($table, $requestResult);
         return $requestResult;
     }
+
+    // public function findOneBy($table, $where)
+    // {
+        // $this->findBy($table, $where, null, $limit = 1);
+        // $this->requestValidation($table, $requestResult);
+        // return $requestResult;
+    // }
    
     /**
      * findBy
@@ -79,7 +111,6 @@ class Manager extends DAO
         $sqlRequest = "SELECT * FROM " . $table ;
         $result = $this->createQuery($sqlRequest);
         $dataList = [];
-        // $entity = 'App\src\Models\\' . ucfirst($table);
         foreach ($result as $data) {
             $dataList [] = $data;
         }
@@ -141,12 +172,13 @@ class Manager extends DAO
      * @param $entity
      * @return void
      */
-    public function delete($table, $entity)
+    public function delete($table, $parameters)
     {
         $sqlRequest = "DELETE FROM " . $table;
-        foreach ($entity as $entityKey => $entityValue) {
-            $sqlRequest .= " WHERE " . $entityKey . "= :" . $entityKey;
+        foreach ($parameters as $parametersKey => $parametersValue) {
+            $sqlRequest .= " WHERE " . $parametersKey . "= :" . $parametersKey;
         }
-        $this->createQuery($sqlRequest, $entity);
+        var_dump($sqlRequest);
+        $this->createQuery($sqlRequest, $parameters);
     }
 }
