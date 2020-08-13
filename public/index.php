@@ -68,6 +68,10 @@ try {
                 $commentId = RouterHelper::getCommentId($_GET);
                 $commentController->deleteComment($commentId);
             break;
+            case 'validateComment':
+                $commentId = RouterHelper::getCommentId($_GET);
+                $commentController->validateComment($commentId);
+            break;
             case "reportComment":
                 $commentId = RouterHelper::getCommentId($_GET);
                 $chapterId = RouterHelper::getChapterId($_GET);
