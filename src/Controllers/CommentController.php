@@ -17,24 +17,21 @@ class CommentController extends Controller
     {
         parent::__construct();
         $this->commentManager = new CommentManager();
+        unset($_SESSION['commentSuccess']);
     }
 
     public function createComment($chapterId)
     {
+        unset($_SESSION['commentSuccess']);
         if (!empty($_POST['commentAuthor']) and !empty($_POST['commentContent'])) {
             $newComment = new Comment();
             $newComment->setAuthor(htmlspecialchars($_POST['commentAuthor']));
             $newComment->setContent(htmlspecialchars($_POST['commentContent']));
             $newComment->setCreatedDate(date("Y-m-d H:i:s"));
             $newComment->setChapterId($chapterId);
-            // $commentAdded =
             $this->commentManager->addComment($newComment);
-            if ($commentAdded === false) {
-                throw new Exception('Impossible d\'ajouter le commentaire');
-            } else {
-                $alertMessage = 'Votre commentaire à été ajouté !';
-                header('Location: /readChapter/' . $chapterId);
-            }
+            $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
+            header('Location: /readChapter/' . $chapterId);
         }
         header('Location: /readChapter/' . $chapterId);
     }
@@ -47,9 +44,8 @@ class CommentController extends Controller
      */
     public function deleteComment($commentId)
     {
-        $comment->getId($commentId);
         $this->commentManager->deleteCommentById($commentId);
-        header('Location: /adminView');
+        header('Location: /adminView#commentModeration');
     }
 
     /**
@@ -66,11 +62,16 @@ class CommentController extends Controller
         $newReporting->setReportingDate(date("Y-m-d H:i:s"));
         $newReporting->setCommentId($commentId);
         $reportedComment = $this->commentManager->addReport($newReporting);
-        // $this->commentManager->getTotalReports($commentId);
         if ($reportedComment = false) {
             throw new Exception('Impossible de signaler le commentaire');
         } else {
             header('Location: /readChapter/' . $chapterId);
         }
+    }
+
+    public function validateComment($commentId)
+    {
+        $this->commentManager->removeReportFromComment($commentId);
+        header('Location: /adminView#commentModeration');
     }
 }
