@@ -6,6 +6,7 @@ use App\src\Core\Controller;
 use App\src\Managers\LoginsManager;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
+use App\src\Models\Logins;
 use Exception;
 
 class LoginsController extends Controller
@@ -20,6 +21,7 @@ class LoginsController extends Controller
         $this->loginsManager = new LoginsManager();
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
+        unset($_SESSION['fail']);
     }
 
     /**
@@ -29,14 +31,14 @@ class LoginsController extends Controller
      */
     public function getLogin()
     {
-        if (!empty($_POST['loginsEmail']) && !empty($_POST['loginsPassword'])) {
-            $loginsEmail = htmlspecialchars($_POST['loginsEmail']);
-            $passwordVerification = $this->loginsManager->loginsVerification($loginsEmail);
-            $logins = password_verify($_POST['loginsPassword'], $passwordVerification->getPassword());
+        unset($_SESSION['fail']);
+        if (!empty($_POST['loginsEmail']) AND !empty($_POST['loginsPassword'])) {
+            $loginsAdmin = $this->loginsManager->loginsVerification(htmlspecialchars($_POST['loginsEmail']));
+            $logins = password_verify($_POST['loginsPassword'], $loginsAdmin->getPassword());
             if ($logins) {
-                $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
-                $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
-                $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
+                $_SESSION['loginsUsername'] = $loginsAdmin->getUsername();
+                $_SESSION['loginsEmail'] = $loginsAdmin->getEmail();
+                $_SESSION['loginsStatus'] = $loginsAdmin->getStatus();
                 $isAdmin = true;
                 echo $this->render(
                     'admin_page.html.twig',
@@ -46,17 +48,11 @@ class LoginsController extends Controller
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
                     'reportingList' => $this->commentManager->allReporting(),
                     'totalReporting' => $this->commentManager->totalReportCount(),
-                    // 'totalReportedComments' => $this->commentManager->distinctReportedCommentsCount(),
                     'isAdmin' => $isAdmin,
-                    'session' => $_SESSION]
-                );
-            } else {
-                // echo('Email ou mot de passe invalide');
-                // header('Location : /index');
-                echo $this->render('logins.html.twig');
-            }
+                    'session' => $_SESSION]);
+            } 
         } else {
-            // echo 'Veuillez remplir les champs !';
+            $_SESSION['fail'] = 'Veuillez remplir les champs !';
             echo $this->render('logins.html.twig');
         }
     }
