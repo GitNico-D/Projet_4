@@ -2,6 +2,12 @@
 
 ///// COMMUN CSS ////
 
+.footer{
+    .row{
+        padding: 0;
+        margin: 0;
+    }
+}
 .bold {
     font-weight: bold;
 }
@@ -24,6 +30,13 @@ hr {
     border-color: $yellow;
 }
 
+.sessionFont{
+    font-size: 1.4rem;
+    width: 50%;
+    margin: auto;
+    margin-top: 3rem;
+}
+
 .navbar {
     .nav-link {
         color: black;
@@ -32,11 +45,9 @@ hr {
             color: $yellow;
         }
     }
-
     &-background {
         background-color: white;
     }
-
     &-toggler {
         background-color: $yellow;
         border: 1xp solid black;
@@ -44,7 +55,6 @@ hr {
             color: white;
         }
     }
-
     &-collapse {
         padding: 0 0 0 2rem;
         .show {
@@ -71,11 +81,9 @@ hr {
         font-size: 3rem;
         color: white;
     }
-
     span {
         color: $yellow;
     }
-
     a {
         color: $yellow;
     }
@@ -94,10 +102,11 @@ hr {
 //// FOOTER ////
 
 .social{
-    .link{
+    &-link{
         text-decoration: none;
+        color: $yellow;
         &:hover{
-            color: $yellow;
+            color: white;
         }
     }
 }
@@ -106,22 +115,20 @@ hr {
 
 .redbtn{
     background-color: $red;
+    border: 1px solid $red;
+    text-decoration: none;
+    color: white;
+    &:hover {
+        color: $red;
+        background-color: white;
         border: 1px solid $red;
-        text-decoration: none;
-        padding: .5rem 1rem;
-        color: white;
-        &:hover {
-            color: $red;
-            background-color: white;
-            border: 1px solid $red;
-        }
+    }
 }
 
 .yellowbtn{
     background-color: $yellow;
     border: 1px solid $yellow;
     text-decoration: none;
-    padding: .5rem 1rem;
     color: white;
     &:hover {
         color: $yellow;
@@ -134,7 +141,6 @@ hr {
     background-color: $green;
     border: 1px solid $green;
     text-decoration: none;
-    padding: .5rem 1rem;
     color: white;
     &:hover {
         color: $green;
@@ -150,7 +156,6 @@ hr {
     &-labelimg {
         text-align: left;
         font-size: 1.4rem;
-        // font-weight: bold;
         font-style: italic;
         border-bottom: 1px dashed #495057;
     }
@@ -218,7 +223,6 @@ hr {
             text-decoration: none;
         }
     }
-
     &-icon {
         color: $red;
         &:hover {
@@ -238,18 +242,15 @@ hr {
             text-decoration: none;
         }
     }
-
     &-labelAuthor,
     &-labelTitle,
     &-labelImg {
         font-size: 1.4rem;
         border-bottom: 1px dashed #495057;
     }
-
     &-labelContent {
         font-size: 1.3rem;
     }
-
     &-authorInput {
         font-size: 1.1rem;
         &:focus {
@@ -257,7 +258,6 @@ hr {
             box-shadow: unset;
         }
     }
-
     &-titleInput,
     &-imgInput {
         border: none;
@@ -273,13 +273,11 @@ hr {
 
 .formflex {
     padding-top: 5rem;
-
     .form-signin {
         max-width: 320px;
         h3 {
             margin-bottom: 2rem;
         }
-
         button {
             &:active {
                 color: $yellow;
@@ -288,7 +286,6 @@ hr {
                 text-decoration: none;
             }
         }
-
         &-img {
             width: initial !important;
         }
@@ -301,7 +298,6 @@ hr {
         }
     }
 }
-
 
 //// HOME PAGE ////
 
@@ -475,10 +471,9 @@ hr {
             padding-left: 1.5rem;
         }
         &::after {
-            content: "\f044";
+            content: "\f00c";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            font-size: 1.25rem;
             color: $green;
             padding-left: 1rem;
         }
@@ -493,7 +488,6 @@ hr {
             content: "\f5da";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            font-size: 1.25rem;
             color: $yellow;
             padding-left: 1rem;
         }
@@ -506,7 +500,7 @@ hr {
             padding-left: 1.75rem;
         }
         &::after {
-            content: "\f058";
+            content: "\f00c";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
             color: $green;
@@ -523,7 +517,6 @@ hr {
             content: "\f057";
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            font-size: 1.25rem;
             color: $red;
             padding-left: 1rem;
         }
@@ -575,9 +568,6 @@ hr {
         }
     }
 }
-
-//// ERROR PAGE ////
-
 
 //// MEDIA QUERRIES ////
 
@@ -645,12 +635,11 @@ hr {
         .lead {
             font-size: 1rem;
         }
-
     }
 
     .chapterimg {
         width: 100%;
-        max-width: 70%;
+        max-width: 90%;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
     }
 
@@ -672,11 +661,12 @@ hr {
     .pendingChapterAdmin,
     .commentModerationAdmin {
         &-title {
-            font-size: 1rem;
+            font-size: 1.5rem;
         }
     }
 
     .writingChapter {
+        width: 100%;
         &-title {
             font-size: 1.2rem;
         }
@@ -691,14 +681,19 @@ hr {
         margin-top: 0.5rem;
     }
 
+    .commentModerationCard {
+        padding: 0 4rem 0 4rem!important;
+    }
+
     .publishChapterCard,
     .unpublishChapterCard,
     .commentModerationCard {
         margin-top: 1rem;
-        padding: 0 4rem 0 4rem;
+        padding: 0;
         border: none;
-        &-header {
-            text-align: center;
+        .card-header {
+            text-align: center!important;
+            font-size: 0.9rem;
         }
         &-date {
             text-align: center;
@@ -724,6 +719,9 @@ hr {
         &-btn {
             margin-top: 0.3rem;
         }
+        .collapse {
+            text-align: justify;
+        }
     }
 
     .sidebar {
@@ -735,6 +733,9 @@ hr {
             font-size: 0.7rem;
             text-align: center;
             padding: 0.65rem!important;
+        }
+        th {
+            padding: .55rem;
         }
     }
 
@@ -749,9 +750,13 @@ hr {
 
         }
     }
+
+    .reporttag {
+        margin: auto;
+    }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 576px) {
     .main-header {
         &-text {
             font-size: 2rem;
@@ -861,10 +866,12 @@ hr {
     }
 
     .table {
+        width: 90%;
+        margin: auto;
         td {
-            font-size: 1rem;
+            font-size: 1.2rem;
             text-align: unset;
-            padding: 1rem;
+            padding: 1rem!important;
         }
     }
 
@@ -875,7 +882,7 @@ hr {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 
     .main-header {
         &-text {
@@ -884,6 +891,9 @@ hr {
 
         &-h1 {
             font-size: 2.5rem;
+        }
+        .chapterimg {
+            max-width: 70%;
         }
     }
 
@@ -908,6 +918,11 @@ hr {
         }
     }
 
+    .navbar {
+        .nav-link {
+            margin-left: 3rem;
+        }
+    }
     
     .adminHeader {
         &-container {
@@ -937,13 +952,12 @@ hr {
         }
     }
 
-    .commentModerationCard {
-
-        &-deletebtn,
-        &-validatebtn {
-            text-decoration: none;
-            padding: unset;
-            margin: auto;
+    .commentModerationAdmin {
+        &-title {
+            font-size: 2rem;
+        }
+        .card-header{
+            text-align: left!important;
         }
     }
 
@@ -958,9 +972,8 @@ hr {
             font-size: 0.8rem;
         }
         &-title {
-            display: unset;
-            font-weight: unset;
             font-size: 1.3rem;
+            text-align: left;
             &::before {
                 font-size: 0.8rem;
                 padding-right: 0.5rem;
@@ -982,7 +995,7 @@ hr {
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
     .main-header {
         &-margintop {
             margin-top: 0.5rem;
@@ -1022,12 +1035,6 @@ hr {
         }
     }
 
-    .table {
-        td {
-            font-size: 1.2rem;
-            padding: 1rem;
-        }
-    }
     .publishChapterCard,
     .unpublishChapterCard {
 
@@ -1042,7 +1049,6 @@ hr {
         }
 
         &-title {
-            display: unset;
             font-weight: unset;
             font-size: 1.3rem;
             &::before {
