@@ -3,10 +3,15 @@
 namespace App\src\Managers;
 
 use App\src\Models\DAO;
+use App\src\Core\Manager;
 use App\src\Models\Logins;
 
-class LoginsManager extends DAO
+use Exception;
+
+class LoginsManager extends Manager
 {
+
+    public $table = 'logins';
     /**
      * loginsVerification
      *
@@ -15,12 +20,7 @@ class LoginsManager extends DAO
      */
     public function loginsVerification($loginsEmail)
     {
-        $sqlRequest = 'SELECT * FROM logins WHERE email = ?';
-        $result = $this->createQuery($sqlRequest, [$loginsEmail]);
-        $loginsPassword = $result->fetch();
-        $loginsObject = new Logins($loginsPassword);
-        $result->closeCursor();
-        return $loginsObject;
+        return new Logins($this->findOneBy($this->table, array('email' => $loginsEmail)));
     }
 
     // public function passwordHash()

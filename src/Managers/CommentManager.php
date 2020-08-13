@@ -47,10 +47,10 @@ class CommentManager extends Manager
      * @param Comment $comment
      * @return void
      */
-    public function deleteCommentById(Comment $comment)
+    public function deleteCommentById($commentId)
     {
         // $this->table = 'comment';
-        return $this->delete($this->table, array('id' => $comment->getId()));
+        return $this->delete($this->table, array('id' => $commentId));
     }
     
     public function deleteChapterComments($chapterId)
@@ -105,7 +105,6 @@ class CommentManager extends Manager
             $totalReporting [] = $data;
         }
         $result->closeCursor();
-        var_dump($totalReporting);
         return $totalReporting;
     }
 
@@ -126,15 +125,22 @@ class CommentManager extends Manager
         return $reportedCommentList;
     }
 
-    public function distinctReportedCommentsCount()
+    public function removeReportFromComment($commentId) 
     {
-        $sqlRequest = 'SELECT COUNT(*) AS totalreportedComment FROM comment INNER JOIN reporting ON comment.id = reporting.commentId GROUP BY reporting.commentId';
-        $result = $this->createQuery($sqlRequest);
-        $totalReportedComment = [];
-        foreach ($result as $total) {
-            $totalReportedComment [] = $total;
-        }
-        $result->closeCursor();
-        return $totalReportedComment;
+        $this->table = 'reporting';
+        var_dump($commentId);
+        return $this->delete($this->table, array('commentId' => $commentId));
     }
+
+    // public function distinctReportedCommentsCount()
+    // {
+    //     $sqlRequest = 'SELECT COUNT(*) AS totalreportedComment FROM comment INNER JOIN reporting ON comment.id = reporting.commentId GROUP BY reporting.commentId';
+    //     $result = $this->createQuery($sqlRequest);
+    //     $totalReportedComment = [];
+    //     foreach ($result as $total) {
+    //         $totalReportedComment [] = $total;
+    //     }
+    //     $result->closeCursor();
+    //     return $totalReportedComment;
+    // }
 }
