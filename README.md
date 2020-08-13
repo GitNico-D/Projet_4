@@ -1,22 +1,49 @@
-~ PROJET_4 ~
- 
-Requirements :
-  Composer, Twig, npm, Sass
-	 
-Installation Twig:
-  composer require "twig/twig:^3.0"
- 
-Installation sass:
-  npm install sass -g
-Compilation sass:
-  npm run sass
+# Projet 4
 
-Changement d'accés à la BDD :
-  =>  Dans le fichier db_config.yml situé dans le dossier config,
-      modifier les valeurs correspondant à votre base de données.
+Création d'un blog en php à l'aide d'une architecture MVC.
 
-Le fichier db.sql situé à la racine vous permettra d'importer la base de données.
+### Prérequis
 
-Login Administrateur : 
-  Username : admin@admin.com
-  Password : AdminPassword
+Composer, npm, Sass
+
+### Installation
+
+Composer
+
+```
+composer -install
+```
+
+Npm 
+
+```
+npm install
+```
+
+Sass
+
+```
+npm install -sass -g
+```
+
+Compilation Sass
+
+```
+npm run sass
+```
+
+## Base de données
+
+Modifier les données du fichier db-config.yml.example situé dans le dossier config avec vos données de bdd. 
+
+Un fichier db.sql vous permettra d'importer ma base de donnée pour plus de simplificité.
+
+Login Administrateur
+
+```
+User : admin@admin.com
+```
+```
+Password : AdminPassword
+```
+
