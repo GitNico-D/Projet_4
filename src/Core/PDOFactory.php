@@ -11,21 +11,16 @@ class PDOFactory
     public static function getMysqlConnection()
     {
         $dbConfig = yaml_parse_file('../config/db-config.yml');
-        if ($db === null) {
-            try {
-                $dbConfig = yaml_parse_file('../config/db-config.yml');
-                $db = new \PDO(
-                    'mysql:host=' . $dbConfig['DATABASE_HOST'] .';port=' . $dbConfig['DATABASE_PORT'] .
-                                    ';dbname=' . $dbConfig['DATABASE_NAME'] .';charset=' . $dbConfig['DATABASE_CHARSET'],
-                    $dbConfig['DATABASE_USERNAME'],
-                    $dbConfig['DATABASE_PASSWORD']
-                );
-                return $db;
-            } catch (Exception $errorConnexion) {
-                die('Erreur de connection : ' . $errorConnexion->getMessage());
-            }
-        } else {
+        try {
+            $db = new \PDO(
+                'mysql:host=' . $dbConfig['DATABASE_HOST'] .';port=' . $dbConfig['DATABASE_PORT'] .
+                                ';dbname=' . $dbConfig['DATABASE_NAME'] .';charset=' . $dbConfig['DATABASE_CHARSET'],
+                $dbConfig['DATABASE_USERNAME'],
+                $dbConfig['DATABASE_PASSWORD']
+            );
             return $db;
+        } catch (Exception $errorConnexion) {
+            die('Erreur de connection : ' . $errorConnexion->getMessage());
         }
     }
 
