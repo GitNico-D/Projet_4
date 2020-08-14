@@ -4,7 +4,7 @@ namespace App\src\Core;
 
 class Model
 {
-    protected function hydrate(array $data)
+    protected function hydrate($data)
     {
         foreach ($data as $key => $attribute) {
             $method = 'set' . ucfirst($key);

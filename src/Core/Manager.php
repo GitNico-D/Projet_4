@@ -5,6 +5,7 @@ namespace App\src\Core;
 use App\src\Models\DAO;
 use PDOStatement;
 use Exception;
+use ReflectionClass;
 
 class Manager extends DAO
 // class Manager 
@@ -14,7 +15,14 @@ class Manager extends DAO
     //     PDOFactory::getMysqlConnection();
     // }
 
-    public function requestValidation($table, $requestResult) 
+    private $entity;
+
+    public function __construct()
+    {
+        $this->entity = "App\src\Models\\".lcfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
+    }
+
+    public function requestValidation($table, $requestResult)
     {
         if($requestResult === false) {
             switch ($this->table) {
@@ -82,17 +90,14 @@ class Manager extends DAO
         if ($limit) {
             $sqlRequest .= 'LIMIT ' . $limit;
         }
-        // var_dump($sqlRequest);
         $result = $this->createQuery($sqlRequest, $where);
         $dataList = [];
-        // $entity = 'App\src\Models\\' . ucfirst($table);
-        // $entity = ucfirst($table);
-        // $entity = $entity::class;
-        // var_dump(file_exists("..\src\Models\\" . $entity . ".php"));
-        // foreach ($result as $data) {
-        //     $dataList [] = new $entity($data);
-        // }
-        // $result->closeCursor();
+
+         foreach ($result as $data) {
+             $dataList [] = new $this->entity($data);
+         }
+
+         $result->closeCursor();
         while ($data = $result->fetch()) {
             $dataList [] = $data;
         }
