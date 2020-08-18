@@ -6,11 +6,11 @@ use App\src\Core\Model;
 
 class Comment extends Model
 {
-    private $id;
-    private $author;
-    private $content;
-    private $createdDate;
-    private $chapterId;
+    protected $id;
+    protected $author;
+    protected $content;
+    protected $createdDate;
+    protected $chapterId;
 
     public function __construct($data = [])
     {

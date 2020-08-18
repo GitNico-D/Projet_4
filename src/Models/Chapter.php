@@ -6,14 +6,14 @@ use App\src\Core\Model;
 
 class Chapter extends Model
 {
-    private $id;
-    private $author;
-    private $title;
-    private $content;
-    private $createDate;
-    private $updateDate;
-    private $published;
-    private $imgUrl;
+    protected $id;
+    protected $author;
+    protected $title;
+    protected $content;
+    protected $createDate;
+    protected $updateDate;
+    protected $published;
+    protected $imgUrl;
 
     public function __construct($attributes = [])
     {

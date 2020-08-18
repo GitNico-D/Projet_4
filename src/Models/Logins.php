@@ -6,11 +6,11 @@ use App\src\Core\Model;
 
 class Logins extends Model
 {
-    private $id;
-    private $username;
-    private $email;
-    private $password;
-    private $status;
+    protected $id;
+    protected $username;
+    protected $email;
+    protected $password;
+    protected $status;
 
     public function __construct($data = [])
     {
