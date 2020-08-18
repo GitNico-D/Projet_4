@@ -13,4 +13,15 @@ class Model
             }
         }
     }
+
+    public function getProperties() 
+    {
+        return get_object_vars($this);
+    }
+
+    public function getPropertiesNames()
+    { 
+        return array_keys(get_object_vars($this)); 
+    }
 }
+
