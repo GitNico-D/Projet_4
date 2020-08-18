@@ -2,30 +2,30 @@
 
 namespace App\src\Core;
 
-use App\src\Models\DAO;
+// use App\src\Models\DAO;
+use App\src\Core\PDOFactory;
 use PDOStatement;
 use Exception;
 use ReflectionClass;
 
-class Manager extends DAO
-// class Manager 
+class Manager extends PDOFactory
 {
-    // public function __construct()
-    // {
-    //     PDOFactory::getMysqlConnection();
-    // }
-
     private $entity;
+    private $table;
 
     public function __construct()
     {
-        $this->entity = "App\src\Models\\".lcfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
+        $this->entity = "App\src\Models\\".ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
+        var_dump($this->entity);
+        // $this->table = $this->getTableName();
+        // var_dump($this->table);
+        
     }
 
     public function requestValidation($table, $requestResult)
     {
         if($requestResult === false) {
-            switch ($this->table) {
+            switch ($table) {
                 case 'chapter':
                     throw new Exception ('Ce chapitre n\'existe pas');
                 break;
@@ -48,20 +48,24 @@ class Manager extends DAO
       */
     public function findOneBy($table, $where)
     {
+        // $table = $this->table;
+        // var_dump($this->table);
         $sqlRequest = "SELECT * FROM " . $table . " WHERE ";
+        var_dump($where);
         foreach ($where as $whereKey => $whereValue) {
             $sqlRequest .= $whereKey . " = :" . $whereKey;
         }
+        var_dump($sqlRequest);
         $result = $this->createQuery($sqlRequest, $where);
         $requestResult = $result->fetch();
         $result->closeCursor();
-        $this->requestValidation($table, $requestResult);
-        return $requestResult;
+        // $this->requestValidation($this->table, $requestResult);
+        return new $this->entity($requestResult);
     }
 
     // public function findOneBy($table, $where)
     // {
-        // $this->findBy($table, $where, null, $limit = 1);
+    //     return $this->findBy($table, $where, null, 1);
         // $this->requestValidation($table, $requestResult);
         // return $requestResult;
     // }
@@ -80,6 +84,7 @@ class Manager extends DAO
         $sqlRequest = 'SELECT * FROM ' . $table;
         $whereClause = [];
         $orderByArray = [];
+        var_dump($where);
         foreach ($where as $whereKey => $whereValue) {
             $whereClause [] = $whereKey . ' = :' . $whereKey;
         }
@@ -90,19 +95,15 @@ class Manager extends DAO
         if ($limit) {
             $sqlRequest .= 'LIMIT ' . $limit;
         }
+        var_dump($sqlRequest);
         $result = $this->createQuery($sqlRequest, $where);
-        $dataList = [];
-
-         foreach ($result as $data) {
-             $dataList [] = new $this->entity($data);
-         }
-
-         $result->closeCursor();
-        while ($data = $result->fetch()) {
-            $dataList [] = $data;
+        $entityList = [];
+        var_dump($this->entity);
+        foreach ($result as $data) {
+            $entityList [] = new $this->entity($data);
         }
         $result->closeCursor();
-        return $dataList;
+        return $entityList;
     }
 
     /**
@@ -115,12 +116,12 @@ class Manager extends DAO
     {
         $sqlRequest = "SELECT * FROM " . $table ;
         $result = $this->createQuery($sqlRequest);
-        $dataList = [];
+        $entityList = [];
         foreach ($result as $data) {
-            $dataList [] = $data;
+            $entityList [] = new $this->entity($data);
         }
         $result->closeCursor();
-        return $dataList;
+        return $entityList;
     }
 
     /**
@@ -130,18 +131,18 @@ class Manager extends DAO
      * @param $entity
      * @return PDOStatement
      */
-    public function insertInto($table, $parameters)
+    public function insertInto($table, $newEntity)
     {
         $sqlRequest = 'INSERT INTO ' . $table;
-        var_dump($entity);
+        $properties = $newEntity->getProperties();
         $arrayField = [];
         $arrayFieldValue = [];
-        foreach ($parameters as $parametersKey => $parametersValue) {
-            $arrayField [] = $parametersKey;
-            $arrayFieldValue [] = " :" . $parametersKey;
+        foreach ($properties as $propertiesKey => $propertiesValue) {
+            $arrayField [] = $propertiesKey;
+            $arrayFieldValue [] = " :" . $propertiesKey;
         }
         $sqlRequest .= " (" . implode(", ", $arrayField) . ") VALUES (" . implode(", ", $arrayFieldValue) . ")";
-        return $this->createQuery($sqlRequest, $parameters);
+        return $this->createQuery($sqlRequest, $properties);
     }
 
     /**
@@ -152,22 +153,21 @@ class Manager extends DAO
      * @param mixed $where
      * @return void|bool|PDOStatement
      */
-    public function update($table, $parameters, $where)
+    public function update($table, $updateEntity)
     {
         $sqlRequest = "UPDATE " . $table . " SET ";
-        $arrayValue = [];
-        var_dump($parameters);
-        foreach ($parameters as $parametersKey => $parametersValue) {
-            $arrayValue [] = $parametersKey . "= :" . $parametersKey;
+        $parameters = [];
+        $properties = $updateEntity->getProperties();
+        foreach ($properties as $propertiesKey => $propertiesValue) {
+            $parameters [] = $propertiesKey . "= :" . $propertiesKey;
+            if($propertiesKey == 'id')
+            {
+                $whereClause = [$propertiesKey => $updateEntity->getId()];                
+            }
         }
-        $sqlRequest .= implode(", ", $arrayValue);
-        $whereClause = [];
-        foreach ($where as $wherekey => $wherevalue) {
-            $whereClause [] = $wherekey . "= :" . $wherekey;
-            $parameters[$wherekey] = $wherevalue;
-        }
-        $sqlRequest .= " WHERE " . implode($whereClause);
-        return $this->createQuery($sqlRequest, $parameters);
+        array_push($properties, $whereClause);
+        $sqlRequest .= implode(", ", $parameters) . " WHERE id = :id";
+        return $this->createQuery($sqlRequest, $properties);
     }
 
     /**
@@ -177,13 +177,16 @@ class Manager extends DAO
      * @param $entity
      * @return void
      */
-    public function delete($table, $parameters)
+    public function delete($table, $deleteEntity)
     {
-        $sqlRequest = "DELETE FROM " . $table;
-        foreach ($parameters as $parametersKey => $parametersValue) {
-            $sqlRequest .= " WHERE " . $parametersKey . "= :" . $parametersKey;
-        }
-        var_dump($sqlRequest);
-        $this->createQuery($sqlRequest, $parameters);
+        $sqlRequest = "DELETE FROM " . $table . " WHERE id= :id";
+        $id = $deleteEntity->getId();
+        $this->createQuery($sqlRequest, [ $id]);
+    }
+
+    public function getTableName()
+    {
+        $managerEntity = (new ReflectionClass($this))->getShortName();
+        return strtolower(str_replace('Manager', '', $managerEntity));
     }
 }
