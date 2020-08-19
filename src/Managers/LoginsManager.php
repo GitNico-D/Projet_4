@@ -20,7 +20,9 @@ class LoginsManager extends Manager
      */
     public function loginsVerification($loginsEmail)
     {
-        return new Logins($this->findOneBy($this->table, array('email' => $loginsEmail)));
+        // return new Logins($this->findOneBy($this->table, array('email' => $loginsEmail)));
+        return $this->findOneBy($this->table, array('email' => $loginsEmail));
+
     }
 
     // public function passwordHash()

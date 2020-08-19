@@ -17,14 +17,10 @@ class CommentManager extends Manager
      * @param mixed $chapterId
      * @return array
      */
-    public function getCommentByChapterId($chapterId)
-    {
-        $commentList = [];
-        foreach ($this->findBy($this->table, array('chapterId' => $chapterId)) as $comment) {
-            $commentList [] = new Comment($comment);
-        }
-        return $commentList;
-    }
+    // public function getCommentByChapterId($chapterId)
+    // {
+    //     return $this->findBy($this->table, array('chapterId' => $chapterId));
+    // }
 
     /**
      * addComment
@@ -32,14 +28,16 @@ class CommentManager extends Manager
      * @param mixed $newComment
      * @return PDOStatement
      */
-    public function addComment(Comment $newComment)
-    {
-        return $this->insertInto(
-            $this->table,
-            array('author' => $newComment->getAuthor(), 'content' => $newComment->getContent(),
-                'createdDate' => $newComment->getCreatedDate(), 'chapterId' => $newComment->getChapterId())
-        );
-    }
+    // public function addComment($newComment)
+    // {
+    //     var_dump($newComment);
+    //     return $this->insertInto(
+    //         $this->table,
+    //         $newComment
+            // array('author' => $newComment->getAuthor(), 'content' => $newComment->getContent(),
+            //     'createdDate' => $newComment->getCreatedDate(), 'chapterId' => $newComment->getChapterId())
+        // );
+    // }
 
     /**
      * deleteCommentById
@@ -47,11 +45,11 @@ class CommentManager extends Manager
      * @param Comment $comment
      * @return void
      */
-    public function deleteCommentById($commentId)
-    {
+    // public function deleteCommentById($commentId)
+    // {
         // $this->table = 'comment';
-        return $this->delete($this->table, array('id' => $commentId));
-    }
+    //     return $this->delete($this->table, array('id' => $commentId));
+    // }
     
     public function deleteChapterComments($chapterId)
     {
@@ -65,11 +63,11 @@ class CommentManager extends Manager
      * @param mixed $commentId
      * @return PDOStatement
      */
-    public function addReport(Reporting $newReporting)
-    {
-        $this->table = 'reporting';
-        return $this->insertInto($this->table, array('reportingDate' => $newReporting->getReportingDate(), 'commentId' => $newReporting->getCommentId()));
-    }
+    // public function addReport(Reporting $newReporting)
+    // {
+    //     $this->table = 'reporting';
+    //     return $this->insertInto($this->table, array('reportingDate' => $newReporting->getReportingDate(), 'commentId' => $newReporting->getCommentId()));
+    // }
     
     /**
      * totalChapterComments
@@ -86,27 +84,27 @@ class CommentManager extends Manager
         return $totalComments['totalComments'];
     }
 
-    public function allReporting()
-    {
-        $this->table = 'reporting';
-        $reportingList = [];
-        foreach($this->findAll($this->table) as $reporting) {
-            $reportingList [] = new Reporting($reporting);
-        }
-        return $reportingList;
-    }
+    // public function allReporting()
+    // {
+    //     $this->table = 'reporting';
+    //     $reportingList = [];
+    //     foreach($this->findAll($this->table) as $reporting) {
+    //         $reportingList [] = new Reporting($reporting);
+    //     }
+    //     return $reportingList;
+    // }
 
-    public function totalReportCount()
-    {
-        $sqlRequest = 'SELECT COUNT(*) as totalReport, commentId FROM `reporting` GROUP BY commentId';
-        $result = $this->createQuery($sqlRequest);
-        $totalReporting = [];
-        foreach($result as $data){
-            $totalReporting [] = $data;
-        }
-        $result->closeCursor();
-        return $totalReporting;
-    }
+    // public function totalReportCount()
+    // {
+    //     $sqlRequest = 'SELECT COUNT(*) as totalReport, commentId FROM `reporting` GROUP BY commentId';
+    //     $result = $this->createQuery($sqlRequest);
+    //     $totalReporting = [];
+    //     foreach($result as $data){
+    //         $totalReporting [] = $data;
+    //     }
+    //     $result->closeCursor();
+    //     return $totalReporting;
+    // }
 
     /**
      * getAllReportedComments
@@ -125,12 +123,12 @@ class CommentManager extends Manager
         return $reportedCommentList;
     }
 
-    public function removeReportFromComment($commentId) 
-    {
-        $this->table = 'reporting';
-        var_dump($commentId);
-        return $this->delete($this->table, array('commentId' => $commentId));
-    }
+    // public function removeReportFromComment($commentId) 
+    // {
+    //     $this->table = 'reporting';
+    //     var_dump($commentId);
+    //     return $this->delete($this->table, array('commentId' => $commentId));
+    // }
 
     // public function distinctReportedCommentsCount()
     // {
