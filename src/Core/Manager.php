@@ -8,18 +8,15 @@ use PDOStatement;
 use Exception;
 use ReflectionClass;
 
-class Manager extends PDOFactory
+abstract class Manager extends PDOFactory
 {
-    private $entity;
-    private $table;
+    protected $entity;
+    protected $table;
 
     public function __construct()
     {
         $this->entity = "App\src\Models\\".ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
-        var_dump($this->entity);
-        // $this->table = $this->getTableName();
-        // var_dump($this->table);
-        
+        $this->table = $this->getTableName();        
     }
 
     public function requestValidation($table, $requestResult)
@@ -46,28 +43,28 @@ class Manager extends PDOFactory
      * @param array $where
      * @return Chapter
       */
-    public function findOneBy($table, $where)
+    public function findOneBy($where)
     {
-        // $table = $this->table;
-        // var_dump($this->table);
-        $sqlRequest = "SELECT * FROM " . $table . " WHERE ";
-        var_dump($where);
+        $table = $this->table;
+        var_dump($this->table);
+        $sqlRequest = "SELECT * FROM " . $this->table . " WHERE ";
         foreach ($where as $whereKey => $whereValue) {
             $sqlRequest .= $whereKey . " = :" . $whereKey;
         }
-        var_dump($sqlRequest);
         $result = $this->createQuery($sqlRequest, $where);
         $requestResult = $result->fetch();
         $result->closeCursor();
-        // $this->requestValidation($this->table, $requestResult);
+        $this->requestValidation($this->table, $requestResult);
         return new $this->entity($requestResult);
     }
 
     // public function findOneBy($table, $where)
     // {
-    //     return $this->findBy($table, $where, null, 1);
-        // $this->requestValidation($table, $requestResult);
-        // return $requestResult;
+    //     var_dump($where);
+    //     $requestResult = $this->findBy($table, $where, 1);
+    //     var_dump($requestResult);
+    //     $this->requestValidation($table, $requestResult);
+    //     return $requestResult;
     // }
    
     /**
@@ -79,12 +76,11 @@ class Manager extends PDOFactory
      * @param mixed $limit
      * @return array|void
      */
-    public function findBy($table, $where, $orderBy = null, $limit = null)
+    public function findBy($where, $limit = null, $orderBy = null)
     {
-        $sqlRequest = 'SELECT * FROM ' . $table;
+        $sqlRequest = 'SELECT * FROM ' . $this->table;
         $whereClause = [];
         $orderByArray = [];
-        var_dump($where);
         foreach ($where as $whereKey => $whereValue) {
             $whereClause [] = $whereKey . ' = :' . $whereKey;
         }
@@ -95,10 +91,9 @@ class Manager extends PDOFactory
         if ($limit) {
             $sqlRequest .= 'LIMIT ' . $limit;
         }
-        var_dump($sqlRequest);
         $result = $this->createQuery($sqlRequest, $where);
         $entityList = [];
-        var_dump($this->entity);
+        var_dump($sqlRequest);
         foreach ($result as $data) {
             $entityList [] = new $this->entity($data);
         }
@@ -112,15 +107,16 @@ class Manager extends PDOFactory
      * @param mixed $table
      * @return array
      */
-    public function findAll($table)
+    public function findAll()
     {
-        $sqlRequest = "SELECT * FROM " . $table ;
+        $sqlRequest = "SELECT * FROM " . $this->table;
         $result = $this->createQuery($sqlRequest);
         $entityList = [];
         foreach ($result as $data) {
             $entityList [] = new $this->entity($data);
         }
         $result->closeCursor();
+        var_dump($sqlRequest);
         return $entityList;
     }
 
@@ -131,10 +127,11 @@ class Manager extends PDOFactory
      * @param $entity
      * @return PDOStatement
      */
-    public function insertInto($table, $newEntity)
+    public function insertInto($newEntity)
     {
-        $sqlRequest = 'INSERT INTO ' . $table;
+        $sqlRequest = 'INSERT INTO ' . $this->table;
         $properties = $newEntity->getProperties();
+        var_dump($properties);
         $arrayField = [];
         $arrayFieldValue = [];
         foreach ($properties as $propertiesKey => $propertiesValue) {
@@ -153,9 +150,9 @@ class Manager extends PDOFactory
      * @param mixed $where
      * @return void|bool|PDOStatement
      */
-    public function update($table, $updateEntity)
+    public function update($updateEntity)
     {
-        $sqlRequest = "UPDATE " . $table . " SET ";
+        $sqlRequest = "UPDATE " . $this->table . " SET ";
         $parameters = [];
         $properties = $updateEntity->getProperties();
         foreach ($properties as $propertiesKey => $propertiesValue) {
@@ -177,16 +174,17 @@ class Manager extends PDOFactory
      * @param $entity
      * @return void
      */
-    public function delete($table, $deleteEntity)
+    public function delete($deleteEntity)
     {
-        $sqlRequest = "DELETE FROM " . $table . " WHERE id= :id";
+        $sqlRequest = "DELETE FROM " . $this->table . " WHERE id= :id";
         $id = $deleteEntity->getId();
-        $this->createQuery($sqlRequest, [ $id]);
+        // var_dump($deleteEntity->getId());
+        return $this->createQuery($sqlRequest, [$id]);
     }
 
     public function getTableName()
     {
         $managerEntity = (new ReflectionClass($this))->getShortName();
-        return strtolower(str_replace('Manager', '', $managerEntity));
+        return strtolower( (str_replace('App\src\Models\\', '', $this->entity)));
     }
 }
