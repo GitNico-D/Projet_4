@@ -6,6 +6,7 @@ namespace App\src\Controllers;
 use App\src\Core\Controller;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
+use App\src\Managers\ReportingManager;
 use App\src\Models\Chapter;
 
 use Exception;
@@ -14,6 +15,8 @@ class ChapterController extends Controller
 {
     public $chapterManager;
     public $commentManager;
+    public $reportingManager;
+
 
     /**
      * ChapterController constructor.
@@ -23,6 +26,7 @@ class ChapterController extends Controller
         parent::__construct();
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
+        $this->reportingManager = new ReportingManager();
         unset($_SESSION['addSuccessMsg']);
         unset($_SESSION['addErrorMsg']);
         unset($_SESSION['deleteMsg']);
@@ -53,9 +57,9 @@ class ChapterController extends Controller
                 $createDate = date("Y-m-d H:i:s");
                 $newChapter->setCreateDate($createDate);
                 $newChapter->setUpdateDate($createDate);
+                $newChapter->setPublished(false);
                 $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
-                var_dump($newChapter); 
-                $this->chapterManager->addChapterInDb($newChapter);
+                $this->chapterManager->insertInto($newChapter);
                 $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
                 header('Location: /adminView');
             } else {
@@ -78,11 +82,12 @@ class ChapterController extends Controller
     {
         echo $this->render(
             'reading_chapter.html.twig',
-            ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
-                'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
+            [
+                'uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
+                'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId)),
                 'totalComments' => $this->commentManager->totalChapterComments($chapterId),
-                'reportingList' => $this->commentManager->allReporting(),
-                'totalReporting' => $this->commentManager->totalReportCount(),
+                // 'reportingList' => $this->reportingManager->findAll(),
+                'totalReporting' => $this->reportingManager->totalReportCount(),
                 'chapterNumber' => $chapterId,
                 'isAdmin' => $isAdmin]
         );
@@ -94,13 +99,14 @@ class ChapterController extends Controller
      * @param mixed $chapterId
      * @param mixed $isAdmin
      * @return void
+     * @throws Exception
      */
     public function updateChapter($chapterId, $isAdmin)
     {
         // $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
         echo $this->render(
             'modifying_chapter.html.twig',
-            ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
+            ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
             'isAdmin' => $isAdmin]
         );
     }
@@ -109,16 +115,13 @@ class ChapterController extends Controller
      * deleteChapter
      *
      * @param mixed $chapterId
-     * @param $isAdmin
      * @return void
      */
-    public function deleteChapter($chapterId, $isAdmin)
+    public function deleteChapter($chapterId)
     {
         $_SESSION['deleteMsg'] = '';
-        $deletedChapter = new Chapter();
-        $deletedChapter->setId($chapterId);
-        $this->chapterManager->deleteChapterById($deletedChapter);
-        $this->commentManager->deleteChapterComments($chapterId);
+        $deleteChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
+        $this->chapterManager->delete($deleteChapter);
         $_SESSION['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
         header('Location: /adminView');
     }
@@ -131,7 +134,9 @@ class ChapterController extends Controller
      */
     public function publishChapter($chapterId)
     {
-        $this->chapterManager->publishedChapter($chapterId);
+        $publishChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
+        $publishChapter->setPublished(true);
+        $this->chapterManager->update($publishChapter);
         header('Location: /adminView');
     }
 
@@ -146,16 +151,14 @@ class ChapterController extends Controller
     {
         $_SESSION['modifySuccessMsg'] = '';
         if (isset($_POST['save'])) {
-            var_dump($_POST);
             if (!empty(htmlspecialchars($_POST['chapterTitle'])) and !empty(htmlspecialchars($_POST['chapterImg'])) and !empty(htmlspecialchars($_POST['chapterImg']))) {
-                $updatedChapter = new Chapter();
-                $updatedChapter->setId($chapterId);
+                $updatedChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
                 $updatedChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
                 $updatedChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
                 $updatedChapter->setContent(htmlspecialchars($_POST['chapterContent']));
                 $updatedChapter->setUpdateDate(date("Y-m-d H:i:s"));
                 $updatedChapter->setPublished(true);
-                $this->chapterManager->updateChapterById($updatedChapter);
+                $this->chapterManager->update($updatedChapter);
                 $_SESSION['modifySuccessMsg'] = 'Chapitre modifié et enregistré';
                 header('Location: /readChapter/' . $chapterId);
             } else {

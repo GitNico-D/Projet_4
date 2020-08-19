@@ -6,6 +6,7 @@ use App\src\Core\Controller;
 use App\src\Managers\LoginsManager;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
+use App\src\Managers\ReportingManager;
 use App\src\Models\Logins;
 use Exception;
 
@@ -14,6 +15,7 @@ class LoginsController extends Controller
     public $chapterManager;
     public $commentManager;
     public $loginsManager;
+    public $reportingManager;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class LoginsController extends Controller
         $this->loginsManager = new LoginsManager();
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
+        $this->reportingManager = new ReportingManager();
         unset($_SESSION['fail']);
     }
 
@@ -42,12 +45,12 @@ class LoginsController extends Controller
                 $isAdmin = true;
                 echo $this->render(
                     'admin_page.html.twig',
-                    ['allChaptersList' => $this->chapterManager->getAllChapters(),
-                    'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-                    'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+                    ['allChaptersList' => $this->chapterManager->findAll(),
+                    'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
+                    'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                    'reportingList' => $this->commentManager->allReporting(),
-                    'totalReporting' => $this->commentManager->totalReportCount(),
+                    'reportingList' => $this->reportingManager->findAll(),
+                    'totalReporting' => $this->reportingManager->totalReportCount(),
                     'isAdmin' => $isAdmin,
                     'session' => $_SESSION]);
             } 
@@ -82,12 +85,12 @@ class LoginsController extends Controller
         if ($isAdmin) {
             echo $this->render(
                 'admin_page.html.twig',
-                ['allChaptersList' => $this->chapterManager->getAllChapters(),
-                'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-                'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+                ['allChaptersList' => $this->chapterManager->findAll(),
+                'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
+                'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
                 'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                'reportingList' => $this->commentManager->allReporting(),
-                'totalReporting' => $this->commentManager->totalReportCount(),
+                'reportingList' => $this->reportingManager->findAll(),
+                    'totalReporting' => $this->reportingManager->totalReportCount(),
                 'isAdmin' => $isAdmin,
                 'session' => $_SESSION]
             );

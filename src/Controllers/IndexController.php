@@ -22,10 +22,10 @@ class IndexController extends Controller
      */
     public function home($isAdmin)
     {
+        // var_dump($this->manager);
         echo $this->render(
             'home_page.html.twig',
-            ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+            ['publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
             'isAdmin' => $isAdmin]
         );
     }
