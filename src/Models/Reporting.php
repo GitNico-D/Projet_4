@@ -6,9 +6,9 @@ use App\src\Core\Model;
 
 class Reporting extends Model
 {
-    private $reportId;
-    private $reportingDate;
-    private $commentId;
+    protected $id;
+    protected $reportingDate;
+    protected $commentId;
 
     public function __construct($data = [])
     {
@@ -17,9 +17,9 @@ class Reporting extends Model
 
     // Setters //
 
-    public function setReportId($reportId)
+    public function setId($id)
     {
-        $this->reportId = $reportId;
+        $this->id = $id;
     }
 
     public function setReportingDate($reportingDate)
@@ -34,9 +34,9 @@ class Reporting extends Model
 
     // Getters //
 
-    public function getReportId()
+    public function getId()
     {
-        return $this->reportId;
+        return $this->id;
     }
 
     public function getReportingDate()
