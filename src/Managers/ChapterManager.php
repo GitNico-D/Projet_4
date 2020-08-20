@@ -8,46 +8,28 @@ use PDOStatement;
 
 class ChapterManager extends Manager
 {
-    // public $table = 'chapter';
-
     /**
      * getChapterById
-     *
-     * @param mixed $chapterId
-     * @return Chapter
-     */
+    *
+    * @param mixed $chapterId
+    * @return void
+    */
     // public function getChapterById($chapterId)
-    // {
-        // return new Chapter($this->findOneBy($this->table, array('id' => $chapterId)));
-    //     return $this->findOneBy($this->table, array('id' => $chapterId));
-    // }
 
+    
     /**
      * getAllChapters
-     *
-     * @return array
-     */
+    *
+    * @return void
+    */
     // public function getAllChapters()
-    // {
-        // foreach ( as $chapter) {
-        //     $allChaptersList [] = new Chapter($chapter);
-        // }
-        // return $this->findAll();
-    // }
 
     /**
      * getAllPublishedChapters
-     *
-     * @return array
-     */
+    *
+    * @return void
+    */
     // public function getAllPublishedChapters()
-    // {
-        // foreach ( as $chapter) {
-        //     $publishedChaptersList [] = new Chapter($chapter);
-        // }
-        // return $this->findBy($this->table, array('published' => true));
-    // $publishedChaptersList;
-    // }
 
     /**
      * getAllUnpublishedChapters
@@ -55,12 +37,6 @@ class ChapterManager extends Manager
      * @return array
      */
     // public function getAllUnpublishedChapters()
-    // {
-        // foreach ($this->findBy($this->table, array('published' => false)) as $chapter) {
-        //     $unpublishedChaptersList [] = new Chapter($chapter);
-        // }
-        // return $this->findBy($this->table, array('published' => false));
-    // }
 
     /**
      * publishedChapter
@@ -69,9 +45,6 @@ class ChapterManager extends Manager
      * @return void
      */
     // public function publishedChapter(Chapter $publishChapter)
-    // {
-    //     return $this->update($publishChapter);
-    // }
 
     /**
      * addChapterInDb
@@ -80,12 +53,6 @@ class ChapterManager extends Manager
      * @return PDOStatement
      */
     // public function addChapterInDb(Chapter $newChapter)
-    // {
-    //     return $this->insertInto(
-    //         $this->table,
-    //        $newChapter
-    //     );
-    // }
     
     /**
      * updateChapterById
@@ -94,10 +61,6 @@ class ChapterManager extends Manager
      * @return void
      */
     // public function updateChapterById(Chapter $updatedChapter)
-    // {
-        // var_dump($updatedChapter);
-    //     return $this->update($this->table, $updatedChapter);
-    // }
  
     /**
      * deleteChapterById
@@ -106,8 +69,4 @@ class ChapterManager extends Manager
      * @return void
      */
     // public function deleteChapterById(Chapter $deleteChapter)
-    // {
-    //     var_dump($deleteChapter);
-    //     return $this->delete($this->table, $deleteChapter);
-    // }
 }
