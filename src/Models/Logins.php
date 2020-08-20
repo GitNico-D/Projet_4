@@ -46,7 +46,7 @@ class Logins extends Model
 
     //GETTERS
 
-    public function getid()
+    public function getId()
     {
         return $this->id;
     }
