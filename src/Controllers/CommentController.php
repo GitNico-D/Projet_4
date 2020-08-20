@@ -48,6 +48,7 @@ class CommentController extends Controller
     public function deleteComment($commentId)
     {
         $deleteComment = $this->commentManager->findOneBy(array('id' => $commentId));
+        var_dump($deleteComment);
         $this->commentManager->delete($deleteComment);
         header('Location: /adminView#commentModeration');
     }
@@ -65,10 +66,8 @@ class CommentController extends Controller
         $newReporting = new Reporting();
         $newReporting->setReportingDate(date("Y-m-d H:i:s"));
         $newReporting->setCommentId($commentId);
-        // $reportedComment = 
-        $this->reportingManager->insertInto($newReporting);
+        $reportedComment = $this->reportingManager->insertInto($newReporting);
         // $this->commentManager->addReport($newReporting);
-
         if ($reportedComment = false) {
             throw new Exception('Impossible de signaler le commentaire');
         } else {

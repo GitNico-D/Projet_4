@@ -82,28 +82,25 @@ class ChapterController extends Controller
     {
         echo $this->render(
             'reading_chapter.html.twig',
-            [
-                'uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
-                'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId)),
-                'totalComments' => $this->commentManager->totalChapterComments($chapterId),
-                // 'reportingList' => $this->reportingManager->findAll(),
-                'totalReporting' => $this->reportingManager->totalReportCount(),
-                'chapterNumber' => $chapterId,
-                'isAdmin' => $isAdmin]
+            ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
+            'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId)),
+            'totalComments' => $this->commentManager->totalChapterComments($chapterId),
+            // 'reportingList' => $this->reportingManager->findAll(),
+            'totalReporting' => $this->reportingManager->totalReportCount(),
+            'chapterNumber' => $chapterId,
+            'isAdmin' => $isAdmin]
         );
     }
-
+    
     /**
      * updateChapter
      *
      * @param mixed $chapterId
      * @param mixed $isAdmin
      * @return void
-     * @throws Exception
      */
     public function updateChapter($chapterId, $isAdmin)
     {
-        // $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
         echo $this->render(
             'modifying_chapter.html.twig',
             ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),

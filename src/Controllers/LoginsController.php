@@ -7,7 +7,6 @@ use App\src\Managers\LoginsManager;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
 use App\src\Managers\ReportingManager;
-use App\src\Models\Logins;
 use Exception;
 
 class LoginsController extends Controller
@@ -31,12 +30,13 @@ class LoginsController extends Controller
      * getLogin
      *
      * @return void
+     * @throws Exception
      */
     public function getLogin()
     {
         unset($_SESSION['fail']);
-        if (!empty($_POST['loginsEmail']) AND !empty($_POST['loginsPassword'])) {
-            $loginsAdmin = $this->loginsManager->loginsVerification(htmlspecialchars($_POST['loginsEmail']));
+        if (!empty($_POST['loginsEmail']) and !empty($_POST['loginsPassword'])) {
+            $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
             $logins = password_verify($_POST['loginsPassword'], $loginsAdmin->getPassword());
             if ($logins) {
                 $_SESSION['loginsUsername'] = $loginsAdmin->getUsername();
@@ -52,8 +52,9 @@ class LoginsController extends Controller
                     'reportingList' => $this->reportingManager->findAll(),
                     'totalReporting' => $this->reportingManager->totalReportCount(),
                     'isAdmin' => $isAdmin,
-                    'session' => $_SESSION]);
-            } 
+                    'session' => $_SESSION]
+                );
+            }
         } else {
             $_SESSION['fail'] = 'Veuillez remplir les champs !';
             echo $this->render('logins.html.twig');
@@ -103,6 +104,7 @@ class LoginsController extends Controller
      * toBeContacted
      *
      * @return void
+     * @throws Exception
      */
     public function toBeContacted()
     {
