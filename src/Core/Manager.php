@@ -3,7 +3,6 @@
 namespace App\src\Core;
 
 // use App\src\Models\DAO;
-use App\src\Core\PDOFactory;
 use PDOStatement;
 use Exception;
 use ReflectionClass;
@@ -16,13 +15,13 @@ abstract class Manager extends PDOFactory
     public function __construct()
     {
         $this->entity = "App\src\Models\\".ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
-        $this->table = $this->getTableName();        
+        $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));       
     }
 
-    public function requestValidation($table, $requestResult)
+    public function requestValidation($requestResult)
     {
         if($requestResult === false) {
-            switch ($table) {
+            switch ($this->table) {
                 case 'chapter':
                     throw new Exception ('Ce chapitre n\'existe pas');
                 break;
@@ -39,10 +38,9 @@ abstract class Manager extends PDOFactory
     /**
      * findOneBy
      *
-     * @param string $table
      * @param array $where
      * @return Chapter
-      */
+     */
     public function findOneBy($where)
     {
         $table = $this->table;
@@ -54,7 +52,7 @@ abstract class Manager extends PDOFactory
         $result = $this->createQuery($sqlRequest, $where);
         $requestResult = $result->fetch();
         $result->closeCursor();
-        $this->requestValidation($this->table, $requestResult);
+        $this->requestValidation($requestResult);
         return new $this->entity($requestResult);
     }
 
@@ -66,21 +64,19 @@ abstract class Manager extends PDOFactory
     //     $this->requestValidation($table, $requestResult);
     //     return $requestResult;
     // }
-   
+
     /**
      * findBy
      *
-     * @param mixed $table
      * @param mixed $where
-     * @param mixed $orderBy
      * @param mixed $limit
+     * @param mixed $orderBy
      * @return array|void
      */
     public function findBy($where, $limit = null, $orderBy = null)
     {
         $sqlRequest = 'SELECT * FROM ' . $this->table;
         $whereClause = [];
-        $orderByArray = [];
         foreach ($where as $whereKey => $whereValue) {
             $whereClause [] = $whereKey . ' = :' . $whereKey;
         }
@@ -104,7 +100,6 @@ abstract class Manager extends PDOFactory
     /**
      * findAll
      *
-     * @param mixed $table
      * @return array
      */
     public function findAll()
@@ -123,8 +118,7 @@ abstract class Manager extends PDOFactory
     /**
      * insertInto
      *
-     * @param mixed $table
-     * @param $entity
+     * @param $newEntity
      * @return PDOStatement
      */
     public function insertInto($newEntity)
@@ -145,9 +139,7 @@ abstract class Manager extends PDOFactory
     /**
      * update
      *
-     * @param mixed $table
-     * @param mixed $parameters
-     * @param mixed $where
+     * @param $updateEntity
      * @return void|bool|PDOStatement
      */
     public function update($updateEntity)
@@ -170,21 +162,16 @@ abstract class Manager extends PDOFactory
     /**
      * delete
      *
-     * @param mixed $table
-     * @param $entity
+     * @param $deleteEntity
      * @return void
      */
     public function delete($deleteEntity)
     {
-        $sqlRequest = "DELETE FROM " . $this->table . " WHERE id= :id";
-        $id = $deleteEntity->getId();
-        // var_dump($deleteEntity->getId());
-        return $this->createQuery($sqlRequest, [$id]);
-    }
+        var_dump($deleteEntity);
 
-    public function getTableName()
-    {
-        $managerEntity = (new ReflectionClass($this))->getShortName();
-        return strtolower( (str_replace('App\src\Models\\', '', $this->entity)));
+        $sqlRequest = "DELETE FROM " . $this->table . " WHERE id = ?";
+        var_dump($sqlRequest);
+        $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
+        var_dump($this->createQuery($sqlRequest, [$deleteEntity->getId()]));
     }
 }
