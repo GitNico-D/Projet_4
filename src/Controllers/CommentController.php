@@ -48,7 +48,6 @@ class CommentController extends Controller
     public function deleteComment($commentId)
     {
         $deleteComment = $this->commentManager->findOneBy(array('id' => $commentId));
-        var_dump($deleteComment);
         $this->commentManager->delete($deleteComment);
         header('Location: /adminView#commentModeration');
     }
@@ -78,7 +77,8 @@ class CommentController extends Controller
     public function validateComment($commentId)
     {
         $deleteReport = $this->reportingManager->findBy(array('commentId' => $commentId));
-        $this->reportingManager->delete($deleteReport);
+        var_dump($deleteReport);
+        $this->reportingManager->deleteReport($deleteReport);
         header('Location: /adminView#commentModeration');
     }
 }
