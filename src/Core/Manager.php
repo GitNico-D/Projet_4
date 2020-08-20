@@ -168,10 +168,11 @@ abstract class Manager extends PDOFactory
     public function delete($deleteEntity)
     {
         var_dump($deleteEntity);
-
         $sqlRequest = "DELETE FROM " . $this->table . " WHERE id = ?";
         var_dump($sqlRequest);
-        $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
+        $id = $deleteEntity->getId();
+        var_dump($id);
         var_dump($this->createQuery($sqlRequest, [$deleteEntity->getId()]));
+        $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
     }
 }
