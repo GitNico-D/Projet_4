@@ -20,4 +20,13 @@ class ReportingManager extends Manager
         $result->closeCursor();
         return $totalReporting;
     }
+
+    public function deleteReport($deleteReport)
+    {
+        var_dump($deleteReport);
+        $sqlRequest = "DELETE FROM " . $this->table . " WHERE commentId = :commentId";
+        $commentId [] = ['commentId' => $deleteReport->getCommentId()];
+        var_dump($commentId);
+        // $this->createQuery($sqlRequest, ['commentId' => $deleteEntity->getCommentId()]);
+    }
 }
