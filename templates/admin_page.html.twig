@@ -152,15 +152,16 @@
                     <span class="text-muted bold">VALIDATION</span>, 
                     <span class="text-muted bold">SUPPRESSION</span> du commentaire
                 </p>   
-                {% for comment in reportedCommentList %}
+                {{ dump(reportedCommentList) }}
+                {% for reportComment in reportedCommentList %}
                     <div class="card commentModerationCard mt-3">
                         <p class="card-header text-left bold">
-                            <span class="font-italic">Posté le</span> {{ comment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ comment.author }}
+                            <span class="font-italic">Posté le</span> {{ reportComment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ reportComment.author }}
                         </p>
-                        <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ comment.content }}</p>
+                        <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ reportComment.content }}</p>
                         <div class="text-center">
-                            <a href="/validateComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn btn-sm commentModerationCard-btn greenbtn">Valider</a>
-                            <a href="/deleteComment/{{ comment.chapterId }}/{{ comment.id }}" class="btn btn-sm commentModerationCard-btn redbtn">Supprimer</a>
+                            <a href="/validateComment/{{ reportComment.chapterId }}/{{ reportComment.id }}" class="btn btn-sm commentModerationCard-btn greenbtn">Valider</a>
+                            <a href="/deleteComment/{{ reportComment.chapterId }}/{{ reportComment.id }}" class="btn btn-sm commentModerationCard-btn redbtn">Supprimer</a>
                         </div>
                     </div>
                 {% endfor %}    
