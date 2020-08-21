@@ -22,7 +22,6 @@
             </ul>
         </nav>
         <div class="main col-md-10">
-            {{ dump(session) }}
             {% if session.addSuccessMsg is not null %}
                 <div class="sessionFont text-white text-center bg-success rounded">{{ session.addSuccessMsg }}</div>
             {% endif %}
@@ -63,16 +62,6 @@
                     </table>
                 </div>
             </section>
-            {# {% for commentReported in reportedCommentList %}
-                {% for reporting in reportingList %}
-                    {% if reporting.commentId == commentReported.id %}
-                    <p>{{ reporting.commentId }} , {{ commentReported.id }}</p>
-                        <p>Des commentaire sur le chapitre {{ commentReported.chapterId }} nécessite de la modération</div>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %} #}
-            {# {{ dump(reportedCommentList) }}  
-            {{ dump(reportingList) }}           #}
             <hr class="adminpageSeparator">
             <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
