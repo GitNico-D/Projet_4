@@ -54,6 +54,9 @@ class LoginsController extends Controller
                     'isAdmin' => $isAdmin,
                     'session' => $_SESSION]
                 );
+            } else {
+                // $_SESSION['fail'] = 'Identifiant ou Mot de passe invalide !';
+                throw new Exception("Identifiant ou Mot de passe invalide !");
             }
         } else {
             $_SESSION['fail'] = 'Veuillez remplir les champs !';
@@ -91,7 +94,7 @@ class LoginsController extends Controller
                 'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
                 'reportedCommentList' => $this->commentManager->getAllReportedComments(),
                 'reportingList' => $this->reportingManager->findAll(),
-                    'totalReporting' => $this->reportingManager->totalReportCount(),
+                'totalReporting' => $this->reportingManager->totalReportCount(),
                 'isAdmin' => $isAdmin,
                 'session' => $_SESSION]
             );
