@@ -2,7 +2,6 @@
 
 namespace App\src\Core;
 
-// use App\src\Models\DAO;
 use PDOStatement;
 use Exception;
 use ReflectionClass;
@@ -16,23 +15,6 @@ abstract class Manager extends PDOFactory
     {
         $this->entity = "App\src\Models\\".ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
         $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));       
-    }
-
-    public function requestValidation($requestResult)
-    {
-        if($requestResult === false) {
-            switch ($this->table) {
-                case 'chapter':
-                    throw new Exception ('Ce chapitre n\'existe pas');
-                break;
-                case 'comment':
-                    throw new Exception ('Ce commentaire n\'existe pas');
-                break;
-                case 'logins':
-                    throw new Exception ('Email ou mot de passe invalide');
-                break;
-            }
-        }
     }
 
     /**
@@ -52,16 +34,15 @@ abstract class Manager extends PDOFactory
         $result = $this->createQuery($sqlRequest, $where);
         $requestResult = $result->fetch();
         $result->closeCursor();
-        $this->requestValidation($requestResult);
+        // $this->requestValidation($requestResult);
         return new $this->entity($requestResult);
     }
 
-    // public function findOneBy($table, $where)
+    // public function findOneBy($where)
     // {
     //     var_dump($where);
-    //     $requestResult = $this->findBy($table, $where, 1);
+    //     $requestResult = $this->findBy($where, 1);
     //     var_dump($requestResult);
-    //     $this->requestValidation($table, $requestResult);
     //     return $requestResult;
     // }
 
