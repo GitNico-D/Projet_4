@@ -23,10 +23,10 @@ class ReportingManager extends Manager
 
     public function deleteReport($deleteReport)
     {
-        var_dump($deleteReport);
-        $sqlRequest = "DELETE FROM " . $this->table . " WHERE commentId = :commentId";
-        $commentId [] = ['commentId' => $deleteReport->getCommentId()];
-        var_dump($commentId);
-        // $this->createQuery($sqlRequest, ['commentId' => $deleteEntity->getCommentId()]);
+        $sqlRequest = "DELETE FROM " . $this->table . " WHERE commentId = ?";
+        foreach($deleteReport as $deleteReport) {
+            $commentId = $deleteReport->getCommentId();
+        }
+        $this->createQuery($sqlRequest, [$commentId]);
     }
 }
