@@ -17,34 +17,15 @@ abstract class Manager extends PDOFactory
         $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));       
     }
 
-    /**
-     * findOneBy
-     *
-     * @param array $where
-     * @return Chapter
-     */
     public function findOneBy($where)
     {
-        $table = $this->table;
-        var_dump($this->table);
-        $sqlRequest = "SELECT * FROM " . $this->table . " WHERE ";
-        foreach ($where as $whereKey => $whereValue) {
-            $sqlRequest .= $whereKey . " = :" . $whereKey;
+        $requestResult = $this->findBy($where, [],  1);
+        if($requestResult[0] === null){
+            throw new Exception ('Ce chapitre n\'existe pas');
+        } else {
+            return $requestResult[0];
         }
-        $result = $this->createQuery($sqlRequest, $where);
-        $requestResult = $result->fetch();
-        $result->closeCursor();
-        // $this->requestValidation($requestResult);
-        return new $this->entity($requestResult);
     }
-
-    // public function findOneBy($where)
-    // {
-    //     var_dump($where);
-    //     $requestResult = $this->findBy($where, 1);
-    //     var_dump($requestResult);
-    //     return $requestResult;
-    // }
 
     /**
      * findBy
@@ -54,23 +35,25 @@ abstract class Manager extends PDOFactory
      * @param mixed $orderBy
      * @return array|void
      */
-    public function findBy($where, $limit = null, $orderBy = null)
+    public function findBy($where, $orderBy = [], $limit = null)
     {
         $sqlRequest = 'SELECT * FROM ' . $this->table;
         $whereClause = [];
+
         foreach ($where as $whereKey => $whereValue) {
             $whereClause [] = $whereKey . ' = :' . $whereKey;
         }
         $sqlRequest .= ' WHERE ' . implode(' AND ', $whereClause);
-        if ($orderBy) {
-                $sqlRequest .= $orderByKey . ' ' . $orderByValue;
+        if (!empty($orderBy)) {
+            foreach ($orderBy as $orderByKey => $orderByValue) {
+                $sqlRequest .= ' ORDER BY ' . $orderByKey . ' ' . $orderByValue;
+            }
         }
         if ($limit) {
-            $sqlRequest .= 'LIMIT ' . $limit;
+            $sqlRequest .= ' LIMIT ' . $limit;
         }
         $result = $this->createQuery($sqlRequest, $where);
         $entityList = [];
-        var_dump($sqlRequest);
         foreach ($result as $data) {
             $entityList [] = new $this->entity($data);
         }
@@ -92,7 +75,6 @@ abstract class Manager extends PDOFactory
             $entityList [] = new $this->entity($data);
         }
         $result->closeCursor();
-        var_dump($sqlRequest);
         return $entityList;
     }
 
@@ -102,7 +84,7 @@ abstract class Manager extends PDOFactory
      * @param $newEntity
      * @return PDOStatement
      */
-    public function insertInto($newEntity)
+    public function insertInto(Model $newEntity)
     {
         $sqlRequest = 'INSERT INTO ' . $this->table;
         $properties = $newEntity->getProperties();
@@ -123,7 +105,7 @@ abstract class Manager extends PDOFactory
      * @param $updateEntity
      * @return void|bool|PDOStatement
      */
-    public function update($updateEntity)
+    public function update(Model $updateEntity)
     {
         $sqlRequest = "UPDATE " . $this->table . " SET ";
         $parameters = [];
@@ -146,10 +128,11 @@ abstract class Manager extends PDOFactory
      * @param $deleteEntity
      * @return void
      */
-    public function delete($deleteEntity)
+    public function delete(Model $deleteEntity)
     {
         var_dump($deleteEntity);
         $sqlRequest = "DELETE FROM " . $this->table . " WHERE id = ?";
+    
         var_dump($sqlRequest);
         $id = $deleteEntity->getId();
         var_dump($id);
