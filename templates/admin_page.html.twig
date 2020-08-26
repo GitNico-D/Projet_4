@@ -37,9 +37,9 @@
             </section>
             <hr class="adminpageSeparator">
             <section> 
-                <h4 class="summary-title my-5"> Vue d'ensemble </h4>
+                <h4 class="summary-title my-5">Vue d'ensemble</h4>
                 <div class="container summary-container">
-                    <p class="summary-subtitle my-5"> Tous les chapitres </p>
+                    <p class="summary-subtitle my-5">Tous les chapitres</p>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -60,6 +60,10 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                </div>
+                <div class="container summary-container">
+                    <p class="summary-subtitle my-5">Commentaires</p>
+                    <p class="text-center">{{ reportedCommentList | length }} commentaires signalés nécessitent une modération de votre part</p>
                 </div>
             </section>
             <hr class="adminpageSeparator">
@@ -141,7 +145,6 @@
                     <span class="text-muted bold">VALIDATION</span>, 
                     <span class="text-muted bold">SUPPRESSION</span> du commentaire
                 </p>   
-                {{ dump(reportedCommentList) }}
                 {% for reportComment in reportedCommentList %}
                     <div class="card commentModerationCard mt-3">
                         <p class="card-header text-left bold">
