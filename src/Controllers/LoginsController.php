@@ -49,8 +49,6 @@ class LoginsController extends Controller
                     'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
                     'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
                     'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                    'reportingList' => $this->reportingManager->findAll(),
-                    'totalReporting' => $this->reportingManager->totalReportCount(),
                     'isAdmin' => $isAdmin,
                     'session' => $_SESSION]
                 );
@@ -93,8 +91,6 @@ class LoginsController extends Controller
                 'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
                 'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
                 'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                'reportingList' => $this->reportingManager->findAll(),
-                'totalReporting' => $this->reportingManager->totalReportCount(),
                 'isAdmin' => $isAdmin,
                 'session' => $_SESSION]
             );
