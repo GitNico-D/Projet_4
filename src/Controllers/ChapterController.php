@@ -45,17 +45,13 @@ class ChapterController extends Controller
         $_SESSION['addSuccessMsg'] = '';
         $_SESSION['addErrorMsg'] = '';
         if (isset($_POST['save'])) {
-            var_dump($_POST['chapterAuthor']);
-            if (!empty($_POST['chapterAuthor']) and !empty($_POST['chapterTitle']) and !empty($_POST['chapterImg']) and !empty($_POST['chapterContent'])) {
-                $newChapter = new Chapter();
-                $newChapter->setAuthor(htmlspecialchars($_POST['chapterAuthor']));
-                $newChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
-                $newChapter->setContent(htmlspecialchars($_POST['chapterContent']));
-                $createDate = date("Y-m-d H:i:s");
-                $newChapter->setCreateDate($createDate);
-                $newChapter->setUpdateDate($createDate);
+            var_dump($_POST['author']);
+            var_dump($_POST);
+            if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['imgUrl'])) and !empty(htmlspecialchars($_POST['content']))) {
+                $newChapter = new Chapter($_POST);
+                $newChapter->setCreateDate(date("Y-m-d H:i:s"));
+                $newChapter->setUpdateDate(date("Y-m-d H:i:s"));
                 $newChapter->setPublished(false);
-                $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
                 $insertLines = $this->chapterManager->insertInto($newChapter);
                 if ($insertLines == false) {
                     throw new Exception("Impossible de sauvegarder le chapitre");
@@ -84,8 +80,7 @@ class ChapterController extends Controller
         echo $this->render(
             'reading_chapter.html.twig',
             ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
-            'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId)),
-            'totalComments' => $this->commentManager->totalChapterComments($chapterId),
+            'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId), array('createdDate' => 'ASC')),
             'totalReporting' => $this->reportingManager->totalReportCount(),
             'chapterNumber' => $chapterId,
             'isAdmin' => $isAdmin]
@@ -119,6 +114,9 @@ class ChapterController extends Controller
         $_SESSION['deleteMsg'] = '';
         $deleteChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
         $deleteLines = $this->chapterManager->delete($deleteChapter);
+        $chapterComments = $this->commentManager->findBy(array('chapterId' => $chapterId));
+        $deleteComments = $this->commentManager->delete($chapterComments);
+        var_dump($chapterComments);
         if ($deleteLines == false) {
             throw new Exception("Le chapitre" . $chapterId . "n'existe pas");
         } else {

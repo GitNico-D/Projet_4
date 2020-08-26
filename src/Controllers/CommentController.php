@@ -26,10 +26,8 @@ class CommentController extends Controller
     public function createComment($chapterId)
     {
         unset($_SESSION['commentSuccess']);
-        if (!empty($_POST['commentAuthor']) and !empty($_POST['commentContent'])) {
-            $newComment = new Comment();
-            $newComment->setAuthor(htmlspecialchars($_POST['commentAuthor']));
-            $newComment->setContent(htmlspecialchars($_POST['commentContent']));
+        if (!empty(htmlspecialchars($_POST['commentAuthor'])) and !empty(htmlspecialchars($_POST['commentContent']))) {
+            $newComment = new Comment($_POST);
             $newComment->setCreatedDate(date("Y-m-d H:i:s"));
             $newComment->setChapterId($chapterId);
             $this->commentManager->insertInto($newComment);
