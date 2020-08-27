@@ -3,9 +3,6 @@
 namespace App\src\Managers;
 
 use App\src\Core\Manager;
-use App\src\Models\Comment;
-use App\src\Models\Reporting;
-use PDOStatement;
 
 class ReportingManager extends Manager
 {

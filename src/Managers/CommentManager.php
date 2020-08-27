@@ -4,14 +4,12 @@ namespace App\src\Managers;
 
 use App\src\Core\Manager;
 use App\src\Models\Comment;
-use App\src\Models\Reporting;
-use PDOStatement;
 
 class CommentManager extends Manager
-{    
+{
     // public function deleteChapterComments($chapterId)
     // {
-        // $this->table = 'comment';
+    // $this->table = 'comment';
     //     return $this->delete($this->table, array('chapterId' => $chapterId));
     // }
 
