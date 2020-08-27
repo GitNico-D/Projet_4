@@ -40,7 +40,7 @@ class Chapter extends Model
 
     public function setAuthor($author)
     {
-        if(!is_string($author)) {
+        if(!is_string($author) || empty($author)) {
             throw new Exception('Le champ de l\'auteur est vide');
         } else {
             $this->author = $author;
