@@ -6,13 +6,13 @@ use App\src\Core\Model;
 
 class Logins extends Model
 {
-    private $id;
-    private $username;
-    private $email;
-    private $password;
-    private $status;
+    protected $id;
+    protected $username;
+    protected $email;
+    protected $password;
+    protected $status;
 
-    public function __construct(array $data)
+    public function __construct($data = [])
     {
         $this->hydrate($data);
     }
@@ -46,7 +46,7 @@ class Logins extends Model
 
     //GETTERS
 
-    public function getid()
+    public function getId()
     {
         return $this->id;
     }

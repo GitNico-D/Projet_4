@@ -3,9 +3,11 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
+use App\src\Services\FormVerificationHelper;
 use App\src\Managers\LoginsManager;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
+use App\src\Managers\ReportingManager;
 use Exception;
 
 class LoginsController extends Controller
@@ -13,6 +15,7 @@ class LoginsController extends Controller
     public $chapterManager;
     public $commentManager;
     public $loginsManager;
+    public $reportingManager;
 
     public function __construct()
     {
@@ -20,45 +23,52 @@ class LoginsController extends Controller
         $this->loginsManager = new LoginsManager();
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
+        $this->reportingManager = new ReportingManager();
+        unset($_SESSION['fail']);
     }
 
     /**
      * getLogin
      *
      * @return void
+     * @throws Exception
      */
     public function getLogin()
     {
-        if (!empty($_POST['loginsEmail']) && !empty($_POST['loginsPassword'])) {
-            $loginsEmail = htmlspecialchars($_POST['loginsEmail']);
-            $passwordVerification = $this->loginsManager->loginsVerification($loginsEmail);
-            $logins = password_verify($_POST['loginsPassword'], $passwordVerification->getPassword());
-            if ($logins) {
-                $_SESSION['loginsUsername'] = $passwordVerification->getUsername();
-                $_SESSION['loginsEmail'] = $passwordVerification->getEmail();
-                $_SESSION['loginsStatus'] = $passwordVerification->getStatus();
-                $isAdmin = true;
-                echo $this->render(
-                    'admin_page.html.twig',
-                    ['allChaptersList' => $this->chapterManager->getAllChapters(),
-                    'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-                    'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
-                    'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                    'totalReportedComments' => $this->commentManager->distinctReportedCommentsCount(),
-                    // 'reportList' => $this->commentManager->getReportComments($commentIdList),
-                    'isAdmin' => $isAdmin,
-                    'session' => $_SESSION]
-                );
+        unset($_SESSION['fail']);
+        if (!empty($_POST['loginsEmail']) and !empty($_POST['loginsPassword'])) {
+        var_dump(isset($_POST["connect"]));
+        // if (isset($_POST["connect"])) {
+            // $error = FormVerificationHelper::notBlank($_POST);
+            // if(!$error) {
+                $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
+                $logins = password_verify($_POST['loginsPassword'], $loginsAdmin->getPassword());
+                if ($logins) {
+                    $_SESSION['loginsUsername'] = $loginsAdmin->getUsername();
+                    $_SESSION['loginsEmail'] = $loginsAdmin->getEmail();
+                    $_SESSION['loginsStatus'] = $loginsAdmin->getStatus();
+                    $isAdmin = true;
+                    echo $this->render(
+                        'admin_page.html.twig',
+                        ['allChaptersList' => $this->chapterManager->findAll(),
+                        'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
+                        'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
+                        'reportedCommentList' => $this->commentManager->getAllReportedComments(),
+                        'isAdmin' => $isAdmin,
+                        'session' => $_SESSION]
+                    );
+                } else {
+                    $_SESSION['fail'] = 'Identifiant ou Mot de passe invalide !';
+                    // $_SESSION['fail'] = $error;
+                    // throw new Exception("Identifiant ou Mot de passe invalide !");
+                }
             } else {
-                // echo('Email ou mot de passe invalide');
-                // header('Location : /index');
+                // $_SESSION['fail'] = $error;
+                $_SESSION['fail'] = 'Veuillez remplir les champs !';
                 echo $this->render('logins.html.twig');
             }
-        } else {
-            // echo 'Veuillez remplir les champs !';
-            echo $this->render('logins.html.twig');
         }
-    }
+    // }
 
     /**
      * getLogout
@@ -70,6 +80,7 @@ class LoginsController extends Controller
         $_SESSION = array();
         session_destroy();
         header('Location: /');
+        exit;
     }
 
     /**
@@ -84,11 +95,10 @@ class LoginsController extends Controller
         if ($isAdmin) {
             echo $this->render(
                 'admin_page.html.twig',
-                ['allChaptersList' => $this->chapterManager->getAllChapters(),
-                'publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-                'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters(),
+                ['allChaptersList' => $this->chapterManager->findAll(),
+                'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
+                'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
                 'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                'totalReportedComments' => $this->commentManager->distinctReportedCommentsCount(),
                 'isAdmin' => $isAdmin,
                 'session' => $_SESSION]
             );
@@ -101,6 +111,7 @@ class LoginsController extends Controller
      * toBeContacted
      *
      * @return void
+     * @throws Exception
      */
     public function toBeContacted()
     {

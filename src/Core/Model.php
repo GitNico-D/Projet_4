@@ -4,13 +4,18 @@ namespace App\src\Core;
 
 class Model
 {
-    protected function hydrate(array $data)
+    protected function hydrate($data)
     {
-        foreach ($data as $key => $attribute) {
+        foreach ($data as $key => $value) {
             $method = 'set' . ucfirst($key);
             if (method_exists($this, $method)) {
-                $this->$method($attribute);
+                $this->$method($value);
             }
         }
+    }
+
+    public function getProperties()
+    {
+        return get_object_vars($this);
     }
 }

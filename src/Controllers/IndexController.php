@@ -4,6 +4,7 @@ namespace App\src\Controllers;
 
 use App\src\Core\Controller;
 use App\src\Managers\ChapterManager;
+use Exception;
 
 class IndexController extends Controller
 {
@@ -18,13 +19,17 @@ class IndexController extends Controller
     /**
      * home
      *
+     * @param $isAdmin
      * @return void
+     * @throws Exception
      */
-    public function home()
+    public function home($isAdmin)
     {
-        echo $this->render('home_page.html.twig',
-            ['publishedChaptersList' => $this->chapterManager->getAllPublishedChapters(),
-            'unpublishedChaptersList' => $this->chapterManager->getAllUnpublishedChapters()]
-            );
+        // var_dump($this->manager);
+        echo $this->render(
+            'home_page.html.twig',
+            ['publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
+            'isAdmin' => $isAdmin]
+        );
     }
 }

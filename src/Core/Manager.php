@@ -2,172 +2,149 @@
 
 namespace App\src\Core;
 
-use App\src\Models\DAO;
-use App\src\Models\Chapter;
 use PDOStatement;
+use Exception;
+use ReflectionClass;
 
-class Manager extends DAO
+abstract class Manager extends PDOFactory
 {
-    /**
-     * @var Chapter
-     */
-    // private $newChapter;
+    protected $entity;
+    protected $table;
 
-    // public function __construct()
-    // {
-    //     $this->newChapter = new Chapter;
-    // }
+    public function __construct()
+    {
+        $this->entity = "App\src\Models\\".ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
+        $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));
+    }
+
     /**
      * findOneBy
      *
-     * @param string $table
-     * @param array $where
-     * @return Chapter
+     * @param mixed $where
+     * @return void
+     * @throws Exception
      */
-    public function findOneBy($table, $where)
+    public function findOneBy($where)
     {
-        var_dump($table);
-        $sqlRequest = "SELECT * FROM " . $table . " WHERE ";
-        foreach ($where as $whereKey => $whereValue) {
-            $sqlRequest .= $whereKey . " = :" . $whereKey;
+        $requestResult = $this->findBy($where, [], 1);
+        if ($requestResult[0] === null) {
+            throw new Exception('Ce chapitre n\'existe pas');
+        } else {
+            return $requestResult[0];
         }
-        $result = $this->createQuery($sqlRequest, $where);
-        $requestResult = $result->fetch();
-        // $entity = 'App\src\Models\\' . ucfirst($table);
-        // var_dump($requestResult);
-        $result->closeCursor();
-        // return new $entity($requestResult);
-        return $requestResult;
-
     }
-   
+
     /**
      * findBy
      *
-     * @param mixed $table
      * @param mixed $where
-     * @param mixed $orderBy
      * @param mixed $limit
+     * @param mixed $orderBy
      * @return array|void
      */
-    public function findBy($table, $where, $orderBy = null, $limit = null)
+    public function findBy($where, $orderBy = [], $limit = null)
     {
-        $sqlRequest = 'SELECT * FROM ' . $table;
+        $sqlRequest = 'SELECT * FROM ' . $this->table;
         $whereClause = [];
-        $orderByArray = [];
+
         foreach ($where as $whereKey => $whereValue) {
             $whereClause [] = $whereKey . ' = :' . $whereKey;
         }
         $sqlRequest .= ' WHERE ' . implode(' AND ', $whereClause);
-        // if ($orderBy) {
-        //     foreach ($orderBy as $orderByKey => $orderByValue) {
-        //         $sqlRequest .= $orderByKey . ' ' . $orderByValue;
-        //     }
-        //     $sqlRequest .= ' ORDER BY ' . implode($orderByArray);
-        // }
-        // if ($limit) {
-        //     $sqlRequest .= 'LIMIT ' . $limit;
-        // }
-        // var_dump($sqlRequest);
+        if (!empty($orderBy)) {
+            foreach ($orderBy as $orderByKey => $orderByValue) {
+                $sqlRequest .= ' ORDER BY ' . $orderByKey . ' ' . $orderByValue;
+            }
+        }
+        if ($limit) {
+            $sqlRequest .= ' LIMIT ' . $limit;
+        }
         $result = $this->createQuery($sqlRequest, $where);
-        $dataList = [];
-        // $entity = 'App\src\Models\\' . ucfirst($table);
-        // $entity = ucfirst($table);
-        // $entity = $entity::class;
-        // var_dump(file_exists("..\src\Models\\" . $entity . ".php"));
-        // foreach ($result as $data) {
-        //     $dataList [] = new $entity($data);
-        // }
-        // $result->closeCursor();
+        $entityList = [];
         foreach ($result as $data) {
-            $dataList [] = $data;
+            $entityList [] = new $this->entity($data);
         }
         $result->closeCursor();
-        return $dataList;
+        return $entityList;
     }
 
     /**
      * findAll
      *
-     * @param mixed $table
      * @return array
      */
-    public function findAll($table)
+    public function findAll()
     {
-        $sqlRequest = "SELECT * FROM " . $table ;
+        $sqlRequest = "SELECT * FROM " . $this->table;
         $result = $this->createQuery($sqlRequest);
-        $dataList = [];
-        $entity = 'App\src\Models\\' . ucfirst($table);
+        $entityList = [];
         foreach ($result as $data) {
-            $dataList [] = $data;
+            $entityList [] = new $this->entity($data);
         }
         $result->closeCursor();
-        // var_dump($dataList);
-        return $dataList;
+        return $entityList;
     }
-    
+
     /**
      * insertInto
      *
-     * @param mixed $table
-     * @param mixed $parameters
+     * @param $newEntity
      * @return PDOStatement
-    */
-    public function insertInto($table, $entity)
+     */
+    public function insertInto(Model $newEntity)
     {
-        $sqlRequest = 'INSERT INTO ' . $table;
-        var_dump($entity);
+        $sqlRequest = 'INSERT INTO ' . $this->table;
+        $properties = $newEntity->getProperties();
         $arrayField = [];
         $arrayFieldValue = [];
-        foreach ($entity as $entityKey => $entityValue) {
-            $arrayField [] = $entityKey;
-            $arrayFieldValue [] = " :" . $entityKey;
-            $parameters [$entityKey ] = $entityValue;
+        foreach ($properties as $propertiesKey => $propertiesValue) {
+            $arrayField [] = $propertiesKey;
+            $arrayFieldValue [] = " :" . $propertiesKey;
         }
-        var_dump($arrayField);
-        var_dump($parameters);
         $sqlRequest .= " (" . implode(", ", $arrayField) . ") VALUES (" . implode(", ", $arrayFieldValue) . ")";
-        return $this->createQuery($sqlRequest, $parameters);
+        return $this->createQuery($sqlRequest, $properties);
     }
 
     /**
      * update
      *
-     * @param mixed $table
-     * @param mixed $parameters
-     * @param mixed $where
+     * @param $updateEntity
      * @return void|bool|PDOStatement
      */
-    public function update($table, $parameters, $where)
+    public function update(Model $updateEntity)
     {
-        $sqlRequest = "UPDATE " . $table . " SET ";
-        $arrayValue = [];
-        foreach ($parameters as $parametersKey => $parametersValue) {
-            $arrayValue [] = $parametersKey . "= :" . $parametersKey;
+        $sqlRequest = "UPDATE " . $this->table . " SET ";
+        $parameters = [];
+        $properties = $updateEntity->getProperties();
+        foreach ($properties as $propertiesKey => $propertiesValue) {
+            $parameters [] = $propertiesKey . "= :" . $propertiesKey;
+            if ($propertiesKey == 'id') {
+                $whereClause = [$propertiesKey => $updateEntity->getId()];
+            }
         }
-        $sqlRequest .= implode(", ", $arrayValue);
-        $whereClause = [];
-        foreach ($where as $wherekey => $wherevalue) {
-            $whereClause [] = $wherekey . "= :" . $wherekey;
-            $parameters[$wherekey] = $wherevalue;
-        }
-        $sqlRequest .= " WHERE " . implode($whereClause);
-        return $this->createQuery($sqlRequest, $parameters);
+        array_push($properties, $whereClause);
+        $sqlRequest .= implode(", ", $parameters) . " WHERE id = :id";
+        return $this->createQuery($sqlRequest, $properties);
     }
 
     /**
      * delete
      *
-     * @param mixed $table
-     * @param mixed $where
+     * @param $deleteEntity
      * @return void
      */
-    public function delete($table, $entity)
+    public function delete(Model $deleteEntity)
     {
-        $sqlRequest = "DELETE FROM " . $table;
-        foreach ($entity as $entityKey => $entityValue) {
-            $sqlRequest .= " WHERE " . $entityKey . "= :" . $entityKey;
-        }
-        $this->createQuery($sqlRequest, $entity);
+        $sqlRequest = "DELETE FROM " . $this->table . " WHERE id = ?";
+        $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
+    }
+
+    public function deleteFrom(Model $deleteEntity)
+    {
+        $class = get_class($deleteEntity);
+        $param = strtolower(str_replace('App\src\Models\\', '', $class));
+        $sqlRequest = "DELETE FROM " . $this->table . " WHERE " . $param . "Id = ?";
+        var_dump($sqlRequest);
+        $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
     }
 }

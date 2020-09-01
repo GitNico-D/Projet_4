@@ -1,8 +1,9 @@
 <?php
 
+session_start();
+ob_start();
+
 require '../vendor/autoload.php';
-require '../src/Core/Controller.php';
-// require '../config/db-config.yml';
 
 use App\src\Services\RouterHelper;
 use App\src\Services\LoginsHelper;
@@ -13,16 +14,12 @@ use App\src\Controllers\CommentController;
 use App\src\Controllers\LoginsController;
 use App\src\Controllers\ErrorController;
 
-session_start();
-ob_start();
-
 $indexController = new IndexController();
 $chapterController = new ChapterController();
 $commentController = new CommentController();
 $loginsController = new LoginsController();
 $errorController = new ErrorController();
-
-        
+  
 try {
     if (array_key_exists("page", $_GET) && isset($_GET["page"]) && is_string($_GET["page"])) {
         switch ($_GET["page"]) {
@@ -31,8 +28,6 @@ try {
                 $chapterController->createChapter($isAdmin);
             break;
             case 'readChapter':
-                // $pageIx = RouterHelper::getPageIx($_GET);
-                // $commentId = RouterHelper::getCommentId($_GET);
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
                 $chapterController->readChapter($chapterId, $isAdmin);
@@ -45,7 +40,7 @@ try {
             case 'deleteChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $chapterController->deleteChapter($chapterId, $isAdmin);
+                $chapterController->deleteChapter($chapterId);
             break;
             case "updateChapterAction":
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
@@ -70,6 +65,10 @@ try {
                 $commentId = RouterHelper::getCommentId($_GET);
                 $commentController->deleteComment($commentId);
             break;
+            case 'validateComment':
+                $commentId = RouterHelper::getCommentId($_GET);
+                $commentController->validateComment($commentId);
+            break;
             case "reportComment":
                 $commentId = RouterHelper::getCommentId($_GET);
                 $chapterId = RouterHelper::getChapterId($_GET);
@@ -84,7 +83,6 @@ try {
             break;
             default:
                 throw new Exception('Page introuvable');
-            break;
             }
     } else {
         $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);

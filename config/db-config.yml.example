@@ -1,0 +1,7 @@
+DATABASE_HOST: 'db_host' 
+DATABASE_PORT: 'port'
+DATABASE_NAME: 'db_name'
+DATABASE_USERNAME: 'username'
+DATABASE_PASSWORD: 'password'
+DATABASE_CHARSET: 'charset'    
+

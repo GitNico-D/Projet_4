@@ -2,18 +2,21 @@
 
 namespace App\src\Controllers;
 
-use App\src\Services\VerificationHelper;
+// use App\src\Services\VerificationHelper;
 use App\src\Core\Controller;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
+use App\src\Managers\ReportingManager;
 use App\src\Models\Chapter;
-use App\src\Models\Comment;
+use App\src\Services\FormVerificationHelper;
+
 use Exception;
 
 class ChapterController extends Controller
 {
     public $chapterManager;
     public $commentManager;
+    public $reportingManager;
 
     /**
      * ChapterController constructor.
@@ -23,6 +26,11 @@ class ChapterController extends Controller
         parent::__construct();
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
+        $this->reportingManager = new ReportingManager();
+        unset($_SESSION['addSuccessMsg']);
+        unset($_SESSION['addErrorMsg']);
+        unset($_SESSION['deleteMsg']);
+        unset($_SESSION['modifySuccessMsg']);
     }
 
     /**
@@ -35,38 +43,30 @@ class ChapterController extends Controller
      */
     public function createChapter($isAdmin)
     {
-        $_SESSION['error'] = '';
-        $_SESSION['success'] = '';
-
+        unset($_SESSION['addSuccessMsg']);
+        unset($_SESSION['addErrorMsg']);
         if (isset($_POST['save'])) {
-            // $error = VerificationHelper::notBlank($_POST);
-            var_dump($_POST['chapterAuthor']);
-            if (!empty($_POST['chapterAuthor']) AND !empty($_POST['chapterTitle']) AND !empty($_POST['chapterImg']) AND !empty($_POST['chapterContent'])) {
-            // if (!$error) {
-                $newChapter = new Chapter();
-                $newChapter->setAuthor(htmlspecialchars($_POST['chapterAuthor']));
-                $newChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
-                $newChapter->setContent(htmlspecialchars($_POST['chapterContent']));
-                $createDate = date("Y-m-d H:i:s");
-                $newChapter->setCreateDate($createDate);
-                $newChapter->setUpdateDate($createDate);
-                $newChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
-                var_dump($newChapter);
-                // $insertLines = 
-                $this->chapterManager->addChapterInDb($newChapter);
-                // $insertLines = $this->chapterManager->addChapterInDb($newChapterAuthor, $newChapterTitle, $newChapterContent, $chapterCreateDate, $chapterPublished, $newChapterImg);
-                if ($insertLines === false) {
-                    
-                        throw new Exception('Impossible d\'ajouter le chapitre');
-                } else {
-                    $_SESSION['success'] = 'Le nouveau chapitre à été enregistré';
+            $errors = FormVerificationHelper::checkField($_POST);
+            var_dump($errors);
+            if($errors){
+                $_SESSION['addErrorMsg'] = $errors;
+                var_dump($errors);
+            }
+            if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['imgUrl'])) and !empty(htmlspecialchars($_POST['content']))) {
+                $newChapter = new Chapter($_POST);
+                $newChapter->setCreateDate(date("Y-m-d H:i:s"));
+                $newChapter->setUpdateDate(date("Y-m-d H:i:s"));
+                $newChapter->setPublished(false);
+                var_dump($insertLines);
+                if ($insertLines == false) {
+                    $insertLines = $this->chapterManager->insertInto($newChapter);
+                    $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
                     header('Location: /adminView');
-                //     header('Location: /createChapter');
-                    // echo('Chapitre ajouté');
+                } else {
+                    throw new Exception("Impossible de sauvegarder le chapitre");
                 }
             } else {
-                $_SESSION['error'] = 'Veuillez remplir tous les champs';
-                    // $_SESSION['error'] = $error;
+                $_SESSION['addErrorMsg'] = 'Veuillez remplir tous les champs';
                 header('Location: /createChapter');
             }
         }
@@ -78,23 +78,18 @@ class ChapterController extends Controller
      *
      * @param mixed $chapterId
      * @param mixed $isAdmin
-     * @return void
      * @throws Exception
      */
     public function readChapter($chapterId, $isAdmin)
     {
-        if ($chapterId) {
-            echo $this->render(
-                'reading_chapter.html.twig',
-                ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
-                    'commentList' => $this->commentManager->getCommentByChapterId($chapterId),
-                    'totalComments' => $this->commentManager->totalChapterComments($chapterId),
-                    'chapterNumber' => $chapterId,
-                    'isAdmin' => $isAdmin]
-            );
-        } else {
-            throw new Exception("Chapitre introuvable !");
-        }
+        echo $this->render(
+            'reading_chapter.html.twig',
+            ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
+            'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId), array('createdDate' => 'ASC')),
+            'totalReporting' => $this->reportingManager->totalReportCount(),
+            'chapterNumber' => $chapterId,
+            'isAdmin' => $isAdmin]
+        );
     }
 
     /**
@@ -103,13 +98,13 @@ class ChapterController extends Controller
      * @param mixed $chapterId
      * @param mixed $isAdmin
      * @return void
+     * @throws Exception
      */
     public function updateChapter($chapterId, $isAdmin)
     {
-        // $uniqueChapter = $this->chapterManager->getChapterById($chapterId);
         echo $this->render(
             'modifying_chapter.html.twig',
-            ['uniqueChapter' => $this->chapterManager->getChapterById($chapterId),
+            ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
             'isAdmin' => $isAdmin]
         );
     }
@@ -118,28 +113,32 @@ class ChapterController extends Controller
      * deleteChapter
      *
      * @param mixed $chapterId
-     * @param $isAdmin
-     * @return void
+     * @throws Exception
      */
-    public function deleteChapter($chapterId, $isAdmin)
+    public function deleteChapter($chapterId)
     {
-        $deletedChapter = new Chapter();
-        $deletedChapter->setId($chapterId);
-        $this->chapterManager->deleteChapterById($deletedChapter);
-        $this->commentManager->deleteChapterComments($chapterId);
-        $_SESSION['danger'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimé';
-        header('Location: /adminView');
+        $deleteChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
+        $this->chapterManager->delete($deleteChapter);
+        $this->commentManager->deleteFrom($deleteChapter);
+        // if ($deleteLines == false) {
+        //     throw new Exception("Le chapitre " . $chapterId . " n'existe pas");
+        // } else {
+            $_SESSION['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
+            header('Location: /adminView');
+        // }
     }
 
     /**
      * publishChapter
      *
      * @param mixed $chapterId
-     * @return void
+     * @throws Exception
      */
     public function publishChapter($chapterId)
     {
-        $this->chapterManager->publishedChapter($chapterId);
+        $publishChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
+        $publishChapter->setPublished(true);
+        $this->chapterManager->update($publishChapter);
         header('Location: /adminView');
     }
 
@@ -152,40 +151,26 @@ class ChapterController extends Controller
      */
     public function updateChapterAction($chapterId)
     {
-        $_SESSION['modify'] = '';
-        if (isset($_POST['saveAndPublish'])) {
-            if (!empty($_POST['chapterTitle']) and !empty($_POST['chapterImg']) and !empty($_POST['chapterImg'])) {
-                $updatedChapter = new Chapter();
-                $updatedChapter->getId($chapterId);
-                var_dump($updatedChapter);
+        $_SESSION['modifySuccessMsg'] = '';
+        if (isset($_POST['save'])) {
+            if (!empty(htmlspecialchars($_POST['chapterTitle'])) and !empty(htmlspecialchars($_POST['chapterImg'])) and !empty(htmlspecialchars($_POST['chapterImg']))) {
+                $updatedChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
                 $updatedChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
                 $updatedChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
                 $updatedChapter->setContent(htmlspecialchars($_POST['chapterContent']));
-                $updatedChapter->setUpdateDate(date("d-m-Y H:i:s"));
+                $updatedChapter->setUpdateDate(date("Y-m-d H:i:s"));
                 $updatedChapter->setPublished(true);
-                // $updatedLines =
-                // $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterUpdateDate, $chapterPublished, $updatedChapterImg, $chapterId);
-                $this->chapterManager->updateChapterById($updatedChapter);
-                if ($updatedLines === false) {
-                    throw new Exception('Impossible de modifier le chapitre');
+                $updateLines = $this->chapterManager->update($updatedChapter);
+                if ($updateLines == false) {
+                    throw new Exception("Impossible de mettre à jour le chapitre");
                 } else {
-                    $alertMessage = 'Chapitre Modifié';
+                    $_SESSION['modifySuccessMsg'] = 'Chapitre modifié et enregistré';
                     header('Location: /readChapter/' . $chapterId);
                 }
             } else {
                 $_SESSION['error'] = 'Veuillez remplir tous les champs';
-                // $_SESSION['error'] = $error;
-                header('Location: /createChapter');
-            }
-        } elseif (isset($_POST['saveDraft'])) {
-            $chapterPublished = false;
-            $updateLines = $this->chapterManager->updateChapterById($updatedChapterTitle, $updatedChapterContent, $chapterUpdateDate, $chapterPublished, $updatedChapterImg, $chapterId);
-            if ($updateLines === false) {
-                throw new Exception('Impossible de modifier le chapitre');
-            } else {
-                header('Location: /readChapter/' . $chapterId);
+                header('Location: /updateChapter');
             }
         }
     }
-// }
 }
