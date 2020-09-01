@@ -21,18 +21,20 @@ class CommentController extends Controller
         $this->commentManager = new CommentManager();
         $this->reportingManager = new ReportingManager();
         unset($_SESSION['commentSuccess']);
+        unset($_SESSION['commentError']);
     }
 
     public function createComment($chapterId)
     {
-        unset($_SESSION['commentSuccess']);
-        if (!empty(htmlspecialchars($_POST['commentAuthor'])) and !empty(htmlspecialchars($_POST['commentContent']))) {
+        if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['content']))) {
             $newComment = new Comment($_POST);
             $newComment->setCreatedDate(date("Y-m-d H:i:s"));
             $newComment->setChapterId($chapterId);
             $this->commentManager->insertInto($newComment);
             $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
             header('Location: /readChapter/' . $chapterId);
+        } else {
+            $_SESSION['commentError'] = 'Veuillez remplir les champs !';
         }
         header('Location: /readChapter/' . $chapterId . "#comment");
     }
@@ -73,9 +75,9 @@ class CommentController extends Controller
 
     public function validateComment($commentId)
     {
-        $deleteReport = $this->reportingManager->findBy(array('commentId' => $commentId));
+        $deleteReport = $this->commentManager->findOneBy(array('id' => $commentId));
         var_dump($deleteReport);
-        $this->reportingManager->deleteReport($deleteReport);
+        $this->reportingManager->deleteFrom($deleteReport);
         header('Location: /adminView#commentModeration');
     }
 }
