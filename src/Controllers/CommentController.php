@@ -7,6 +7,7 @@ use App\src\Managers\CommentManager;
 use App\src\Managers\ReportingManager;
 use App\src\Models\Comment;
 use App\src\Models\Reporting;
+use App\src\Services\FormVerificationHelper;
 
 use Exception;
 
@@ -26,17 +27,26 @@ class CommentController extends Controller
 
     public function createComment($chapterId)
     {
+        // if(isset($_POST['submit'])) {
+            var_dump($_POST);
         if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['content']))) {
-            $newComment = new Comment($_POST);
-            $newComment->setCreatedDate(date("Y-m-d H:i:s"));
-            $newComment->setChapterId($chapterId);
-            $this->commentManager->insertInto($newComment);
-            $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
-            header('Location: /readChapter/' . $chapterId);
+                $errors = FormVerificationHelper::checkField($_POST);
+                var_dump($errors);
+            if (!$errors) {
+                $newComment = new Comment($_POST);
+                $newComment->setCreatedDate(date("Y-m-d H:i:s"));
+                $newComment->setChapterId($chapterId);
+                $this->commentManager->insertInto($newComment);
+                $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
+                header('Location: /readChapter/' . $chapterId . "#comment");
+            } else {
+                $_SESSION['commentError'] = $errors;
+                header('Location: /readChapter/' . $chapterId . "#comment");
+            }
         } else {
             $_SESSION['commentError'] = 'Veuillez remplir les champs !';
+            header('Location: /readChapter/' . $chapterId . "#comment");
         }
-        header('Location: /readChapter/' . $chapterId . "#comment");
     }
 
     /**
