@@ -7,12 +7,6 @@ use App\src\Models\Comment;
 
 class CommentManager extends Manager
 {
-    // public function deleteChapterComments($chapterId)
-    // {
-    // $this->table = 'comment';
-    //     return $this->delete($this->table, array('chapterId' => $chapterId));
-    // }
-
     /**
      * getAllReportedComments
      *
