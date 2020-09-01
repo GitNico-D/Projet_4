@@ -65,11 +65,17 @@
                 <p class="card-body text-left m-0 pt-2 pl-4">
                     {{ comment.content }}
                 </p>
+                {# dump(reportedCommentList) #}
                 <div class="reporting-comment text-left pt-2 pl-4">
                     <a href="/reportComment/{{ uniqueChapter.id }}/{{ comment.id }}"
                     class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon ml-3"></i>
                     {% for totalReport in totalReporting %}
                         {% if totalReport.commentId == comment.id %}{{ totalReport.totalReport }}
+                        {% endif %}
+                     </a>
+                {% endfor %}
+                {% for totalReport in reportedCommentList %}
+                        {% if totalReport.id == comment.id %}{{ totalReport.totalReport }}
                         {% endif %}
                      </a>
                 {% endfor %}
@@ -93,6 +99,9 @@
     <div class=" my-4">
     {% if session.commentSuccess is not null %}
         <div class="sessionFont text-white text-center bg-success rounded">{{ session.commentSuccess }}</div>
+    {% endif %}
+    {% if session.commentError is not null %}
+        <div class="sessionFont text-white text-center bg-danger rounded">{{ session.commentError }}</div>
     {% endif %}
     <h4 class="p-3">Laisser un commentaire</h4>
         <form action="/createComment/{{ uniqueChapter.id }}" method="post" class="leaveComment-form">

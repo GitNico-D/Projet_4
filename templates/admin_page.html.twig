@@ -4,11 +4,11 @@
 
 {% block main %}
 <div class="container-fluid">
-    <div class="row main-row d-flex flex-xrap">
+    <div class="row main-row d-flex flex-wrap mt-4">
         <nav class="sidebar col-md-2">
             <ul class="sidebar-list list-unstyled pt-3">
                 <li class="nav-item pb-3">
-                    <span class="fas fa-feather-alt"></span><a class="nav-link d-inline  sidebar-nav-link" href="#">Écrire</a>
+                    <span class="fas fa-feather-alt"></span><a class="nav-link d-inline sidebar-nav-link" href="#">Écrire</a>
                 </li>
                 <li class="nav-item pb-3">
                     <span class="fas fa-book"></span><a href="/adminView#publishChapter" class="nav-link d-inline sidebar-nav-link">Chapitres publiés</a>
@@ -21,7 +21,7 @@
                 </li>
             </ul>
         </nav>
-        <div class="main col-md-10">
+        <div class="main col-md-10 mt-4">
             {% if session.addSuccessMsg is not null %}
                 <div class="sessionFont text-white text-center bg-success rounded">{{ session.addSuccessMsg }}</div>
             {% endif %}
@@ -70,7 +70,7 @@
             <section id="publishChapter" class="card publishChapterAdmin">
                     <p class="publishChapterAdmin-title text-center"> Chapitre publiés </p>
                     <p class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</p>
-                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span><span class="bold"> Visionnage</span>, <span class="bold">Modification</span> du chapitre</p>
+                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span><span class="font-weight-bold"> Visionnage</span>, <span class="font-weight-bold">Modification</span> du chapitre</p>
                 {% set plusOne = 0 %}
                 {% for chapter in publishedChaptersList %}
                     {% if plusOne < publishedChaptersList|length %} 
@@ -107,8 +107,8 @@
                 <p class="pendingChapterAdmin-title text-center">Chapitre en attentes de publication</p>
                 <p class="text-muted text-center">
                     <span class="font-italic">Options disponibles :</span> 
-                    <span class="bold">Modification</span>, 
-                    <span class="bold">Publication</span> ou 
+                    <span class="font-weight-bold">Modification</span>, 
+                    <span class="font-weight-bold">Publication</span> ou 
                 </p>
                 {% for chapter in unpublishedChaptersList %}
                     <div id="unpublishedaccordion{{ chapter.id }}">
@@ -121,7 +121,7 @@
                             </div>                      
                             <div id="unpublishCollapse{{ chapter.id }}" class="collapse" aria-labelledby="unpublishHeading{{ chapter.id }}" data-parent="#unpublishedaccordion{{ chapter.id }}">
                                 <div class="card-body">
-                                    <p  class="font-italic bold">Extrait :</p>
+                                    <p  class="font-italic font-weight-bold">Extrait :</p>
                                     <p>
                                     {{ chapter.content | raw | slice(0, 350)  }}...</p>
                                 </div>
@@ -142,12 +142,12 @@
                 </p>
                 <p class="text-muted text-center">
                     <span class="text-muted font-italic">Options disponibles :</span> 
-                    <span class="text-muted bold">VALIDATION</span>, 
-                    <span class="text-muted bold">SUPPRESSION</span> du commentaire
+                    <span class="text-muted font-weight-bold">VALIDATION</span>, 
+                    <span class="text-muted font-weight-bold">SUPPRESSION</span> du commentaire
                 </p>   
                 {% for reportComment in reportedCommentList %}
                     <div class="card commentModerationCard mt-3">
-                        <p class="card-header text-left bold">
+                        <p class="card-header text-left font-weight-bold">
                             <span class="font-italic">Posté le</span> {{ reportComment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ reportComment.author }}
                         </p>
                         <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ reportComment.content }}</p>

@@ -17,22 +17,22 @@
     <div class="card my-4 border-0 bg-white">
         <p class="card-header float-right  bg-white mb-4 pb-3">
         Publié le 
-            <span class="font-italic bold">{{ uniqueChapter.createDate }}</span> 
+            <span class="font-italic font-weight-bold">{{ uniqueChapter.createDate }}</span> 
             par 
-            <span class="font-italic bold">{{ uniqueChapter.author }}</span>
+            <span class="font-italic font-weight-bold">{{ uniqueChapter.author }}</span>
         </p>
     </div>
     <div class="container">
         <form action="/updateChapterAction/{{ uniqueChapter.id }}" method="post">
             <div class="form-group">
-                <label for="chapterTitle" class="h4 bold my-4 text-left updateForm-labeltitle">Titre</label>
+                <label for="chapterTitle" class="h4 font-weight-bold my-4 text-left updateForm-labeltitle">Titre</label>
                     <input type="text" class="form-control updateForm-titleinput" id="chapterTitle" name="chapterTitle" value="{{ uniqueChapter.title }}">
                 <label for="chapterTitle" class="h4 font-weight-bold font-italic my-4 text-left updateForm-labelimg">Image</label>
                     {% if uniqueChapter is not null %}
                         <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
                     {% endif %}
                     <input type="text" class="form-control updateForm-imginput" id="chapterImg" name="chapterImg" value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}">                            
-                <label for="chapterContent" class="h4 bold my-4">Contenu</label>
+                <label for="chapterContent" class="h4 font-weight-bold my-4">Contenu</label>
                     <textarea class="form-control text-justify" id="chapterContent" name="chapterContent" rows="30" >{{ uniqueChapter.content | raw }}</textarea>
                 <div class="text-center">
                     <input type="submit" name="save" class="btn savePublish greenbtn my-2" value="Enregistrer les modifications">                  
