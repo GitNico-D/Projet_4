@@ -32,7 +32,6 @@ abstract class PDOFactory
     public function createQuery($sql, $parameters = null)
     {
         if ($parameters) {
-            var_dump($parameters);
             $request = $this->getMysqlConnection()->prepare($sql);
             $request->execute($parameters);
             return $request;
