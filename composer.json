@@ -5,10 +5,10 @@
             "App\\config\\":"config/"}
     },
     "require": {
-        "twig/twig": "^3.0",
-        "twig/markdown-extra": "^3.0",
-      "ext-yaml": "*",
-      "ext-pdo": "*"
+        "twig/twig": "^3.0.3",
+        "twig/markdown-extra": "^3.0.3",
+        "ext-yml": "*",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16"
