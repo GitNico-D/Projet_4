@@ -14,14 +14,21 @@ abstract class Manager extends PDOFactory
     public function __construct()
     {
         $this->entity = "App\src\Models\\".ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
-        $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));       
+        $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));
     }
 
+    /**
+     * findOneBy
+     *
+     * @param mixed $where
+     * @return void
+     * @throws Exception
+     */
     public function findOneBy($where)
     {
-        $requestResult = $this->findBy($where, [],  1);
-        if($requestResult[0] === null){
-            throw new Exception ('Ce chapitre n\'existe pas');
+        $requestResult = $this->findBy($where, [], 1);
+        if ($requestResult[0] === null) {
+            throw new Exception('Ce chapitre n\'existe pas');
         } else {
             return $requestResult[0];
         }
@@ -88,7 +95,6 @@ abstract class Manager extends PDOFactory
     {
         $sqlRequest = 'INSERT INTO ' . $this->table;
         $properties = $newEntity->getProperties();
-        var_dump($properties);
         $arrayField = [];
         $arrayFieldValue = [];
         foreach ($properties as $propertiesKey => $propertiesValue) {
@@ -112,9 +118,8 @@ abstract class Manager extends PDOFactory
         $properties = $updateEntity->getProperties();
         foreach ($properties as $propertiesKey => $propertiesValue) {
             $parameters [] = $propertiesKey . "= :" . $propertiesKey;
-            if($propertiesKey == 'id')
-            {
-                $whereClause = [$propertiesKey => $updateEntity->getId()];                
+            if ($propertiesKey == 'id') {
+                $whereClause = [$propertiesKey => $updateEntity->getId()];
             }
         }
         array_push($properties, $whereClause);
@@ -130,13 +135,16 @@ abstract class Manager extends PDOFactory
      */
     public function delete(Model $deleteEntity)
     {
-        var_dump($deleteEntity);
         $sqlRequest = "DELETE FROM " . $this->table . " WHERE id = ?";
-    
+        $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
+    }
+
+    public function deleteFrom(Model $deleteEntity)
+    {
+        $class = get_class($deleteEntity);
+        $param = strtolower(str_replace('App\src\Models\\', '', $class));
+        $sqlRequest = "DELETE FROM " . $this->table . " WHERE " . $param . "Id = ?";
         var_dump($sqlRequest);
-        $id = $deleteEntity->getId();
-        var_dump($id);
-        var_dump($this->createQuery($sqlRequest, [$deleteEntity->getId()]));
         $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
     }
 }
