@@ -40,29 +40,38 @@ class Chapter extends Model
 
     public function setAuthor($author)
     {
-        if(!is_string($author) || empty($author)) {
-            throw new Exception('Le champ de l\'auteur est vide');
-        } else {
+        // if(!is_string($author) || empty($author)) {
+        //     throw new Exception('Le champ de l\'auteur est vide');
+        // } else {
+        //     $this->author = $author;
+        // } 
+        if(is_string($author)) {
             $this->author = $author;
         } 
     }
 
     public function setTitle($title)
     {
-        if(!is_string($title) || empty($title)) {
-            throw new Exception('Le champ de titre est vide');
-        } else {
+        // if(!is_string($title) || empty($title)) {
+        //     throw new Exception('Le champ de titre est vide');
+        // } else {
+        //     $this->title = $title;
+        // } 
+        if(is_string($title)) {
             $this->title = $title;
         } 
     }
 
     public function setContent($content)
     {
-        if (!is_string($content) || empty($content)) {
-            throw new Exception('Le contenu est vide');
-        } else {
+        // if (!is_string($content) || empty($content)) {
+        //     throw new Exception('Le contenu est vide');
+        // } else {
+        //     $this->content = $content;
+        // }
+        if(is_string($content)) {
             $this->content = $content;
-        }
+        } 
     }
 
     public function setCreateDate($createDate)
