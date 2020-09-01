@@ -13,7 +13,7 @@ class LoginsHelper
      */
     public static function checkAdminConnected(array $session)
     {
-        if (array_key_exists('loginsEmail', $session) && isset($session['loginsEmail'])) {
+        if (array_key_exists('loginsEmail', $session) and isset($session['loginsEmail'])) {
             $isAdmin = true;
         } else {
             $isAdmin = false;
