@@ -8,13 +8,6 @@
         margin: 0;
     }
 }
-.bold {
-    font-weight: bold;
-}
-
-hr {
-    margin-top: 4rem;
-}
 
 .adminpageSeparator {
     border: 4px double $red;
@@ -40,7 +33,6 @@ hr {
 .navbar {
     .nav-link {
         color: black;
-        margin-left: 3rem;
         &:hover {
             color: $yellow;
         }
@@ -56,7 +48,6 @@ hr {
         }
     }
     &-collapse {
-        padding: 0 0 0 2rem;
         .show {
             .nav-link {
                 margin: 0;
@@ -64,11 +55,6 @@ hr {
             }
         }
     }
-}
-
-.collapse .show {
-    margin-top: 15rem;
-    padding: 0;
 }
 
 .page-title {
@@ -154,15 +140,10 @@ hr {
 .updateForm {
     &-labeltitle,
     &-labelimg {
-        text-align: left;
-        font-size: 1.4rem;
-        font-style: italic;
         border-bottom: 1px dashed #495057;
     }
     &-labelcontent {
         font-size: 1.3rem;
-        font-weight: bold;
-        font-style: italic;
     }
     &-titleinput,
     &-imginput {
@@ -275,17 +256,6 @@ hr {
     padding-top: 5rem;
     .form-signin {
         max-width: 320px;
-        h3 {
-            margin-bottom: 2rem;
-        }
-        button {
-            &:active {
-                color: $yellow;
-                background-color: white;
-                border: 1px solid $yellow;
-                text-decoration: none;
-            }
-        }
         &-img {
             width: initial !important;
         }
@@ -305,8 +275,8 @@ hr {
     position: relative;
     &-img {
         width: 100%;
-        max-width: 1920px;
-        margin: auto;
+        // max-width: 1920px;
+        // margin: auto;
     }
     &-jumbotron {
         background-color: transparent;
@@ -352,22 +322,7 @@ hr {
 
 }
 
-.publishchapter {
-    padding-top: 6rem;
-    &-title {
-        font-size: 3rem;
-    }
-
-}
-
 //// ADMIN PAGE ////
-
-.main {
-    margin-top: 7rem;
-    &-row {
-        margin-top: 7rem;
-    }
-}
 
 .sidebar {
     background-color: #f7f7f7d7;
@@ -404,10 +359,6 @@ hr {
             color: $yellow;
         }
     }
-}
-
-.allChaptersList {
-    font-size: 1.1rem;
 }
 
 .summary {
@@ -529,10 +480,8 @@ hr {
 .commentModerationAdmin {
     margin: 5rem 0 6rem 0;
     padding: 0.5rem;
-
     &-title {
         background-color: #f7f7f7d7;
-        font-size: 2rem;
         margin-bottom: 2rem;
     }
 }
@@ -572,68 +521,19 @@ hr {
 //// MEDIA QUERRIES ////
 
 @media (min-width: 320px) {
-    .main-header {
-        &-margintop {
-            margin-top: 3rem;
-        }
-
-        &-text {
-            font-size: 2rem;
-        }
-
-        &-h1 {
-            font-size: 1.25rem;
-        }
-    }
-
     .about {
         h2 {
             margin-top: 1rem!important;
             font-size: 2.5rem;
         }
     }
-
-    .page-title {
-        &-text {
-            font-size: 1rem;
+    
+    .chapter-row{
+        h4 {
+            font-size: 1.25rem;
         }
-
-        h1 {
-            font-size: 1.5rem;
-        }
-    }
-
-    .navbar {
-        &-brand {
-            display: block;
-            margin: auto;
-        }
-
-        &-toggler {
-            margin: 1rem auto auto;
-            display: block;
-        }
-
-        &-collapse {
-            z-index: 10;
-            padding: 0;
-        }
-
-        .nav-link {
-            margin: unset;
-        }
-
-        .text-uppercase {
-            text-align: center;
-        }
-    }
-
-    .publishchapter {
-        &-title{
-            font-size: 2.5rem;
-        }
-        .lead {
-            font-size: 1rem;
+        p {
+            font-size: 0.9rem;
         }
     }
 
@@ -646,14 +546,60 @@ hr {
     .chapter-card {
         border-radius: 1px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
+    } 
 
-    .chapter-row{
-        h4 {
+    .commentModerationCard {
+        padding: 0 4rem 0 4rem!important;
+    }
+
+    .main-header {
+        &-margintop {
+            margin-top: 3rem;
+        }
+        &-text {
+            font-size: 2rem;
+        }
+        &-h1 {
             font-size: 1.25rem;
         }
-        p {
-            font-size: 0.9rem;
+    }
+
+    .navbar {
+        &-brand {
+            display: block;
+            margin: auto;
+        }
+        &-toggler {
+            margin: 1rem auto auto;
+            display: block;
+        }
+        &-collapse {
+            z-index: 10;
+            padding: 0;
+        }
+        .nav-link {
+            margin: unset;
+        }
+        .text-uppercase {
+            text-align: center;
+        }
+    }
+
+    .page-title {
+        &-text {
+            font-size: 1.5rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+        }
+    }   
+
+    .publishchapter {
+        &-title{
+            font-size: 2.5rem;
+        }
+        .lead {
+            font-size: 1rem;
         }
     }
 
@@ -665,50 +611,27 @@ hr {
         }
     }
 
-    .writingChapter {
-        width: 100%;
-        &-title {
-            font-size: 1.2rem;
-        }
-
-        &-btn {
-            width: unset;
-            margin: unset;
-        }
-    }
-
-    .modifybtn, .publishbtn, .deletebtn {
-        margin-top: 0.5rem;
-    }
-
-    .commentModerationCard {
-        padding: 0 4rem 0 4rem!important;
-    }
-
     .publishChapterCard,
     .unpublishChapterCard,
     .commentModerationCard {
         margin-top: 1rem;
         padding: 0;
         border: none;
+        text-align: center!important;
         .card-header {
-            text-align: center!important;
             font-size: 0.9rem;
         }
         &-date {
-            text-align: center;
             font-size: 0.9rem;
         }
         &-title {
             display: block;
-            text-align: center;
             font-weight: bold;
             font-size: 1rem;
             &::before {
                 font-size: 0.8rem;
                 padding-right: 0.5rem;
             }
-
             &::after {
                 font-size: 0.8rem;
             }
@@ -720,12 +643,26 @@ hr {
             margin-top: 0.3rem;
         }
         .collapse {
-            text-align: justify;
+            text-align: justify!important;
         }
+    }
+
+    .reporttag {
+        margin: auto;
     }
 
     .sidebar {
         text-align: center;
+    }
+
+    .summary {
+        &-title {
+            text-align: center;
+        }
+        &-container {
+            padding-right: unset;
+            padding-left: unset;
+        }
     }
 
     .table {
@@ -739,34 +676,20 @@ hr {
         }
     }
 
-    .summary {
+    .writingChapter {
+        width: 100%;
         &-title {
-            text-align: center;
+            font-size: 1.2rem;
         }
 
-        &-container {
-            padding-right: unset;
-            padding-left: unset;
-
+        &-btn {
+            width: unset;
+            margin: unset;
         }
-    }
-
-    .reporttag {
-        margin: auto;
-    }
+    } 
 }
 
 @media (min-width: 576px) {
-    .main-header {
-        &-text {
-            font-size: 2rem;
-        }
-
-        &-h1 {
-            font-size: 1.25rem;
-        }
-    }
-
     .about {
         h2 {
             font-size: 3.5rem;
@@ -777,17 +700,21 @@ hr {
         h4 {
             font-size: 1.5rem;
         }
-        p {
-            font-size: 0.9rem;
+    } 
+
+    .commentModerationCard {
+        &-title {
+            text-align: center;
+        }
+        &-text {
+            font-size: 1rem;
+            width: 80%;
         }
     }
 
-    .publishchapter {
-        &-title{
-            font-size: 3.5rem;
-        }
-        .lead {
-            font-size: 1.25rem;
+    .leaveComment {
+        &-title {
+            text-align: center;
         }
     }
 
@@ -801,12 +728,6 @@ hr {
         }
     }
 
-    .leaveComment {
-        &-title {
-            text-align: center;
-        }
-    }
-
     .publishChapterAdmin,
     .pendingChapterAdmin,
     .commentModerationAdmin {
@@ -815,20 +736,18 @@ hr {
         }
     }
 
-    .modifybtn, .publishbtn, .deletebtn {
-        margin-top: unset;
-    }
-
-    .publishChapterCard{
-        &-btn {
-            padding: 0.375rem 0.75rem;
+    .publishchapter {
+        &-title{
+            font-size: 3.5rem;
+        }
+        .lead {
+            font-size: 1.25rem;
         }
     }
     
     .publishChapterCard,
     .unpublishChapterCard,
     .commentModerationCard {
-
         &-header {
             background-color: white;
         }
@@ -854,17 +773,6 @@ hr {
         
     }
 
-    .commentModerationCard {
-        &-title {
-            text-align: center;
-        }
-
-        &-text {
-            font-size: 1rem;
-            width: 80%;
-        }
-    }
-
     .table {
         width: 90%;
         margin: auto;
@@ -874,21 +782,22 @@ hr {
             padding: 1rem!important;
         }
     }
-
-    .navbar {
-        &-button {
-            margin-top: 1rem;
-        }
-    }
 }
 
 @media (min-width: 992px) {
+    .commentModerationAdmin {
+        &-title {
+            font-size: 2rem;
+        }
+        .card-header{
+            text-align: left!important;
+        }
+    }
 
     .main-header {
         &-text {
             font-size: 4rem;
         }
-
         &-h1 {
             font-size: 2.5rem;
         }
@@ -897,13 +806,26 @@ hr {
         }
     }
 
-    .page-title {
-        &-text {
-            font-size: 2rem;
+    .navbar {
+        .nav-link {
+            margin-left: 3rem;
         }
+    }
 
+    .page-title {
         h1 {
             font-size: 3rem;
+        }
+    }
+
+    .publishChapterCard,
+    .unpublishChapterCard {
+        &-header {
+            text-align: center;
+        }
+        &-title {
+            font-size: 1.3rem;
+            text-align: left;
         }
     }
 
@@ -915,75 +837,6 @@ hr {
         .nav-link {
             padding: 0 0 0 0.5rem;
             width: 100%;
-        }
-    }
-
-    .navbar {
-        .nav-link {
-            margin-left: 3rem;
-        }
-    }
-    
-    .adminHeader {
-        &-container {
-            width: 100%;
-            display: block;
-
-        }
-
-        &-title {
-            display: block;
-            font-size: 1.5rem;
-            margin: 1rem 0 1rem 0;
-        }
-
-        &-btn {
-            display: block;
-            text-align: center;
-        }
-
-        &-img {
-            width: 100%;
-            margin: auto;
-
-            img {
-                margin: auto;
-            }
-        }
-    }
-
-    .commentModerationAdmin {
-        &-title {
-            font-size: 2rem;
-        }
-        .card-header{
-            text-align: left!important;
-        }
-    }
-
-    .publishChapterCard,
-    .unpublishChapterCard {
-        &-header {
-            text-align: center;
-            background-color: white;
-        }
-        &-date {
-            float: right!important;
-            font-size: 0.8rem;
-        }
-        &-title {
-            font-size: 1.3rem;
-            text-align: left;
-            &::before {
-                font-size: 0.8rem;
-                padding-right: 0.5rem;
-            }
-            &::after {
-                font-size: 0.8rem;
-            }
-        }
-        &-text {
-            font-size: 1.1rem;
         }
     }
 
@@ -1003,7 +856,6 @@ hr {
         &-text {
             font-size: 6rem;
         }
-
         &-h1 {
             font-size: 4.5rem;
         }
@@ -1014,13 +866,8 @@ hr {
             display: block;
             margin: auto;
         }
-
         &-button {
             margin: auto;
-        }
-
-        .nav-link {
-            margin-left: 3rem;
         }
     }
 
@@ -1031,23 +878,19 @@ hr {
         }
         .nav-link {
             padding-left: 1.5rem;
-            width: 100%;
         }
     }
 
     .publishChapterCard,
     .unpublishChapterCard {
-
         &-header {
             text-align: center;
             background-color: white;
         }
-
         &-date {
             float: right!important;
             font-size: 1rem;
         }
-
         &-title {
             font-weight: unset;
             font-size: 1.3rem;
@@ -1058,7 +901,6 @@ hr {
                 font-size: 1.25rem;
             }
         }
-
         &-text {
             font-size: 1.1rem;
         }
