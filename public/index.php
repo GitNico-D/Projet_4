@@ -4,7 +4,6 @@ session_start();
 ob_start();
 
 require '../vendor/autoload.php';
-// require '../src/Core/Controller.php';
 
 use App\src\Services\RouterHelper;
 use App\src\Services\LoginsHelper;
@@ -29,8 +28,6 @@ try {
                 $chapterController->createChapter($isAdmin);
             break;
             case 'readChapter':
-                // $pageIx = RouterHelper::getPageIx($_GET);
-                // $commentId = RouterHelper::getCommentId($_GET);
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
                 $chapterController->readChapter($chapterId, $isAdmin);
@@ -43,7 +40,7 @@ try {
             case 'deleteChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $chapterController->deleteChapter($chapterId, $isAdmin);
+                $chapterController->deleteChapter($chapterId);
             break;
             case "updateChapterAction":
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
@@ -89,7 +86,7 @@ try {
             }
     } else {
         $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-        $indexController->home($isAdmin );
+        $indexController->home($isAdmin);
     }
 } catch (Exception $error) {
     if ((int)$error->getCode() != 0) {
