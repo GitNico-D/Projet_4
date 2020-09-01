@@ -2,12 +2,10 @@
 
 namespace App\src\Core;
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
-use Twig\Extension\DebugExtension;
-
 use Exception;
-
+use Twig\Environment;
+use Twig\Extension\DebugExtension;
+use Twig\Loader\FilesystemLoader;
 abstract class Controller
 {
     protected $loader;
@@ -16,7 +14,7 @@ abstract class Controller
     public function __construct()
     {
         $config = yaml_parse_file('../config/config.yml');
-        $this->loader = new FileSystemLoader('../templates');
+        $this->loader = new FilesystemLoader('../templates');
         $this->twig = new Environment($this->loader, array(
             "cache" => false,
             "debug" => true
