@@ -8,34 +8,28 @@ class FormVerificationHelper
 {
     public static function checkField($post) 
     {
-        var_dump($post);
+        $errors = [];
         foreach ($post as $postKey => $postValue) {
-            var_dump($postKey);
-            var_dump($postValue);
-            if ($postKey == "author") {
-                $error = self::checkFieldAuthor($postValue);
-            } elseif ($postKey == "title") {
-                $error = self::checkFieldTitle($postValue);
-            } elseif ($postKey == "content") {
-                $errors = self::checkFieldContent($postValue);
+            if ($postKey === 'content') {
+                $errorContent = self::checkFieldContent($postValue);
+                if ($errorContent) {
+                    $errors [] = $errorContent;
+                }
             }
-            return $error;
-                // switch ($postKey) {
-                //     case "author":
-                //         return $error;
-                //     break;
-                //     case "title":
-                //         $error = self::checkFieldTitle($postValue);
-                //     break;
-                //     case "content":
-                //         return $error;
-                //     break;
-                //     default;
-                // }
+            elseif ($postKey === 'author') {
+                $errorAuthor = self::checkFieldAuthor($postValue);
+                if ($errorAuthor) {
+                    $errors [] = $errorAuthor;
+                }
             }
-            // var_dump($error);
-            // return $error;
-                // throw new Exception ('Les champs ' . implode(', ', $postNull) .  ' ne sont pas remplis');
+            elseif ($postKey === 'title') {
+                $errorTitle = self::checkFieldTitle($postValue);
+                if ($errorTitle) {
+                    $errors [] = $errorTitle;
+                }
+            }
+        }
+        return $errors;
     }
 
     public static function checkFieldAuthor($postAuthorValue)
@@ -43,12 +37,12 @@ class FormVerificationHelper
         if (strlen($postAuthorValue) < 2) {
             return "Le pseudonyme est trop court, minimum 2 caractères";
         }
-        if (strlen($postAuthorValue) > 50) {
-            return "Le pseudonyme est trop long, maximum 50 caractères";
+        if (strlen($postAuthorValue) > 25) {
+            return "Le pseudonyme est trop long, maximum 25 caractères";
         }
     }
 
-    private static function checkFieldTitle($title)
+    public static function checkFieldTitle($title)
     {
         if (strlen($title) < 2) {
             return "Le titre est trop court, minimum 2 caractères";
@@ -58,7 +52,7 @@ class FormVerificationHelper
         }
     }
 
-    private static function checkFieldContent($content)
+    public static function checkFieldContent($content)
     {
         if(strlen($content) < 5) {
             return "Votre message doit contenir au moins 5 caractères";
