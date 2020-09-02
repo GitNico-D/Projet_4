@@ -27,25 +27,24 @@ class CommentController extends Controller
 
     public function createComment($chapterId)
     {
-        // if(isset($_POST['submit'])) {
-            var_dump($_POST);
-        if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['content']))) {
+        if(isset($_POST['submit'])) {
+            if (!empty(htmlspecialchars($_POST['content'])) && !empty(htmlspecialchars($_POST['author']))) {
                 $errors = FormVerificationHelper::checkField($_POST);
-                var_dump($errors);
-            if (!$errors) {
-                $newComment = new Comment($_POST);
-                $newComment->setCreatedDate(date("Y-m-d H:i:s"));
-                $newComment->setChapterId($chapterId);
-                $this->commentManager->insertInto($newComment);
-                $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
-                header('Location: /readChapter/' . $chapterId . "#comment");
+                if (!$errors) {
+                    $newComment = new Comment($_POST);
+                    $newComment->setCreatedDate(date("Y-m-d H:i:s"));
+                    $newComment->setChapterId($chapterId);
+                    $this->commentManager->insertInto($newComment);
+                    $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
+                    header('Location: /readChapter/' . $chapterId . "#comment");
+                } else {
+                    $_SESSION['commentError'] .= implode(', ', $errors);
+                    header('Location: /readChapter/' . $chapterId . "#comment");
+                }
             } else {
-                $_SESSION['commentError'] = $errors;
+                $_SESSION['commentError'] = 'Veuillez remplir les champs !';
                 header('Location: /readChapter/' . $chapterId . "#comment");
             }
-        } else {
-            $_SESSION['commentError'] = 'Veuillez remplir les champs !';
-            header('Location: /readChapter/' . $chapterId . "#comment");
         }
     }
 
@@ -79,14 +78,13 @@ class CommentController extends Controller
         if ($reportedComment = false) {
             throw new Exception('Impossible de signaler le commentaire');
         } else {
-            header('Location: /readChapter/' . $chapterId);
+            header('Location: /readChapter/' . $chapterId . '#comment');
         }
     }
 
     public function validateComment($commentId)
     {
         $deleteReport = $this->commentManager->findOneBy(array('id' => $commentId));
-        var_dump($deleteReport);
         $this->reportingManager->deleteFrom($deleteReport);
         header('Location: /adminView#commentModeration');
     }
