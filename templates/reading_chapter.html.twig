@@ -24,23 +24,15 @@
         <p class="card-header float-right bg-white mb-4 pb-3">
             {% if uniqueChapter.createDate == uniqueChapter.updateDate %}
                 Publié le 
-                <span class="font-italic bold">{{ uniqueChapter.createDate | date("d/m/Y \à H:i:s") }}</span> 
+                <span class="font-italic font-weight-bold">{{ uniqueChapter.createDate | date("d/m/Y \à H:i:s") }}</span> 
             {% else %}
                 Modifié le 
-                <span class="font-italic bold">{{ uniqueChapter.updateDate | date("d/m/Y \à H:i:s") }}</span> 
+                <span class="font-italic font-weight-bold">{{ uniqueChapter.updateDate | date("d/m/Y \à H:i:s") }}</span> 
             {% endif %}
             par 
-            <span class="font-italic bold">{{ uniqueChapter.author }}</span>
+            <span class="font-italic font-weight-bold">{{ uniqueChapter.author }}</span>
         </p>
         <p id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify py-4">{{ uniqueChapter.content | raw }}</p>
-    </div>
-    <div class="text-center">
-        {% if chapterNumber <= 1 and chapterNumber is defined %}            
-            <a href="/readChapter/{{ chapterNumber + 1 }}" class="btn yellowbtn my-2">Chapitre Suivant</a>
-        {% else %}
-            <a href="/readChapter/{{ chapterNumber - 1 }}" class="btn yellowbtn my-2">Chapitre précédent</a>
-            <a href="/readChapter/{{ chapterNumber + 1 }}"class="btn yellowbtn my-2">Chapitre Suivant</a> 
-        {% endif %}  
     </div>
     {% if isAdmin %}
         <div class="singlePage-return text-center p-4">
@@ -48,7 +40,7 @@
         </div>  
     {% else %}
         <div class="singlePage-return text-center p-4">
-            <i class="far fa-arrow-alt-circle-left"></i><a href="/" class="ml-2 my-2">Retour à l'accueil</a>
+            <i class="far fa-arrow-alt-circle-left"></i><a href="/#publishChapter" class="ml-2 my-2">Retour aux chapitres</a>
         </div>
     {% endif %}
 </section>
@@ -59,7 +51,7 @@
         <div class=" text-center">
             <div class="my-4">
                 <p class="text-left card-header p-0 bg-white">
-                    <span class="font-italic bold">{{ comment.author }}</span>
+                    <span class="font-italic font-weight-bold">{{ comment.author }}</span>
                     posté le <span class="font-italic">{{ comment.createdDate | date("d/m/Y \à H:i:s") }}</span>
                 </p>
                 <p class="card-body text-left m-0 pt-2 pl-4">
@@ -110,7 +102,7 @@
                 <label for="content" class="font-weight-bold">Votre commentaire</label>
                     <textarea class="form-control" name='content' rows="10"></textarea>
                 <div class="commentButton text-center">
-                    <button type="submit" name="submit" class="btn yellowbtn my-2">Soumettre commentaire</button>
+                    <button type="submit" name="submit" class="btn yellowbtn my-2" value="Soumettre commentaire">Soumettre commentaire</button>
                 </div>
             </div>
         </form>    
