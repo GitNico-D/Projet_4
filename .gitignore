@@ -4,9 +4,3 @@ vendor/
 .vscode/
 public/css/
 node_modules/
-
-config/db-config.yml
-
-config/route.yml
-
-.php_cs.cache
