@@ -35,7 +35,6 @@ class LoginsController extends Controller
      */
     public function getLogin()
     {
-        unset($_SESSION['fail']);
         if (!empty($_POST['loginsEmail']) and !empty($_POST['loginsPassword'])) {
         var_dump(isset($_POST["connect"]));
         // if (isset($_POST["connect"])) {
