@@ -6,11 +6,16 @@ use Exception;
 
 class FormVerificationHelper
 {
+    // public $errors = [];
+
     public static function checkField($post) 
     {
         $errors = [];
         foreach ($post as $postKey => $postValue) {
-            if ($postKey === 'content') {
+            $errorField = self::notBlank($postValue);
+            if($errorField) {
+            $errors [] = $errorField;
+            } elseif ($postKey === 'content') {
                 $errorContent = self::checkFieldContent($postValue);
                 if ($errorContent) {
                     $errors [] = $errorContent;
@@ -28,16 +33,30 @@ class FormVerificationHelper
                     $errors [] = $errorTitle;
                 }
             }
+            elseif ($postKey === 'loginsEmail') {
+                $errorEmail = self::checkFieldEmail($postValue);
+                if ($errorEmail) {
+                    $errors [] = $errorEmail;
+                }
+                }
         }
-        return $errors;
+        // array_pus($errors, $error);
+        return array_unique($errors);
     }
 
-    public static function checkFieldAuthor($postAuthorValue)
+    public static function notBlank($postValue) 
     {
-        if (strlen($postAuthorValue) < 2) {
+        if(empty($postValue)) {
+            return 'Veuillez remplir les champs';
+        }
+    }
+
+    public static function checkFieldAuthor($author)
+    {
+        if (strlen($author) < 2) {
             return "Le pseudonyme est trop court, minimum 2 caractères";
         }
-        if (strlen($postAuthorValue) > 25) {
+        if (strlen($author) > 25) {
             return "Le pseudonyme est trop long, maximum 25 caractères";
         }
     }
@@ -58,4 +77,12 @@ class FormVerificationHelper
             return "Votre message doit contenir au moins 5 caractères";
         }
     }
+
+    public static function checkFieldEmail($email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return "E-mail " . $email . " est invalide";
+        }
+    }
+
 }
