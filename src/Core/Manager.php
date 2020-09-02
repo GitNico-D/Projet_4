@@ -144,7 +144,6 @@ abstract class Manager extends PDOFactory
         $class = get_class($deleteEntity);
         $param = strtolower(str_replace('App\src\Models\\', '', $class));
         $sqlRequest = "DELETE FROM " . $this->table . " WHERE " . $param . "Id = ?";
-        var_dump($sqlRequest);
         $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
     }
 }

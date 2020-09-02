@@ -65,7 +65,6 @@
                 <p class="card-body text-left m-0 pt-2 pl-4">
                     {{ comment.content }}
                 </p>
-                {# dump(reportedCommentList) #}
                 <div class="reporting-comment text-left pt-2 pl-4">
                     <a href="/reportComment/{{ uniqueChapter.id }}/{{ comment.id }}"
                     class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon ml-3"></i>
@@ -106,10 +105,10 @@
     <h4 class="p-3">Laisser un commentaire</h4>
         <form action="/createComment/{{ uniqueChapter.id }}" method="post" class="leaveComment-form">
             <div class="form-group">
-                <label for="author" class="bold" >Pseudonyme</label>    
-                    <input type="text" class="form-control" id="author" name="author">
-                <label for="content" class="bold">Votre commentaire</label>
-                    <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+                <label for="author" class="font-weight-bold" >Pseudonyme</label>    
+                    <input type="text" class="form-control" name="author">
+                <label for="content" class="font-weight-bold">Votre commentaire</label>
+                    <textarea class="form-control" name='content' rows="10"></textarea>
                 <div class="commentButton text-center">
                     <button type="submit" name="submit" class="btn yellowbtn my-2">Soumettre commentaire</button>
                 </div>
