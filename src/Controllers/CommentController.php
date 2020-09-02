@@ -28,7 +28,7 @@ class CommentController extends Controller
     public function createComment($chapterId)
     {
         if(isset($_POST['submit'])) {
-            if (!empty(htmlspecialchars($_POST['content'])) && !empty(htmlspecialchars($_POST['author']))) {
+            // if (!empty(htmlspecialchars($_POST['content'])) && !empty(htmlspecialchars($_POST['author']))) {
                 $errors = FormVerificationHelper::checkField($_POST);
                 if (!$errors) {
                     $newComment = new Comment($_POST);
@@ -41,10 +41,10 @@ class CommentController extends Controller
                     $_SESSION['commentError'] .= implode(', ', $errors);
                     header('Location: /readChapter/' . $chapterId . "#comment");
                 }
-            } else {
-                $_SESSION['commentError'] = 'Veuillez remplir les champs !';
-                header('Location: /readChapter/' . $chapterId . "#comment");
-            }
+            // } else {
+            //     $_SESSION['commentError'] = 'Veuillez remplir les champs !';
+            //     header('Location: /readChapter/' . $chapterId . "#comment");
+            // }
         }
     }
 
