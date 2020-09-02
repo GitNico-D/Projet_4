@@ -40,16 +40,17 @@ try {
             case 'deleteChapter':
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $chapterController->deleteChapter($chapterId);
+                $chapterController->deleteChapter($chapterId, $isAdmin);
             break;
             case "updateChapterAction":
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $chapterController->updateChapterAction($chapterId);
+                $chapterController->updateChapterAction($chapterId, $isAdmin);
             break;
             case 'publishChapter':
+                $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
                 $chapterId = RouterHelper::getChapterId($_GET);
-                $chapterController->publishChapter($chapterId);
+                $chapterController->publishChapter($chapterId, $isAdmin);
             break;
             case 'getLogin':
                 $loginsController->getLogin();
