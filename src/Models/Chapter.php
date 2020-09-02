@@ -3,7 +3,6 @@
 namespace App\src\Models;
 
 use App\src\Core\Model;
-use App\src\Core\FormValidator;
 use Exception;
 class Chapter extends Model
 {
@@ -15,11 +14,9 @@ class Chapter extends Model
     protected $updateDate;
     protected $published;
     protected $imgUrl;
-    // public $formValidator;
 
     public function __construct($attributes = [])
     {
-        // $this->formValidator = new FormValidator;
         $this->hydrate($attributes);
     }
 
@@ -40,11 +37,6 @@ class Chapter extends Model
 
     public function setAuthor($author)
     {
-        // if(!is_string($author) || empty($author)) {
-        //     throw new Exception('Le champ de l\'auteur est vide');
-        // } else {
-        //     $this->author = $author;
-        // } 
         if(is_string($author)) {
             $this->author = $author;
         } 
@@ -52,11 +44,6 @@ class Chapter extends Model
 
     public function setTitle($title)
     {
-        // if(!is_string($title) || empty($title)) {
-        //     throw new Exception('Le champ de titre est vide');
-        // } else {
-        //     $this->title = $title;
-        // } 
         if(is_string($title)) {
             $this->title = $title;
         } 
@@ -64,11 +51,6 @@ class Chapter extends Model
 
     public function setContent($content)
     {
-        // if (!is_string($content) || empty($content)) {
-        //     throw new Exception('Le contenu est vide');
-        // } else {
-        //     $this->content = $content;
-        // }
         if(is_string($content)) {
             $this->content = $content;
         } 
