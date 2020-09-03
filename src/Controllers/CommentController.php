@@ -3,11 +3,11 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
+use App\src\Core\FormValidator;
 use App\src\Managers\CommentManager;
 use App\src\Managers\ReportingManager;
 use App\src\Models\Comment;
 use App\src\Models\Reporting;
-use App\src\Services\FormVerificationHelper;
 
 use Exception;
 
@@ -28,23 +28,18 @@ class CommentController extends Controller
     public function createComment($chapterId)
     {
         if(isset($_POST['submit'])) {
-            // if (!empty(htmlspecialchars($_POST['content'])) && !empty(htmlspecialchars($_POST['author']))) {
-                $errors = FormVerificationHelper::checkField($_POST);
-                if (!$errors) {
-                    $newComment = new Comment($_POST);
-                    $newComment->setCreatedDate(date("Y-m-d H:i:s"));
-                    $newComment->setChapterId($chapterId);
-                    $this->commentManager->insertInto($newComment);
-                    $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
-                    header('Location: /readChapter/' . $chapterId . "#comment");
-                } else {
-                    $_SESSION['commentError'] .= implode(', ', $errors);
-                    header('Location: /readChapter/' . $chapterId . "#comment");
-                }
-            // } else {
-            //     $_SESSION['commentError'] = 'Veuillez remplir les champs !';
-            //     header('Location: /readChapter/' . $chapterId . "#comment");
-            // }
+            $errors = FormValidator::checkField($_POST);
+            if (!$errors) {
+                $newComment = new Comment($_POST);
+                $newComment->setCreatedDate(date("Y-m-d H:i:s"));
+                $newComment->setChapterId($chapterId);
+                $this->commentManager->insertInto($newComment);
+                $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
+                header('Location: /readChapter/' . $chapterId . "#comment");
+            } else {
+                $_SESSION['commentError'] .= implode(', ', $errors);
+                header('Location: /readChapter/' . $chapterId . "#comment");
+            }
         }
     }
 

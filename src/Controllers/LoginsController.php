@@ -3,7 +3,7 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
-use App\src\Services\FormVerificationHelper;
+use App\src\Core\FormValidator;
 use App\src\Managers\LoginsManager;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
@@ -37,7 +37,7 @@ class LoginsController extends Controller
     {
         if (isset($_POST['connect'])) {
             if (!empty($_POST['loginsEmail']) and !empty($_POST['loginsPassword'])) {
-                $errors = FormVerificationHelper::checkField($_POST);
+                $errors = FormValidator::checkField($_POST);
                 if (!$errors) {
                     $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
                     if($loginsAdmin == null) {

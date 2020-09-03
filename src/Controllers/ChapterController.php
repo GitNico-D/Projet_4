@@ -3,11 +3,11 @@
 namespace App\src\Controllers;
 
 use App\src\Core\Controller;
+use App\src\Core\FormValidator;
 use App\src\Managers\ChapterManager;
 use App\src\Managers\CommentManager;
 use App\src\Managers\ReportingManager;
 use App\src\Models\Chapter;
-use App\src\Services\FormVerificationHelper;
 
 use Exception;
 
@@ -42,29 +42,23 @@ class ChapterController extends Controller
      */
     public function createChapter($isAdmin)
     {
-        if($isAdmin) {;
-            if (isset($_POST['save'])) {
-                $errors = FormVerificationHelper::checkField($_POST);
-                var_dump($errors);
-                if($errors){
-                    $_SESSION['addErrorMsg'] = $errors;
-                    var_dump($errors);
-                }
-                if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['imgUrl'])) and !empty(htmlspecialchars($_POST['content']))) {
+        if($isAdmin) {
+            if(isset($_POST['save'])) {
+                $errors = FormValidator::checkField($_POST);
+                if(!$errors) {
+                //     $_SESSION['addErrorMsg'] = $errors;
+                //     var_dump($errors);
+                // }
+                // if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['imgUrl'])) and !empty(htmlspecialchars($_POST['content']))) {
                     $newChapter = new Chapter($_POST);
                     $newChapter->setCreateDate(date('Y-m-d H:i:s'));
                     $newChapter->setUpdateDate(date('Y-m-d H:i:s'));
                     $newChapter->setPublished(false);
-                    var_dump($insertLines);
-                    if ($insertLines == false) {
-                        $insertLines = $this->chapterManager->insertInto($newChapter);
-                        $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
-                        header('Location: /adminView');
-                    } else {
-                        throw new Exception('Impossible de sauvegarder le chapitre');
-                    }
+                    $this->chapterManager->insertInto($newChapter);
+                    $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
+                    header('Location: /adminView');
                 } else {
-                    $_SESSION['addErrorMsg'] = 'Veuillez remplir tous les champs';
+                    $_SESSION['addErrorMsg'] .= implode(', ', $errors);
                     header('Location: /createChapter');
                 }
             }
