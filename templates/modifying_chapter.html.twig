@@ -55,6 +55,10 @@
         <script>
             tinymce.init({
                 selector: '#chapterContent',
+                mode:"exact",
+                entity_encoding : "raw",
+                encoding: "UTF-8",
+                language : 'fr_FR',
                 height: 1000,
                 plugins: [
                     'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
