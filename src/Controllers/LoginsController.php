@@ -33,10 +33,9 @@ class LoginsController extends Controller
      * @return void
      * @throws Exception
      */
-    public function getLogin()
+    public function adminConnect()
     {
         if (isset($_POST['connect'])) {
-            if (!empty($_POST['loginsEmail']) and !empty($_POST['loginsPassword'])) {
                 $errors = FormValidator::checkField($_POST);
                 if (!$errors) {
                     $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
@@ -50,15 +49,7 @@ class LoginsController extends Controller
                             $_SESSION['loginsEmail'] = $loginsAdmin->getEmail();
                             $_SESSION['loginsStatus'] = $loginsAdmin->getStatus();
                             $isAdmin = true;
-                            echo $this->render(
-                                'admin_page.html.twig',
-                                ['allChaptersList' => $this->chapterManager->findAll(),
-                                'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
-                                'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
-                                'reportedCommentList' => $this->commentManager->getAllReportedComments(),
-                                'isAdmin' => $isAdmin,
-                                'session' => $_SESSION]
-                            );
+                            $this->adminView($isAdmin);
                         } else {
                             $_SESSION['fail'] = 'Mot de passe invalide !';
                             header("Location: /getLogin");
@@ -68,11 +59,11 @@ class LoginsController extends Controller
                     $_SESSION['fail'] .= implode(', ', $errors);
                     header("Location: /getLogin");
                 }
-            } else {
-                 $_SESSION['fail'] = 'Veuillez remplir les champs !';
-                 header("Location: /getLogin");
-            }
         }
+    }
+
+    public function getLogin()
+    {
         echo $this->render('logins.html.twig');
     }
 
@@ -96,7 +87,7 @@ class LoginsController extends Controller
      * @return void
      * @throws Exception
      */
-    public function returnAdminView($isAdmin)
+    public function adminView($isAdmin)
     {
         if ($isAdmin) {
             echo $this->render(

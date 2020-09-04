@@ -46,10 +46,6 @@ class ChapterController extends Controller
             if(isset($_POST['save'])) {
                 $errors = FormValidator::checkField($_POST);
                 if(!$errors) {
-                //     $_SESSION['addErrorMsg'] = $errors;
-                //     var_dump($errors);
-                // }
-                // if (!empty(htmlspecialchars($_POST['author'])) and !empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['imgUrl'])) and !empty(htmlspecialchars($_POST['content']))) {
                     $newChapter = new Chapter($_POST);
                     $newChapter->setCreateDate(date('Y-m-d H:i:s'));
                     $newChapter->setUpdateDate(date('Y-m-d H:i:s'));
@@ -160,13 +156,12 @@ class ChapterController extends Controller
     {
         if($isAdmin) {
             if (isset($_POST['save'])) {
-                if (!empty(htmlspecialchars($_POST['chapterTitle'])) and !empty(htmlspecialchars($_POST['chapterImg'])) and !empty(htmlspecialchars($_POST['chapterImg']))) {
+                if (!empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['imgUrl'])) and !empty(htmlspecialchars($_POST['content']))) {
                     $updatedChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
-                    $updatedChapter->setTitle(htmlspecialchars($_POST['chapterTitle']));
-                    $updatedChapter->setImgUrl(htmlspecialchars($_POST['chapterImg']));
-                    $updatedChapter->setContent(htmlspecialchars($_POST['chapterContent']));
+                    $updatedChapter->setTitle(($_POST['title']));
+                    $updatedChapter->setImgUrl(($_POST['imgUrl']));
+                    $updatedChapter->setContent(($_POST['content']));
                     $updatedChapter->setUpdateDate(date('Y-m-d H:i:s'));
-                    $updatedChapter->setPublished(true);
                     $updateLines = $this->chapterManager->update($updatedChapter);
                     if ($updateLines == false) {
                         throw new Exception('Impossible de mettre à jour le chapitre');
