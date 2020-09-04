@@ -1,27 +1,11 @@
-#--------------------------------------------------
-# Répertoire : /public/
-#--------------------------------------------------
-
-# Le serveur doit suivre les liens symboliques :
 Options +FollowSymlinks
-
-# Activation du module de réécriture d'URL :
 RewriteEngine on
 
-#--------------------------------------------------
-# Règles de réécriture d'URL :
-#--------------------------------------------------
+RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ /public/index.php?page=$1&chapterId=$2&commentId=$3
 
-# Page avec chapterId et commentId:
-RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?page=$1&chapterId=$2&commentId=$3
+RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)$ /public/index.php?page=$1&chapterId=$2
 
-# Page avec chapterId :
-RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)$ index.php?page=$1&chapterId=$2
+RewriteRule ^([a-zA-Z]+)$ /public/index.php?page=$1
 
-# Page :
-RewriteRule ^([a-zA-Z]+)$ index.php?page=$1
-
-# Index :
-RewriteRule ^$ index.php [L]
-
+RewriteRule ^$ /public/index.php [L]
 
