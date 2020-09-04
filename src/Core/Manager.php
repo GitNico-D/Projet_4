@@ -26,7 +26,7 @@ abstract class Manager extends PDOFactory
      */
     public function findOneBy($where)
     {
-        $requestResult = $this->findBy($where, $orderBy, 1);
+        $requestResult = $this->findBy($where, [], 1);
         // if ($requestResult[0] === null) {
         //     throw new Exception('Ce chapitre n\'existe pas');
         // } else {
