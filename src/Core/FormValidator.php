@@ -6,8 +6,6 @@ use Exception;
 
 class FormValidator
 {
-    // public $errors = [];
-
     public static function checkField($post) 
     {
         $errors = [];
@@ -45,9 +43,8 @@ class FormValidator
                     $errors [] = $errorEmail;
                 }
             }
-            var_dump($errors);
+            // var_dump($errors);
         }
-        // array_pus($errors, $error);
         return array_unique($errors);
     }
 
