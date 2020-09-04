@@ -55,6 +55,9 @@ try {
             case 'getLogin':
                 $loginsController->getLogin();
             break;
+            case 'adminConnect':
+                $loginsController->adminConnect();
+            break;
             case 'getLogout':
                 $loginsController->getLogout();
             break;
@@ -77,7 +80,7 @@ try {
             break;
             case "adminView":
                 $isAdmin = LoginsHelper::checkAdminConnected($_SESSION);
-                $loginsController->returnAdminView($isAdmin);
+                $loginsController->adminView($isAdmin);
             break;
             case "contact":
                 $loginsController->toBeContacted();
