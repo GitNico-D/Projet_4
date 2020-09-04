@@ -63,7 +63,7 @@
                 </div>
                 <div class="container summary-container">
                     <p class="summary-subtitle my-5">Commentaires</p>
-                    <p class="text-center">{{ reportedCommentList | length }} commentaires signalés nécessitent une modération de votre part</p>
+                    <p class="text-center summary-comment">{{ reportedCommentList | length }} commentaires signalés nécessitent une modération de votre part</p>
                 </div>
             </section>
             <hr class="adminpageSeparator">
@@ -90,8 +90,9 @@
                         </div>                      
                         <div id="collapse{{ plusOne }}" class="collapse publishChapterCard-collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#publishaccordion{{ plusOne }}">
                             <div class="card-body">
-                                <p class="font-italic bold">Extrait :</p>
-                                <p>{{ chapter.content | raw | slice(0, 500) }}...</p>
+                                <p class="font-italic font-weight-bold">Extrait :</p>
+                                <p>{{ chapter.content | split('</p>')[0] | raw  }}...</p>
+
                             </div>
                             <div class="text-center">
                                 <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn yellowbtn">Visionner</a>
@@ -121,9 +122,8 @@
                             </div>                      
                             <div id="unpublishCollapse{{ chapter.id }}" class="collapse" aria-labelledby="unpublishHeading{{ chapter.id }}" data-parent="#unpublishedaccordion{{ chapter.id }}">
                                 <div class="card-body">
-                                    <p  class="font-italic font-weight-bold">Extrait :</p>
-                                    <p>
-                                    {{ chapter.content | raw | slice(0, 350)  }}...</p>
+                                    <p class="font-italic font-weight-bold">Extrait :</p>
+                                    <p>{{ chapter.content | split('</p>')[0] | raw  }}...</p>
                                 </div>
                                 <div class="text-center">
                                     <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn yellowbtn ">Modifier</a>
@@ -148,7 +148,8 @@
                 {% for reportComment in reportedCommentList %}
                     <div class="card commentModerationCard mt-3">
                         <p class="card-header text-left font-weight-bold">
-                            <span class="font-italic">Posté le</span> {{ reportComment.createdDate | date("m/d/Y \à H:i:s") }} <span class="font-italic">par</span>  {{ reportComment.author }}
+                            <span class="font-italic">Posté le</span> {{ reportComment.createdDate | date("m/d/Y \à H:i:s") }}
+                            <span class="font-italic">par</span>  {{ reportComment.author }}
                         </p>
                         <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ reportComment.content }}</p>
                         <div class="text-center">
