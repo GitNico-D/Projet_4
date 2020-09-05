@@ -50,18 +50,18 @@
                 height: 1000,
                 plugins: [
                     'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-                    'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                    'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking',
                     'table emoticons template paste help'
                     ],
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | ' +
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect | ' +
                     'alignleft aligncenter alignright alignjustify | outdent indent |  ' +
                     'numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons |' +
                     'fullscreen  preview save print | insertfile image codesample | ltr rtl',
                     toolbar_sticky: true,
                     menu: {
-                        favs: {items: 'code visualaid | searchreplace | spellchecker | emoticons'}
+                        favs: {items: 'visualaid | searchreplace | spellchecker | emoticons'}
                     },
-                    menubar: 'favs file edit view insert format tools help',
+                    menubar: 'favs file edit view tools',
                 });
         </script>
     {% endblock javascript %}    
