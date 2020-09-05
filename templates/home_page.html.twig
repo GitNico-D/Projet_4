@@ -16,7 +16,7 @@
     <section id="about" class="container about">
         <div class="d-flex align-items-start flex-wrap">
             <div class="col-md-4 ">
-                <img src="/img/portrait1.png" class="p-0 mt-3 w-100">
+                <img src="/img/portrait1.png" class="p-0 mt-3 w-100" alt="portrait de l'auteur">
             </div>
             <div class="col-md-8 text-center px-3">            
                 <h2 class="display-4 m-0 pb-3 border-bottom">
@@ -55,7 +55,7 @@
                     <div class="chapter-card m-0 p-4 mt-4">
                         <h4 class="text-left py-3">{{ chapter.title }}</h4>
                         {% if chapter.imgUrl is not null %}
-                            <img src={{ chapter.imgUrl }} class="w-100">
+                            <img src={{ chapter.imgUrl }} class="w-100" alt="">
                         {% endif %}    
                         <p class="text-muted text-right pt-4 text-wrap">
                             Publié le 
@@ -63,12 +63,12 @@
                             par 
                             <span class="font-italic">{{ chapter.author }}</span>
                         </p>
-                        <p class="text-justify py-3"> {{ chapter.content | split('</p>')[0] | raw }}...<p>
+                        <p class="text-justify py-1"> {{ chapter.content | split('</p>')[0] | raw }}...<p>
                         <a href="/readChapter/{{ chapter.id }}" class="btn yellowbtn my-3">
                             Lire le chapitre
                         </a>
                     </div>
-                </div>
+                </div>                
             {% else %}
                 <div class="chapter text-center">
                     <div class="col-md-4">
@@ -78,7 +78,6 @@
                     </div>
                 </div>
             {% endfor %}
-            
         </div>
     </section>
 {% endblock %}
