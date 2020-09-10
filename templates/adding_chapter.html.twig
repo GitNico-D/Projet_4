@@ -19,7 +19,7 @@
         <form action="/createChapter" method="post">
             <div class="form-group writingForm mt-5">
                 <label for="author" class="text-left font-weight-bold font-italic writingForm-labelAuthor">Auteur</label>
-                    <input type="text" class="form-control writingForm-authorInput mb-5 border-0 rounded-0" id="author" name="author" value="Jean">
+                    <input type="text" class="form-control writingForm-authorInput border-0 mb-5 rounded-0" id="author" name="author" value="Jean">
                 <label for="title" class="text-left font-weight-bold font-italic writingForm-labelTitle">Titre du chapitre</label>
                     <input type="text" class="form-control writingForm-titleInput mb-5 rounded-0" id="title" name="title">
                 <label for="imgUrl" class="text-left font-weight-bold font-italic writingForm-labelImg">Image du chapitre</label>
@@ -34,7 +34,7 @@
     </div>
     {% if isAdmin %}
     <div class="text-center">
-        <a href="/adminView" class="writingForm-link">Retour à la page d'administration</a>
+        <a href="/adminView" class="linkblackyellow allLink">Retour à la page d'administration</a>
     </div>
     {% endif %}
 

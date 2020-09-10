@@ -6,6 +6,7 @@
         <title>{% block pageTitle %}Blog en création{% endblock pageTitle %}</title>
         <meta name="description" content="{% block metaDescription %}{% endblock metaDescription %}">
         <meta name="author" content="Blog">
+        <link rel="icon" href="/logo-fav.png" type="/png">
         {% block stylesheet %}
         {# <link rel="stylesheet" href="/css/reset.css" type="text/css"> #}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,28 +16,20 @@
     </head>
     <body>
         <header>
-
             {% if isAdmin %}
                 {% include '_navbar_admin.html.twig' %}
             {% else %}
                 {% include '_navbar_user.html.twig' %}
             {% endif %}
-
         </header>
         <section id="main-header" class="main-header text-center">
-
             {% block mainHeader %}{% endblock mainHeader %}
-
         </section>
         <section>  
-
             {% block main %}{% endblock main %}
-
         </section>                
         <footer class="footer">
-
             {% include '_footer.html.twig' %}
-
         </footer>
         {% block javascript %}
             <script src="https://kit.fontawesome.com/8b1d8d6405.js" crossorigin="anonymous"></script>

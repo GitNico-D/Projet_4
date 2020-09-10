@@ -32,15 +32,17 @@
             par 
             <span class="font-italic font-weight-bold">{{ uniqueChapter.author }}</span>
         </p>
-        <p id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify py-4">{{ uniqueChapter.content | raw }}</p>
+        <p id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify py-4">    
+            {{ uniqueChapter.content  | raw }}
+        </p>
     </div>
     {% if isAdmin %}
-        <div class="singlePage-return text-center p-4">
-            <i class="far fa-arrow-alt-circle-left"></i><a href="/adminView" class="ml-2 my-2">Retour à la page d'administration</a>
+        <div class="returnPage text-center p-4">
+            <a href="/adminView" class="allLink"><i class="far fa-arrow-alt-circle-left p-2"></i>Retour à la page d'administration</a>
         </div>  
     {% else %}
-        <div class="singlePage-return text-center p-4">
-            <i class="far fa-arrow-alt-circle-left"></i><a href="/#publishChapter" class="ml-2 my-2">Retour aux chapitres</a>
+        <div class="returnPage text-center p-4">
+            <a href="/#publishChapter" class="allLink ml-2 my-2"><i class="far fa-arrow-alt-circle-left p-2"></i>Retour aux chapitres</a>
         </div>
     {% endif %}
 </section>
@@ -59,7 +61,7 @@
                 </p>
                 <div class="reporting-comment text-left pt-2 pl-4">
                     <a href="/reportComment/{{ uniqueChapter.id }}/{{ comment.id }}"
-                    class="reporting-link">Signaler<i class="fa fa-thumbs-down reporting-icon ml-3"></i></a>
+                    class="reportinglink allLink">Signaler<i class="fa fa-thumbs-down ml-2"></i></a>
                     {% for totalReport in totalReporting %}
                         {% if totalReport.commentId == comment.id %}
                             <a>{{ totalReport.totalReport }}</a>

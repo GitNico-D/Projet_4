@@ -26,12 +26,12 @@
         <form action="/updateChapterAction/{{ uniqueChapter.id }}" method="post">
             <div class="form-group">
                 <label for="title" class="h4 font-weight-bold my-4 text-left updateForm-labeltitle">Titre</label>
-                    <input type="text" class="form-control updateForm-titleinput" id="title" name="title" value="{{ uniqueChapter.title }}">
+                    <input type="text" class="form-control updateForm-input mb-4" id="title" name="title" value="{{ uniqueChapter.title }}">
                 <label for="imgUrl" class="h4 font-weight-bold font-italic my-4 text-left updateForm-labelimg">Image</label>
                     {% if uniqueChapter is not null %}
                         <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
                     {% endif %}
-                    <input type="text" class="form-control updateForm-imginput" id="imgUrl" name="imgUrl" value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}">                            
+                    <input type="text" class="form-control updateForm-input mb-4" id="imgUrl" name="imgUrl" value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}">                            
                 <label for="content" class="h4 font-weight-bold my-4">Contenu</label>
                     <textarea class="form-control text-justify" id="content" name="content" rows="30" >{{ uniqueChapter.content | raw }}</textarea>
                 <div class="text-center">
@@ -43,8 +43,8 @@
     </div>
     <div class="text-center"> 
         {% if isAdmin %}
-            <div class="modifyPage-return text-center">
-                <i class="fas fa-arrow-left"></i><a href="/adminView">Retour à la page d'administration</a>
+            <div class="returnPage text-center">
+                <a href="/adminView"><i class="fas fa-arrow-left"></i>Retour à la page d'administration</a>
             </div>
         {% endif %} 
     </div>  
