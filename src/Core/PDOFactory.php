@@ -4,12 +4,13 @@ namespace App\src\Core;
 
 use PDO;
 use Exception;
+
 abstract class PDOFactory
 {
     private $db;
 
     private function getMysqlConnection()
-    {        
+    {
         $dbConfig = yaml_parse_file('../config/db-config.yml');
         if ($this->db === null) {
             try {

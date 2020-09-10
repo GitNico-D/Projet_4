@@ -27,7 +27,7 @@ class CommentController extends Controller
 
     public function createComment($chapterId)
     {
-        if(isset($_POST['submit'])) {
+        if (isset($_POST['submit'])) {
             $errors = FormValidator::checkField($_POST);
             if (!$errors) {
                 $newComment = new Comment($_POST);
@@ -48,6 +48,7 @@ class CommentController extends Controller
      *
      * @param mixed $commentId
      * @return void
+     * @throws Exception
      */
     public function deleteComment($commentId)
     {
@@ -69,7 +70,7 @@ class CommentController extends Controller
         $newReporting = new Reporting();
         $newReporting->setReportingDate(date("Y-m-d H:i:s"));
         $newReporting->setCommentId($commentId);
-        $reportedComment = $this->reportingManager->insertInto($newReporting);
+        $this->reportingManager->insertInto($newReporting);
         if ($reportedComment = false) {
             throw new Exception('Impossible de signaler le commentaire');
         } else {

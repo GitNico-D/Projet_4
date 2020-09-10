@@ -36,29 +36,29 @@ class LoginsController extends Controller
     public function adminConnect()
     {
         if (isset($_POST['connect'])) {
-                $errors = FormValidator::checkField($_POST);
-                if (!$errors) {
-                    $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
-                    if($loginsAdmin == null) {
-                        $_SESSION['fail'] = 'Adresse email invalide !';
-                        header("Location: /getLogin");
-                    } else {
-                        $logins = password_verify($_POST['loginsPassword'], $loginsAdmin->getPassword());
-                        if ($logins && ($loginsAdmin->getEmail() === $_POST['loginsEmail'])) {
-                            $_SESSION['loginsUsername'] = $loginsAdmin->getUsername();
-                            $_SESSION['loginsEmail'] = $loginsAdmin->getEmail();
-                            $_SESSION['loginsStatus'] = $loginsAdmin->getStatus();
-                            $isAdmin = true;
-                            $this->adminView($isAdmin);
-                        } else {
-                            $_SESSION['fail'] = 'Mot de passe invalide !';
-                            header("Location: /getLogin");
-                        }
-                    }
-                } else {
-                    $_SESSION['fail'] .= implode(', ', $errors);
+            $errors = FormValidator::checkField($_POST);
+            if (!$errors) {
+                $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
+                if ($loginsAdmin == null) {
+                    $_SESSION['fail'] = 'Adresse email invalide !';
                     header("Location: /getLogin");
+                } else {
+                    $logins = password_verify($_POST['loginsPassword'], $loginsAdmin->getPassword());
+                    if ($logins && ($loginsAdmin->getEmail() === $_POST['loginsEmail'])) {
+                        $_SESSION['loginsUsername'] = $loginsAdmin->getUsername();
+                        $_SESSION['loginsEmail'] = $loginsAdmin->getEmail();
+                        $_SESSION['loginsStatus'] = $loginsAdmin->getStatus();
+                        $isAdmin = true;
+                        $this->adminView($isAdmin);
+                    } else {
+                        $_SESSION['fail'] = 'Mot de passe invalide !';
+                        header("Location: /getLogin");
+                    }
                 }
+            } else {
+                $_SESSION['fail'] .= implode(', ', $errors);
+                header("Location: /getLogin");
+            }
         }
     }
 

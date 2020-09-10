@@ -2,42 +2,36 @@
 
 namespace App\src\Core;
 
-use Exception;
-
 class FormValidator
 {
-    public static function checkField($post) 
+    public static function checkField($post)
     {
         $errors = [];
         foreach ($post as $postKey => $postValue) {
             $errorField = self::notBlank($postValue);
-            if($errorField) {
+            if ($errorField) {
                 $errors [] = $errorField;
             } elseif ($postKey === 'content') {
                 $errorContent = self::checkFieldContent($postValue);
                 if ($errorContent) {
                     $errors [] = $errorContent;
                 }
-            }
-            elseif ($postKey === 'author') {
+            } elseif ($postKey === 'author') {
                 $errorAuthor = self::checkFieldAuthor($postValue);
                 if ($errorAuthor) {
                     $errors [] = $errorAuthor;
                 }
-            }
-            elseif ($postKey === 'title') {
+            } elseif ($postKey === 'title') {
                 $errorTitle = self::checkFieldTitle($postValue);
                 if ($errorTitle) {
                     $errors [] = $errorTitle;
                 }
-            }
-            elseif ($postKey === 'imgUrl') {
+            } elseif ($postKey === 'imgUrl') {
                 $errorImgUrl = self::checkFieldImgUrl($postValue);
                 if ($errorImgUrl) {
                     $errors [] = $errorImgUrl;
                 }
-            }
-            elseif ($postKey === 'loginsEmail') {
+            } elseif ($postKey === 'loginsEmail') {
                 $errorEmail = self::checkFieldEmail($postValue);
                 if ($errorEmail) {
                     $errors [] = $errorEmail;
@@ -48,9 +42,9 @@ class FormValidator
         return array_unique($errors);
     }
 
-    public static function notBlank($postValue) 
+    public static function notBlank($postValue)
     {
-        if(empty($postValue)) {
+        if (empty($postValue)) {
             return 'Veuillez remplir les champs';
         }
     }
@@ -77,14 +71,14 @@ class FormValidator
 
     public static function checkFieldContent($content)
     {
-        if(strlen($content) < 5) {
+        if (strlen($content) < 5) {
             return "Votre message doit contenir au moins 5 caractères";
         }
     }
 
     public static function checkFieldImgUrl($imgUrl)
     {
-        if(empty($imgUrl)) {
+        if (empty($imgUrl)) {
             return "Merci de renseigner l'url de l'image du chapitre";
         }
     }
@@ -95,5 +89,4 @@ class FormValidator
             return "E-mail " . $email . " est invalide";
         }
     }
-
 }
