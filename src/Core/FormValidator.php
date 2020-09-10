@@ -12,7 +12,7 @@ class FormValidator
         foreach ($post as $postKey => $postValue) {
             $errorField = self::notBlank($postValue);
             if($errorField) {
-            $errors [] = $errorField;
+                $errors [] = $errorField;
             } elseif ($postKey === 'content') {
                 $errorContent = self::checkFieldContent($postValue);
                 if ($errorContent) {
@@ -58,20 +58,20 @@ class FormValidator
     public static function checkFieldAuthor($author)
     {
         if (strlen($author) < 2) {
-            return "Le pseudonyme est trop court, minimum 2 caractères";
+            return "Le pseudonyme est trop court (minimum 2 caractères)";
         }
         if (strlen($author) > 25) {
-            return "Le pseudonyme est trop long, maximum 25 caractères";
+            return "Le pseudonyme est trop long (maximum 25 caractères)";
         }
     }
 
     public static function checkFieldTitle($title)
     {
         if (strlen($title) < 2) {
-            return "Le titre est trop court, minimum 2 caractères";
+            return "Le titre est trop court (minimum 2 caractères)";
         }
         if (strlen($title) > 255) {
-            return "Le titre est trop long, maximum 255 caractères";
+            return "Le titre est trop long (maximum 255 caractères)";
         }
     }
 
