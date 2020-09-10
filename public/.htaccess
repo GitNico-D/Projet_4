@@ -1,11 +1,11 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ /public/index.php?page=$1&chapterId=$2&commentId=$3
+RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?page=$1&chapterId=$2&commentId=$3
 
-RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)$ /public/index.php?page=$1&chapterId=$2
+RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)$ index.php?page=$1&chapterId=$2
 
-RewriteRule ^([a-zA-Z]+)$ /public/index.php?page=$1
+RewriteRule ^([a-zA-Z]+)$ index.php?page=$1
 
-RewriteRule ^$ /public/index.php [L]
+RewriteRule ^$ index.php [L]
 
