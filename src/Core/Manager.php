@@ -5,6 +5,7 @@ namespace App\src\Core;
 use PDOStatement;
 use Exception;
 use ReflectionClass;
+use ReflectionException;
 
 abstract class Manager extends PDOFactory
 {
@@ -13,7 +14,10 @@ abstract class Manager extends PDOFactory
 
     public function __construct()
     {
-        $this->entity = "App\src\Models\\".ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
+        try {
+            $this->entity = "App\src\Models\\" . ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
+        } catch (ReflectionException $e) {
+        }
         $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));
     }
 
@@ -30,7 +34,7 @@ abstract class Manager extends PDOFactory
         // if ($requestResult[0] === null) {
         //     throw new Exception('Ce chapitre n\'existe pas');
         // } else {
-            return $requestResult[0];
+        return $requestResult[0];
         // }
     }
 
@@ -102,6 +106,8 @@ abstract class Manager extends PDOFactory
             $arrayFieldValue [] = " :" . $propertiesKey;
         }
         $sqlRequest .= " (" . implode(", ", $arrayField) . ") VALUES (" . implode(", ", $arrayFieldValue) . ")";
+        var_dump($sqlRequest);
+        var_dump($properties);
         return $this->createQuery($sqlRequest, $properties);
     }
 
