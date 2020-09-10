@@ -1,9 +1,17 @@
 @import "variables";
-em
-{
-	font: inherit;
-}
 ///// COMMUN CSS ////
+.adminpageSeparator {
+    border: 4px double $red;
+    width: 70%;
+}
+
+.allLink:hover{
+    text-decoration: none;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
 
 h1{
     font-size: 1.5rem;
@@ -15,6 +23,11 @@ h3{
     font-size: 1.1rem;
 }
 
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem $yellow;
+    border-color: $yellow;
+}
+
 .footer{
     .row{
         padding: 0;
@@ -22,34 +35,14 @@ h3{
     }
 }
 
-.adminpageSeparator {
-    border: 4px double $red;
-    width: 70%;
-}
-
-.btn:focus {
-    box-shadow: none;
-}
-
-.form-control:focus {
-    box-shadow: 0 0 0 0.2rem $yellow;
-    border-color: $yellow;
-}
-
-.sessionFont{
-    font-size: 1.4rem;
-    width: 50%;
-    margin: auto;
-    margin-top: 3rem;
-}
-
-.navbar {
-    .nav-link {
-        color: black;
+.linkblackyellow {
+    color: black;
         &:hover {
             color: $yellow;
         }
-    }
+}
+
+.navbar {
     &-background {
         background-color: white;
     }
@@ -72,20 +65,32 @@ h3{
 
 .page-title {
     margin-top: 90px;
-    &-text {
-        color: black;
-        font-size: 2rem;
+    a {
+        color: $yellow;
     }
     &-h1 {
         font-size: 3rem;
         color: white;
     }
+    img{
+        width: 100%;
+    }
+    &-text {
+        color: black;
+        font-size: 2rem;
+    }
+    
     span {
         color: $yellow;
     }
-    a {
-        color: $yellow;
-    }
+    
+}
+
+.sessionFont{
+    font-size: 1.4rem;
+    width: 50%;
+    margin: auto;
+    margin-top: 3rem;
 }
 
 .tox-tinymce {
@@ -112,10 +117,20 @@ h3{
 
 //// CUSTOM BUTTON ////
 
+.redbtn, .yellowbtn, .greenbtn {
+    &::before{
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+    }
+    &::after{
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+    }
+}
+
 .redbtn{
     background-color: $red;
     border: 1px solid $red;
-    text-decoration: none;
     color: white;
     &:hover {
         color: $red;
@@ -127,7 +142,6 @@ h3{
 .yellowbtn{
     background-color: $yellow;
     border: 1px solid $yellow;
-    text-decoration: none;
     color: white;
     &:hover {
         color: $yellow;
@@ -139,7 +153,6 @@ h3{
 .greenbtn{
     background-color: $green;
     border: 1px solid $green;
-    text-decoration: none;
     color: white;
     &:hover {
         color: $green;
@@ -158,9 +171,7 @@ h3{
     &-labelcontent {
         font-size: 1.3rem;
     }
-    &-titleinput,
-    &-imginput {
-        margin-bottom: 2rem;
+    &-input {
         border: none;
         border-bottom: 1px solid #ced4da;
         border-radius: unset;
@@ -178,30 +189,6 @@ h3{
 
 //// READING PAGE ////
 
-.nextChapter,
-.previousChapter {
-    &-return {
-        color: black;
-        &:hover {
-            color: $yellow;
-            text-decoration: none;
-        }
-    }
-}
-
-.singlePage,
-.modifyPage {
-    &-return {
-        a {
-            color: black;
-            &:hover {
-                color: $yellow;
-                text-decoration: none;
-            }
-        }
-    }
-}
-
 .leaveComment {
     &-form {
         width: 80%;
@@ -209,18 +196,18 @@ h3{
     }
 }
 
-.reporting {
-    &-link {
-        color: $red;
-        &:hover {
-            color: black;
-            text-decoration: none;
-        }
+.reportinglink {
+    color: $red;
+    &:hover {
+        color: black;
     }
-    &-icon {
-        color: $red;
+}
+
+.returnPage{
+    a {
+        color: black;
         &:hover {
-            color: black;
+            color: $yellow;
         }
     }
 }
@@ -228,12 +215,11 @@ h3{
 //// ADDCHAPTER PAGE ////
 
 .writingForm {
-
-    &-link {
-        color: black;
-        &:hover {
-            color: $yellow;
-            text-decoration: none;
+    &-authorInput {
+        font-size: 1.1rem;
+        &:focus {
+            border-bottom: 1px solid $yellow;
+            box-shadow: unset;
         }
     }
     &-labelAuthor,
@@ -245,17 +231,10 @@ h3{
     &-labelContent {
         font-size: 1.3rem;
     }
-    &-authorInput {
-        font-size: 1.1rem;
-        &:focus {
-            border-bottom: 1px solid $yellow;
-            box-shadow: unset;
-        }
-    }
     &-titleInput,
     &-imgInput {
-        border: none;
         border-bottom: 1px solid #ced4da;
+        border: none;
         &:focus {
             border-bottom: 1px solid $yellow;
             box-shadow: unset;
@@ -275,7 +254,6 @@ h3{
         &-link {
             color: $yellow;
             &:hover {
-                text-decoration: none;
                 color: black;
             }
         }
@@ -286,14 +264,8 @@ h3{
 
 .main-header {
     position: relative;
-    &-img {
+    img {
         width: 100%;
-        // max-width: 1920px;
-        // margin: auto;
-    }
-    &-jumbotron {
-        background-color: transparent;
-        margin-bottom: unset;
     }
     &-container {
         position: absolute;
@@ -304,7 +276,6 @@ h3{
     &-text {
         color: white;
         font-size: 6rem;
-        font-style: italic;
     }
     &-h1 {
         font-size: 4.5rem;
@@ -312,7 +283,6 @@ h3{
     }
     span {
         color: $yellow;
-        font-style: italic;
     }
     a {
         color: $yellow;
@@ -336,7 +306,6 @@ h3{
 }
 
 //// ADMIN PAGE ////
-
 .sidebar {
     background-color: #f7f7f7d7;
     &-nav {
@@ -366,8 +335,6 @@ h3{
         &::after,
         &::before {
             content: "\f56b";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
             font-size: 1.05rem;
             color: $yellow;
         }
@@ -396,7 +363,6 @@ h3{
             cursor: pointer;
         }
     }
-
     &-title {
         font-size: 1.5rem;
         &::before {
@@ -439,8 +405,6 @@ h3{
         }
         &::after {
             content: "\f00c";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
             color: $green;
             padding-left: 1rem;
         }
@@ -453,8 +417,6 @@ h3{
         }
         &::after {
             content: "\f5da";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
             color: $yellow;
             padding-left: 1rem;
         }
@@ -468,8 +430,6 @@ h3{
         }
         &::after {
             content: "\f00c";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
             color: $green;
             padding-left: 1rem;
         }
@@ -482,8 +442,6 @@ h3{
         }
         &::after {
             content: "\f057";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
             color: $red;
             padding-left: 1rem;
         }
@@ -495,10 +453,8 @@ h3{
 .pendingChapterAdmin,
 .commentModerationAdmin {
     margin: 5rem 0 6rem 0;
-    padding: 0.5rem;
     &-title {
         background-color: #f7f7f7d7;
-        margin-bottom: 2rem;
     }
 }
 
