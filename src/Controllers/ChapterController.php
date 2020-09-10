@@ -42,14 +42,14 @@ class ChapterController extends Controller
      */
     public function createChapter($isAdmin)
     {
-        if($isAdmin) {
-            if(isset($_POST['save'])) {
+        if ($isAdmin) {
+            if (isset($_POST['save'])) {
                 $errors = FormValidator::checkField($_POST);
-                if(!$errors) {
+                if (!$errors) {
                     $newChapter = new Chapter($_POST);
                     $newChapter->setCreateDate(date('Y-m-d H:i:s'));
                     $newChapter->setUpdateDate(date('Y-m-d H:i:s'));
-                    $newChapter->setPublished(false);
+                    $newChapter->setPublished(0);
                     $this->chapterManager->insertInto($newChapter);
                     $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
                     header('Location: /adminView');
@@ -60,9 +60,8 @@ class ChapterController extends Controller
             }
             echo $this->render('adding_chapter.html.twig', ['isAdmin' => $isAdmin]);
         } else {
-            throw new Exception ('Page réservé à l\'administration !');
+            throw new Exception('Page réservé à l\'administration !');
         }
-
     }
 
     /**
@@ -93,14 +92,14 @@ class ChapterController extends Controller
      */
     public function updateChapter($chapterId, $isAdmin)
     {
-        if($isAdmin) {
+        if ($isAdmin) {
             echo $this->render(
                 'modifying_chapter.html.twig',
                 ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
                 'isAdmin' => $isAdmin]
             );
         } else {
-            throw new Exception ('Page réservé à l\'administration !');
+            throw new Exception('Page réservé à l\'administration !');
         }
     }
 
@@ -112,18 +111,18 @@ class ChapterController extends Controller
      */
     public function deleteChapter($chapterId, $isAdmin)
     {
-        if($isAdmin) {
+        if ($isAdmin) {
             $deleteChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
             $this->chapterManager->delete($deleteChapter);
             $this->commentManager->deleteFrom($deleteChapter);
             if ($deleteLines == false) {
                 throw new Exception('Le chapitre  ' . $chapterId . ' n\'existe pas');
-            } else {            
+            } else {
                 $_SESSION['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
                 header('Location: /adminView');
             }
         } else {
-            throw new Exception ('Page réservé à l\'administration !');
+            throw new Exception('Page réservé à l\'administration !');
         }
     }
 
@@ -135,13 +134,13 @@ class ChapterController extends Controller
      */
     public function publishChapter($chapterId, $isAdmin)
     {
-        if($isAdmin) {
+        if ($isAdmin) {
             $publishChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
             $publishChapter->setPublished(true);
             $this->chapterManager->update($publishChapter);
             header('Location: /adminView');
         } else {
-            throw new Exception ('Page réservé à l\'administration !');
+            throw new Exception('Page réservé à l\'administration !');
         }
     }
 
@@ -154,7 +153,7 @@ class ChapterController extends Controller
      */
     public function updateChapterAction($chapterId, $isAdmin)
     {
-        if($isAdmin) {
+        if ($isAdmin) {
             if (isset($_POST['save'])) {
                 if (!empty(htmlspecialchars($_POST['title'])) and !empty(htmlspecialchars($_POST['imgUrl'])) and !empty(htmlspecialchars($_POST['content']))) {
                     $updatedChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
@@ -175,7 +174,7 @@ class ChapterController extends Controller
                 }
             }
         } else {
-            throw new Exception ('Page réservé à l\'administration !');
+            throw new Exception('Page réservé à l\'administration !');
         }
     }
 }
