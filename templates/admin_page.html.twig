@@ -22,13 +22,13 @@
             </ul>
         </nav>
         <div class="main col-md-10 mt-4">
+            {{ dump(session) }}
             {% if session.addSuccessMsg is not null %}
                 <div class="sessionFont text-white text-center bg-success rounded">{{ session.addSuccessMsg }}</div>
             {% endif %}
             {% if session.deleteMsg is not null %}
                 <div class="sessionFont text-white text-center bg-danger rounded">{{ session.deleteMsg }}</div>
-            {% endif %}
-            
+            {% endif %}            
             <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
                 <p class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </p>
                 <div class="text-center">
