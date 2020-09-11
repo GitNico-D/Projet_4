@@ -2,13 +2,15 @@
 
 {% block pageTitle %} Erreur 500 | {{ parent() }} {% endblock pageTitle %}
 
-{% block main %}    
+{% block main %}
+<section id="main-header" class="main-header text-center">
     <div class="page-title text-center">
         <img src="/img/error500.png" alt="" class="main-header-img">
         <div class="container page-title-container">
-            <h1 class="page-title-h1"><span class="text-dark">Désolé une erreur serveur, veuillez recharger la page : {{ error }}</span></h1>
+            <h1 class="page-title-h1"><span class="text-dark">Désolé une erreur serveur, veuillez recharger la page :
+                    {{ error }}</span></h1>
         </div>
-        <a href="/"><button class="btn yellowbtn margin-top">Retour à l'accueil</button></a>
+        <a href="/" class="btn yellowbtn my-3">Retour à l'accueil</a>
     </div>
+</section>
 {% endblock main %}
-

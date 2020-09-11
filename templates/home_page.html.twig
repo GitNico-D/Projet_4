@@ -3,81 +3,90 @@
 {% block pageTitle %} Accueil | {{ parent() }} {% endblock pageTitle %}
 
 {% block mainHeader %}
+<section id="main-header" class="main-header text-center">
     <div class="main-header-margintop">
         <img src="/img/write.jpg" alt="">
     </div>
     <div class="main-header-container container">
         <p class="main-header-text font-italic">Bienvenue</p>
-        <h1 class="text-lead main-header-h1">L'aventure <span class="font-italic">"Billet simple pour l'alaska"</span> commence <a href="#publishChapter">ici</a></h1>
+        <h1 class="text-lead main-header-h1">L'aventure <span class="font-italic">"Billet simple pour l'alaska"</span>
+            commence <a href="#publishChapter">ici</a></h1>
     </div>
+</section>
 {% endblock %}
-    
+
 {% block main %}
-    <section id="about" class="container about">
-        <div class="d-flex align-items-start flex-wrap">
-            <div class="col-md-4 ">
-                <img src="/img/portrait1.png" class="p-0 mt-3 w-100" alt="portrait de l'auteur">
-            </div>
-            <div class="col-md-8 text-center px-3">            
-                <h2 class="display-4 m-0 pb-3 border-bottom">
-                    A propos de moi
-                </h2>
-                <p class="text-justify pt-3">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
-                    text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 
-                    survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised 
-                    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                     like Aldus PageMaker including versions of Lorem Ipsum.
+<section id="about" class="container about">
+    <div class="d-flex align-items-start flex-wrap">
+        <div class="col-md-4 ">
+            <img src="/img/portrait1.png" class="p-0 mt-3 w-100" alt="portrait de l'auteur">
+        </div>
+        <div class="col-md-8 text-center px-3">
+            <h2 class="display-4 m-0 pb-3 border-bottom">
+                A propos de moi
+            </h2>
+            <p class="text-justify pt-3">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                specimen book. It has
+                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised
+                in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                desktop publishing software
+                like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+    </div>
+    <blockquote class="container font-weight-bold p-3 rounded">
+        <p class="font-weight-bold text-center p-3 rounded bg-light">Words can be like X-rays, if you use them
+            properly—they’ll go through anything. You read and you’re pierced.</p>
+        <footer class="text-right">— Jean Forteroche,
+            <cite>Brave New World</cite>
+        </footer>
+    </blockquote>
+    <hr>
+</section>
+<section id="publishChapter" class="publishchapter">
+    <div class="jumbotron text-center">
+        <div class="container publishchapter-container">
+            <h2 class="publishchapter-title display-4 p-4">
+                Chapitres disponibles
+            </h2>
+            <p class="lead text-muted">Retrouvez ci-dessous tous les chapitres disponibles.</p>
+            <p class="lead text-muted">N'hésitez pas a laisser un commentaire pour me faire un retour de vos impressions
+                !</p>
+        </div>
+    </div>
+    <div class="row chapter-row d-flex flex-wrap m-auto w-90 text-center text-wrap justify-content-around">
+        {% for chapter in publishedChaptersList %}
+        <div class="col-md-4">
+            <div class="chapter-card m-0 p-4 mt-4">
+                <h4 class="text-left py-3">{{ chapter.title }}</h4>
+                {% if chapter.imgUrl is not null %}
+                <img src={{ chapter.imgUrl }} class="w-100" alt="">
+                {% endif %}
+                <p class="text-muted text-right pt-4 text-wrap">
+                    Publié le
+                    <span class="font-weight-bold font-italic">{{ chapter.createDate | date("d/m/Y \à H:i:s") }}</span>
+                    par
+                    <span class="font-weight-bold font-italic">{{ chapter.author }}</span>
                 </p>
-            </div>
-        </div>
-        <blockquote class="container font-weight-bold p-3 rounded">
-            <p class="font-weight-bold text-center p-3 rounded bg-light">Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
-            <footer class="text-right">— Jean Forteroche,
-                 <cite>Brave New World</cite>
-            </footer>
-        </blockquote>
-        <hr>
-    </section>
-    <section id="publishChapter" class="publishchapter">
-        <div class="jumbotron text-center">
-            <div class="container publishchapter-container">
-                <h2 class="publishchapter-title display-4 p-4">
-                    Chapitres disponibles
-                </h2>
-                <p class="lead text-muted">Retrouvez ci-dessous tous les chapitres disponibles.</p> 
-                <p class="lead text-muted">N'hésitez pas a laisser un commentaire pour me faire un retour de vos impressions !</p>
-            </div>
-        </div>
-        <div class="row chapter-row d-flex flex-wrap m-auto w-90 text-center text-wrap justify-content-around">
-            {% for chapter in publishedChaptersList %}
-                <div class="col-md-4">
-                    <div class="chapter-card m-0 p-4 mt-4">
-                        <h4 class="text-left py-3">{{ chapter.title }}</h4>
-                        {% if chapter.imgUrl is not null %}
-                            <img src={{ chapter.imgUrl }} class="w-100" alt="">
-                        {% endif %}    
-                        <p class="text-muted text-right pt-4 text-wrap">
-                            Publié le 
-                            <span class="font-italic">{{ chapter.createDate }}</span> 
-                            par 
-                            <span class="font-italic">{{ chapter.author }}</span>
-                        </p>
-                        <p class="text-justify py-1"> {{ chapter.content | split('</p>')[0] | raw }}...<p>
+                <p class="text-justify py-1"> {{ chapter.content | split('<br />')[0] | raw }}...<p>
                         <a href="/readChapter/{{ chapter.id }}" class="btn yellowbtn my-3">
                             Lire le chapitre
                         </a>
-                    </div>
-                </div>                
-            {% else %}
-                <div class="chapter text-center">
-                    <div class="col-md-4">
-                        <div class="chapter-card m-0 p-4 mt-4">
-                            <h2 class="py-3">Pas de chapitre trouvé</h2>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+            </div>
         </div>
-    </section>
+        {% else %}
+        <div class="chapter text-center">
+            <div class="col-md-4">
+                <div class="chapter-card m-0 p-4 mt-4">
+                    <h2 class="py-3">Pas de chapitre trouvé</h2>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

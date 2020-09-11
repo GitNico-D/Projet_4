@@ -8,38 +8,38 @@
         <nav class="sidebar col-md-2">
             <ul class="sidebar-list list-unstyled pt-3">
                 <li class="nav-item pb-3">
-                    <span class="fas fa-feather-alt"></span><a class="nav-link d-inline sidebar-nav-link" href="#">Écrire</a>
+                    <span class="fas fa-feather-alt"></span><a class="nav-link d-inline sidebar-nav-link"
+                        href="#">Écrire</a>
                 </li>
                 <li class="nav-item pb-3">
-                    <span class="fas fa-book"></span><a href="/adminView#publishChapter" class="nav-link d-inline sidebar-nav-link">Chapitres publiés</a>
+                    <span class="fas fa-book"></span><a href="/adminView#publishChapter"
+                        class="nav-link d-inline sidebar-nav-link">Chapitres publiés</a>
                 </li>
                 <li class="nav-item pb-3">
-                    <span class="fas fa-book-reader"></span><a href="/adminView#pendingChapter" class="nav-link d-inline sidebar-nav-link">Chapitres en attente</a>
+                    <span class="fas fa-book-reader"></span><a href="/adminView#pendingChapter"
+                        class="nav-link d-inline sidebar-nav-link">Chapitres en attente</a>
                 </li>
                 <li class="nav-item pb-3">
-                    <span class="fas fa-comment"></span><a href="/adminView#commentModeration" class="nav-link d-inline sidebar-nav-link">Modération</a>
+                    <span class="fas fa-comment"></span><a href="/adminView#commentModeration"
+                        class="nav-link d-inline sidebar-nav-link">Modération</a>
                 </li>
             </ul>
         </nav>
         <div class="main col-md-10 mt-4">
-            {{ dump(session) }}
-            {% if session.addSuccessMsg is not null %}
-                <div class="sessionFont text-white text-center bg-success rounded">{{ session.addSuccessMsg }}</div>
-            {% endif %}
             {% if session.deleteMsg is not null %}
-                <div class="sessionFont text-white text-center bg-danger rounded">{{ session.deleteMsg }}</div>
-            {% endif %}            
+            <div class="sessionFont text-white text-center bg-danger rounded">{{ session.deleteMsg }}</div>
+            {% endif %}
             <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
-                <p class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </p>
+                <h6 class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </h6>
                 <div class="text-center">
                     <a href="/createChapter" class="btn yellowbtn"><span class="button-text">Écrire</span></a>
                 </div>
             </section>
             <hr class="adminpageSeparator">
-            <section> 
+            <section>
                 <h4 class="summary-title my-5">Vue d'ensemble</h4>
                 <div class="container summary-container">
-                    <p class="summary-subtitle my-5">Tous les chapitres</p>
+                    <p class="summary-subtitle font-weight-bold my-5">Tous les chapitres</p>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -54,109 +54,140 @@
                             <tr>
                                 <td class="allChaptersList align-middle p-3">{{ chapter.title }}</td>
                                 <td class="align-middle p-3">{{ chapter.author }}</td>
-                                <td class="font-italic align-middle p-3">{{ chapter.createDate | date("d/m/Y \à H:i:s") }}</td>
-                                <td class="align-middle p-3">{{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}</td>
+                                <td class="font-italic align-middle p-3">
+                                    {{ chapter.createDate | date("d/m/Y \à H:i:s") }}</td>
+                                <td class="align-middle p-3">
+                                    {{ chapter.published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                <div class="container summary-container">
-                    <p class="summary-subtitle my-5">Commentaires</p>
-                    <p class="text-center summary-comment">{{ reportedCommentList | length }} commentaires signalés nécessitent une modération de votre part</p>
+                <div class="container summary-container my-4">
+                    <p class="summary-subtitle font-weight-bold mb-4">Commentaires</p>
+                    <p class="text-center summary-comment m-4 p-4"><span
+                            class="font-weight-bold font-italic">{{ reportedCommentList | length }} commentaires
+                            signalés</span> nécessitent une modération de votre part</p>
                 </div>
             </section>
             <hr class="adminpageSeparator">
             <section id="publishChapter" class="card publishChapterAdmin p-2">
-                    <p class="publishChapterAdmin-title text-center mb-4"> Chapitre publiés </p>
-                    <p class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</p>
-                    <p class="text-muted text-center"><span class="font-italic">Options disponibles :</span><span class="font-weight-bold"> Visionnage</span>, <span class="font-weight-bold">Modification</span> du chapitre</p>
+                <p class="publishChapterAdmin-title text-center mb-4"> Chapitre publiés </p>
+                <h6 class="publishChapterAdmin-text text-center">Liste de tous les chapitres publiées</h6>
+                <p class="text-muted text-center">
+                    <span class="font-italic">Options disponibles :</span>
+                    <span class="font-weight-bold"> VISIONNAGE</span>,
+                    <span class="font-weight-bold">MODIFICATION</span>
+                    du chapitre.
+                </p>
                 {% set plusOne = 0 %}
                 {% for chapter in publishedChaptersList %}
-                    {% if plusOne < publishedChaptersList|length %} 
-                        {% set plusOne = plusOne + 1 %}
-                    {% endif %}
+                {% if plusOne < publishedChaptersList|length %}
+                {% set plusOne = plusOne + 1 %}
+                {% endif %}
                 <div id="publishaccordion{{ plusOne }}">
                     <div class="card publishChapterCard m-1">
-                        <div class="card-header p-3 align-middle bg-white" id="heading{{ plusOne }}">  
-                            {% if chapter.createDate == chapter.updateDate %}                          
-                                <p class="font-italic mt-2 publishChapterCard-date"> Publié le {{ chapter.createDate | date("d/m/Y \à H:i:s")}}</p>
+                        <div class="card-header p-3 align-middle bg-white" id="heading{{ plusOne }}">
+                            {% if chapter.createDate == chapter.updateDate %}
+                            <p class="font-italic mt-2 publishChapterCard-date"> Publié le
+                                {{ chapter.createDate | date("d/m/Y \à H:i:s")}}</p>
                             {% else %}
-                                <p class="font-italic mt-2 publishChapterCard-date"> Modifié le {{ chapter.updateDate | date("d/m/Y \à H:i:s")}}</p>
+                            <p class="font-italic mt-2 publishChapterCard-date"> Modifié le
+                                {{ chapter.updateDate | date("d/m/Y \à H:i:s")}}</p>
                             {% endif %}
-                            <a href="#" class="publishChapterCard-link" data-toggle="collapse" data-target="#collapse{{ plusOne }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
-                                <span class="publishChapterCard-title">{{ chapter.title }} </span>   
-                            </a>                              
-                        </div>                      
-                        <div id="collapse{{ plusOne }}" class="collapse publishChapterCard-collapse" aria-labelledby="heading{{ plusOne }}" data-parent="#publishaccordion{{ plusOne }}">
+                            <a href="#" class="publishChapterCard-link" data-toggle="collapse"
+                                data-target="#collapse{{ plusOne }}" aria-expanded="false"
+                                aria-controls="collapse{{ plusOne }}">
+                                <span class="publishChapterCard-title">{{ chapter.title }} </span>
+                            </a>
+                        </div>
+                        <div id="collapse{{ plusOne }}" class="collapse publishChapterCard-collapse"
+                            aria-labelledby="heading{{ plusOne }}" data-parent="#publishaccordion{{ plusOne }}">
                             <div class="card-body">
                                 <p class="font-italic font-weight-bold">Extrait :</p>
-                                <p>{{ chapter.content | split('</p>')[0] | raw  }}...</p>
+                                <p>{{ chapter.content | split('<br />')[0] | raw  }}...</p>
                             </div>
                             <div class="text-center">
-                                <a href="/readChapter/{{ chapter.id }}" class="btn publishChapterCard-btn yellowbtn">Visionner</a>
-                                <a href="/updateChapter/{{ chapter.id }}" class="btn publishChapterCard-btn greenbtn">Modifier</a>                  
+                                <a href="/readChapter/{{ chapter.id }}"
+                                    class="btn publishChapterCard-btn yellowbtn">Visionner</a>
+                                <a href="/updateChapter/{{ chapter.id }}"
+                                    class="btn publishChapterCard-btn greenbtn">Modifier</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-            </section> 
+            </section>
             <hr class="adminpageSeparator">
             <section id="pendingChapter" class="card pendingChapterAdmin p-2">
-                <p class="pendingChapterAdmin-title text-center mb-4">Chapitre en attentes de publication</p>
+                <h6 class="pendingChapterAdmin-title text-center mb-4">Chapitre en attentes de publication</h6>
                 <p class="text-muted text-center">
-                    <span class="font-italic">Options disponibles :</span> 
-                    <span class="font-weight-bold">Modification</span>, 
-                    <span class="font-weight-bold">Publication</span> ou 
+                    <span class="font-italic">Options disponibles :</span>
+                    <span class="font-weight-bold">MODIFICATION</span>,
+                    <span class="font-weight-bold">PUBLICATION </span>
+                    du chapitre.
                 </p>
                 {% for chapter in unpublishedChaptersList %}
-                    <div id="unpublishedaccordion{{ chapter.id }}">
-                        <div class="card unpublishChapterCard m-1">
-                            <div class="card-header p-3 align-middle bg-white" id="unpublishHeading{{ chapter.id }}">                            
-                                <p class="font-italic mt-2 publishChapterCard-date"> Créé le {{ chapter.createDate | date("d/m/Y \à H:i:s") }}</p>
-                                <a href="#" class="unpublishChapterCard-link" data-toggle="collapse" data-target="#unpublishCollapse{{ chapter.id }}" aria-expanded="false" aria-controls="collapse{{ plusOne }}">
-                                    <span class="unpublishChapterCard-title">{{ chapter.title }} </span>   
-                                </a>                              
-                            </div>                      
-                            <div id="unpublishCollapse{{ chapter.id }}" class="collapse" aria-labelledby="unpublishHeading{{ chapter.id }}" data-parent="#unpublishedaccordion{{ chapter.id }}">
-                                <div class="card-body">
-                                    <p class="font-italic font-weight-bold">Extrait :</p>
-                                    <p>{{ chapter.content | split('</p>')[0] | raw  }}...</p>
-                                </div>
-                                <div class="text-center">
-                                    <a href="/updateChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn yellowbtn ">Modifier</a>
-                                    <a href="/publishChapter/{{ chapter.id }}" class="btn unpublishChapterCard-btn greenbtn ">Publier</a>               
-                                </div>
+                <div id="unpublishedaccordion{{ chapter.id }}">
+                    <div class="card unpublishChapterCard m-1">
+                        <div class="card-header p-3 align-middle bg-white" id="unpublishHeading{{ chapter.id }}">
+                            <p class="font-italic mt-2 publishChapterCard-date"> Créé le
+                                {{ chapter.createDate | date("d/m/Y \à H:i:s") }}</p>
+                            <a href="#" class="unpublishChapterCard-link" data-toggle="collapse"
+                                data-target="#unpublishCollapse{{ chapter.id }}" aria-expanded="false"
+                                aria-controls="collapse{{ plusOne }}">
+                                <span class="unpublishChapterCard-title">{{ chapter.title }} </span>
+                            </a>
+                        </div>
+                        <div id="unpublishCollapse{{ chapter.id }}" class="collapse"
+                            aria-labelledby="unpublishHeading{{ chapter.id }}"
+                            data-parent="#unpublishedaccordion{{ chapter.id }}">
+                            <div class="card-body">
+                                <p class="font-italic font-weight-bold">Extrait :</p>
+                                <p>{{ chapter.content | split('<br />')[0]  | raw  }}...</p>
+                            </div>
+                            <div class="text-center">
+                                <a href="/updateChapter/{{ chapter.id }}"
+                                    class="btn unpublishChapterCard-btn yellowbtn ">Modifier</a>
+                                <a href="/publishChapter/{{ chapter.id }}"
+                                    class="btn unpublishChapterCard-btn greenbtn ">Publier</a>
                             </div>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
             </section>
             <hr class="adminpageSeparator">
             <section id="commentModeration" class="card commentModerationAdmin p-2">
-                <p class="commentModerationAdmin-title text-center mb-4">Modération des commentaires</p>
+                <h6 class="commentModerationAdmin-title text-center mb-4">Modération des commentaires</h6>
                 <p class="publishChapterAdmin-text text-center">
-                    Voici la liste de tous les commentaires que les utilisateurs ont signalés et nécessitant de la Modération.
+                    Voici la liste de tous les commentaires que les utilisateurs ont signalés et nécessitant de la
+                    Modération.
                 </p>
                 <p class="text-muted text-center">
-                    <span class="text-muted font-italic">Options disponibles :</span> 
-                    <span class="text-muted font-weight-bold">VALIDATION</span>, 
-                    <span class="text-muted font-weight-bold">SUPPRESSION</span> du commentaire
-                </p>   
+                    <span class="text-muted font-italic">Options disponibles :</span>
+                    <span class="text-muted font-weight-bold">VALIDATION</span>,
+                    <span class="text-muted font-weight-bold">SUPPRESSION</span>
+                    du commentaire.
+                </p>
                 {% for reportComment in reportedCommentList %}
-                    <div class="card commentModerationCard mt-3">
-                        <p class="card-header text-left font-weight-bold">
-                            <span class="font-italic">Posté le</span> {{ reportComment.createdDate | date("m/d/Y \à H:i:s") }}
-                            <span class="font-italic">par</span>  {{ reportComment.author }}
-                        </p>
-                        <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ reportComment.content }}</p>
-                        <div class="text-center">
-                            <a href="/validateComment/{{ reportComment.chapterId }}/{{ reportComment.id }}" class="btn btn-sm commentModerationCard-btn greenbtn">Valider</a>
-                            <a href="/deleteComment/{{ reportComment.chapterId }}/{{ reportComment.id }}" class="btn btn-sm commentModerationCard-btn redbtn">Supprimer</a>
-                        </div>
+                <div class="card commentModerationCard mt-3">
+                    <p class="card-header text-left font-weight-bold">
+                        <span class="font-italic">Posté le</span>
+                        {{ reportComment.createdDate | date("m/d/Y \à H:i:s") }}
+                        <span class="font-italic">par</span> {{ reportComment.author }}
+                    </p>
+                    <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ reportComment.content }}
+                    </p>
+                    <div class="text-center">
+                        <a href="/validateComment/{{ reportComment.chapterId }}/{{ reportComment.id }}"
+                            class="btn btn-sm commentModerationCard-btn greenbtn">Valider</a>
+                        <a href="/deleteComment/{{ reportComment.chapterId }}/{{ reportComment.id }}"
+                            class="btn btn-sm commentModerationCard-btn redbtn">Supprimer</a>
                     </div>
-                {% endfor %}    
+                </div>
+                {% endfor %}
             </section>
         </div>
     </div>

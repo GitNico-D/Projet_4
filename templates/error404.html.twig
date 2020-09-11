@@ -2,12 +2,14 @@
 
 {% block pageTitle %} Erreur 404 | {{ parent() }} {% endblock pageTitle %}
 
-{% block main %}    
+{% block main %}
+<section id="main-header" class="main-header text-center">
     <div class="page-title text-center">
         <div class="container page-title-container">
             <h1 class="page-title-h1"><span class="text-dark">{{ error }}</span></h1>
-            <a href="/"><button class="btn yellowbtn my-3">Retour à l'accueil</button></a>
         </div>
+        <a href="/" class="btn yellowbtn my-3">Retour à l'accueil</a>
         <img src="/img/error404.png" alt="" class="main-header-img">
     </div>
+</section>
 {% endblock main %}

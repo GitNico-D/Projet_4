@@ -5,7 +5,7 @@
 {% block mainHeader %}
 <div class="page-title text-center">
     <div class="container page-title-container">
-        <p class="page-title-text">Modification du  Chapitre {{ uniqueChapter.id }} :</p>
+        <p class="page-title-text">Modification du Chapitre {{ uniqueChapter.id }} :</p>
         <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title}}</span></h1>
     </div>
 </div>
@@ -16,9 +16,9 @@
 <section class="container">
     <div class="card my-4 border-0 bg-white">
         <p class="card-header float-right  bg-white mb-4 pb-3">
-        Publié le 
-            <span class="font-italic font-weight-bold">{{ uniqueChapter.createDate }}</span> 
-            par 
+            Publié le
+            <span class="font-italic font-weight-bold">{{ uniqueChapter.createDate }}</span>
+            par
             <span class="font-italic font-weight-bold">{{ uniqueChapter.author }}</span>
         </p>
     </div>
@@ -26,56 +26,64 @@
         <form action="/updateChapterAction/{{ uniqueChapter.id }}" method="post">
             <div class="form-group">
                 <label for="title" class="h4 font-weight-bold my-4 text-left updateForm-labeltitle">Titre</label>
-                    <input type="text" class="form-control updateForm-input mb-4" id="title" name="title" value="{{ uniqueChapter.title }}">
-                <label for="imgUrl" class="h4 font-weight-bold font-italic my-4 text-left updateForm-labelimg">Image</label>
-                    {% if uniqueChapter is not null %}
-                        <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
-                    {% endif %}
-                    <input type="text" class="form-control updateForm-input mb-4" id="imgUrl" name="imgUrl" value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}">                            
+                <input type="text" class="form-control updateForm-input mb-4" id="title" name="title"
+                    value="{{ uniqueChapter.title }}" required>
+                <label for="imgUrl"
+                    class="h4 font-weight-bold font-italic my-4 text-left updateForm-labelimg">Image</label>
+                {% if uniqueChapter is not null %}
+                <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
+                {% endif %}
+                <input type="text" class="form-control updateForm-input mb-4" id="imgUrl" name="imgUrl"
+                    value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}" required>
                 <label for="content" class="h4 font-weight-bold my-4">Contenu</label>
-                    <textarea class="form-control text-justify" id="content" name="content" rows="30" >{{ uniqueChapter.content | raw }}</textarea>
+                <textarea class="form-control text-justify" id="content" name="content" rows="30"
+                    required>{{ uniqueChapter.content | raw }}</textarea>
                 <div class="text-center">
-                    <input type="submit" name="save" class="btn savePublish greenbtn my-2" value="Enregistrer les modifications">                  
-                    <a href="/deleteChapter/{{ uniqueChapter.id }}" class="btn updateForm redbtn my-3">Supprimer</a> 
+                    <input type="submit" name="save" class="btn savePublish greenbtn my-2"
+                        value="Enregistrer les modifications">
+                    <a href="/deleteChapter/{{ uniqueChapter.id }}" class="btn updateForm redbtn my-3">Supprimer</a>
                 </div>
             </div>
         </form>
     </div>
-    <div class="text-center"> 
+    <div class="text-center">
         {% if isAdmin %}
-            <div class="returnPage text-center">
-                <a href="/adminView"><i class="fas fa-arrow-left"></i>Retour à la page d'administration</a>
-            </div>
-        {% endif %} 
-    </div>  
-</section> 
+        <div class="returnPage text-center">
+            <a href="/adminView"><i class="fas fa-arrow-left"></i>Retour à la page d'administration</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-{% block javascript %}    
-    <script src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>
-            tinymce.init({
-                selector: '#content',
-                mode:"exact",
-                entity_encoding : "raw",
-                encoding: "UTF-8",
-                language : 'fr_FR',
-                height: 1000,
-                plugins: [
-                    'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-                    'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking',
-                    'table emoticons template paste help'
-                    ],
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect | ' +
-                    'alignleft aligncenter alignright alignjustify | outdent indent |  ' +
-                    'numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons |' +
-                    'fullscreen  preview save print | insertfile image codesample | ltr rtl',
-                    toolbar_sticky: true,
-                    menu: {
-                        favs: {items: 'visualaid | searchreplace | spellchecker | emoticons'}
-                    },
-                    menubar: 'favs file edit view tools',
-                });
-        </script>
-    {% endblock javascript %} 
+{% block javascript %}
+<script src="https://cdn.tiny.cloud/1/30ylg3bct9jzspprpjk9935w46n7uhbtcjb87l6c4g8zbw72/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#content',
+        mode: "exact",
+        entity_encoding: "raw",
+        encoding: "UTF-8",
+        language: 'fr_FR',
+        height: 1000,
+        convert_fonts_to_spans: true,
+        plugins: [
+            'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+            'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking',
+            'table emoticons template paste help'
+        ],
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect | ' +
+            'alignleft aligncenter alignright alignjustify | outdent indent |  ' +
+            'numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons |' +
+            'fullscreen  preview save print | insertfile image codesample | ltr rtl',
+        toolbar_sticky: true,
+        menu: {
+            favs: {
+                items: 'visualaid | searchreplace | spellchecker | emoticons'
+            }
+        },
+        menubar: 'favs file edit view tools',
+    });
+</script>
+{% endblock javascript %}
 {% endblock main %}
-
