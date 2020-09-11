@@ -48,7 +48,6 @@ h3{
     }
     &-toggler {
         background-color: $yellow;
-        border: 1xp solid black;
         .fa-bars {
             color: white;
         }
@@ -130,7 +129,6 @@ h3{
 
 .redbtn{
     background-color: $red;
-    border: 1px solid $red;
     color: white;
     &:hover {
         color: $red;
@@ -141,7 +139,6 @@ h3{
 
 .yellowbtn{
     background-color: $yellow;
-    border: 1px solid $yellow;
     color: white;
     &:hover {
         color: $yellow;
@@ -152,7 +149,6 @@ h3{
 
 .greenbtn{
     background-color: $green;
-    border: 1px solid $green;
     color: white;
     &:hover {
         color: $green;
