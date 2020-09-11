@@ -50,9 +50,13 @@ class ChapterController extends Controller
                     $newChapter->setCreateDate(date('Y-m-d H:i:s'));
                     $newChapter->setUpdateDate(date('Y-m-d H:i:s'));
                     $newChapter->setPublished(0);
-                    $this->chapterManager->insertInto($newChapter);
-                    $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
-                    header('Location: /adminView');
+                    $insertLines = $this->chapterManager->insertInto($newChapter);
+                    if ($insertLines == false) {
+                        throw new Exception('Le chapitre n\'a pas pu être ajouté !');
+                    } else {
+                        $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
+                        header('Location: /createChapter');
+                    }
                 } else {
                     $_SESSION['addErrorMsg'] .= implode(', ', $errors);
                     header('Location: /createChapter');
@@ -116,12 +120,8 @@ class ChapterController extends Controller
             $deleteChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
             $this->chapterManager->delete($deleteChapter);
             $this->commentManager->deleteFrom($deleteChapter);
-            if ($deleteLines == false) {
-                throw new Exception('Le chapitre  ' . $chapterId . ' n\'existe pas');
-            } else {
-                $_SESSION['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
-                header('Location: /adminView');
-            }
+            $_SESSION['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
+            header('Location: /adminView');
         } else {
             throw new Exception('Page réservé à l\'administration !');
         }

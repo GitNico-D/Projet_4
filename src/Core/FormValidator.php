@@ -37,7 +37,6 @@ class FormValidator
                     $errors [] = $errorEmail;
                 }
             }
-            // var_dump($errors);
         }
         return array_unique($errors);
     }

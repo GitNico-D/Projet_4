@@ -11,7 +11,7 @@ class ReportingManager extends Manager
         $sqlRequest = 'SELECT COUNT(*) as totalReport, commentId FROM reporting GROUP BY commentId';
         $result = $this->createQuery($sqlRequest);
         $totalReporting = [];
-        foreach($result as $data){
+        foreach ($result as $data) {
             $totalReporting [] = $data;
         }
         $result->closeCursor();

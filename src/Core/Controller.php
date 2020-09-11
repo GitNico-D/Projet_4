@@ -6,6 +6,7 @@ use Exception;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+
 abstract class Controller
 {
     protected $loader;

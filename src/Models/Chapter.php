@@ -4,6 +4,7 @@ namespace App\src\Models;
 
 use App\src\Core\Model;
 use Exception;
+
 class Chapter extends Model
 {
     protected $id;
@@ -37,23 +38,23 @@ class Chapter extends Model
 
     public function setAuthor($author)
     {
-        if(is_string($author)) {
+        if (is_string($author)) {
             $this->author = $author;
-        } 
+        }
     }
 
     public function setTitle($title)
     {
-        if(is_string($title)) {
+        if (is_string($title)) {
             $this->title = $title;
-        } 
+        }
     }
 
     public function setContent($content)
     {
-        if(is_string($content)) {
+        if (is_string($content)) {
             $this->content = $content;
-        } 
+        }
     }
 
     public function setCreateDate($createDate)

@@ -31,11 +31,7 @@ abstract class Manager extends PDOFactory
     public function findOneBy($where)
     {
         $requestResult = $this->findBy($where, [], 1);
-        // if ($requestResult[0] === null) {
-        //     throw new Exception('Ce chapitre n\'existe pas');
-        // } else {
         return $requestResult[0];
-        // }
     }
 
     /**
@@ -106,8 +102,6 @@ abstract class Manager extends PDOFactory
             $arrayFieldValue [] = " :" . $propertiesKey;
         }
         $sqlRequest .= " (" . implode(", ", $arrayField) . ") VALUES (" . implode(", ", $arrayFieldValue) . ")";
-        var_dump($sqlRequest);
-        var_dump($properties);
         return $this->createQuery($sqlRequest, $properties);
     }
 
