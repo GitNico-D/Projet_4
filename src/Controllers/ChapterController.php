@@ -77,6 +77,7 @@ class ChapterController extends Controller
             'reading_chapter.html.twig',
             ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
             'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId), array('createdDate' => 'ASC')),
+            'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true), array('createDate' => 'ASC')),
             'totalReporting' => $this->reportingManager->totalReportCount(),
             'isAdmin' => $isAdmin]
         );
