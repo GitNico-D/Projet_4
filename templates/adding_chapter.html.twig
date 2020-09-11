@@ -32,6 +32,7 @@
             </div>
         </form>
     </div>
+    
     {% if isAdmin %}
     <div class="text-center">
         <a href="/adminView" class="linkblackyellow allLink">Retour à la page d'administration</a>
@@ -48,6 +49,7 @@
                 encoding: "UTF-8",
                 language : 'fr_FR',
                 height: 1000,
+                convert_fonts_to_spans : true,
                 plugins: [
                     'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
                     'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking',
