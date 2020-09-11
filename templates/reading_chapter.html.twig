@@ -1,6 +1,6 @@
 {% extends "/layout.html.twig" %}
 
-{% block pageTitle %} Chapitre {{ uniqueChapter.id }} | {{ parent() }} {% endblock pageTitle %}
+{% block pageTitle %} Chapitre {{ uniqueChapter.title }} | {{ parent() }} {% endblock pageTitle %}
 
 {% block mainHeader %}
 {% if session.modifySuccessMsg is not null %}
@@ -11,7 +11,7 @@
             {% if uniqueChapter.imgUrl is not null %}
                 <img src={{ uniqueChapter.imgUrl }} alt="" class="chapterimg m-auto">
             {% endif %}   
-        <p class="page-title-text mt-4 font-italic">Chapitre {{ uniqueChapter.id }} :</p>
+        <p class="page-title-text mt-4 font-italic">Chapitre :</p>
         <h1 class="text-lead w-80 m-auto page-title-h1"><span class="font-italic">{{ uniqueChapter.title}}</span></h1>
     </div>
 </div>
@@ -32,9 +32,17 @@
             par 
             <span class="font-italic font-weight-bold">{{ uniqueChapter.author }}</span>
         </p>
-        <p id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify py-4">    
+        <div id="chapterContent" class="card-body publishChapterSingleCard-body text-center-justify py-4">    
             {{ uniqueChapter.content  | raw }}
-        </p>
+        </div>
+    </div>
+    <div>
+        <p class="font-weight-bold font-italic">Sélection du chapitre</p>
+        <select class="form-control text-center" onchange="location = this.value;">
+            {% for chapter in publishedChaptersList %}
+            <option value="/readChapter/{{ chapter.id }}">{{ chapter.title }}</option>
+            {% endfor %}
+        </select>
     </div>
     {% if isAdmin %}
         <div class="returnPage text-center p-4">
