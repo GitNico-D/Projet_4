@@ -85,6 +85,9 @@ try {
             case "contact":
                 $loginsController->toBeContacted();
             break;
+            case "sendMessage":
+                $loginsController->sendMessage();
+            break;
             default:
                 throw new Exception('Page introuvable');
             }
