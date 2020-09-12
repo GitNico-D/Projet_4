@@ -14,7 +14,7 @@ class CommentManager extends Manager
      */
     public function getAllReportedComments()
     {
-        $sqlRequest = 'SELECT comment.id, comment.author, comment.content, comment.createdDate, comment.chapterId, reporting.reportingDate
+        $sqlRequest = 'SELECT comment.id, comment.author, comment.content, comment.createdDate, comment.chapterId
                         FROM comment INNER JOIN reporting ON comment.id = reporting.commentId GROUP BY reporting.commentId';
         $result = $this->createQuery($sqlRequest);
         $reportedCommentList = [];
