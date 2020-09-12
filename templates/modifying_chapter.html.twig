@@ -31,7 +31,7 @@
                 <label for="imgUrl"
                     class="h4 font-weight-bold font-italic my-4 text-left updateForm-labelimg">Image</label>
                 {% if uniqueChapter is not null %}
-                <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
+                    <p><img src="{{ uniqueChapter.imgUrl }}" alt="" class="img-thumbnail"></p>
                 {% endif %}
                 <input type="text" class="form-control updateForm-input mb-4" id="imgUrl" name="imgUrl"
                     value="{{ uniqueChapter.imgUrl ?? 'Aucune image' }}" required>
@@ -48,9 +48,9 @@
     </div>
     <div class="text-center">
         {% if isAdmin %}
-        <div class="returnPage text-center">
-            <a href="/adminView"><i class="fas fa-arrow-left"></i>Retour à la page d'administration</a>
-        </div>
+            <div class="returnPage text-center">
+                <a href="/adminView"><i class="fas fa-arrow-left"></i>Retour à la page d'administration</a>
+            </div>
         {% endif %}
     </div>
 </section>

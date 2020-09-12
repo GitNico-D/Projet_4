@@ -14,18 +14,18 @@
 {% block main %}
 <div class="container">
     {% if session.addErrorMsg is not null %}
-    <div class="sessionFont text-white text-center bg-warning rounded">{{ session.addErrorMsg }}</div>
+        <div class="sessionFont text-white text-center bg-warning rounded">{{ session.addErrorMsg }}</div>
     {% endif %}
     {% if session.addSuccessMsg is not null %}
-    <div class="sessionFont text-center text-success border border-success rounded">{{ session.addSuccessMsg }}
-        <div class="returnPage text-center">
-            <a href="/adminView" class="btn greenbtn my-2"><i class="fas fa-arrow-left"></i>Retour à la page
-                d'administration</a>
+        <div class="sessionFont text-center text-success border border-success rounded">{{ session.addSuccessMsg }}
+            <div class="returnPage text-center">
+                <a href="/adminView" class="btn greenbtn my-2"><i class="fas fa-arrow-left"></i>Retour à la page
+                    d'administration</a>
+            </div>
         </div>
-    </div>
     {% endif %}
     {% if session.deleteMsg is not null %}
-    <div class="sessionFont text-white text-center bg-danger rounded">{{ session.deleteMsg }}</div>
+        <div class="sessionFont text-white text-center bg-danger rounded">{{ session.deleteMsg }}</div>
     {% endif %}
     <form action="/createChapter" method="post">
         <div class="form-group writingForm mt-5">
@@ -49,9 +49,9 @@
 </div>
 
 {% if isAdmin %}
-<div class="text-center">
-    <a href="/adminView" class="linkblackyellow allLink">Retour à la page d'administration</a>
-</div>
+    <div class="text-center">
+        <a href="/adminView" class="linkblackyellow allLink">Retour à la page d'administration</a>
+    </div>
 {% endif %}
 
 {% block javascript %}

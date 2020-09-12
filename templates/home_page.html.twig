@@ -25,22 +25,23 @@
             <h2 class="display-4 m-0 pb-3 border-bottom">
                 A propos de moi
             </h2>
-            <p class="text-justify pt-3">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                specimen book. It has
-                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised
-                in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-                desktop publishing software
-                like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
+            <div class="text-justify pt-3">
+                <p>«Il est sur que Jean Forteroche est sûrement le plus grand Ecrivain du monde» c'est ce qu'a affirmé
+                Joseph Kessel mardi dernier à un parterre de journalistes rassemblés à Moulins pour le rencontrer.
+                Cette déclaration de Joseph Kessel nous pousse à revenir sur la carrière de Forteroche. Né en le 10 octobre 1970
+                Jean Forteroche n'a eu cesse depuis d'épater la galerie par ces incessants apports dans le monde de la
+                culture, des sciences en particulier au sein de la «confédération des Ecrivains de France et
+                de Navarre»</p>
+                <p>Jean Forteroche a entamé son chemin vers la gloire en inventant les piles qui devinrent depuis le summum
+                de la distinction pour tout homme moderne. En effet qui depuis n'a pas exhibé fièrement ses piles à la
+                foule envieuse ? Pour cela, les habitants de la planète entière et en particulier de Moulins lui sont
+                reconnaissants.</p>
+            </div>
         </div>
     </div>
     <blockquote class="container font-weight-bold p-3 rounded">
-        <p class="font-weight-bold text-center p-3 rounded bg-light">Words can be like X-rays, if you use them
-            properly—they’ll go through anything. You read and you’re pierced.</p>
+        <p class="font-weight-bold text-center p-3 rounded bg-light">L'histoire n'est rien d'autre que le lien aléatoire, 
+            complémentaire, concurrent et antagoniste, entre désordre et procès de complexification.</p>
         <footer class="text-right">— Jean Forteroche,
             <cite>Brave New World</cite>
         </footer>
@@ -64,7 +65,7 @@
             <div class="chapter-card m-0 p-4 mt-4">
                 <h4 class="text-left py-3">{{ chapter.title }}</h4>
                 {% if chapter.imgUrl is not null %}
-                <img src={{ chapter.imgUrl }} class="w-100" alt="">
+                    <img src={{ chapter.imgUrl }} class="w-100" alt="">
                 {% endif %}
                 <p class="text-muted text-right pt-4 text-wrap">
                     Publié le
