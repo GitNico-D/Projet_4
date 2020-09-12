@@ -42,7 +42,9 @@ class FormValidator
                 if ($errorEmail) {
                     $errors [] = $errorEmail;
                 }
-            }
+            } 
+            // var_dump($errors);
+            // array_puh($post, $post) ;          
         }
         return array_unique($errors);
     }
