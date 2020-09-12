@@ -36,7 +36,7 @@ npm run sass
 
 Modifier les données du fichier db-config.yml.example situé dans le dossier config avec vos données de bdd. 
 
-Un fichier db.sql vous permettra d'importer ma base de donnée pour plus de simplificité.
+Un fichier db_project_4.sql vous permettra d'importer ma base de donnée pour plus de simplificité.
 
 Login Administrateur
 
