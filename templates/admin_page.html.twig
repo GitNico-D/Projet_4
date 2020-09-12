@@ -27,7 +27,7 @@
         </nav>
         <div class="main col-md-10 mt-4">
             {% if session.deleteMsg is not null %}
-            <div class="sessionFont text-white text-center bg-danger rounded">{{ session.deleteMsg }}</div>
+            <div class="alert alert-danger text-center">{{ session.deleteMsg }}</div>
             {% endif %}
             <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
                 <h6 class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </h6>

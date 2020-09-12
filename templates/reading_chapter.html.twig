@@ -5,7 +5,7 @@
 {% block mainHeader %}
 <section id="main-header" class="main-header text-center">
     {% if session.modifySuccessMsg is not null %}
-        <div class="sessionFont text-white text-center bg-success rounded">{{ session.modifySuccessMsg }}</div>
+        <div class="alert alert-success text-center">{{ session.modifySuccessMsg }}</div>
     {% endif %}
     <div class="page-title text-center mb-4 p-4">
         <div class="container page-title-container">
@@ -99,18 +99,18 @@
 <section class="container">
     <div class=" my-4">
         {% if session.commentSuccess is not null %}
-            <div class="sessionFont text-white text-center bg-success rounded">{{ session.commentSuccess }}</div>
+            <div class="alert alert-success text-center">{{ session.commentSuccess }}</div>
         {% endif %}
         {% if session.commentError is not null %}
-            <div class="sessionFont text-white text-center bg-danger rounded">{{ session.commentError }}</div>
+            <div class="alert alert-danger text-center">{{ session.commentError }}</div>
         {% endif %}
         <h4 class="p-3">Laisser un commentaire</h4>
         <form action="/createComment/{{ uniqueChapter.id }}" method="post" class="leaveComment-form">
             <div class="form-group">
                 <label for="author" class="font-weight-bold">Pseudonyme</label>
-                <input type="text" class="form-control" id="author" name="author" required>
+                <input type="text" class="form-control" id="author" name="author" >
                 <label for="content" class="font-weight-bold">Votre commentaire</label>
-                <textarea class="form-control" id="content" name='content' rows="10" required></textarea>
+                <textarea class="form-control" id="content" name='content' rows="10" ></textarea>
                 <div class="commentButton text-center">
                     <button type="submit" name="submit" class="btn yellowbtn my-2"
                         value="Soumettre commentaire">Soumettre commentaire</button>
