@@ -24,10 +24,14 @@ abstract class Manager extends PDOFactory
      * @param mixed $where
      * @return void
      */
-    public function findOneBy($where)
+    public function findOneBy($where, $orderBy = [])
     {
-        $requestResult = $this->findBy($where, [], 1);
-        return $requestResult[0];
+        $requestResult = $this->findBy($where, $orderBy, 1);
+        if (isset($requestResult[0])){
+            return $requestResult[0];
+        } else {
+            throw new Exception('Le chapitre n\'existe pas');
+        }
     }
 
     /**
