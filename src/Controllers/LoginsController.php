@@ -24,7 +24,7 @@ class LoginsController extends Controller
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
         $this->reportingManager = new ReportingManager();
-        unset($_SESSION['fail']);
+        unset($_SESSION ['fail']);
     }
 
     /**
@@ -40,14 +40,14 @@ class LoginsController extends Controller
             if (!$errors) {
                 $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
                 if ($loginsAdmin == null) {
-                    $_SESSION['fail'] = 'Adresse email invalide !';
+                    $_SESSION ['fail'] = 'Adresse email invalide !';
                     header("Location: /getLogin");
                 } else {
                     $logins = password_verify($_POST['loginsPassword'], $loginsAdmin->getPassword());
                     if ($logins && ($loginsAdmin->getEmail() === $_POST['loginsEmail'])) {
-                        $_SESSION['loginsUsername'] = $loginsAdmin->getUsername();
-                        $_SESSION['loginsEmail'] = $loginsAdmin->getEmail();
-                        $_SESSION['loginsStatus'] = $loginsAdmin->getStatus();
+                        $_SESSION ['loginsUsername'] = $loginsAdmin->getUsername();
+                        $_SESSION ['loginsEmail'] = $loginsAdmin->getEmail();
+                        $_SESSION ['loginsStatus'] = $loginsAdmin->getStatus();
                         $isAdmin = true;
                         $this->adminView($isAdmin);
                     } else {
@@ -114,5 +114,30 @@ class LoginsController extends Controller
     public function toBeContacted()
     {
         echo $this->render('contact.html.twig');
+        unset($_SESSION ['sendFail']);
+        unset($_SESSION ['sendSuccess']);
+        unset($_SESSION ['error']);
+
+    }
+
+    public function sendMessage() 
+    {
+        if (isset($_POST['send'])) {
+            $errors = FormValidator::checkField($_POST);
+            if (!$errors) {
+                $message = $_POST['messageContent'];
+                $messageSended = mail('forteroche@yopmail.com', 'Contat via blog', $message);
+                if ($messageSended) {
+                    $_SESSION ['sendSuccess'] = 'Votre message a été envoyé';
+                    header('Location: /contact');
+                } else {
+                    $_SESSION ['sendFail'] = 'Le message n\'a pas pu être envoyé';
+                    header('Location: /contact');                
+                }
+            } else {
+                $_SESSION ['error'] .= implode(', ', array_unique($errors));
+                header('Location: /contact');
+            }
+        } 
     }
 }

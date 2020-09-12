@@ -26,10 +26,10 @@ class ChapterController extends Controller
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
         $this->reportingManager = new ReportingManager();
-        unset($_SESSION['addSuccessMsg']);
-        unset($_SESSION['addErrorMsg']);
-        unset($_SESSION['deleteMsg']);
-        unset($_SESSION['modifySuccessMsg']);
+        unset($_SESSION ['addSuccessMsg']);
+        unset($_SESSION ['addErrorMsg']);
+        unset($_SESSION ['deleteMsg']);
+        unset($_SESSION ['modifySuccessMsg']);
     }
 
     /**
@@ -54,11 +54,11 @@ class ChapterController extends Controller
                     if ($insertLines == false) {
                         throw new Exception('Le chapitre n\'a pas pu être ajouté !');
                     } else {
-                        $_SESSION['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
+                        $_SESSION ['addSuccessMsg'] = 'Le nouveau chapitre à été enregistré';
                         header('Location: /createChapter');
                     }
                 } else {
-                    $_SESSION['addErrorMsg'] .= implode(', ', $errors);
+                    $_SESSION ['addErrorMsg'] .= implode(', ', array_unique($errors));
                     header('Location: /createChapter');
                 }
             }
@@ -121,7 +121,7 @@ class ChapterController extends Controller
             $deleteChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
             $this->chapterManager->delete($deleteChapter);
             $this->commentManager->deleteFrom($deleteChapter);
-            $_SESSION['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
+            $_SESSION ['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
             header('Location: /adminView');
         } else {
             throw new Exception('Page réservé à l\'administration !');
@@ -169,11 +169,11 @@ class ChapterController extends Controller
                     if ($updateLines == false) {
                         throw new Exception('Impossible de mettre à jour le chapitre');
                     } else {
-                        $_SESSION['modifySuccessMsg'] = 'Chapitre modifié et enregistré';
+                        $_SESSION ['modifySuccessMsg'] = 'Chapitre modifié et enregistré';
                         header('Location: /readChapter/' . $chapterId);
                     }
                 } else {
-                    $_SESSION['error'] = 'Veuillez remplir tous les champs';
+                    $_SESSION ['error'] = 'Veuillez remplir tous les champs';
                     header('Location: /updateChapter');
                 }
             }

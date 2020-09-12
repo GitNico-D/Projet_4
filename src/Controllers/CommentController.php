@@ -21,8 +21,8 @@ class CommentController extends Controller
         parent::__construct();
         $this->commentManager = new CommentManager();
         $this->reportingManager = new ReportingManager();
-        unset($_SESSION['commentSuccess']);
-        unset($_SESSION['commentError']);
+        unset($_SESSION ['commentSuccess']);
+        unset($_SESSION ['commentError']);
     }
 
     public function createComment($chapterId)
@@ -34,10 +34,10 @@ class CommentController extends Controller
                 $newComment->setCreatedDate(date("Y-m-d H:i:s"));
                 $newComment->setChapterId($chapterId);
                 $this->commentManager->insertInto($newComment);
-                $_SESSION['commentSuccess'] = 'Votre commentaire a été ajouté';
+                $_SESSION ['commentSuccess'] = 'Votre commentaire a été ajouté';
                 header('Location: /readChapter/' . $chapterId . "#comment");
             } else {
-                $_SESSION['commentError'] .= implode(', ', $errors);
+                $_SESSION ['commentError'] .= implode(', ', $errors);
                 header('Location: /readChapter/' . $chapterId . "#comment");
             }
         }
