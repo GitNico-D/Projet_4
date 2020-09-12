@@ -112,6 +112,7 @@ class ChapterController extends Controller
      * deleteChapter
      *
      * @param mixed $chapterId
+     * @param $isAdmin
      * @throws Exception
      */
     public function deleteChapter($chapterId, $isAdmin)
@@ -131,6 +132,7 @@ class ChapterController extends Controller
      * publishChapter
      *
      * @param mixed $chapterId
+     * @param $isAdmin
      * @throws Exception
      */
     public function publishChapter($chapterId, $isAdmin)
@@ -149,6 +151,7 @@ class ChapterController extends Controller
      * updateChapterAction
      *
      * @param mixed $chapterId
+     * @param $isAdmin
      * @return void
      * @throws Exception
      */

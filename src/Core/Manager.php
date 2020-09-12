@@ -14,10 +14,7 @@ abstract class Manager extends PDOFactory
 
     public function __construct()
     {
-        try {
-            $this->entity = "App\src\Models\\" . ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
-        } catch (ReflectionException $e) {
-        }
+        $this->entity = "App\src\Models\\" . ucfirst(str_replace('Manager', '', (new ReflectionClass($this))->getShortName()));
         $this->table = strtolower((str_replace('App\src\Models\\', '', $this->entity)));
     }
 
@@ -26,7 +23,6 @@ abstract class Manager extends PDOFactory
      *
      * @param mixed $where
      * @return void
-     * @throws Exception
      */
     public function findOneBy($where)
     {
@@ -36,7 +32,7 @@ abstract class Manager extends PDOFactory
 
     /**
      * findBy
-     *
+     * 
      * @param mixed $where
      * @param mixed $limit
      * @param mixed $orderBy
@@ -109,7 +105,7 @@ abstract class Manager extends PDOFactory
      * update
      *
      * @param $updateEntity
-     * @return void|bool|PDOStatement
+     * @return void
      */
     public function update(Model $updateEntity)
     {
@@ -138,7 +134,13 @@ abstract class Manager extends PDOFactory
         $sqlRequest = "DELETE FROM " . $this->table . " WHERE id = ?";
         $this->createQuery($sqlRequest, [$deleteEntity->getId()]);
     }
-
+    
+    /**
+     * deleteFrom
+     *
+     * @param  mixed $deleteEntity
+     * @return void
+     */
     public function deleteFrom(Model $deleteEntity)
     {
         $class = get_class($deleteEntity);

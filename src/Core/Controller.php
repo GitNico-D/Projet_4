@@ -11,7 +11,12 @@ abstract class Controller
 {
     protected $loader;
     protected $twig;
-
+    
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         $config = yaml_parse_file('../config/config.yml');
@@ -25,7 +30,14 @@ abstract class Controller
         $this->twig->addGlobal('locale', $config['APP_LOCALE']);
         $this->twig->addGlobal('charset', $config['APP_CHARSET']);
     }
-
+    
+    /**
+     * render
+     *
+     * @param  mixed $view
+     * @param  mixed $options
+     * @return void
+     */
     public function render($view, $options = [])
     {
         try {
