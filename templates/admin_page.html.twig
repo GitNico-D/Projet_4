@@ -174,9 +174,16 @@
                 {% for reportComment in reportedCommentList %}
                 <div class="card commentModerationCard mt-3">
                     <p class="card-header text-left font-weight-bold">
-                        <span class="font-italic">Posté le</span>
-                        {{ reportComment.createdDate | date("m/d/Y \à H:i:s") }}
-                        <span class="font-italic">par</span> {{ reportComment.author }}
+                        {% for totalReport in totalReporting %}
+                            {% if totalReport.commentId == reportComment.id %}
+                                <span class="text-danger"> Commentaire reporté {{ totalReport.totalReport }} par les lecteurs</span>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p class="mt-4"><span class="font-italic">Posté le</span>
+                        <span class="font-weight-bold">{{ reportComment.createdDate | date("m/d/Y \à H:i:s") }}</span> 
+                        <span class="font-italic">par</span>
+                        <span class="font-weight-bold">{{ reportComment.author }}</span>
                     </p>
                     <p class="card-body commentModerationCard-text p-4 text-center m-auto">{{ reportComment.content }}
                     </p>

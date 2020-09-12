@@ -96,6 +96,7 @@ class LoginsController extends Controller
                 'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true)),
                 'unpublishedChaptersList' => $this->chapterManager->findBy(array('published' => false)),
                 'reportedCommentList' => $this->commentManager->getAllReportedComments(),
+                'totalReporting' => $this->reportingManager->totalReportCount(),
                 'isAdmin' => $isAdmin,
                 'session' => $_SESSION]
             );
