@@ -3,7 +3,6 @@
 namespace App\src\Models;
 
 use App\src\Core\Model;
-use Exception;
 
 class Chapter extends Model
 {
@@ -23,12 +22,6 @@ class Chapter extends Model
 
     // Setters //
 
-    /**
-     * setId
-     *
-     * @param mixed $id
-     * @return void
-     */
     public function setId($id)
     {
         if (is_numeric($id)) {

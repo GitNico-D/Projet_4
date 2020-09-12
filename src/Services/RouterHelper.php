@@ -7,21 +7,6 @@ use Exception;
 class RouterHelper
 {
     /**
-     * getPageIx
-     *
-     * @param mixed $get
-     * @return int|string
-     */
-    public static function getPageIx(array $get)
-    {
-        $pageIx = 0;
-        if (array_key_exists("pageIx", $get) && isset($get["pageIx"]) && is_numeric($get["pageIx"]) && $get["pageIx"] >= 0) {
-            $pageIx = $get["pageIx"];
-        }
-        return $pageIx;
-    }
-
-    /**
      * getChapterId
      *
      * @param array $get
