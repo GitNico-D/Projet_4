@@ -27,7 +27,7 @@
         </nav>
         <div class="main col-md-10 mt-4">
             {% if session.deleteMsg is not null %}
-            <div class="alert alert-danger text-center">{{ session.deleteMsg }}</div>
+                <div class="alert alert-danger text-center">{{ session.deleteMsg }}</div>
             {% endif %}
             <section id="writingChapter" class="card m-auto my-3 p-3 writingChapter">
                 <h6 class="writingChapter-title text-center mb-4"> Créer un nouveau chapitre </h6>
@@ -81,6 +81,9 @@
                     <span class="font-weight-bold">MODIFICATION</span>
                     du chapitre.
                 </p>
+                {% if session.chapterPublish is not null %}
+                    <div class="alert alert-success text-center">{{ session.chapterPublish }}</div>
+                {% endif %}
                 {% set plusOne = 0 %}
                 {% for chapter in publishedChaptersList %}
                 {% if plusOne < publishedChaptersList|length %}
@@ -171,6 +174,12 @@
                     <span class="text-muted font-weight-bold">SUPPRESSION</span>
                     du commentaire.
                 </p>
+                {% if session.commentValid is not null %}
+                    <div class="alert alert-success text-center">{{ session.commentValid }}</div>
+                {% endif %}
+                {% if session.commentDelete is not null %}
+                    <div class="alert alert-danger text-center">{{ session.commentDelete }}</div>
+                {% endif %}
                 {% for reportComment in reportedCommentList %}
                 <div class="card commentModerationCard mt-3">
                     <p class="card-header text-left font-weight-bold">

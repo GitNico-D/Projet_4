@@ -6,6 +6,10 @@
 <section id="main-header" class="main-header text-center">
     {% if session.modifySuccessMsg is not null %}
         <div class="alert alert-success text-center">{{ session.modifySuccessMsg }}</div>
+        <div class=" text-center">
+            <a href="/adminView" class="btn greenbtn my-2">Retour à la page
+                d'administration</a>
+        </div>
     {% endif %}
     <div class="page-title text-center mb-4 p-4">
         <div class="container page-title-container">
@@ -39,7 +43,7 @@
             {{ uniqueChapter.content  | raw }}
         </div>
     </div>
-    <div>
+    <div class="mt-5 mb-4">
         <p class="font-weight-bold font-italic">Sélection du chapitre</p>
         <select class="form-control text-center" onchange="location = this.value;">
             <option value="none" class="text-muted" selected>Choix du chapitre</option>
@@ -49,14 +53,14 @@
         </select>
     </div>
     {% if isAdmin %}
-        <div class="returnPage text-center p-4">
-            <a href="/adminView" class="allLink"><i class="far fa-arrow-alt-circle-left p-2"></i>Retour à la page
+        <div class="text-center p-4">
+            <a href="/adminView" class="btn yellowbtn"><i class="far fa-arrow-alt-circle-left p-2"></i>Retour à la page
                 d'administration</a>
         </div>
     {% else %}
-        <div class="returnPage text-center p-4">
-            <a href="/#publishChapter" class="allLink ml-2 my-2"><i class="far fa-arrow-alt-circle-left p-2"></i>Retour aux
-                chapitres</a>
+        <div class="text-center p-4">
+            <a href="/#publishChapter" class="btn yellowbtn"><i class="far fa-arrow-alt-circle-left p-2"></i>Retour à
+                l'accueil</a>
         </div>
     {% endif %}
 </section>

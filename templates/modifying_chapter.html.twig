@@ -5,7 +5,7 @@
 {% block mainHeader %}
 <div class="page-title text-center">
     <div class="container page-title-container">
-        <p class="page-title-text">Modification du Chapitre {{ uniqueChapter.id }} :</p>
+        <p class="page-title-text">Modification du Chapitre :</p>
         <h1 class="text-lead page-title-h1"><span>{{ uniqueChapter.title}}</span></h1>
     </div>
 </div>
@@ -48,8 +48,8 @@
     </div>
     <div class="text-center">
         {% if isAdmin %}
-            <div class="returnPage text-center">
-                <a href="/adminView"><i class="fas fa-arrow-left"></i>Retour à la page d'administration</a>
+            <div class="text-center">
+                <a href="/adminView" class="btn yellowbtn"><i class="fas fa-arrow-left"></i>Retour à la page d'administration</a>
             </div>
         {% endif %}
     </div>

@@ -17,11 +17,10 @@
         <div class="alert alert-danger text-center">{{ session.addErrorMsg }}</div>
     {% endif %}
     {% if session.addSuccessMsg is not null %}
-        <div class="alert alert-success text-center">{{ session.addSuccessMsg }}
-            <div class="returnPage text-center">
-                <a href="/adminView" class="btn greenbtn my-2"><i class="fas fa-arrow-left"></i>Retour à la page
-                    d'administration</a>
-            </div>
+        <div class="alert alert-success text-center">{{ session.addSuccessMsg }}</div>
+        <div class=" text-center">
+            <a href="/adminView" class="btn greenbtn my-2"><i class="fas fa-arrow-left"></i>Retour à la page
+                d'administration</a>
         </div>
     {% endif %}
     {% if session.deleteMsg is not null %}
@@ -50,7 +49,7 @@
 
 {% if isAdmin %}
     <div class="text-center">
-        <a href="/adminView" class="linkblackyellow allLink">Retour à la page d'administration</a>
+        <a href="/adminView" class="btn yellowbtn">Retour à la page d'administration</a>
     </div>
 {% endif %}
 
