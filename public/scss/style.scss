@@ -64,9 +64,6 @@ h3{
 
 .page-title {
     margin-top: 90px;
-    a {
-        color: $yellow;
-    }
     &-h1 {
         font-size: 3rem;
         color: white;
@@ -192,15 +189,6 @@ h3{
     }
 }
 
-.returnPage{
-    a {
-        color: black;
-        &:hover {
-            color: $yellow;
-        }
-    }
-}
-
 //// ADDCHAPTER PAGE ////
 
 .writingForm {
@@ -273,16 +261,14 @@ h3{
     span {
         color: $yellow;
     }
-    a {
+    .herelink {
         color: $yellow;
-    }
-    .errortext {
-        color:white;
     }
 }
 
 .about {
     padding-top: 8rem;
+    padding-bottom: 8rem;
     &-quote {
         p {
             font-size: 1.2rem;
