@@ -24,7 +24,7 @@ class LoginsController extends Controller
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
         $this->reportingManager = new ReportingManager();
-        unset($_SESSION ['fail']);
+        
     }
 
     /**
@@ -38,9 +38,9 @@ class LoginsController extends Controller
         if (isset($_POST['connect'])) {
             $errors = FormValidator::checkField($_POST);
             if (!$errors) {
-                $loginsAdmin = $this->loginsManager->findOneBy(array('email' => htmlspecialchars($_POST['loginsEmail'])));
-                if ($loginsAdmin == null) {
-                    $_SESSION ['fail'] = 'Adresse email invalide !';
+                $loginsAdmin = $this->loginsManager->findOneBy(array('email' => $_POST['loginsEmail']));
+                if ($loginsAdmin === null) {
+                    $_SESSION ['fail'] = 'Adresse email inconnu !';
                     header("Location: /getLogin");
                 } else {
                     $logins = password_verify($_POST['loginsPassword'], $loginsAdmin->getPassword());
@@ -65,6 +65,7 @@ class LoginsController extends Controller
     public function getLogin()
     {
         echo $this->render('logins.html.twig');
+        unset($_SESSION ['fail']);
     }
 
     /**
@@ -100,6 +101,10 @@ class LoginsController extends Controller
                 'isAdmin' => $isAdmin,
                 'session' => $_SESSION]
             );
+            unset($_SESSION ['deleteMsg']);
+            unset($_SESSION ['commentValid']);
+            unset($_SESSION ['commentDelete']);
+            unset($_SESSION ['chapterPublish']);
         } else {
             throw new Exception('Accès interdit !');
         }

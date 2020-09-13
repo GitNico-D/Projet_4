@@ -54,6 +54,7 @@ class CommentController extends Controller
     {
         $deleteComment = $this->commentManager->findOneBy(array('id' => $commentId));
         $this->commentManager->delete($deleteComment);
+        $_SESSION ['commentDelete'] = "Commentaire supprimé";
         header('Location: /adminView#commentModeration');
     }
 
@@ -82,6 +83,7 @@ class CommentController extends Controller
     {
         $deleteReport = $this->commentManager->findOneBy(array('id' => $commentId));
         $this->reportingManager->deleteFrom($deleteReport);
-        header('Location: /adminView#commentModeration');
+        $_SESSION ['commentValid'] = "Commentaire validé";
+        header('Location: /adminView#commentModeration');        
     }
 }
