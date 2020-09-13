@@ -28,8 +28,6 @@ class ChapterController extends Controller
         $this->reportingManager = new ReportingManager();
         unset($_SESSION ['addSuccessMsg']);
         unset($_SESSION ['addErrorMsg']);
-        unset($_SESSION ['deleteMsg']);
-        unset($_SESSION ['modifySuccessMsg']);
     }
 
     /**
@@ -77,14 +75,20 @@ class ChapterController extends Controller
      */
     public function readChapter($chapterId, $isAdmin)
     {
-        echo $this->render(
-            'reading_chapter.html.twig',
-            ['uniqueChapter' => $this->chapterManager->findOneBy(array('id' => $chapterId)),
-            'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId), array('createdDate' => 'ASC')),
-            'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true), array('createDate' => 'ASC')),
-            'totalReporting' => $this->reportingManager->totalReportCount(),
-            'isAdmin' => $isAdmin]
-        );
+        $chapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
+        if ($chapter) {
+            echo $this->render(
+                'reading_chapter.html.twig',
+                ['uniqueChapter' => $chapter,
+                'commentList' => $this->commentManager->findBy(array('chapterId' => $chapterId), array('createdDate' => 'ASC')),
+                'publishedChaptersList' => $this->chapterManager->findBy(array('published' => true), array('createDate' => 'ASC')),
+                'totalReporting' => $this->reportingManager->totalReportCount(),
+                'isAdmin' => $isAdmin]
+            );
+            unset($_SESSION ['modifySuccessMsg']);
+        } else {
+            throw new Exception("Le chapitre n'existe pas");
+        } 
     }
 
     /**
@@ -120,9 +124,9 @@ class ChapterController extends Controller
         if ($isAdmin) {
             $deleteChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
             $this->chapterManager->delete($deleteChapter);
-            $this->commentManager->deleteFrom($deleteChapter);
+            $this->commentManager->deleteFrom($deleteChapter); // Suppression des commentaires associés au chapitre
             $_SESSION ['deleteMsg'] = 'Le chapitre ' . $chapterId . ' et ses commentaires ont bien été supprimés';
-            header('Location: /adminView');
+            header('Location: /adminView');            
         } else {
             throw new Exception('Page réservé à l\'administration !');
         }
@@ -141,7 +145,8 @@ class ChapterController extends Controller
             $publishChapter = $this->chapterManager->findOneBy(array('id' => $chapterId));
             $publishChapter->setPublished(true);
             $this->chapterManager->update($publishChapter);
-            header('Location: /adminView');
+            $_SESSION ['chapterPublish'] = "Chapitre publié";
+            header('Location: /adminView#publishChapter');
         } else {
             throw new Exception('Page réservé à l\'administration !');
         }
