@@ -42,9 +42,7 @@ class FormValidator
                 if ($errorEmail) {
                     $errors [] = $errorEmail;
                 }
-            } 
-            // var_dump($errors);
-            // array_puh($post, $post) ;          
+            }         
         }
         return array_unique($errors);
     }
@@ -129,7 +127,7 @@ class FormValidator
     public static function checkFieldEmail($email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return "E-mail " . $email . " est invalide";
+            return  $email . " n'est pas un e-mail valide";
         }
     }
 }
