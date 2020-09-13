@@ -20,7 +20,6 @@ abstract class PDOFactory
                     $dbConfig['DATABASE_USERNAME'],
                     $dbConfig['DATABASE_PASSWORD']
                 );
-                // $this->db = new PDO('mysql:host=localhost;dbname=db_project_4;charset=utf8', 'root', '');
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $this->db;
             } catch (Exception $errorConnexion) {
