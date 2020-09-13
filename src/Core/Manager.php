@@ -29,9 +29,7 @@ abstract class Manager extends PDOFactory
         $requestResult = $this->findBy($where, $orderBy, 1);
         if (isset($requestResult[0])){
             return $requestResult[0];
-        } else {
-            throw new Exception('Le chapitre n\'existe pas');
-        }
+        } 
     }
 
     /**
